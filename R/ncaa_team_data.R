@@ -60,6 +60,7 @@ ncaa_team_lookup <- ncaa_team_lu %>%
   dplyr::bind_rows(ncaa_teams)
 
 ncaa_team_lookup <- ncaa_team_lookup %>% 
-  dplyr::arrange(.data$division, .data$team_name, -.data$year)
+  dplyr::arrange(.data$division, .data$team_name, -.data$year) %>%
+  baseballr:::make_baseballr_data("NCAA Baseball Teams Information from baseballr data repository",Sys.time())
 
 readr::write_csv(ncaa_team_lookup, "ncaa/ncaa_team_lookup.csv")
