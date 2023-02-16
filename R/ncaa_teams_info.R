@@ -2,7 +2,7 @@ library(dplyr)
 library(purrr)
 library(baseballr)
 
-ncaa_team_lu <- readr::read_csv("ncaa/ncaa_team_lookup.csv", show_col_types = FALSE)
+ncaa_team_lu <- readr::read_csv("ncaa/teams_info/ncaa_team_lookup.csv", show_col_types = FALSE)
 
 years_vec <- expand.grid(year = baseballr::most_recent_ncaa_baseball_season(), division = 1:3)
 
@@ -29,4 +29,6 @@ ncaa_team_lookup <- ncaa_team_lookup %>%
   dplyr::arrange(.data$division, .data$team_name, -.data$year) %>%
   baseballr:::make_baseballr_data("NCAA Baseball Teams Information from baseballr data repository", Sys.time())
 
-readr::write_csv(ncaa_team_lookup, "ncaa/ncaa_team_lookup.csv")
+readr::write_csv(ncaa_team_lookup, "ncaa/teams_info/ncaa_team_lookup.csv")
+saveRDS(ncaa_team_lookup, "ncaa/teams_info/ncaa_team_lookup.rds")
+arrow::write_parquet(ncaa_team_lookup, "ncaa/teams_info/ncaa_team_lookup.parquet")
