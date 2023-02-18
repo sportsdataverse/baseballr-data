@@ -21,11 +21,11 @@ opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-# years_vec <- 2020
-# y <- 2022
+years_vec <- 2018:2015
+# y <- 2018
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
-#   dplyr::slice_head(n = 24)
+#   dplyr::slice(588:593)
 
 ncaa_baseball_schedules_scrape <- function(y){
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>% 
