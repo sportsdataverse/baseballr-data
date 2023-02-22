@@ -48,9 +48,9 @@ ncaa_baseball_schedules_scrape <- function(y){
   final_sched <- dplyr::distinct(ncaa_teams_schedule) %>% dplyr::arrange(desc(.data$date))
   final_sched <- final_sched %>%
     baseballr:::make_baseballr_data("NCAA Schedule Information from baseballr data repository", Sys.time())
-  readr::write_csv(ncaa_teams_schedule, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
-  saveRDS(ncaa_teams_schedule, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
-  arrow::write_parquet(ncaa_teams_schedule, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
+  readr::write_csv(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
+  saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
+  arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
 }
 
 all_games <- purrr::map(years_vec, function(y){
