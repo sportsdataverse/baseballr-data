@@ -23,18 +23,27 @@ options(scipen = 999)
 years_vec <- opt$s:opt$e
 years_vec <- 2022
 y <- 2022
+rescrape <- FALSE
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
 
 ncaa_baseball_pbp_scrape <- function(y){
   sched <- data.table::fread(paste0('ncaa/schedules/csv/ncaa_baseball_schedule_',y,'.csv'))
+  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/html/pbp/"), "\\d+"))
   pbp_links <- sched %>% 
     dplyr::filter(!is.na(.data$game_info_url)) %>% 
-    dplyr::select("game_info_url")
-  
+    dplyr::select("game_info_url") %>% 
+    dplyr::mutate(
+      contest_id = as.integer(stringr::str_extract(.data$game_info_url, "\\d+"))) 
+  if(rescrape == FALSE) {
+    pbp_links <- pbp_links %>% 
+    dplyr::filter(!(.data$contest_id %in% pbp_dir))
+  }
   pbp_g <- purrr::map(pbp_links$game_info_url, function(x){
-    df <- baseballr::ncaa_baseball_pbp(game_info_url = x)
+    
+    df$contest_id <- as.integer(stringr::str_extract(x, "\\d+"))
+    df <- baseballr::ncaa_baseball_pbp(game_info_url = x, raw_html_to_disk = TRUE, raw_html_path = "ncaa/html/pbp/")
     df$game_info_url <- x
     df$contest_id <- as.integer(stringr::str_extract(x, "\\d+"))
     Sys.sleep(4)
