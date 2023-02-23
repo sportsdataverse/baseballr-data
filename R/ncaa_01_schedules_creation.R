@@ -32,7 +32,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}!")
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
     dplyr::filter(.data$year == y)
-  
+
   ifelse(!dir.exists(file.path("ncaa/team_schedules")), dir.create(file.path("ncaa/team_schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/csv")), dir.create(file.path("ncaa/team_schedules/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
@@ -52,7 +52,7 @@ ncaa_baseball_schedules_scrape <- function(y){
       baseballr:::rbindlist_with_attrs()
   }, enable = TRUE)
   }
-  
+
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
   team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
@@ -72,7 +72,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   readr::write_csv(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
-  
+
   cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}!")
 }
 
