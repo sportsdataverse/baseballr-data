@@ -21,7 +21,7 @@ opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-years_vec <- 2022
+years_vec <- 2023
 rescrape <- TRUE
 # y <- 2022
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
@@ -29,8 +29,9 @@ rescrape <- TRUE
 #   dplyr::slice(533:540)
 
 ncaa_baseball_schedules_scrape <- function(y){
-  ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>% 
-    dplyr::filter(.data$year == y) 
+  cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}!")
+  ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
+    dplyr::filter(.data$year == y)
   progressr::with_progress({
     p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
     ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
@@ -40,28 +41,30 @@ ncaa_baseball_schedules_scrape <- function(y){
       p(sprintf("x=%s", as.integer(x)))
       Sys.sleep(1)
       return(df)
-    }) %>% 
+    }) %>%
       baseballr:::rbindlist_with_attrs()
   })
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
-  team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv")) 
+  team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
   ncaa_teams_schedule <- purrr::map(team_schedules_files_year, function(x){
     df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
     return(df)
-  }) %>% 
+  }) %>%
     baseballr:::rbindlist_with_attrs()
   ifelse(!dir.exists(file.path("ncaa/schedules")), dir.create(file.path("ncaa/schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/rds")), dir.create(file.path("ncaa/schedules/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/parquet")), dir.create(file.path("ncaa/schedules/parquet")), FALSE)
-  final_sched <- dplyr::distinct(ncaa_teams_schedule) %>% 
+  final_sched <- dplyr::distinct(ncaa_teams_schedule) %>%
     dplyr::arrange(.data$date)
   final_sched <- final_sched %>%
     baseballr:::make_baseballr_data("NCAA Schedule Information from baseballr data repository", Sys.time())
   readr::write_csv(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
+
+  cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}!")
 }
 
 all_games <- purrr::map(years_vec, function(y){
