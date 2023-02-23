@@ -21,8 +21,9 @@ opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-years_vec <- 2023
-# y <- 2013
+years_vec <- 2022
+rescrape <- TRUE
+# y <- 2022
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
@@ -34,13 +35,22 @@ ncaa_baseball_schedules_scrape <- function(y){
     p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
     ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
       df <- baseballr::ncaa_schedule_info(teamid = x, year = y)
+      readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
+      jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
       p(sprintf("x=%s", as.integer(x)))
       Sys.sleep(1)
       return(df)
     }) %>% 
       baseballr:::rbindlist_with_attrs()
   })
-  
+  team_schedules_files <- list.files("ncaa/team_schedules/csv/")
+  team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv")) 
+  team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
+  ncaa_teams_schedule <- purrr::map(team_schedules_files_year, function(x){
+    df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
+    return(df)
+  }) %>% 
+    baseballr:::rbindlist_with_attrs()
   ifelse(!dir.exists(file.path("ncaa/schedules")), dir.create(file.path("ncaa/schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/rds")), dir.create(file.path("ncaa/schedules/rds")), FALSE)
