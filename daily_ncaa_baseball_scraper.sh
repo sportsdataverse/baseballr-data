@@ -9,7 +9,7 @@ do
 done
 git pull > /dev/null
 git add . > /dev/null
-Rscript R/ncaa_01_schedules_creation.R -s $START_YEAR -e $END_YEAR
+Rscript R/ncaa_01_schedules_creation.R -s $START_YEAR -e $END_YEAR -r $RESCRAPE
 git add . > /dev/null
 git pull > /dev/null
 git commit -m "NCAA Schedules update (Start: $START_YEAR End: $END_YEAR)" > /dev/null || echo "No changes to commit"

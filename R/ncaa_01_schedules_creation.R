@@ -15,14 +15,16 @@ suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_
 
 option_list = list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
-  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process")
+  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
+  make_option(c("-r", "--rescrape"), action="store", default=FALSE, type='logical', help="Rescrape the raw JSON files from web api")
+  
 )
 opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-rescrape <- TRUE
-# y <- 2022
+rescrape <- opt$r
+# y <- 2023
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
@@ -36,6 +38,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/team_schedules/csv")), dir.create(file.path("ncaa/team_schedules/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
+  if (rescrape == TRUE) {
   progressr::with_progress({
     p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
     ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
@@ -49,6 +52,8 @@ ncaa_baseball_schedules_scrape <- function(y){
     }) %>%
       baseballr:::rbindlist_with_attrs()
   }, enable = TRUE)
+  }
+  
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
   team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
