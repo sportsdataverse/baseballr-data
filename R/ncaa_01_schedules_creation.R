@@ -43,7 +43,7 @@ ncaa_baseball_schedules_scrape <- function(y){
       return(df)
     }) %>%
       baseballr:::rbindlist_with_attrs()
-  })
+  }, enable = TRUE)
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
   team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
