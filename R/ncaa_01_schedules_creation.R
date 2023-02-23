@@ -16,8 +16,7 @@ suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_
 option_list = list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
   make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
-  make_option(c("-r", "--rescrape"), action="store", default=FALSE, type='logical', help="Rescrape the raw JSON files from web api")
-  
+  make_option(c("-r", "--rescrape"), action = "store", default = FALSE, type = 'logical', help = "Rescrape the raw JSON files from web api")
 )
 opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
