@@ -31,12 +31,18 @@ ncaa_baseball_schedules_scrape <- function(y){
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}!")
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
     dplyr::filter(.data$year == y)
+  
+  ifelse(!dir.exists(file.path("ncaa/team_schedules")), dir.create(file.path("ncaa/team_schedules")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/team_schedules/csv")), dir.create(file.path("ncaa/team_schedules/csv")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
   progressr::with_progress({
     p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
     ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
       df <- baseballr::ncaa_schedule_info(teamid = x, year = y)
       readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
       jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
+      arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
       p(sprintf("x=%s", as.integer(x)))
       Sys.sleep(1)
       return(df)
@@ -62,7 +68,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   readr::write_csv(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
-
+  
   cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}!")
 }
 
