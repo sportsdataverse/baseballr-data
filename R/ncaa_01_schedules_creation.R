@@ -21,7 +21,6 @@ opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-years_vec <- 2023
 rescrape <- TRUE
 # y <- 2022
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
