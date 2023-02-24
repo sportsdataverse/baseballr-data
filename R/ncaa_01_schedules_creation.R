@@ -38,19 +38,19 @@ ncaa_baseball_schedules_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
   if (rescrape == TRUE) {
-  progressr::with_progress({
-    p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
-    ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
-      df <- baseballr::ncaa_schedule_info(teamid = x, year = y)
-      readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
-      jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
-      arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
-      p(sprintf("x=%s", as.integer(x)))
-      Sys.sleep(1)
-      return(df)
-    }) %>%
-      baseballr:::rbindlist_with_attrs()
-  }, enable = TRUE)
+    progressr::with_progress({
+      p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
+      ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
+        df <- baseballr::ncaa_schedule_info(teamid = x, year = y)
+        readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
+        jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
+        arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
+        p(sprintf("x=%s", as.integer(x)))
+        Sys.sleep(1)
+        return(df)
+      }) %>%
+        baseballr:::rbindlist_with_attrs()
+    }, enable = TRUE)
   }
 
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
