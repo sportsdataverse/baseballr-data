@@ -29,7 +29,7 @@ rescrape <- opt$r
 #   dplyr::slice(533:540)
 
 ncaa_baseball_schedules_scrape <- function(y){
-  cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}!")
+  cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
     dplyr::filter(.data$year == y)
 
@@ -73,7 +73,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
 
-  cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}!")
+  cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
 all_games <- purrr::map(years_vec, function(y){
