@@ -17,7 +17,9 @@ suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_
 
 option_list = list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
-  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process")
+  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
+  make_option(c("-r", "--rescrape"), action = "store", default = FALSE, type = 'logical', help = "Rescrape the raw JSON files from web api")
+
 )
 opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
@@ -45,7 +47,7 @@ ncaa_baseball_pbp_scrape <- function(y){
 
   if (rescrape == FALSE) {
     pbp_links <- pbp_links %>%
-    dplyr::filter(!(.data$game_pbp_id %in% pbp_dir))
+      dplyr::filter(!(.data$game_pbp_id %in% pbp_dir))
   }
 
   ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
@@ -53,8 +55,6 @@ ncaa_baseball_pbp_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
 
-    progressr::with_progress({
-      p <- progressr::progressor(along = pbp_links$game_pbp_url)
   pbp_g <- purrr::map(pbp_links$game_pbp_url, function(x){
     game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
     df <- baseballr::ncaa_baseball_pbp(game_pbp_url = x, raw_html_to_disk = TRUE, raw_html_path = "ncaa/html/pbp/")
@@ -65,9 +65,11 @@ ncaa_baseball_pbp_scrape <- function(y){
     arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{game_pbp_id}.parquet"))
     jsonlite::write_json(df,glue::glue("ncaa/game_pbp/json/{game_pbp_id}.json"), pretty = 2)
     Sys.sleep(2)
-    return(df)}) %>%
-    baseballr:::rbindlist_with_attrs()
 
+
+
+    return(df)}, .progress = TRUE) %>%
+    baseballr:::rbindlist_with_attrs()
 
   game_pbp_files <- list.files("ncaa/game_pbp/csv/")
   game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.csv"))
