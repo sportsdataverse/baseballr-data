@@ -23,9 +23,10 @@ opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
-years_vec <- 2022
-y <- 2022
-rescrape <- FALSE
+rescrape <- opt$r
+# years_vec <- 2022
+# y <- 2022
+# rescrape <- FALSE
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
@@ -36,35 +37,38 @@ ncaa_baseball_pbp_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/html")), dir.create(file.path("ncaa/html")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/html/pbp")), dir.create(file.path("ncaa/html/pbp")), FALSE)
   pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/html/pbp/"), "\\d+"))
-  pbp_links <- sched %>% 
-    dplyr::filter(!is.na(.data$game_info_url)) %>% 
-    dplyr::select("game_info_url","game_pbp_url") %>% 
+  pbp_links <- sched %>%
+    dplyr::filter(!is.na(.data$game_info_url)) %>%
+    dplyr::select("game_info_url","game_pbp_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) 
-  
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+")))
+
   if (rescrape == FALSE) {
-    pbp_links <- pbp_links %>% 
+    pbp_links <- pbp_links %>%
     dplyr::filter(!(.data$game_pbp_id %in% pbp_dir))
   }
-  
+
   ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/csv")), dir.create(file.path("ncaa/game_pbp/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
+
+    progressr::with_progress({
+      p <- progressr::progressor(along = pbp_links$game_pbp_url)
   pbp_g <- purrr::map(pbp_links$game_pbp_url, function(x){
     game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
     df <- baseballr::ncaa_baseball_pbp(game_pbp_url = x, raw_html_to_disk = TRUE, raw_html_path = "ncaa/html/pbp/")
     df$game_pbp_url <- x
-    df$game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+")) 
+    df$game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
     readr::write_csv(df, glue::glue("ncaa/game_pbp/csv/{game_pbp_id}.csv"))
     saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
     arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{game_pbp_id}.parquet"))
     jsonlite::write_json(df,glue::glue("ncaa/game_pbp/json/{game_pbp_id}.json"), pretty = 2)
     Sys.sleep(2)
-    return(df)}) %>% 
+    return(df)}) %>%
     baseballr:::rbindlist_with_attrs()
-  
-  
+
+
   game_pbp_files <- list.files("ncaa/game_pbp/csv/")
   game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.csv"))
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
@@ -73,7 +77,7 @@ ncaa_baseball_pbp_scrape <- function(y){
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()
-  
+
   ifelse(!dir.exists(file.path("ncaa/pbp")), dir.create(file.path("ncaa/pbp")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/csv")), dir.create(file.path("ncaa/pbp/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/rds")), dir.create(file.path("ncaa/pbp/rds")), FALSE)
