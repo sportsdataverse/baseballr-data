@@ -15,11 +15,34 @@ suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_pat
 suppressPackageStartupMessages(suppressMessages(library(glue, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_path)))
 
+library(rvest)                                           # a very common library for webscraping
+html_text( read_html('http://checkip.amazonaws.com/') ) 
+proxies <- data.table::fread("../../proxylist.csv")
+proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
+proxy_selected <- proxies %>% 
+  dplyr::filter(.data$ip == proxy)
+my_proxy <- httr::use_proxy(url = proxy_selected$ip,
+                port = proxy_selected$port,
+                username = proxy_selected$login,
+                password = proxy_selected$password)
+content <- httr::RETRY("GET", url = 'http://checkip.amazonaws.com/', my_proxy) %>% 
+  httr::content(as = "text", encoding = "UTF-8")
+
+
+payload <- content %>% 
+  httr::content(as = "text", encoding = "UTF-8") %>% 
+  xml2::read_html() 
+Sys.setenv(https_proxy = glue::glue("{proxy_selected$ip}:{proxy_selected$port}"))
+Sys.setenv(https_proxy_user = glue::glue("{proxy_selected$login}:{proxy_selected$password}"))
+Sys.setenv(http_proxy = glue::glue("{proxy_selected$ip}:{proxy_selected$port}"))
+Sys.setenv(http_proxy_user = glue::glue("{proxy_selected$login}:{proxy_selected$password}"))
+Sys.getenv(c("http_proxy", "http_proxy_user", "https_proxy", "https_proxy_user"))
+library(rvest)                                           # a very common library for webscraping
+html_text( read_html('http://checkip.amazonaws.com/') )  # this should give you the same IP as step 1 (ignore the "\n")
 option_list = list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
   make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
   make_option(c("-r", "--rescrape"), action = "store", default = FALSE, type = 'logical', help = "Rescrape the raw JSON files from web api")
-
 )
 opt = parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
@@ -46,7 +69,7 @@ ncaa_baseball_pbp_scrape <- function(y){
       game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+")))
 
   if (rescrape == FALSE) {
-    pbp_links <- pbp_links %>%
+    pbp_links <- pbp_links %>% 
       dplyr::filter(!(.data$game_pbp_id %in% pbp_dir))
   }
 
@@ -55,6 +78,7 @@ ncaa_baseball_pbp_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
 
+  
   pbp_g <- purrr::map(pbp_links$game_pbp_url, function(x){
     game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
     df <- baseballr::ncaa_baseball_pbp(game_pbp_url = x, raw_html_to_disk = TRUE, raw_html_path = "ncaa/html/pbp/")
@@ -65,12 +89,8 @@ ncaa_baseball_pbp_scrape <- function(y){
     arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{game_pbp_id}.parquet"))
     jsonlite::write_json(df,glue::glue("ncaa/game_pbp/json/{game_pbp_id}.json"), pretty = 2)
     Sys.sleep(2)
-
-
-
     return(df)}, .progress = TRUE) %>%
     baseballr:::rbindlist_with_attrs()
-
   game_pbp_files <- list.files("ncaa/game_pbp/csv/")
   game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.csv"))
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
