@@ -12,6 +12,7 @@ suppressPackageStartupMessages(suppressMessages(library(qs, lib.loc = lib_path))
 suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(glue, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_path)))
+suppressPackageStartupMessages(suppressMessages(library(tictoc, lib.loc = lib_path)))
 
 option_list = list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
@@ -51,6 +52,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
   if (rescrape == TRUE) {
+    tictoc::tic()
     progressr::with_progress({
       p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
       ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
@@ -64,6 +66,7 @@ ncaa_baseball_schedules_scrape <- function(y){
       }) %>%
         baseballr:::rbindlist_with_attrs()
     }, enable = TRUE)
+    tictoc::toc()
   }
 
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
