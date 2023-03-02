@@ -28,6 +28,19 @@ rescrape <- opt$r
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
 
+library(rvest)                                           # a very common library for webscraping
+rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
+proxies <- data.table::fread("../proxylist.csv")
+select_proxy <- function(proxies){
+  proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
+  proxy_selected <- proxies %>%
+    dplyr::filter(.data$ip == proxy)
+  my_proxy <- httr::use_proxy(url = proxy_selected$ip,
+                  port = proxy_selected$port,
+                  username = proxy_selected$login,
+                  password = proxy_selected$password)
+  return(my_proxy)
+}
 ncaa_baseball_schedules_scrape <- function(y){
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
@@ -41,12 +54,12 @@ ncaa_baseball_schedules_scrape <- function(y){
     progressr::with_progress({
       p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
       ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x){
-        df <- baseballr::ncaa_schedule_info(teamid = x, year = y)
+        proxy <- select_proxy(proxies)
+        df <- baseballr::ncaa_schedule_info(teamid = x, year = y, proxy = proxy)
         readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
         jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
         arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
         p(sprintf("x=%s", as.integer(x)))
-        Sys.sleep(1)
         return(df)
       }) %>%
         baseballr:::rbindlist_with_attrs()
@@ -65,6 +78,9 @@ ncaa_baseball_schedules_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/rds")), dir.create(file.path("ncaa/schedules/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/parquet")), dir.create(file.path("ncaa/schedules/parquet")), FALSE)
+  ncaa_teams_schedule <- ncaa_teams_schedule %>%
+    dplyr::filter(!is.na(.data$year)) %>%
+    dplyr::select(-dplyr::any_of(c("Date", "Opponent", "Result", "opponent_slug")))
   final_sched <- dplyr::distinct(ncaa_teams_schedule) %>%
     dplyr::arrange(.data$date)
   final_sched <- final_sched %>%
