@@ -78,9 +78,7 @@ ncaa_baseball_pbp_scrape <- function(y){
         game_pbp_url = x,
         proxy = proxy
       )
-      game_pbp_id <- df %>%
-        dplyr::select("game_pbp_id") %>%
-        dplyr::distinct()
+      game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
       saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
       return(df)
     }) %>%
