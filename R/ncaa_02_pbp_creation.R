@@ -60,7 +60,8 @@ ncaa_baseball_pbp_scrape <- function(y){
     dplyr::filter(!is.na(.data$game_info_url)) %>%
     dplyr::select("game_info_url","game_pbp_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+")))
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
+    dplyr::distinct()
 
   pbp_dir <- data.frame(game_pbp_id = pbp_dir)
   if (rescrape == FALSE) {
@@ -71,16 +72,18 @@ ncaa_baseball_pbp_scrape <- function(y){
   if (nrow(pbp_links) > 0) {
     tictoc::tic()
     future::plan("multisession")
-    pbp_g <- furrr::future_map(pbp_links$game_info_url, function(x){
+    pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x){
       proxy <- select_proxy(proxies)
       df <- baseballr::ncaa_pbp(
-        game_info_url = x,
+        game_pbp_url = x,
         proxy = proxy
       )
-      game_pbp_id <- df$game_pbp_id %>% dplyr::distinct()
+      game_pbp_id <- df %>%
+        dplyr::select("game_pbp_id") %>%
+        dplyr::distinct()
       saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
       return(df)
-    }, .options = furrr_options(seed = 1)) %>%
+    }) %>%
       baseballr:::rbindlist_with_attrs()
 
     tictoc::toc()
@@ -90,14 +93,13 @@ ncaa_baseball_pbp_scrape <- function(y){
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
 
   tictoc::tic()
-  progressr::with_progress({
   future::plan("multisession")
   ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}"))
     return(df)
-  }, .options = furrr_options(seed = 1)) %>%
+  }) %>%
     baseballr:::rbindlist_with_attrs()
-  })
+
   tictoc::toc()
   ifelse(!dir.exists(file.path("ncaa/pbp")), dir.create(file.path("ncaa/pbp")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/rds")), dir.create(file.path("ncaa/pbp/rds")), FALSE)
