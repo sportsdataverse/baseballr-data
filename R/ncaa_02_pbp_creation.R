@@ -86,7 +86,7 @@ ncaa_baseball_pbp_scrape <- function(y){
           saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
         },
         error = function(e) {
-          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_pbp_url: {game_pbp_url}, proxy: {proxy}"))
+          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_pbp_url: {x}, proxy: {proxy}"))
         },
         finally = {
         }
