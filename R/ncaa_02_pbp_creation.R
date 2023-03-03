@@ -39,7 +39,7 @@ y <- 2022
 #   dplyr::slice(533:540)
 # a very common library for webscraping
 rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
-proxies <- data.table::fread("../../proxylist.csv")
+proxies <- data.table::fread("../proxylist.csv")
 select_proxy <- function(proxies){
   proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
   proxy_selected <- proxies %>%
@@ -60,15 +60,15 @@ ncaa_baseball_pbp_scrape <- function(y){
     dplyr::filter(!is.na(.data$game_info_url)) %>%
     dplyr::select("game_info_url","game_pbp_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>% 
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
     dplyr::distinct()
-  
+
   pbp_dir <- data.frame(game_pbp_id = pbp_dir)
   if (rescrape == FALSE) {
     pbp_links <- pbp_links %>%
       dplyr::filter(!(.data$game_pbp_id %in% pbp_dir$game_pbp_id))
   }
-  
+
   if (nrow(pbp_links) > 0) {
     tictoc::tic()
     future::plan("multisession")
@@ -83,13 +83,13 @@ ncaa_baseball_pbp_scrape <- function(y){
       return(df)
     }) %>%
       baseballr:::rbindlist_with_attrs()
-    
+
     tictoc::toc()
   }
   game_pbp_files <- list.files("ncaa/game_pbp/rds/")
   game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.rds"))
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
-  
+
   tictoc::tic()
   progressr::with_progress({
   future::plan("multisession")
