@@ -63,6 +63,8 @@ ncaa_baseball_schedules_scrape <- function(y){
     tictoc::tic()
     progressr::with_progress({
       p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
+      
+      future::plan("multisession")
       ncaa_teams_schedule <- furrr::future_map(ncaa_teams_lookup$team_id, function(x){
         proxy <- select_proxy(proxies)
         df <- baseballr::ncaa_schedule_info(team_id = x, year = y, proxy = proxy)
@@ -80,7 +82,9 @@ ncaa_baseball_schedules_scrape <- function(y){
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
   team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
-  ncaa_teams_schedule <- purrr::map(team_schedules_files_year, function(x){
+  
+  future::plan("multisession")
+  ncaa_teams_schedule <- furrr::future_map(team_schedules_files_year, function(x){
     df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
     return(df)
   }) %>%

@@ -76,8 +76,6 @@ ncaa_baseball_pbp_scrape <- function(y){
       proxy <- select_proxy(proxies)
       df <- baseballr::ncaa_pbp(
         game_info_url = x,
-        raw_html_to_disk = TRUE,
-        raw_html_path = "ncaa/html/pbp/",
         proxy = proxy
       )
       game_pbp_id <- df$game_pbp_id %>% dplyr::distinct()
@@ -91,20 +89,23 @@ ncaa_baseball_pbp_scrape <- function(y){
   game_pbp_files <- list.files("ncaa/game_pbp/rds/")
   game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.rds"))
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
-  ncaa_game_pbps <- purrr::map(game_pbp_files_year, function(x){
+  
+  tictoc::tic()
+  progressr::with_progress({
+  future::plan("multisession")
+  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}"))
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()
-  
+  })
+  tictoc::toc()
   ifelse(!dir.exists(file.path("ncaa/pbp")), dir.create(file.path("ncaa/pbp")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/pbp/csv")), dir.create(file.path("ncaa/pbp/csv")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/rds")), dir.create(file.path("ncaa/pbp/rds")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/parquet")), dir.create(file.path("ncaa/pbp/parquet")), FALSE)
-  ncaa_game_pbps <- ncaa_game_pbps %>% dplyr::arrange(desc(.data$date))
+  ncaa_game_pbps <- ncaa_game_pbps %>% dplyr::arrange(desc(.data$game_date))
   ncaa_game_pbps <- ncaa_game_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
-  readr::write_csv(ncaa_game_pbps, glue::glue("ncaa/pbp/csv/ncaa_baseball_pbp_{y}.csv"))
   saveRDS(ncaa_game_pbps, glue::glue("ncaa/pbp/rds/ncaa_baseball_pbp_{y}.rds"))
   arrow::write_parquet(ncaa_game_pbps, glue::glue("ncaa/pbp/parquet/ncaa_baseball_pbp_{y}.parquet"))
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
