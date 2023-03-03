@@ -73,13 +73,24 @@ ncaa_baseball_pbp_scrape <- function(y){
     tictoc::tic()
     future::plan("multisession")
     pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x){
-      proxy <- select_proxy(proxies)
-      df <- baseballr::ncaa_pbp(
-        game_pbp_url = x,
-        proxy = proxy
+      df <- data.frame()
+      tryCatch(
+        expr = {
+
+          proxy <- select_proxy(proxies)
+          df <- baseballr::ncaa_pbp(
+            game_pbp_url = x,
+            proxy = proxy
+          )
+          game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
+          saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
+        },
+        error = function(e) {
+          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_pbp_url: {game_pbp_url}, proxy: {proxy}"))
+        },
+        finally = {
+        }
       )
-      game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
-      saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
       return(df)
     }) %>%
       baseballr:::rbindlist_with_attrs()
