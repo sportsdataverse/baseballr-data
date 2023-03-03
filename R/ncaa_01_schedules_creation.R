@@ -71,7 +71,7 @@ ncaa_baseball_schedules_scrape <- function(y){
       arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
       # p(sprintf("x=%s", as.integer(x)))
       return(df)
-    }) %>%
+    }, .options = furrr_options(seed = 1)) %>%
       baseballr:::rbindlist_with_attrs()
     # }, enable = TRUE)
     tictoc::toc()
@@ -85,7 +85,7 @@ ncaa_baseball_schedules_scrape <- function(y){
   ncaa_teams_schedule <- furrr::future_map(team_schedules_files_year, function(x){
     df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
     return(df)
-  }) %>%
+  }, .options = furrr_options(seed = 1)) %>%
     baseballr:::rbindlist_with_attrs()
   ifelse(!dir.exists(file.path("ncaa/schedules")), dir.create(file.path("ncaa/schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)

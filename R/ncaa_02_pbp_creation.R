@@ -31,14 +31,14 @@ options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
 rescrape <- opt$r
-years_vec <- 2022
-rescrape <- FALSE
-y <- 2022
+# years_vec <- 2022
+# rescrape <- FALSE
+# y <- 2022
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
 # a very common library for webscraping
-rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
+# rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
 proxies <- data.table::fread("../proxylist.csv")
 select_proxy <- function(proxies){
   proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
@@ -81,7 +81,7 @@ ncaa_baseball_pbp_scrape <- function(y){
       game_pbp_id <- df$game_pbp_id %>% dplyr::distinct()
       saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
       return(df)
-    }) %>%
+    }, .options = furrr_options(seed = 1)) %>%
       baseballr:::rbindlist_with_attrs()
 
     tictoc::toc()
@@ -96,7 +96,7 @@ ncaa_baseball_pbp_scrape <- function(y){
   ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}"))
     return(df)
-  }) %>%
+  }, .options = furrr_options(seed = 1)) %>%
     baseballr:::rbindlist_with_attrs()
   })
   tictoc::toc()
