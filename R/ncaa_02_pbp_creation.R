@@ -60,8 +60,7 @@ ncaa_baseball_pbp_scrape <- function(y){
     dplyr::filter(!is.na(.data$game_info_url)) %>%
     dplyr::select("game_info_url","game_pbp_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
-    dplyr::distinct()
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+")))
 
   pbp_dir <- data.frame(game_pbp_id = pbp_dir)
   if (rescrape == FALSE) {
