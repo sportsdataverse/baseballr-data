@@ -1,8 +1,8 @@
 year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,home_team_conference_id,home_team_slug,home_team_division,away_team,away_team_id,away_team_score,away_team_conference,away_team_conference_id,away_team_slug,away_team_division,neutral_site,innings,slug,game_info_url,game_pbp_url,contest_id,game_pbp_id
-2023,16340,02/24/2023,Tarleton St.,1395,NA,WAC,923,/team/1395/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,02/25/2023,Tarleton St.,1395,NA,WAC,923,/team/1395/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,02/25/2023,Tarleton St.,1395,NA,WAC,923,/team/1395/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,02/26/2023,Tarleton St.,1395,NA,WAC,923,/team/1395/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
+2023,16340,02/24/2023,Tarleton St.,1395,12,WAC,923,/team/1395/16340,1,Stonehill,682,4,NEC,846,/team/682/16340,1,NA,NA,/contests/2391443/box_score,https://stats.ncaa.org/contests/2391443/box_score,https://stats.ncaa.org/game/play_by_play/5416677,2391443,5416677
+2023,16340,02/25/2023,Tarleton St.,1395,14,WAC,923,/team/1395/16340,1,Stonehill,682,4,NEC,846,/team/682/16340,1,NA,NA,/contests/2391848/box_score,https://stats.ncaa.org/contests/2391848/box_score,https://stats.ncaa.org/game/play_by_play/5419367,2391848,5419367
+2023,16340,02/25/2023,Tarleton St.,1395,16,WAC,923,/team/1395/16340,1,Stonehill,682,4,NEC,846,/team/682/16340,1,NA,NA,/contests/2408734/box_score,https://stats.ncaa.org/contests/2408734/box_score,https://stats.ncaa.org/game/play_by_play/5419252,2408734,5419252
+2023,16340,02/26/2023,Tarleton St.,1395,22,WAC,923,/team/1395/16340,1,Stonehill,682,6,NEC,846,/team/682/16340,1,NA,NA,/contests/2392283/box_score,https://stats.ncaa.org/contests/2392283/box_score,https://stats.ncaa.org/game/play_by_play/5420575,2392283,5420575
 2023,16340,03/04/2023,Kansas St.,327,NA,Big 12,25354,/team/327/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
 2023,16340,03/04/2023,Army West Point ,725,NA,Patriot,838,/team/725/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,"Manhattan, Kan (Tointon Family Stadium)",NA,NA,NA,NA,NA,NA
 2023,16340,03/05/2023,Army West Point ,725,NA,Patriot,838,/team/725/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,"Manhattan, Kan (Tointon Family Stadium)",NA,NA,NA,NA,NA,NA
@@ -23,9 +23,9 @@ year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,
 2023,16340,04/01/2023,Norfolk St.,485,NA,NEC,846,/team/485/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
 2023,16340,04/02/2023,Norfolk St.,485,NA,NEC,846,/team/485/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
 2023,16340,04/05/2023,Northeastern,500,NA,CAA,837,/team/500/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/06/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,Fairleigh Dickinson,222,NA,NEC,846,/team/222/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/07/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,Fairleigh Dickinson,222,NA,NEC,846,/team/222/16340,1,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/08/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,Fairleigh Dickinson,222,NA,NEC,846,/team/222/16340,1,NA,NA,NA,NA,NA,NA,NA
+2023,16340,04/06/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,FDU,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2023,16340,04/07/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,FDU,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2023,16340,04/08/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,FDU,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 2023,16340,04/11/2023,Stonehill,682,NA,NEC,846,/team/682/16340,1,Holy Cross,285,NA,Patriot,838,/team/285/16340,1,NA,NA,NA,NA,NA,NA,NA
 2023,16340,04/14/2023,Coppin St.,165,NA,NEC,846,/team/165/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
 2023,16340,04/15/2023,Coppin St.,165,NA,NEC,846,/team/165/16340,1,Stonehill,682,NA,NEC,846,/team/682/16340,1,NA,NA,NA,NA,NA,NA,NA
