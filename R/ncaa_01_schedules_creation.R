@@ -30,15 +30,13 @@ options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
 rescrape <- opt$r
-years_vec <- 2023
-rescrape <- TRUE
 # y <- 2023
 # ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
 
 library(rvest)                                           # a very common library for webscraping
-rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
+# rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
 proxies <- data.table::fread("../proxylist.csv")
 select_proxy <- function(proxies){
   proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
