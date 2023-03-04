@@ -112,12 +112,10 @@ ncaa_baseball_pbp_scrape <- function(y){
   tictoc::toc()
   ifelse(!dir.exists(file.path("ncaa/pbp")), dir.create(file.path("ncaa/pbp")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/pbp/rds")), dir.create(file.path("ncaa/pbp/rds")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/pbp/parquet")), dir.create(file.path("ncaa/pbp/parquet")), FALSE)
   ncaa_game_pbps <- ncaa_game_pbps %>% dplyr::arrange(desc(.data$game_date))
   ncaa_game_pbps <- ncaa_game_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
   saveRDS(ncaa_game_pbps, glue::glue("ncaa/pbp/rds/ncaa_baseball_pbp_{y}.rds"))
-  arrow::write_parquet(ncaa_game_pbps, glue::glue("ncaa/pbp/parquet/ncaa_baseball_pbp_{y}.parquet"))
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
