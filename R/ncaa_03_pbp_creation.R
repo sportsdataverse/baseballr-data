@@ -34,23 +34,35 @@ rescrape <- opt$r
 
 ncaa_baseball_pbp_compilation <- function(y){
   cli::cli_process_start("Starting NCAA Baseball pbp compilation for {y}!")
+  sched <- data.table::fread(paste0('ncaa/schedules/csv/ncaa_baseball_schedule_',y,'.csv'))
+  ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
+  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/rds/"), "\\d+"))
+  pbp_links <- sched %>%
+    dplyr::filter(!is.na(.data$game_info_url)) %>%
+    dplyr::select("game_info_url","game_pbp_url") %>%
+    dplyr::mutate(
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
+    dplyr::distinct()
 
-  game_pbp_files <- list.files("ncaa/game_pbp/rds/")
-  game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.rds"))
+  pbp_dir <- data.frame(game_pbp_id = pbp_dir)
+
+  game_pbp_files_year <- pbp_links %>%
+    dplyr::filter((.data$game_pbp_id %in% pbp_dir$game_pbp_id))
+
   game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
 
-  tictoc::tic()
   future::plan("multisession")
   ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}"))
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()
-  tictoc::toc()
 
   ncaa_game_pbps <- ncaa_game_pbps %>% dplyr::arrange(desc(.data$game_date))
   ncaa_game_pbps <- ncaa_game_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
+
   sportsdataversedata::sportsdataverse_save(
       data_frame = ncaa_game_pbps,
       file_name =  glue::glue("ncaa_baseball_pbp_{y}"),
@@ -60,7 +72,9 @@ ncaa_baseball_pbp_compilation <- function(y){
       .token = Sys.getenv("GITHUB_PAT")
   )
   rm(ncaa_game_pbps)
-  rm(game_pbp_files)
+  rm(pbp_dir)
+  rm(pbp_links)
+  rm(sched)
   rm(game_pbp_files_year)
   empty <- gc()
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp compilation for {y}!")
