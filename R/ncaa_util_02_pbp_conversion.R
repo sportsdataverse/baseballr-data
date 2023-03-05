@@ -63,7 +63,8 @@ ncaa_baseball_pbp_compilation <- function(y) {
     jsonlite::write_json(df, glue::glue("ncaa/game_pbp/json/{x}.json"), pretty = 2)
     arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
     return(df)
-  }) %>%
+  },
+.options = furrr::furrr_options(seed = TRUE)) %>%
     baseballr:::rbindlist_with_attrs()
 
   ncaa_game_pbps <- ncaa_game_pbps %>%

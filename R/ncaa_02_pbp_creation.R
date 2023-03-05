@@ -98,7 +98,8 @@ ncaa_baseball_pbp_scrape <- function(y) {
         }
       )
       return(df)
-    }) %>%
+    },
+    .options = furrr::furrr_options(seed = TRUE)) %>%
       baseballr:::rbindlist_with_attrs()
   }
 
@@ -122,7 +123,8 @@ ncaa_baseball_pbp_scrape <- function(y) {
   ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x) {
     df <- arrow::read_parquet(glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
     return(df)
-  }) %>%
+  },
+  .options = furrr::furrr_options(seed = TRUE)) %>%
     baseballr:::rbindlist_with_attrs()
 
   ncaa_game_pbps <- ncaa_game_pbps %>%

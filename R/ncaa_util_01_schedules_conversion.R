@@ -79,7 +79,8 @@ ncaa_baseball_schedules_scrape <- function(y) {
         }
       )
       return(df)
-    }) %>%
+    },
+    .options = furrr::furrr_options(seed = TRUE)) %>%
       baseballr:::rbindlist_with_attrs()
   }
 
@@ -91,7 +92,8 @@ ncaa_baseball_schedules_scrape <- function(y) {
   ncaa_teams_schedule <- furrr::future_map(team_schedules_files_year, function(x) {
     df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
     return(df)
-  }) %>%
+  },
+  .options = furrr::furrr_options(seed = TRUE)) %>%
     baseballr:::rbindlist_with_attrs()
   ifelse(!dir.exists(file.path("ncaa/schedules")), dir.create(file.path("ncaa/schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)
@@ -108,7 +110,6 @@ ncaa_baseball_schedules_scrape <- function(y) {
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
 
-
   sportsdataversedata::sportsdataverse_save(
     data_frame = final_sched,
     file_name =  glue::glue("ncaa_baseball_schedule_{y}"),
@@ -117,9 +118,18 @@ ncaa_baseball_schedules_scrape <- function(y) {
     file_types = c("rds", "csv", "parquet"),
     .token = Sys.getenv("GITHUB_PAT")
   )
+  rm(final_sched)
+  rm(ncaa_teams_schedule)
+  rm(team_schedules_files_year)
+  rm(team_schedules_files)
+  rm(ncaa_teams_lookup)
+  empty <- gc()
   cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
 all_games <- purrr::map(years_vec, function(y) {
   ncaa_baseball_schedules_scrape(y)
 })
+
+rm(all_games)
+empty <- gc()
