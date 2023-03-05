@@ -70,7 +70,6 @@ ncaa_baseball_pbp_scrape <- function(y){
   }
 
   if (nrow(pbp_links) > 0) {
-    tictoc::tic()
     future::plan("multisession")
     pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x){
       df <- data.frame()
@@ -94,35 +93,53 @@ ncaa_baseball_pbp_scrape <- function(y){
       return(df)
     }) %>%
       baseballr:::rbindlist_with_attrs()
-
-    tictoc::toc()
   }
-  game_pbp_files <- list.files("ncaa/game_pbp/rds/")
-  game_pbp_files_year <- stringr::str_extract(game_pbp_files, glue::glue("\\d+.rds"))
-  game_pbp_files_year <- game_pbp_files_year[!is.na(game_pbp_files_year)]
 
-  tictoc::tic()
+  pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/rds/"), "\\d+"))
+  pbp_links <- sched %>%
+    dplyr::filter(!is.na(.data$game_info_url)) %>%
+    dplyr::select("game_info_url","game_pbp_url") %>%
+    dplyr::mutate(
+      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
+    dplyr::distinct()
+
+  pbp_games_dir <- data.frame(game_pbp_id = pbp_games_dir)
+
+  game_pbp_files_year <- pbp_links %>%
+    dplyr::filter((.data$game_pbp_id %in% pbp_games_dir$game_pbp_id)) %>%
+    dplyr::select("game_pbp_id")
+
+  game_pbp_files_year <- game_pbp_files_year$game_pbp_id[!is.na(game_pbp_files_year$game_pbp_id)]
+
   future::plan("multisession")
   ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
-    df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}"))
+    df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}.rds"))
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()
 
-  tictoc::toc()
-  ifelse(!dir.exists(file.path("ncaa/pbp")), dir.create(file.path("ncaa/pbp")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/pbp/rds")), dir.create(file.path("ncaa/pbp/rds")), FALSE)
-  ncaa_game_pbps <- ncaa_game_pbps %>% dplyr::arrange(desc(.data$game_date))
+  ncaa_game_pbps <- ncaa_game_pbps %>%
+    dplyr::arrange(desc(.data$game_date))
+
   ncaa_game_pbps <- ncaa_game_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
+
   sportsdataversedata::sportsdataverse_save(
-      data_frame = ncaa_game_pbps,
-      file_name =  glue::glue("ncaa_baseball_pbp_{y}"),
-      sportsdataverse_type = "play by play data",
-      release_tag = "ncaa_baseball_pbp",
-      file_types = c("rds","csv","parquet"),
-      .token = Sys.getenv("GITHUB_PAT")
+    data_frame = ncaa_game_pbps,
+    file_name =  glue::glue("ncaa_baseball_pbp_{y}"),
+    sportsdataverse_type = "play by play data",
+    release_tag = "ncaa_baseball_pbp",
+    file_types = c("rds", "csv", "parquet"),
+    .token = Sys.getenv("GITHUB_PAT")
   )
+  rm(ncaa_game_pbps)
+  rm(pbp_g)
+  rm(pbp_dir)
+  rm(pbp_games_dir)
+  rm(pbp_links)
+  rm(sched)
+  rm(game_pbp_files_year)
+  empty <- gc()
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
