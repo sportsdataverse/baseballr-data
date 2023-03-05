@@ -56,43 +56,46 @@ select_proxy <- function(proxies) {
 ncaa_baseball_pbp_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
   sched <- data.table::fread(paste0("ncaa/schedules/csv/ncaa_baseball_schedule_", y, ".csv"))
-  ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
-  ifelse(!dir.exists(file.path("ncaa/game_pbp/json")), dir.create(file.path("ncaa/game_pbp/json")), FALSE)
-  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/parquet/"), "\\d+"))
+  ifelse(!dir.exists(file.path("ncaa/contest_pbp")), dir.create(file.path("ncaa/contest_pbp")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/contest_pbp/parquet")), dir.create(file.path("ncaa/contest_pbp/parquet")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/contest_pbp/rds")), dir.create(file.path("ncaa/contest_pbp/rds")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/contest_pbp/json")), dir.create(file.path("ncaa/contest_pbp/json")), FALSE)
+  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/contest_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
-    dplyr::filter(!is.na(.data$game_info_url), stringr::str_detect(.data$game_pbp_url, "play_by_play")) %>%
-    dplyr::select("game_info_url", "game_pbp_url") %>%
+    dplyr::filter(!is.na(.data$game_info_url)) %>%
+    dplyr::select("game_info_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
+      contest_id = as.integer(stringr::str_extract(.data$game_info_url, "\\d+"))) %>%
     dplyr::distinct()
 
-  pbp_dir <- data.frame(game_pbp_id = pbp_dir)
+  pbp_dir <- data.frame(contest_id = pbp_dir)
   if (rescrape == FALSE) {
     pbp_links <- pbp_links %>%
-      dplyr::filter(!(.data$game_pbp_id %in% pbp_dir$game_pbp_id))
+      dplyr::filter(!(.data$contest_id %in% pbp_dir$contest_id))
   }
 
   if (nrow(pbp_links) > 0) {
     future::plan("multisession")
-    pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x) {
+    pbp_g <- furrr::future_map(pbp_links$game_info_url, function(x) {
       df <- data.frame()
       tryCatch(
         expr = {
 
           proxy <- select_proxy(proxies)
           df <- baseballr::ncaa_pbp(
-            game_pbp_url = x,
+            game_info_url = x,
             proxy = proxy
           )
-          game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
-          arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{game_pbp_id}.parquet"))
-          saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
-          jsonlite::write_json(df, glue::glue("ncaa/game_pbp/json/{game_pbp_id}.json"), pretty = 2)
+          contest_id <- as.integer(stringr::str_extract(x, "\\d+"))
+          df$game_info_url <- x
+          df$contest_id <- contest_id
+          arrow::write_parquet(df, glue::glue("ncaa/contest_pbp/parquet/{contest_id}.parquet"))
+          saveRDS(df, glue::glue("ncaa/contest_pbp/rds/{contest_id}.rds"))
+          jsonlite::write_json(df, glue::glue("ncaa/contest_pbp/json/{contest_id}.json"), pretty = 2)
+          Sys.sleep(3)
         },
         error = function(e) {
-          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_pbp_url: {x}, proxy: {proxy}"))
+          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_info_url: {x}, proxy: {proxy}"))
         },
         finally = {
         }
@@ -103,51 +106,51 @@ ncaa_baseball_pbp_scrape <- function(y) {
       baseballr:::rbindlist_with_attrs()
   }
 
-  pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/parquet/"), "\\d+"))
+  pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/contest_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
     dplyr::filter(!is.na(.data$game_info_url)) %>%
-    dplyr::select("game_info_url", "game_pbp_url") %>%
+    dplyr::select("game_info_url") %>%
     dplyr::mutate(
-      game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
+      contest_id = as.integer(stringr::str_extract(.data$game_info_url, "\\d+"))) %>%
     dplyr::distinct()
 
-  pbp_games_dir <- data.frame(game_pbp_id = pbp_games_dir)
+  pbp_games_dir <- data.frame(contest_id = pbp_games_dir)
 
-  game_pbp_files_year <- pbp_links %>%
-    dplyr::filter((.data$game_pbp_id %in% pbp_games_dir$game_pbp_id)) %>%
-    dplyr::select("game_pbp_id")
+  contest_pbp_files_year <- pbp_links %>%
+    dplyr::filter((.data$contest_id %in% pbp_games_dir$contest_id)) %>%
+    dplyr::select("contest_id")
 
-  game_pbp_files_year <- game_pbp_files_year$game_pbp_id[!is.na(game_pbp_files_year$game_pbp_id)]
+  contest_pbp_files_year <- contest_pbp_files_year$contest_id[!is.na(contest_pbp_files_year$contest_id)]
 
   future::plan("multisession")
-  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x) {
-    df <- arrow::read_parquet(glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
+  ncaa_contest_pbps <- furrr::future_map(contest_pbp_files_year, function(x) {
+    df <- arrow::read_parquet(glue::glue("ncaa/contest_pbp/parquet/{x}.parquet"))
     return(df)
   },
   .options = furrr::furrr_options(seed = TRUE)) %>%
     baseballr:::rbindlist_with_attrs()
 
-  ncaa_game_pbps <- ncaa_game_pbps %>%
+  ncaa_contest_pbps <- ncaa_contest_pbps %>%
     dplyr::arrange(desc(.data$game_date))
 
-  ncaa_game_pbps <- ncaa_game_pbps %>%
+  ncaa_contest_pbps <- ncaa_contest_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
 
   sportsdataversedata::sportsdataverse_save(
-    data_frame = ncaa_game_pbps,
+    data_frame = ncaa_contest_pbps,
     file_name =  glue::glue("ncaa_baseball_pbp_{y}"),
     sportsdataverse_type = "play by play data",
     release_tag = "ncaa_baseball_pbp",
     file_types = c("rds", "csv", "parquet"),
     .token = Sys.getenv("GITHUB_PAT")
   )
-  rm(ncaa_game_pbps)
+  rm(ncaa_contest_pbps)
   rm(pbp_g)
   rm(pbp_dir)
   rm(pbp_games_dir)
   rm(pbp_links)
   rm(sched)
-  rm(game_pbp_files_year)
+  rm(contest_pbp_files_year)
   empty <- gc()
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
 }

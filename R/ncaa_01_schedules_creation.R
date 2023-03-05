@@ -75,7 +75,8 @@ ncaa_baseball_schedules_scrape <- function(y) {
         }
       )
       return(df)
-    }) %>%
+    },
+    .options = furrr::furrr_options(seed = TRUE)) %>%
       baseballr:::rbindlist_with_attrs()
   }
 
