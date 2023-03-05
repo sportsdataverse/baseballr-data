@@ -110,7 +110,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
     data_frame = final_sched,
     file_name =  glue::glue("ncaa_baseball_schedule_{y}"),
     sportsdataverse_type = "schedule data",
-    release_tag = "ncaa_baseball_schedule",
+    release_tag = "ncaa_baseball_schedules",
     file_types = c("rds", "csv", "parquet"),
     .token = Sys.getenv("GITHUB_PAT")
   )
