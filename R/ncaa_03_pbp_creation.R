@@ -20,27 +20,31 @@ suppressPackageStartupMessages(suppressMessages(library(rvest, lib.loc = lib_pat
 suppressPackageStartupMessages(suppressMessages(library(httr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(tictoc, lib.loc = lib_path)))
 
-# this should give you the same IP as step 1 (ignore the "\n")
-option_list = list(
-  make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
-  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
-  make_option(c("-r", "--rescrape"), action = "store", default = FALSE, type = 'logical', help = "Rescrape the raw JSON files from web api")
+option_list <- list(
+  make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
+    type = "integer", help = "Start year of the seasons to process"),
+  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
+    type = "integer", help = "End year of the seasons to process"),
+  make_option(c("-r", "--rescrape"), action = "store", default = FALSE,
+    type = "logical", help = "Rescrape the raw JSON files from web api")
 )
-opt = parse_args(OptionParser(option_list = option_list))
+opt <- parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
 rescrape <- opt$r
 
-ncaa_baseball_pbp_compilation <- function(y){
+ncaa_baseball_pbp_compilation <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball pbp compilation for {y}!")
-  sched <- data.table::fread(paste0('ncaa/schedules/csv/ncaa_baseball_schedule_',y,'.csv'))
+  sched <- data.table::fread(paste0("ncaa/schedules/csv/ncaa_baseball_schedule_", y, ".csv"))
   ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/game_pbp/json")), dir.create(file.path("ncaa/game_pbp/json")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
   pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/rds/"), "\\d+"))
   pbp_links <- sched %>%
     dplyr::filter(!is.na(.data$game_info_url)) %>%
-    dplyr::select("game_info_url","game_pbp_url") %>%
+    dplyr::select("game_info_url", "game_pbp_url") %>%
     dplyr::mutate(
       game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
     dplyr::distinct()
@@ -54,8 +58,10 @@ ncaa_baseball_pbp_compilation <- function(y){
   game_pbp_files_year <- game_pbp_files_year$game_pbp_id[!is.na(game_pbp_files_year$game_pbp_id)]
 
   future::plan("multisession")
-  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
+  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x) {
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}.rds"))
+    jsonlite::write_json(df, glue::glue("ncaa/game_pbp/json/{x}.json"), pretty = 2)
+    arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()

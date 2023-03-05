@@ -58,10 +58,6 @@ ncaa_baseball_schedules_scrape <- function(y){
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
   if (rescrape == TRUE) {
-    tictoc::tic()
-    # progressr::with_progress({
-    #   p <- progressr::progressor(along = ncaa_teams_lookup$team_id)
-
     future::plan("multisession")
     ncaa_teams_schedule <- furrr::future_map(ncaa_teams_lookup$team_id, function(x){
       df <- data.frame()
@@ -69,10 +65,9 @@ ncaa_baseball_schedules_scrape <- function(y){
         expr = {
           proxy <- select_proxy(proxies)
           df <- baseballr::ncaa_schedule_info(team_id = x, year = y, proxy = proxy)
-          readr::write_csv(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
+          data.table::fwrite(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
           jsonlite::write_json(df,glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
           arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
-          # p(sprintf("x=%s", as.integer(x)))},
         },
         error = function(e) {
           message(glue::glue("{Sys.time()}: Invalid arguments provided for team_id: {x}, year: {y}, proxy: {proxy}"))
@@ -83,8 +78,6 @@ ncaa_baseball_schedules_scrape <- function(y){
       return(df)
     }) %>%
       baseballr:::rbindlist_with_attrs()
-    # }, enable = TRUE)
-    tictoc::toc()
   }
 
   team_schedules_files <- list.files("ncaa/team_schedules/csv/")
@@ -108,10 +101,19 @@ ncaa_baseball_schedules_scrape <- function(y){
     dplyr::arrange(.data$date)
   final_sched <- final_sched %>%
     baseballr:::make_baseballr_data("NCAA Schedule Information from baseballr data repository", Sys.time())
-  readr::write_csv(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
+  data.table::fwrite(final_sched, glue::glue("ncaa/schedules/csv/ncaa_baseball_schedule_{y}.csv"))
   saveRDS(final_sched, glue::glue("ncaa/schedules/rds/ncaa_baseball_schedule_{y}.rds"))
   arrow::write_parquet(final_sched, glue::glue("ncaa/schedules/parquet/ncaa_baseball_schedule_{y}.parquet"))
 
+
+  sportsdataversedata::sportsdataverse_save(
+    data_frame = final_sched,
+    file_name =  glue::glue("ncaa_baseball_schedule_{y}"),
+    sportsdataverse_type = "schedule data",
+    release_tag = "ncaa_baseball_schedule",
+    file_types = c("rds","csv","parquet"),
+    .token = Sys.getenv("GITHUB_PAT")
+  )
   cli::cli_process_done(msg_done = "Finished NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
