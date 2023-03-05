@@ -1,50 +1,52 @@
-year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,home_team_conference_id,home_team_slug,home_team_division,away_team,away_team_id,away_team_score,away_team_conference,away_team_conference_id,away_team_slug,away_team_division,neutral_site,innings,slug,game_info_url,game_pbp_url,contest_id,game_pbp_id
-2023,16340,02/04/2023,Lee,30013,16,Gulf South,858,/team/30013/16340,2,Hillsdale,280,5,G-MAC,30182,/team/280/16340,2,NA,NA,/contests/2389794/box_score,https://stats.ncaa.org/contests/2389794/box_score,https://stats.ncaa.org/game/play_by_play/5399609,2389794,5399609
-2023,16340,02/04/2023,Lee,30013,1,Gulf South,858,/team/30013/16340,2,Hillsdale,280,3,G-MAC,30182,/team/280/16340,2,NA,9,/contests/2408204/box_score,https://stats.ncaa.org/contests/2408204/box_score,https://stats.ncaa.org/game/play_by_play/5401105,2408204,5401105
-2023,16340,02/05/2023,Lee,30013,7,Gulf South,858,/team/30013/16340,2,Hillsdale,280,8,G-MAC,30182,/team/280/16340,2,NA,NA,/contests/2389859/box_score,https://stats.ncaa.org/contests/2389859/box_score,https://stats.ncaa.org/game/play_by_play/5401104,2389859,5401104
-2023,16340,02/10/2023,Davenport ,30221,4,GLIAC,854,/team/30221/16340,2,Hillsdale,280,5,G-MAC,30182,/team/280/16340,2,"Millington, TN",NA,/contests/2389955/box_score,https://stats.ncaa.org/contests/2389955/box_score,https://stats.ncaa.org/game/play_by_play/5402989,2389955,5402989
-2023,16340,02/11/2023,Davenport ,30221,5,GLIAC,854,/team/30221/16340,2,Hillsdale,280,2,G-MAC,30182,/team/280/16340,2,"Millington, TN",NA,/contests/2390092/box_score,https://stats.ncaa.org/contests/2390092/box_score,https://stats.ncaa.org/game/play_by_play/5405888,2390092,5405888
-2023,16340,02/12/2023,Davenport ,30221,8,GLIAC,854,/team/30221/16340,2,Hillsdale,280,13,G-MAC,30182,/team/280/16340,2,"Millington, TN",NA,/contests/2390163/box_score,https://stats.ncaa.org/contests/2390163/box_score,https://stats.ncaa.org/game/play_by_play/5414953,2390163,5414953
-2023,16340,02/25/2023,Hillsdale,280,11,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,0,GLIAC,854,/team/757/16340,2,"Kodak, TN",NA,/contests/2421652/box_score,https://stats.ncaa.org/contests/2421652/box_score,https://stats.ncaa.org/game/play_by_play/5419508,2421652,5419508
-2023,16340,02/26/2023,Hillsdale,280,2,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,5,GLIAC,854,/team/757/16340,2,"Kodak, TN",NA,/contests/2392096/box_score,https://stats.ncaa.org/contests/2392096/box_score,https://stats.ncaa.org/game/play_by_play/5420465,2392096,5420465
-2023,16340,02/26/2023,Hillsdale,280,7,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,10,GLIAC,854,/team/757/16340,2,"Kodak, TN",NA,/contests/2408233/box_score,https://stats.ncaa.org/contests/2408233/box_score,https://stats.ncaa.org/game/play_by_play/5420878,2408233,5420878
-2023,16340,03/03/2023,Missouri S&T,435,NA,GLVC,855,/team/435/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/04/2023,Missouri S&T,435,NA,GLVC,855,/team/435/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/04/2023,Missouri S&T,435,NA,GLVC,855,/team/435/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/05/2023,Missouri S&T,435,NA,GLVC,855,/team/435/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/14/2023,Saginaw Valley,591,NA,GLIAC,854,/team/591/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/17/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,NA,G-MAC,30182,/team/30002/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/17/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,NA,G-MAC,30182,/team/30002/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/18/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,NA,G-MAC,30182,/team/30002/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/18/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,NA,G-MAC,30182,/team/30002/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/22/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Grand Valley St.,262,NA,GLIAC,854,/team/262/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/25/2023,Ky. Wesleyan,333,NA,G-MAC,30182,/team/333/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/25/2023,Ky. Wesleyan,333,NA,G-MAC,30182,/team/333/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/26/2023,Ky. Wesleyan,333,NA,G-MAC,30182,/team/333/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,03/26/2023,Ky. Wesleyan,333,NA,G-MAC,30182,/team/333/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/01/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Tiffin,1403,NA,G-MAC,30182,/team/1403/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/01/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Tiffin,1403,NA,G-MAC,30182,/team/1403/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/02/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Tiffin,1403,NA,G-MAC,30182,/team/1403/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/02/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Tiffin,1403,NA,G-MAC,30182,/team/1403/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/04/2023,Grand Valley St.,262,NA,GLIAC,854,/team/262/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/07/2023,Northwood,510,NA,G-MAC,30182,/team/510/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/07/2023,Northwood,510,NA,G-MAC,30182,/team/510/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/08/2023,Northwood,510,NA,G-MAC,30182,/team/510/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/08/2023,Northwood,510,NA,G-MAC,30182,/team/510/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/11/2023,Central Mich.,129,NA,MAC,875,/team/129/16340,1,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/15/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,NA,G-MAC,30182,/team/2746/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/15/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,NA,G-MAC,30182,/team/2746/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/16/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,NA,G-MAC,30182,/team/2746/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/16/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,NA,G-MAC,30182,/team/2746/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/22/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Walsh,30141,NA,G-MAC,30182,/team/30141/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/22/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Walsh,30141,NA,G-MAC,30182,/team/30141/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/23/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Walsh,30141,NA,G-MAC,30182,/team/30141/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/23/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Walsh,30141,NA,G-MAC,30182,/team/30141/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/29/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Malone ,30137,NA,G-MAC,30182,/team/30137/16340,2,"Akron, OH",NA,NA,NA,NA,NA,NA
-2023,16340,04/29/2023,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,Malone ,30137,NA,G-MAC,30182,/team/30137/16340,2,"Akron, OH",NA,NA,NA,NA,NA,NA
-2023,16340,04/30/2023,Malone,30137,NA,G-MAC,30182,/team/30137/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,04/30/2023,Malone,30137,NA,G-MAC,30182,/team/30137/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,05/05/2023,Ashland,35,NA,G-MAC,30182,/team/35/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,05/05/2023,Ashland,35,NA,G-MAC,30182,/team/35/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,05/06/2023,Ashland,35,NA,G-MAC,30182,/team/35/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
-2023,16340,05/06/2023,Ashland,35,NA,G-MAC,30182,/team/35/16340,2,Hillsdale,280,NA,G-MAC,30182,/team/280/16340,2,NA,NA,NA,NA,NA,NA,NA
+year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,home_team_conference_id,home_team_slug,home_team_division,away_team,away_team_id,away_team_score,away_team_conference,away_team_conference_id,away_team_slug,away_team_division,neutral_site,innings,slug,game_info_url
+2023,16340,02/04/2023,Lee,30013,16,Gulf South,858,/team/30013/16340,2,Hillsdale,280,5,G-MAC,30182,/team/280/16340,2,,,/contests/2389794/box_score,https://stats.ncaa.org/contests/2389794/box_score
+2023,16340,02/04/2023,Lee,30013,1,Gulf South,858,/team/30013/16340,2,Hillsdale,280,3,G-MAC,30182,/team/280/16340,2,,9,/contests/2408204/box_score,https://stats.ncaa.org/contests/2408204/box_score
+2023,16340,02/05/2023,Lee,30013,7,Gulf South,858,/team/30013/16340,2,Hillsdale,280,8,G-MAC,30182,/team/280/16340,2,,,/contests/2389859/box_score,https://stats.ncaa.org/contests/2389859/box_score
+2023,16340,02/10/2023,Davenport ,30221,4,GLIAC,854,/team/30221/16340,2,Hillsdale,280,5,G-MAC,30182,/team/280/16340,2,"Millington, TN",,/contests/2389955/box_score,https://stats.ncaa.org/contests/2389955/box_score
+2023,16340,02/11/2023,Davenport ,30221,5,GLIAC,854,/team/30221/16340,2,Hillsdale,280,2,G-MAC,30182,/team/280/16340,2,"Millington, TN",,/contests/2390092/box_score,https://stats.ncaa.org/contests/2390092/box_score
+2023,16340,02/12/2023,Davenport ,30221,8,GLIAC,854,/team/30221/16340,2,Hillsdale,280,13,G-MAC,30182,/team/280/16340,2,"Millington, TN",,/contests/2390163/box_score,https://stats.ncaa.org/contests/2390163/box_score
+2023,16340,02/25/2023,Hillsdale,280,11,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,0,GLIAC,854,/team/757/16340,2,"Kodak, TN",,/contests/2421652/box_score,https://stats.ncaa.org/contests/2421652/box_score
+2023,16340,02/26/2023,Hillsdale,280,2,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,5,GLIAC,854,/team/757/16340,2,"Kodak, TN",,/contests/2392096/box_score,https://stats.ncaa.org/contests/2392096/box_score
+2023,16340,02/26/2023,Hillsdale,280,7,G-MAC,30182,/team/280/16340,2,Wayne St. (MI) ,757,10,GLIAC,854,/team/757/16340,2,"Kodak, TN",,/contests/2408233/box_score,https://stats.ncaa.org/contests/2408233/box_score
+2023,16340,03/03/2023,Missouri S&T,435,,GLVC,855,/team/435/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/04/2023,Missouri S&T,435,6,GLVC,855,/team/435/16340,2,Hillsdale,280,2,G-MAC,30182,/team/280/16340,2,,,/contests/2422974/box_score,https://stats.ncaa.org/contests/2422974/box_score
+2023,16340,03/04/2023,Missouri S&T,435,,GLVC,855,/team/435/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/04/2023,Missouri S&T,435,,GLVC,855,/team/435/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/05/2023,Missouri S&T,435,,GLVC,855,/team/435/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/14/2023,Saginaw Valley,591,,GLIAC,854,/team/591/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/17/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,,G-MAC,30182,/team/30002/16340,2,,,,
+2023,16340,03/17/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,,G-MAC,30182,/team/30002/16340,2,,,,
+2023,16340,03/18/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,,G-MAC,30182,/team/30002/16340,2,,,,
+2023,16340,03/18/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Trevecca Nazarene,30002,,G-MAC,30182,/team/30002/16340,2,,,,
+2023,16340,03/22/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Grand Valley St.,262,,GLIAC,854,/team/262/16340,2,,,,
+2023,16340,03/25/2023,Ky. Wesleyan,333,,G-MAC,30182,/team/333/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/25/2023,Ky. Wesleyan,333,,G-MAC,30182,/team/333/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/26/2023,Ky. Wesleyan,333,,G-MAC,30182,/team/333/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,03/26/2023,Ky. Wesleyan,333,,G-MAC,30182,/team/333/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/01/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Tiffin,1403,,G-MAC,30182,/team/1403/16340,2,,,,
+2023,16340,04/01/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Tiffin,1403,,G-MAC,30182,/team/1403/16340,2,,,,
+2023,16340,04/02/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Tiffin,1403,,G-MAC,30182,/team/1403/16340,2,,,,
+2023,16340,04/02/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Tiffin,1403,,G-MAC,30182,/team/1403/16340,2,,,,
+2023,16340,04/04/2023,Grand Valley St.,262,,GLIAC,854,/team/262/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/07/2023,Northwood,510,,G-MAC,30182,/team/510/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/07/2023,Northwood,510,,G-MAC,30182,/team/510/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/08/2023,Northwood,510,,G-MAC,30182,/team/510/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/08/2023,Northwood,510,,G-MAC,30182,/team/510/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/11/2023,Central Mich.,129,,MAC,875,/team/129/16340,1,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/15/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,,G-MAC,30182,/team/2746/16340,2,,,,
+2023,16340,04/15/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,,G-MAC,30182,/team/2746/16340,2,,,,
+2023,16340,04/16/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,,G-MAC,30182,/team/2746/16340,2,,,,
+2023,16340,04/16/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Lake Erie,2746,,G-MAC,30182,/team/2746/16340,2,,,,
+2023,16340,04/22/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Walsh,30141,,G-MAC,30182,/team/30141/16340,2,,,,
+2023,16340,04/22/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Walsh,30141,,G-MAC,30182,/team/30141/16340,2,,,,
+2023,16340,04/23/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Walsh,30141,,G-MAC,30182,/team/30141/16340,2,,,,
+2023,16340,04/23/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Walsh,30141,,G-MAC,30182,/team/30141/16340,2,,,,
+2023,16340,04/25/2023,Wayne St. (MI),757,,GLIAC,854,/team/757/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/29/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Malone ,30137,,G-MAC,30182,/team/30137/16340,2,"Akron, OH",,,
+2023,16340,04/29/2023,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,Malone ,30137,,G-MAC,30182,/team/30137/16340,2,"Akron, OH",,,
+2023,16340,04/30/2023,Malone,30137,,G-MAC,30182,/team/30137/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,04/30/2023,Malone,30137,,G-MAC,30182,/team/30137/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,05/05/2023,Ashland,35,,G-MAC,30182,/team/35/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,05/05/2023,Ashland,35,,G-MAC,30182,/team/35/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,05/06/2023,Ashland,35,,G-MAC,30182,/team/35/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,
+2023,16340,05/06/2023,Ashland,35,,G-MAC,30182,/team/35/16340,2,Hillsdale,280,,G-MAC,30182,/team/280/16340,2,,,,

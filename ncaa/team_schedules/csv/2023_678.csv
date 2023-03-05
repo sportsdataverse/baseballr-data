@@ -1,58 +1,58 @@
-Date,Opponent,Result,opponent_slug,slug,game_info_url
-02/17/2023,Manhattan,W 18-0,/teams/548193,/contests/2390285/box_score,https://stats.ncaa.org/contests/2390285/box_score
-02/18/2023,Manhattan,W 9-1,/teams/548193,/contests/2390523/box_score,https://stats.ncaa.org/contests/2390523/box_score
-02/19/2023,Manhattan,W 8-6,/teams/548193,/contests/2390842/box_score,https://stats.ncaa.org/contests/2390842/box_score
-02/21/2023,@ Miami (FL),L 2-11,/teams/548204,/contests/2391095/box_score,https://stats.ncaa.org/contests/2391095/box_score
-02/24/2023,Delaware,L 8-19,/teams/548133,/contests/2391309/box_score,https://stats.ncaa.org/contests/2391309/box_score
-02/25/2023,Delaware,W 15-3,/teams/548133,/contests/2391601/box_score,https://stats.ncaa.org/contests/2391601/box_score
-02/26/2023,Delaware,L 6-8 (10),/teams/548133,/contests/2392031/box_score,https://stats.ncaa.org/contests/2392031/box_score
-02/28/2023,Siena,W 8-1,/teams/548285,/contests/2392353/box_score,https://stats.ncaa.org/contests/2392353/box_score
-03/01/2023,Siena,W 10-3,/teams/548285,/contests/2392492/box_score,https://stats.ncaa.org/contests/2392492/box_score
-03/03/2023,Mount St. Mary's,W 18-0,/teams/548215,/contests/2392645/box_score,https://stats.ncaa.org/contests/2392645/box_score
-03/04/2023,Pittsburgh,W 6-5,/teams/548258,/contests/2392935/box_score,https://stats.ncaa.org/contests/2392935/box_score
-03/05/2023,Pittsburgh,"",/teams/548258,,
-03/06/2023,Mount St. Mary's,"",/teams/548215,,
-03/08/2023,@ FIU,"",/teams/548145,,
-03/10/2023,@ Wichita St.,"",/teams/548043,,
-03/11/2023,@ Wichita St.,"",/teams/548043,,
-03/12/2023,@ Wichita St.,"",/teams/548043,,
-03/14/2023,Fairfield,"",/teams/548141,,
-03/15/2023,Fairfield,"",/teams/548141,,
-03/17/2023,Kennesaw St.,"",/teams/548058,,
-03/18/2023,Kennesaw St.,"",/teams/548058,,
-03/19/2023,Kennesaw St.,"",/teams/548058,,
-03/21/2023,@ Bethune-Cookman,"",/teams/548092,,
-03/24/2023,@ North Florida,"",/teams/548062,,
-03/25/2023,@ North Florida,"",/teams/548062,,
-03/26/2023,@ North Florida,"",/teams/548062,,
-03/31/2023,North Ala.,"",/teams/548072,,
-04/01/2023,North Ala.,"",/teams/548072,,
-04/02/2023,North Ala.,"",/teams/548072,,
-04/04/2023,FIU,"",/teams/548145,,
-04/06/2023,@ Bellarmine,"",/teams/548307,,
-04/07/2023,@ Bellarmine,"",/teams/548307,,
-04/08/2023,@ Bellarmine,"",/teams/548307,,
-04/11/2023,UCF,"",/teams/548118,,
-04/14/2023,Lipscomb,"",/teams/548069,,
-04/15/2023,Lipscomb,"",/teams/548069,,
-04/16/2023,Lipscomb,"",/teams/548069,,
-04/18/2023,@ UCF,"",/teams/548118,,
-04/21/2023,@ Central Ark.,"",/teams/548051,,
-04/22/2023,@ Central Ark.,"",/teams/548051,,
-04/23/2023,@ Central Ark.,"",/teams/548051,,
-04/25/2023,@ Florida St.,"",/teams/548146,,
-04/28/2023,Liberty,"",/teams/548184,,
-04/29/2023,Liberty,"",/teams/548184,,
-04/30/2023,Liberty,"",/teams/548184,,
-05/02/2023,South Fla.,"",/teams/548289,,
-05/05/2023,@ FGCU,"",/teams/548070,,
-05/06/2023,@ FGCU,"",/teams/548070,,
-05/07/2023,@ FGCU,"",/teams/548070,,
-05/09/2023,Bethune-Cookman,"",/teams/548092,,
-05/12/2023,Jacksonville,"",/teams/548175,,
-05/13/2023,Jacksonville,"",/teams/548175,,
-05/14/2023,Jacksonville,"",/teams/548175,,
-05/16/2023,@ South Fla.,"",/teams/548289,,
-05/18/2023,@ Queens (NC),"",/teams/548435,,
-05/19/2023,@ Queens (NC),"",/teams/548435,,
-05/20/2023,@ Queens (NC),"",/teams/548435,,
+year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,home_team_conference_id,home_team_slug,home_team_division,away_team,away_team_id,away_team_score,away_team_conference,away_team_conference_id,away_team_slug,away_team_division,neutral_site,innings,slug,game_info_url
+2023,16340,02/17/2023,Stetson,678,18,ASUN,920,/team/678/16340,1,Manhattan,381,0,MAAC,871,/team/381/16340,1,,,/contests/2390285/box_score,https://stats.ncaa.org/contests/2390285/box_score
+2023,16340,02/18/2023,Stetson,678,9,ASUN,920,/team/678/16340,1,Manhattan,381,1,MAAC,871,/team/381/16340,1,,,/contests/2390523/box_score,https://stats.ncaa.org/contests/2390523/box_score
+2023,16340,02/19/2023,Stetson,678,8,ASUN,920,/team/678/16340,1,Manhattan,381,6,MAAC,871,/team/381/16340,1,,,/contests/2390842/box_score,https://stats.ncaa.org/contests/2390842/box_score
+2023,16340,02/21/2023,Miami (FL),415,11,ACC,821,/team/415/16340,1,Stetson,678,2,ASUN,920,/team/678/16340,1,,,/contests/2391095/box_score,https://stats.ncaa.org/contests/2391095/box_score
+2023,16340,02/24/2023,Stetson,678,8,ASUN,920,/team/678/16340,1,Delaware,180,19,CAA,837,/team/180/16340,1,,,/contests/2391309/box_score,https://stats.ncaa.org/contests/2391309/box_score
+2023,16340,02/25/2023,Stetson,678,15,ASUN,920,/team/678/16340,1,Delaware,180,3,CAA,837,/team/180/16340,1,,,/contests/2391601/box_score,https://stats.ncaa.org/contests/2391601/box_score
+2023,16340,02/26/2023,Stetson,678,6,ASUN,920,/team/678/16340,1,Delaware,180,8,CAA,837,/team/180/16340,1,,10,/contests/2392031/box_score,https://stats.ncaa.org/contests/2392031/box_score
+2023,16340,02/28/2023,Stetson,678,8,ASUN,920,/team/678/16340,1,Siena,639,1,MAAC,871,/team/639/16340,1,,,/contests/2392353/box_score,https://stats.ncaa.org/contests/2392353/box_score
+2023,16340,03/01/2023,Stetson,678,10,ASUN,920,/team/678/16340,1,Siena,639,3,MAAC,871,/team/639/16340,1,,,/contests/2392492/box_score,https://stats.ncaa.org/contests/2392492/box_score
+2023,16340,03/03/2023,Stetson,678,18,ASUN,920,/team/678/16340,1,Mount St. Mary's,450,0,MAAC,871,/team/450/16340,1,,,/contests/2392645/box_score,https://stats.ncaa.org/contests/2392645/box_score
+2023,16340,03/04/2023,Stetson,678,6,ASUN,920,/team/678/16340,1,Pittsburgh,545,5,ACC,821,/team/545/16340,1,,,/contests/2392935/box_score,https://stats.ncaa.org/contests/2392935/box_score
+2023,16340,03/05/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Pittsburgh,545,,ACC,821,/team/545/16340,1,,,,
+2023,16340,03/06/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Mount St. Mary's,450,,MAAC,871,/team/450/16340,1,,,,
+2023,16340,03/08/2023,FIU,231,,C-USA,24312,/team/231/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/10/2023,Wichita St.,782,,AAC,823,/team/782/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/11/2023,Wichita St.,782,,AAC,823,/team/782/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/12/2023,Wichita St.,782,,AAC,823,/team/782/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/14/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Fairfield,220,,MAAC,871,/team/220/16340,1,,,,
+2023,16340,03/15/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Fairfield,220,,MAAC,871,/team/220/16340,1,,,,
+2023,16340,03/17/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,03/18/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,03/19/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,03/21/2023,Bethune-Cookman,61,,SWAC,916,/team/61/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/24/2023,North Florida,2711,,ASUN,920,/team/2711/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/25/2023,North Florida,2711,,ASUN,920,/team/2711/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/26/2023,North Florida,2711,,ASUN,920,/team/2711/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,03/31/2023,Stetson,678,,ASUN,920,/team/678/16340,1,North Ala.,487,,ASUN,920,/team/487/16340,1,,,,
+2023,16340,04/01/2023,Stetson,678,,ASUN,920,/team/678/16340,1,North Ala.,487,,ASUN,920,/team/487/16340,1,,,,
+2023,16340,04/02/2023,Stetson,678,,ASUN,920,/team/678/16340,1,North Ala.,487,,ASUN,920,/team/487/16340,1,,,,
+2023,16340,04/04/2023,Stetson,678,,ASUN,920,/team/678/16340,1,FIU,231,,C-USA,24312,/team/231/16340,1,,,,
+2023,16340,04/06/2023,Bellarmine,52,,ASUN,920,/team/52/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/07/2023,Bellarmine,52,,ASUN,920,/team/52/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/08/2023,Bellarmine,52,,ASUN,920,/team/52/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/11/2023,Stetson,678,,ASUN,920,/team/678/16340,1,UCF,128,,AAC,823,/team/128/16340,1,,,,
+2023,16340,04/14/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/15/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/16/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/18/2023,UCF,128,,AAC,823,/team/128/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/21/2023,Central Ark.,1004,,ASUN,920,/team/1004/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/22/2023,Central Ark.,1004,,ASUN,920,/team/1004/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/23/2023,Central Ark.,1004,,ASUN,920,/team/1004/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/25/2023,Florida St.,234,,ACC,821,/team/234/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,04/28/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,04/29/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,04/30/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,05/02/2023,Stetson,678,,ASUN,920,/team/678/16340,1,South Fla.,651,,AAC,823,/team/651/16340,1,,,,
+2023,16340,05/05/2023,FGCU,28755,,ASUN,920,/team/28755/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/06/2023,FGCU,28755,,ASUN,920,/team/28755/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/07/2023,FGCU,28755,,ASUN,920,/team/28755/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/09/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Bethune-Cookman,61,,SWAC,916,/team/61/16340,1,,,,
+2023,16340,05/12/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,05/13/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,05/14/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,05/16/2023,South Fla.,651,,AAC,823,/team/651/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/18/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/19/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,
+2023,16340,05/20/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Stetson,678,,ASUN,920,/team/678/16340,1,,,,

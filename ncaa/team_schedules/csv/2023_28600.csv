@@ -1,56 +1,56 @@
-Date,Opponent,Result,opponent_slug,slug,game_info_url
-02/17/2023,Notre Dame,W 5-4,/teams/548243,/contests/2390287/box_score,https://stats.ncaa.org/contests/2390287/box_score
-02/18/2023,Notre Dame,L 4-8,/teams/548243,/contests/2390524/box_score,https://stats.ncaa.org/contests/2390524/box_score
-02/19/2023,Notre Dame,W 4-2,/teams/548243,/contests/2390844/box_score,https://stats.ncaa.org/contests/2390844/box_score
-02/21/2023,Southern Ind.,W 6-4,/teams/548531,/contests/2391155/box_score,https://stats.ncaa.org/contests/2391155/box_score
-02/24/2023,UIC,L 5-7,/teams/548167,/contests/2391310/box_score,https://stats.ncaa.org/contests/2391310/box_score
-02/25/2023,UIC,W 9-8,/teams/548167,/contests/2391602/box_score,https://stats.ncaa.org/contests/2391602/box_score
-02/26/2023,UIC,W 7-4,/teams/548167,/contests/2392032/box_score,https://stats.ncaa.org/contests/2392032/box_score
-02/28/2023,@ Tennessee Tech,L 5-10,/teams/548304,/contests/2392417/box_score,https://stats.ncaa.org/contests/2392417/box_score
-03/03/2023,@ Auburn,L 3-7,/teams/548087,/contests/2392604/box_score,https://stats.ncaa.org/contests/2392604/box_score
-03/04/2023,@ Auburn,L 11-12,/teams/548087,/contests/2392905/box_score,https://stats.ncaa.org/contests/2392905/box_score
-03/05/2023,@ Auburn,"",/teams/548087,,
-03/07/2023,@ Georgia Tech,"",/teams/548154,,
-03/08/2023,Belmont,"",/teams/548066,,
-03/10/2023,@ Mississippi St.,"",/teams/548209,,
-03/11/2023,@ Mississippi St.,"",/teams/548209,,
-03/12/2023,@ Mississippi St.,"",/teams/548209,,
-03/14/2023,@ Tennessee,"",/teams/548305,,
-03/17/2023,Jacksonville,"",/teams/548175,,
-03/18/2023,Jacksonville,"",/teams/548175,,
-03/19/2023,Jacksonville,"",/teams/548175,,
-03/21/2023,"Vanderbilt @Nashville, TN","",/teams/547958,,
-03/24/2023,@ Queens (NC),"",/teams/548435,,
-03/25/2023,@ Queens (NC),"",/teams/548435,,
-03/26/2023,@ Queens (NC),"",/teams/548435,,
-03/31/2023,Liberty,"",/teams/548184,,
-04/01/2023,Liberty,"",/teams/548184,,
-04/02/2023,Liberty,"",/teams/548184,,
-04/04/2023,@ Louisville,"",/teams/548189,,
-04/06/2023,@ North Ala.,"",/teams/548072,,
-04/07/2023,@ North Ala.,"",/teams/548072,,
-04/08/2023,@ North Ala.,"",/teams/548072,,
-04/11/2023,Tennessee Tech,"",/teams/548304,,
-04/14/2023,@ Stetson,"",/teams/548302,,
-04/15/2023,@ Stetson,"",/teams/548302,,
-04/16/2023,@ Stetson,"",/teams/548302,,
-04/18/2023,@ Middle Tenn.,"",/teams/548207,,
-04/19/2023,Middle Tenn.,"",/teams/548207,,
-04/21/2023,Bellarmine,"",/teams/548307,,
-04/22/2023,Bellarmine,"",/teams/548307,,
-04/23/2023,Bellarmine,"",/teams/548307,,
-04/25/2023,@ Evansville,"",/teams/548140,,
-04/28/2023,@ Eastern Ky.,"",/teams/548138,,
-04/29/2023,@ Eastern Ky.,"",/teams/548138,,
-04/30/2023,@ Eastern Ky.,"",/teams/548138,,
-05/02/2023,"Arkansas @North Little Rock, AR","",/teams/548085,,
-05/05/2023,Kennesaw St.,"",/teams/548058,,
-05/06/2023,Kennesaw St.,"",/teams/548058,,
-05/07/2023,Kennesaw St.,"",/teams/548058,,
-05/09/2023,@ Belmont,"",/teams/548066,,
-05/12/2023,@ Austin Peay,"",/teams/548088,,
-05/13/2023,@ Austin Peay,"",/teams/548088,,
-05/14/2023,@ Austin Peay,"",/teams/548088,,
-05/18/2023,Jacksonville St.,"",/teams/548174,,
-05/19/2023,Jacksonville St.,"",/teams/548174,,
-05/20/2023,Jacksonville St.,"",/teams/548174,,
+year,season_id,date,home_team,home_team_id,home_team_score,home_team_conference,home_team_conference_id,home_team_slug,home_team_division,away_team,away_team_id,away_team_score,away_team_conference,away_team_conference_id,away_team_slug,away_team_division,neutral_site,innings,slug,game_info_url
+2023,16340,02/17/2023,Lipscomb,28600,5,ASUN,920,/team/28600/16340,1,Notre Dame,513,4,ACC,821,/team/513/16340,1,,,/contests/2390287/box_score,https://stats.ncaa.org/contests/2390287/box_score
+2023,16340,02/18/2023,Lipscomb,28600,4,ASUN,920,/team/28600/16340,1,Notre Dame,513,8,ACC,821,/team/513/16340,1,,,/contests/2390524/box_score,https://stats.ncaa.org/contests/2390524/box_score
+2023,16340,02/19/2023,Lipscomb,28600,4,ASUN,920,/team/28600/16340,1,Notre Dame,513,2,ACC,821,/team/513/16340,1,,,/contests/2390844/box_score,https://stats.ncaa.org/contests/2390844/box_score
+2023,16340,02/21/2023,Lipscomb,28600,6,ASUN,920,/team/28600/16340,1,Southern Ind.,661,4,OVC,902,/team/661/16340,1,,,/contests/2391155/box_score,https://stats.ncaa.org/contests/2391155/box_score
+2023,16340,02/24/2023,Lipscomb,28600,5,ASUN,920,/team/28600/16340,1,UIC,302,7,MVC,884,/team/302/16340,1,,,/contests/2391310/box_score,https://stats.ncaa.org/contests/2391310/box_score
+2023,16340,02/25/2023,Lipscomb,28600,9,ASUN,920,/team/28600/16340,1,UIC,302,8,MVC,884,/team/302/16340,1,,,/contests/2391602/box_score,https://stats.ncaa.org/contests/2391602/box_score
+2023,16340,02/26/2023,Lipscomb,28600,7,ASUN,920,/team/28600/16340,1,UIC,302,4,MVC,884,/team/302/16340,1,,,/contests/2392032/box_score,https://stats.ncaa.org/contests/2392032/box_score
+2023,16340,02/28/2023,Tennessee Tech,692,10,OVC,902,/team/692/16340,1,Lipscomb,28600,5,ASUN,920,/team/28600/16340,1,,,/contests/2392417/box_score,https://stats.ncaa.org/contests/2392417/box_score
+2023,16340,03/03/2023,Auburn,37,7,SEC,911,/team/37/16340,1,Lipscomb,28600,3,ASUN,920,/team/28600/16340,1,,,/contests/2392604/box_score,https://stats.ncaa.org/contests/2392604/box_score
+2023,16340,03/04/2023,Auburn,37,12,SEC,911,/team/37/16340,1,Lipscomb,28600,11,ASUN,920,/team/28600/16340,1,,,/contests/2392905/box_score,https://stats.ncaa.org/contests/2392905/box_score
+2023,16340,03/05/2023,Auburn,37,,SEC,911,/team/37/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/07/2023,Georgia Tech,255,,ACC,821,/team/255/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/08/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Belmont,14927,,MVC,884,/team/14927/16340,1,,,,
+2023,16340,03/10/2023,Mississippi St.,430,,SEC,911,/team/430/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/11/2023,Mississippi St.,430,,SEC,911,/team/430/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/12/2023,Mississippi St.,430,,SEC,911,/team/430/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/14/2023,Tennessee,694,,SEC,911,/team/694/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/17/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,03/18/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,03/19/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville,316,,ASUN,920,/team/316/16340,1,,,,
+2023,16340,03/21/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Vanderbilt ,736,,SEC,911,/team/736/16340,1,"Nashville, TN",,,
+2023,16340,03/24/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/25/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/26/2023,Queens (NC),11504,,ASUN,920,/team/11504/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,03/31/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,04/01/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,04/02/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Liberty,355,,ASUN,920,/team/355/16340,1,,,,
+2023,16340,04/04/2023,Louisville,367,,ACC,821,/team/367/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/06/2023,North Ala.,487,,ASUN,920,/team/487/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/07/2023,North Ala.,487,,ASUN,920,/team/487/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/08/2023,North Ala.,487,,ASUN,920,/team/487/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/11/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Tennessee Tech,692,,OVC,902,/team/692/16340,1,,,,
+2023,16340,04/14/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/15/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/16/2023,Stetson,678,,ASUN,920,/team/678/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/18/2023,Middle Tenn.,419,,C-USA,24312,/team/419/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/19/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Middle Tenn.,419,,C-USA,24312,/team/419/16340,1,,,,
+2023,16340,04/21/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Bellarmine,52,,ASUN,920,/team/52/16340,1,,,,
+2023,16340,04/22/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Bellarmine,52,,ASUN,920,/team/52/16340,1,,,,
+2023,16340,04/23/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Bellarmine,52,,ASUN,920,/team/52/16340,1,,,,
+2023,16340,04/25/2023,Evansville,219,,MVC,884,/team/219/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/28/2023,Eastern Ky.,202,,ASUN,920,/team/202/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/29/2023,Eastern Ky.,202,,ASUN,920,/team/202/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,04/30/2023,Eastern Ky.,202,,ASUN,920,/team/202/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,05/02/2023,Arkansas ,31,,SEC,911,/team/31/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,"North Little Rock, AR",,,
+2023,16340,05/05/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,05/06/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,05/07/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Kennesaw St.,1157,,ASUN,920,/team/1157/16340,1,,,,
+2023,16340,05/09/2023,Belmont,14927,,MVC,884,/team/14927/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,05/12/2023,Austin Peay,43,,ASUN,920,/team/43/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,05/13/2023,Austin Peay,43,,ASUN,920,/team/43/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,05/14/2023,Austin Peay,43,,ASUN,920,/team/43/16340,1,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,,,,
+2023,16340,05/18/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville St.,315,,ASUN,920,/team/315/16340,1,,,,
+2023,16340,05/19/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville St.,315,,ASUN,920,/team/315/16340,1,,,,
+2023,16340,05/20/2023,Lipscomb,28600,,ASUN,920,/team/28600/16340,1,Jacksonville St.,315,,ASUN,920,/team/315/16340,1,,,,

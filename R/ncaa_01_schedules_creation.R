@@ -66,6 +66,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
           data.table::fwrite(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
           jsonlite::write_json(df, glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
           arrow::write_parquet(df, glue::glue("ncaa/team_schedules/parquet/{y}_{x}.parquet"))
+          Sys.sleep(5)
         },
         error = function(e) {
           message(glue::glue("{Sys.time()}: Invalid arguments provided for team_id: {x}, year: {y}, proxy: {proxy}"))
@@ -74,8 +75,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
         }
       )
       return(df)
-    },
-    .options = furrr::furrr_options(seed = NULL)) %>%
+    }) %>%
       baseballr:::rbindlist_with_attrs()
   }
 
