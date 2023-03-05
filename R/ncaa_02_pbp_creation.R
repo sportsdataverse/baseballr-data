@@ -1,6 +1,6 @@
 lib_path <- Sys.getenv("R_LIBS")
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman', lib = Sys.getenv("R_LIBS"), repo = 'http://cran.us.r-project.org')
+if (!requireNamespace("pacman", quietly = TRUE)){
+  install.packages("pacman", lib = Sys.getenv("R_LIBS"), repo = "http://cran.us.r-project.org")
 }
 suppressPackageStartupMessages(suppressMessages(library(cli, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(dplyr, lib.loc = lib_path)))
@@ -21,12 +21,15 @@ suppressPackageStartupMessages(suppressMessages(library(httr, lib.loc = lib_path
 suppressPackageStartupMessages(suppressMessages(library(tictoc, lib.loc = lib_path)))
 
 # this should give you the same IP as step 1 (ignore the "\n")
-option_list = list(
-  make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "Start year of the seasons to process"),
-  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(), type = 'integer', help = "End year of the seasons to process"),
-  make_option(c("-r", "--rescrape"), action = "store", default = FALSE, type = 'logical', help = "Rescrape the raw JSON files from web api")
+option_list <- list(
+  make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
+    type = "integer", help = "Start year of the seasons to process"),
+  make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
+    type = "integer", help = "End year of the seasons to process"),
+  make_option(c("-r", "--rescrape"), action = "store", default = FALSE,
+    type = "logical", help = "Rescrape the raw JSON files from web api")
 )
-opt = parse_args(OptionParser(option_list = option_list))
+opt <- parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
 years_vec <- opt$s:opt$e
@@ -38,9 +41,9 @@ rescrape <- opt$r
 #   dplyr::filter(.data$year %in% years_vec) %>%
 #   dplyr::slice(533:540)
 # a very common library for webscraping
-# rvest::html_text(xml2::read_html('http://checkip.amazonaws.com/'))
+# rvest::html_text(xml2::read_html("http://checkip.amazonaws.com/"))
 proxies <- data.table::fread("../proxylist.csv")
-select_proxy <- function(proxies){
+select_proxy <- function(proxies) {
   proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
   proxy_selected <- proxies %>%
     dplyr::filter(.data$ip == proxy)
@@ -50,15 +53,17 @@ select_proxy <- function(proxies){
                               password = proxy_selected$password)
   return(my_proxy)
 }
-ncaa_baseball_pbp_scrape <- function(y){
+ncaa_baseball_pbp_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
-  sched <- data.table::fread(paste0('ncaa/schedules/csv/ncaa_baseball_schedule_',y,'.csv'))
+  sched <- data.table::fread(paste0("ncaa/schedules/csv/ncaa_baseball_schedule_", y, ".csv"))
   ifelse(!dir.exists(file.path("ncaa/game_pbp")), dir.create(file.path("ncaa/game_pbp")), FALSE)
+  ifelse(!dir.exists(file.path("ncaa/game_pbp/parquet")), dir.create(file.path("ncaa/game_pbp/parquet")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/game_pbp/rds")), dir.create(file.path("ncaa/game_pbp/rds")), FALSE)
-  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/rds/"), "\\d+"))
+  ifelse(!dir.exists(file.path("ncaa/game_pbp/json")), dir.create(file.path("ncaa/game_pbp/json")), FALSE)
+  pbp_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
-    dplyr::filter(!is.na(.data$game_info_url)) %>%
-    dplyr::select("game_info_url","game_pbp_url") %>%
+    dplyr::filter(!is.na(.data$game_info_url), stringr::str_detect(.data$game_pbp_url, "play_by_play")) %>%
+    dplyr::select("game_info_url", "game_pbp_url") %>%
     dplyr::mutate(
       game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
     dplyr::distinct()
@@ -71,7 +76,7 @@ ncaa_baseball_pbp_scrape <- function(y){
 
   if (nrow(pbp_links) > 0) {
     future::plan("multisession")
-    pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x){
+    pbp_g <- furrr::future_map(pbp_links$game_pbp_url, function(x) {
       df <- data.frame()
       tryCatch(
         expr = {
@@ -82,7 +87,9 @@ ncaa_baseball_pbp_scrape <- function(y){
             proxy = proxy
           )
           game_pbp_id <- as.integer(stringr::str_extract(x, "\\d+"))
+          arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{game_pbp_id}.parquet"))
           saveRDS(df, glue::glue("ncaa/game_pbp/rds/{game_pbp_id}.rds"))
+          jsonlite::write_json(df, glue::glue("ncaa/game_pbp/json/{game_pbp_id}.json"), pretty = 2)
         },
         error = function(e) {
           message(glue::glue("{Sys.time()}: Invalid arguments provided for game_pbp_url: {x}, proxy: {proxy}"))
@@ -95,10 +102,10 @@ ncaa_baseball_pbp_scrape <- function(y){
       baseballr:::rbindlist_with_attrs()
   }
 
-  pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/rds/"), "\\d+"))
+  pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/game_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
     dplyr::filter(!is.na(.data$game_info_url)) %>%
-    dplyr::select("game_info_url","game_pbp_url") %>%
+    dplyr::select("game_info_url", "game_pbp_url") %>%
     dplyr::mutate(
       game_pbp_id = as.integer(stringr::str_extract(.data$game_pbp_url, "\\d+"))) %>%
     dplyr::distinct()
@@ -112,8 +119,8 @@ ncaa_baseball_pbp_scrape <- function(y){
   game_pbp_files_year <- game_pbp_files_year$game_pbp_id[!is.na(game_pbp_files_year$game_pbp_id)]
 
   future::plan("multisession")
-  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x){
-    df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}.rds"))
+  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x) {
+    df <- arrow::read_parquet(glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
     return(df)
   }) %>%
     baseballr:::rbindlist_with_attrs()
@@ -143,6 +150,6 @@ ncaa_baseball_pbp_scrape <- function(y){
   cli::cli_process_done(msg_done = "Finished NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
 }
 
-all_games <- purrr::map(years_vec, function(y){
+all_games <- purrr::map(years_vec, function(y) {
   ncaa_baseball_pbp_scrape(y)
 })
