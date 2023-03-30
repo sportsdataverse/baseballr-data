@@ -18,7 +18,8 @@
     "away_team_slug": "/team/1340/16340",
     "away_team_division": 3,
     "slug": "/contests/2390048/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390048/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390048/box_score",
+    "contest_id": 2390048
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/564/16340",
     "away_team_division": 3,
     "slug": "/contests/2393203/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393203/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393203/box_score",
+    "contest_id": 2393203
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/564/16340",
     "away_team_division": 3,
     "slug": "/contests/2408658/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408658/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408658/box_score",
+    "contest_id": 2408658
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_division": 3,
     "neutral_site": "Myrtle Beach, SC",
     "slug": "/contests/2412003/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2412003/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2412003/box_score",
+    "contest_id": 2412003
   },
   {
     "year": 2023,
@@ -104,7 +108,8 @@
     "away_team_division": 3,
     "neutral_site": "Myrtle Beach, SC",
     "slug": "/contests/2412020/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2412020/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2412020/box_score",
+    "contest_id": 2412020
   },
   {
     "year": 2023,
@@ -126,7 +131,8 @@
     "away_team_division": 3,
     "neutral_site": "Myrtle Beach, SC",
     "slug": "/contests/2422652/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2422652/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2422652/box_score",
+    "contest_id": 2422652
   },
   {
     "year": 2023,
@@ -148,7 +154,8 @@
     "away_team_division": 3,
     "neutral_site": "Myrtle Beach, SC",
     "slug": "/contests/2412004/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2412004/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2412004/box_score",
+    "contest_id": 2412004
   },
   {
     "year": 2023,
@@ -156,50 +163,43 @@
     "date": "03/05/2023",
     "home_team": "St. Joseph's (L.I.)",
     "home_team_id": 1340,
+    "home_team_score": 6,
     "home_team_conference": "Skyline",
     "home_team_conference_id": 13054,
     "home_team_slug": "/team/1340/16340",
     "home_team_division": 3,
     "away_team": "Ithaca",
     "away_team_id": 313,
+    "away_team_score": 1,
     "away_team_conference": "Liberty League",
     "away_team_conference_id": 24197,
     "away_team_slug": "/team/313/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393475/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393475/box_score",
+    "contest_id": 2393475
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/18/2023",
-    "home_team": "St. Joseph's (L.I.)",
-    "home_team_id": 1340,
-    "home_team_conference": "Skyline",
-    "home_team_conference_id": 13054,
-    "home_team_slug": "/team/1340/16340",
+    "home_team": "Lehman",
+    "home_team_id": 279,
+    "home_team_score": 6,
+    "home_team_conference": "CUNYAC",
+    "home_team_conference_id": 834,
+    "home_team_slug": "/team/279/16340",
     "home_team_division": 3,
-    "away_team": "New Jersey City",
-    "away_team_id": 319,
-    "away_team_conference": "NJAC",
-    "away_team_conference_id": 891,
-    "away_team_slug": "/team/319/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "St. Joseph's (L.I.)",
-    "home_team_id": 1340,
-    "home_team_conference": "Skyline",
-    "home_team_conference_id": 13054,
-    "home_team_slug": "/team/1340/16340",
-    "home_team_division": 3,
-    "away_team": "New Jersey City",
-    "away_team_id": 319,
-    "away_team_conference": "NJAC",
-    "away_team_conference_id": 891,
-    "away_team_slug": "/team/319/16340",
-    "away_team_division": 3
+    "away_team": "St. Joseph's (L.I.)",
+    "away_team_id": 1340,
+    "away_team_score": 19,
+    "away_team_conference": "Skyline",
+    "away_team_conference_id": 13054,
+    "away_team_slug": "/team/1340/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2425198/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425198/box_score",
+    "contest_id": 2425198
   },
   {
     "year": 2023,
@@ -207,50 +207,21 @@
     "date": "03/22/2023",
     "home_team": "St. Joseph's (L.I.)",
     "home_team_id": 1340,
+    "home_team_score": 8,
     "home_team_conference": "Skyline",
     "home_team_conference_id": 13054,
     "home_team_slug": "/team/1340/16340",
     "home_team_division": 3,
     "away_team": "Kean",
     "away_team_id": 329,
+    "away_team_score": 2,
     "away_team_conference": "NJAC",
     "away_team_conference_id": 891,
     "away_team_slug": "/team/329/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "St. Joseph's (L.I.)",
-    "home_team_id": 1340,
-    "home_team_conference": "Skyline",
-    "home_team_conference_id": 13054,
-    "home_team_slug": "/team/1340/16340",
-    "home_team_division": 3,
-    "away_team": "Lehman",
-    "away_team_id": 279,
-    "away_team_conference": "CUNYAC",
-    "away_team_conference_id": 834,
-    "away_team_slug": "/team/279/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "St. Joseph's (L.I.)",
-    "home_team_id": 1340,
-    "home_team_conference": "Skyline",
-    "home_team_conference_id": 13054,
-    "home_team_slug": "/team/1340/16340",
-    "home_team_division": 3,
-    "away_team": "Lehman",
-    "away_team_id": 279,
-    "away_team_conference": "CUNYAC",
-    "away_team_conference_id": 834,
-    "away_team_slug": "/team/279/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397171/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397171/box_score",
+    "contest_id": 2397171
   },
   {
     "year": 2023,
@@ -258,16 +229,21 @@
     "date": "03/29/2023",
     "home_team": "Yeshiva",
     "home_team_id": 814,
+    "home_team_score": 2,
     "home_team_conference": "Skyline",
     "home_team_conference_id": 13054,
     "home_team_slug": "/team/814/16340",
     "home_team_division": 3,
     "away_team": "St. Joseph's (L.I.)",
     "away_team_id": 1340,
+    "away_team_score": 21,
     "away_team_conference": "Skyline",
     "away_team_conference_id": 13054,
     "away_team_slug": "/team/1340/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398625/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398625/box_score",
+    "contest_id": 2398625
   },
   {
     "year": 2023,
@@ -275,16 +251,21 @@
     "date": "03/29/2023",
     "home_team": "Yeshiva",
     "home_team_id": 814,
+    "home_team_score": 1,
     "home_team_conference": "Skyline",
     "home_team_conference_id": 13054,
     "home_team_slug": "/team/814/16340",
     "home_team_division": 3,
     "away_team": "St. Joseph's (L.I.)",
     "away_team_id": 1340,
+    "away_team_score": 23,
     "away_team_conference": "Skyline",
     "away_team_conference_id": 13054,
     "away_team_slug": "/team/1340/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409854/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409854/box_score",
+    "contest_id": 2409854
   },
   {
     "year": 2023,
@@ -454,6 +435,40 @@
     "away_team_conference": "Skyline",
     "away_team_conference_id": 13054,
     "away_team_slug": "/team/1340/16340",
+    "away_team_division": 3
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/16/2023",
+    "home_team": "St. Joseph's (L.I.)",
+    "home_team_id": 1340,
+    "home_team_conference": "Skyline",
+    "home_team_conference_id": 13054,
+    "home_team_slug": "/team/1340/16340",
+    "home_team_division": 3,
+    "away_team": "Lehman",
+    "away_team_id": 279,
+    "away_team_conference": "CUNYAC",
+    "away_team_conference_id": 834,
+    "away_team_slug": "/team/279/16340",
+    "away_team_division": 3
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/16/2023",
+    "home_team": "St. Joseph's (L.I.)",
+    "home_team_id": 1340,
+    "home_team_conference": "Skyline",
+    "home_team_conference_id": 13054,
+    "home_team_slug": "/team/1340/16340",
+    "home_team_division": 3,
+    "away_team": "Lehman",
+    "away_team_id": 279,
+    "away_team_conference": "CUNYAC",
+    "away_team_conference_id": 834,
+    "away_team_slug": "/team/279/16340",
     "away_team_division": 3
   },
   {

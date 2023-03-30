@@ -18,7 +18,8 @@
     "away_team_slug": "/team/203/16340",
     "away_team_division": 3,
     "slug": "/contests/2390074/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390074/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390074/box_score",
+    "contest_id": 2390074
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/203/16340",
     "away_team_division": 3,
     "slug": "/contests/2407827/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407827/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407827/box_score",
+    "contest_id": 2407827
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/203/16340",
     "away_team_division": 3,
     "slug": "/contests/2390223/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390223/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390223/box_score",
+    "contest_id": 2390223
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/685/16340",
     "away_team_division": 3,
     "slug": "/contests/2390568/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390568/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390568/box_score",
+    "contest_id": 2390568
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/685/16340",
     "away_team_division": 3,
     "slug": "/contests/2408887/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408887/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408887/box_score",
+    "contest_id": 2408887
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/685/16340",
     "away_team_division": 3,
     "slug": "/contests/2390856/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390856/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390856/box_score",
+    "contest_id": 2390856
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/389/16340",
     "away_team_division": 3,
     "slug": "/contests/2391108/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391108/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391108/box_score",
+    "contest_id": 2391108
   },
   {
     "year": 2023,
@@ -165,7 +172,8 @@
     "away_team_slug": "/team/526/16340",
     "away_team_division": 3,
     "slug": "/contests/2391805/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391805/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391805/box_score",
+    "contest_id": 2391805
   },
   {
     "year": 2023,
@@ -187,7 +195,8 @@
     "away_team_division": 3,
     "innings": "9",
     "slug": "/contests/2408586/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408586/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408586/box_score",
+    "contest_id": 2408586
   },
   {
     "year": 2023,
@@ -195,12 +204,36 @@
     "date": "03/05/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 8,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Penn St.-Brandywine ",
-    "neutral_site": "Auburndale, FL"
+    "away_team_score": 4,
+    "neutral_site": "Davenport, FL",
+    "slug": "/contests/2423166/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423166/box_score",
+    "contest_id": 2423166
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/05/2023",
+    "home_team": "East. Mennonite",
+    "home_team_id": 203,
+    "home_team_score": 6,
+    "home_team_conference": "ODAC",
+    "home_team_conference_id": 903,
+    "home_team_slug": "/team/203/16340",
+    "home_team_division": 3,
+    "away_team": "Penn St.-Brandywine ",
+    "away_team_score": 13,
+    "neutral_site": "Auburndale, FL",
+    "innings": "10",
+    "slug": "/contests/2393415/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393415/box_score",
+    "contest_id": 2393415
   },
   {
     "year": 2023,
@@ -208,17 +241,22 @@
     "date": "03/06/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 4,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Waynesburg ",
     "away_team_id": 1434,
+    "away_team_score": 11,
     "away_team_conference": "PAC",
     "away_team_conference_id": 907,
     "away_team_slug": "/team/1434/16340",
     "away_team_division": 3,
-    "neutral_site": "Winter Haven, FL"
+    "neutral_site": "Winter Haven, FL",
+    "slug": "/contests/2393695/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393695/box_score",
+    "contest_id": 2393695
   },
   {
     "year": 2023,
@@ -226,17 +264,22 @@
     "date": "03/07/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 20,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Pitt.-Greensburg ",
     "away_team_id": 11839,
+    "away_team_score": 9,
     "away_team_conference": "AMCC",
     "away_team_conference_id": 30022,
     "away_team_slug": "/team/11839/16340",
     "away_team_division": 3,
-    "neutral_site": "Auburndale, FL"
+    "neutral_site": "Auburndale, FL",
+    "slug": "/contests/2393799/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393799/box_score",
+    "contest_id": 2393799
   },
   {
     "year": 2023,
@@ -244,16 +287,21 @@
     "date": "03/11/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 6,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Roanoke",
     "away_team_id": 578,
+    "away_team_score": 8,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/578/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394589/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394589/box_score",
+    "contest_id": 2394589
   },
   {
     "year": 2023,
@@ -261,33 +309,43 @@
     "date": "03/11/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 1,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Roanoke",
     "away_team_id": 578,
+    "away_team_score": 8,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/578/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408776/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408776/box_score",
+    "contest_id": 2408776
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/14/2023",
+    "date": "03/15/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 4,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Wash. & Lee",
     "away_team_id": 752,
+    "away_team_score": 11,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/752/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395461/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395461/box_score",
+    "contest_id": 2395461
   },
   {
     "year": 2023,
@@ -295,33 +353,43 @@
     "date": "03/18/2023",
     "home_team": "Va. Wesleyan",
     "home_team_id": 745,
+    "home_team_score": 11,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/745/16340",
     "home_team_division": 3,
     "away_team": "East. Mennonite",
     "away_team_id": 203,
+    "away_team_score": 0,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2425256/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425256/box_score",
+    "contest_id": 2425256
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/18/2023",
+    "date": "03/19/2023",
     "home_team": "Va. Wesleyan",
     "home_team_id": 745,
+    "home_team_score": 2,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/745/16340",
     "home_team_division": 3,
     "away_team": "East. Mennonite",
     "away_team_id": 203,
+    "away_team_score": 9,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396302/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396302/box_score",
+    "contest_id": 2396302
   },
   {
     "year": 2023,
@@ -329,16 +397,21 @@
     "date": "03/21/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 11,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Trinity (CT)",
     "away_team_id": 713,
+    "away_team_score": 12,
     "away_team_conference": "NESCAC",
     "away_team_conference_id": 12817,
     "away_team_slug": "/team/713/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396886/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396886/box_score",
+    "contest_id": 2396886
   },
   {
     "year": 2023,
@@ -346,50 +419,65 @@
     "date": "03/22/2023",
     "home_team": "Wash. & Lee",
     "home_team_id": 752,
+    "home_team_score": 12,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/752/16340",
     "home_team_division": 3,
     "away_team": "East. Mennonite",
     "away_team_id": 203,
+    "away_team_score": 2,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397167/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397167/box_score",
+    "contest_id": 2397167
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/26/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 5,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Ferrum",
     "away_team_id": 225,
+    "away_team_score": 16,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/225/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397819/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397819/box_score",
+    "contest_id": 2397819
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/26/2023",
     "home_team": "East. Mennonite",
     "home_team_id": 203,
+    "home_team_score": 3,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/203/16340",
     "home_team_division": 3,
     "away_team": "Ferrum",
     "away_team_id": 225,
+    "away_team_score": 9,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/225/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2410265/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2410265/box_score",
+    "contest_id": 2410265
   },
   {
     "year": 2023,
@@ -397,16 +485,21 @@
     "date": "03/28/2023",
     "home_team": "Shenandoah",
     "home_team_id": 637,
+    "home_team_score": 15,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/637/16340",
     "home_team_division": 3,
     "away_team": "East. Mennonite",
     "away_team_id": 203,
+    "away_team_score": 0,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398505/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398505/box_score",
+    "contest_id": 2398505
   },
   {
     "year": 2023,

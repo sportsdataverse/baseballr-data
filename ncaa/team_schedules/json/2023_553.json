@@ -19,7 +19,8 @@
     "away_team_division": 1,
     "neutral_site": "Houston, TX",
     "slug": "/contests/2390331/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390331/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390331/box_score",
+    "contest_id": 2390331
   },
   {
     "year": 2023,
@@ -41,7 +42,8 @@
     "away_team_division": 1,
     "neutral_site": "Houston, TX",
     "slug": "/contests/2390587/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390587/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390587/box_score",
+    "contest_id": 2390587
   },
   {
     "year": 2023,
@@ -63,7 +65,8 @@
     "away_team_division": 1,
     "neutral_site": "Houston, TX",
     "slug": "/contests/2390882/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390882/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390882/box_score",
+    "contest_id": 2390882
   },
   {
     "year": 2023,
@@ -84,7 +87,8 @@
     "away_team_slug": "/team/553/16340",
     "away_team_division": 1,
     "slug": "/contests/2391202/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391202/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391202/box_score",
+    "contest_id": 2391202
   },
   {
     "year": 2023,
@@ -106,7 +110,8 @@
     "away_team_division": 1,
     "neutral_site": "New Orleans, LA",
     "slug": "/contests/2421274/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421274/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421274/box_score",
+    "contest_id": 2421274
   },
   {
     "year": 2023,
@@ -127,7 +132,8 @@
     "away_team_slug": "/team/314/16340",
     "away_team_division": 1,
     "slug": "/contests/2391353/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391353/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391353/box_score",
+    "contest_id": 2391353
   },
   {
     "year": 2023,
@@ -148,7 +154,8 @@
     "away_team_slug": "/team/553/16340",
     "away_team_division": 1,
     "slug": "/contests/2392183/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392183/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392183/box_score",
+    "contest_id": 2392183
   },
   {
     "year": 2023,
@@ -164,7 +171,8 @@
     "away_team": "Houston-Victoria",
     "away_team_score": 6,
     "slug": "/contests/2422394/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2422394/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2422394/box_score",
+    "contest_id": 2422394
   },
   {
     "year": 2023,
@@ -180,7 +188,8 @@
     "away_team": "Houston-Victoria",
     "away_team_score": 4,
     "slug": "/contests/2392381/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392381/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392381/box_score",
+    "contest_id": 2392381
   },
   {
     "year": 2023,
@@ -201,7 +210,8 @@
     "away_team_slug": "/team/553/16340",
     "away_team_division": 1,
     "slug": "/contests/2392855/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392855/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392855/box_score",
+    "contest_id": 2392855
   },
   {
     "year": 2023,
@@ -222,7 +232,8 @@
     "away_team_slug": "/team/553/16340",
     "away_team_division": 1,
     "slug": "/contests/2393284/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393284/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393284/box_score",
+    "contest_id": 2393284
   },
   {
     "year": 2023,
@@ -230,16 +241,21 @@
     "date": "03/05/2023",
     "home_team": "Tarleton St.",
     "home_team_id": 1395,
+    "home_team_score": 13,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1395/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393559/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393559/box_score",
+    "contest_id": 2393559
   },
   {
     "year": 2023,
@@ -247,16 +263,21 @@
     "date": "03/07/2023",
     "home_team": "Houston",
     "home_team_id": 288,
+    "home_team_score": 17,
     "home_team_conference": "AAC",
     "home_team_conference_id": 823,
     "home_team_slug": "/team/288/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 4,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393765/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393765/box_score",
+    "contest_id": 2393765
   },
   {
     "year": 2023,
@@ -264,16 +285,22 @@
     "date": "03/08/2023",
     "home_team": "Prairie View",
     "home_team_id": 553,
+    "home_team_score": 7,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/553/16340",
     "home_team_division": 1,
     "away_team": "SFA",
     "away_team_id": 676,
+    "away_team_score": 11,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/676/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "10",
+    "slug": "/contests/2394049/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394049/box_score",
+    "contest_id": 2394049
   },
   {
     "year": 2023,
@@ -281,16 +308,21 @@
     "date": "03/10/2023",
     "home_team": "McNeese",
     "home_team_id": 402,
+    "home_team_score": 9,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/402/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394245/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394245/box_score",
+    "contest_id": 2394245
   },
   {
     "year": 2023,
@@ -298,16 +330,21 @@
     "date": "03/11/2023",
     "home_team": "McNeese",
     "home_team_id": 402,
+    "home_team_score": 10,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/402/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394551/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394551/box_score",
+    "contest_id": 2394551
   },
   {
     "year": 2023,
@@ -315,16 +352,21 @@
     "date": "03/12/2023",
     "home_team": "McNeese",
     "home_team_id": 402,
+    "home_team_score": 11,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/402/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 10,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394964/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394964/box_score",
+    "contest_id": 2394964
   },
   {
     "year": 2023,
@@ -332,33 +374,21 @@
     "date": "03/14/2023",
     "home_team": "Prairie View",
     "home_team_id": 553,
+    "home_team_score": 4,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/553/16340",
     "home_team_division": 1,
     "away_team": "UIW",
     "away_team_id": 2743,
+    "away_team_score": 5,
     "away_team_conference": "Southland",
     "away_team_conference_id": 914,
     "away_team_slug": "/team/2743/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/17/2023",
-    "home_team": "Alcorn",
-    "home_team_id": 17,
-    "home_team_conference": "SWAC",
-    "home_team_conference_id": 916,
-    "home_team_slug": "/team/17/16340",
-    "home_team_division": 1,
-    "away_team": "Prairie View",
-    "away_team_id": 553,
-    "away_team_conference": "SWAC",
-    "away_team_conference_id": 916,
-    "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395410/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395410/box_score",
+    "contest_id": 2395410
   },
   {
     "year": 2023,
@@ -366,16 +396,21 @@
     "date": "03/18/2023",
     "home_team": "Alcorn",
     "home_team_id": 17,
+    "home_team_score": 4,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/17/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 10,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396499/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396499/box_score",
+    "contest_id": 2396499
   },
   {
     "year": 2023,
@@ -383,16 +418,43 @@
     "date": "03/19/2023",
     "home_team": "Alcorn",
     "home_team_id": 17,
+    "home_team_score": 5,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/17/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 6,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396042/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396042/box_score",
+    "contest_id": 2396042
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/19/2023",
+    "home_team": "Alcorn",
+    "home_team_id": 17,
+    "home_team_score": 3,
+    "home_team_conference": "SWAC",
+    "home_team_conference_id": 916,
+    "home_team_slug": "/team/17/16340",
+    "home_team_division": 1,
+    "away_team": "Prairie View",
+    "away_team_id": 553,
+    "away_team_score": 16,
+    "away_team_conference": "SWAC",
+    "away_team_conference_id": 916,
+    "away_team_slug": "/team/553/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2396722/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396722/box_score",
+    "contest_id": 2396722
   },
   {
     "year": 2023,
@@ -400,16 +462,21 @@
     "date": "03/24/2023",
     "home_team": "Prairie View",
     "home_team_id": 553,
+    "home_team_score": 13,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/553/16340",
     "home_team_division": 1,
     "away_team": "Ark.-Pine Bluff",
     "away_team_id": 2678,
+    "away_team_score": 1,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/2678/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397436/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397436/box_score",
+    "contest_id": 2397436
   },
   {
     "year": 2023,
@@ -417,16 +484,21 @@
     "date": "03/25/2023",
     "home_team": "Prairie View",
     "home_team_id": 553,
+    "home_team_score": 6,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/553/16340",
     "home_team_division": 1,
     "away_team": "Ark.-Pine Bluff",
     "away_team_id": 2678,
+    "away_team_score": 5,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/2678/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397952/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397952/box_score",
+    "contest_id": 2397952
   },
   {
     "year": 2023,
@@ -434,16 +506,21 @@
     "date": "03/26/2023",
     "home_team": "Prairie View",
     "home_team_id": 553,
+    "home_team_score": 5,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/553/16340",
     "home_team_division": 1,
     "away_team": "Ark.-Pine Bluff",
     "away_team_id": 2678,
+    "away_team_score": 2,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/2678/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398267/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398267/box_score",
+    "contest_id": 2398267
   },
   {
     "year": 2023,
@@ -451,16 +528,21 @@
     "date": "03/28/2023",
     "home_team": "UIW",
     "home_team_id": 2743,
+    "home_team_score": 6,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/2743/16340",
     "home_team_division": 1,
     "away_team": "Prairie View",
     "away_team_id": 553,
+    "away_team_score": 2,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/553/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398355/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398355/box_score",
+    "contest_id": 2398355
   },
   {
     "year": 2023,

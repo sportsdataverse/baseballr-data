@@ -18,7 +18,8 @@
     "away_team_slug": "/team/654/16340",
     "away_team_division": 1,
     "slug": "/contests/2390286/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390286/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390286/box_score",
+    "contest_id": 2390286
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/654/16340",
     "away_team_division": 1,
     "slug": "/contests/2390525/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390525/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390525/box_score",
+    "contest_id": 2390525
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/654/16340",
     "away_team_division": 1,
     "slug": "/contests/2390843/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390843/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390843/box_score",
+    "contest_id": 2390843
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/1004/16340",
     "away_team_division": 1,
     "slug": "/contests/2391103/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391103/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391103/box_score",
+    "contest_id": 2391103
   },
   {
     "year": 2023,
@@ -103,7 +107,8 @@
     "away_team_division": 1,
     "innings": "14",
     "slug": "/contests/2391445/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391445/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391445/box_score",
+    "contest_id": 2391445
   },
   {
     "year": 2023,
@@ -124,7 +129,8 @@
     "away_team_slug": "/team/1004/16340",
     "away_team_division": 1,
     "slug": "/contests/2391900/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391900/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391900/box_score",
+    "contest_id": 2391900
   },
   {
     "year": 2023,
@@ -145,7 +151,8 @@
     "away_team_slug": "/team/1004/16340",
     "away_team_division": 1,
     "slug": "/contests/2392210/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392210/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392210/box_score",
+    "contest_id": 2392210
   },
   {
     "year": 2023,
@@ -166,7 +173,8 @@
     "away_team_slug": "/team/404/16340",
     "away_team_division": 1,
     "slug": "/contests/2392354/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392354/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392354/box_score",
+    "contest_id": 2392354
   },
   {
     "year": 2023,
@@ -187,7 +195,8 @@
     "away_team_slug": "/team/299/16340",
     "away_team_division": 1,
     "slug": "/contests/2392646/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392646/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392646/box_score",
+    "contest_id": 2392646
   },
   {
     "year": 2023,
@@ -209,7 +218,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2392936/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392936/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392936/box_score",
+    "contest_id": 2392936
   },
   {
     "year": 2023,
@@ -217,16 +227,21 @@
     "date": "03/05/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 22,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "Illinois St.",
     "away_team_id": 299,
+    "away_team_score": 10,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/299/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393367/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393367/box_score",
+    "contest_id": 2393367
   },
   {
     "year": 2023,
@@ -234,33 +249,21 @@
     "date": "03/07/2023",
     "home_team": "Little Rock",
     "home_team_id": 32,
+    "home_team_score": 3,
     "home_team_conference": "OVC",
     "home_team_conference_id": 902,
     "home_team_slug": "/team/32/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 2,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/08/2023",
-    "home_team": "Central Ark.",
-    "home_team_id": 1004,
-    "home_team_conference": "ASUN",
-    "home_team_conference_id": 920,
-    "home_team_slug": "/team/1004/16340",
-    "home_team_division": 1,
-    "away_team": "Missouri St.",
-    "away_team_id": 669,
-    "away_team_conference": "MVC",
-    "away_team_conference_id": 884,
-    "away_team_slug": "/team/669/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393787/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393787/box_score",
+    "contest_id": 2393787
   },
   {
     "year": 2023,
@@ -268,16 +271,21 @@
     "date": "03/10/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 10,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "UT Martin",
     "away_team_id": 695,
+    "away_team_score": 6,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/695/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394474/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394474/box_score",
+    "contest_id": 2394474
   },
   {
     "year": 2023,
@@ -285,16 +293,21 @@
     "date": "03/11/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 11,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "UT Martin",
     "away_team_id": 695,
+    "away_team_score": 1,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/695/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394886/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394886/box_score",
+    "contest_id": 2394886
   },
   {
     "year": 2023,
@@ -302,16 +315,21 @@
     "date": "03/12/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 3,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "UT Martin",
     "away_team_id": 695,
+    "away_team_score": 5,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/695/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395173/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395173/box_score",
+    "contest_id": 2395173
   },
   {
     "year": 2023,
@@ -319,16 +337,21 @@
     "date": "03/14/2023",
     "home_team": "Arkansas St.",
     "home_team_id": 30,
+    "home_team_score": 4,
     "home_team_conference": "Sun Belt",
     "home_team_conference_id": 818,
     "home_team_slug": "/team/30/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 7,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395319/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395319/box_score",
+    "contest_id": 2395319
   },
   {
     "year": 2023,
@@ -336,16 +359,21 @@
     "date": "03/17/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 9,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "North Ala.",
     "away_team_id": 487,
+    "away_team_score": 1,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/487/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395821/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395821/box_score",
+    "contest_id": 2395821
   },
   {
     "year": 2023,
@@ -353,16 +381,21 @@
     "date": "03/18/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 7,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "North Ala.",
     "away_team_id": 487,
+    "away_team_score": 6,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/487/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396137/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396137/box_score",
+    "contest_id": 2396137
   },
   {
     "year": 2023,
@@ -370,16 +403,21 @@
     "date": "03/19/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 17,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "North Ala.",
     "away_team_id": 487,
+    "away_team_score": 8,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/487/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396566/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396566/box_score",
+    "contest_id": 2396566
   },
   {
     "year": 2023,
@@ -387,16 +425,21 @@
     "date": "03/21/2023",
     "home_team": "LSU",
     "home_team_id": 365,
+    "home_team_score": 10,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/365/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 4,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397069/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397069/box_score",
+    "contest_id": 2397069
   },
   {
     "year": 2023,
@@ -404,16 +447,21 @@
     "date": "03/24/2023",
     "home_team": "Jacksonville",
     "home_team_id": 316,
+    "home_team_score": 4,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/316/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 2,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397312/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397312/box_score",
+    "contest_id": 2397312
   },
   {
     "year": 2023,
@@ -421,16 +469,21 @@
     "date": "03/25/2023",
     "home_team": "Jacksonville",
     "home_team_id": 316,
+    "home_team_score": 17,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/316/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 2,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397608/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397608/box_score",
+    "contest_id": 2397608
   },
   {
     "year": 2023,
@@ -438,16 +491,21 @@
     "date": "03/26/2023",
     "home_team": "Jacksonville",
     "home_team_id": 316,
+    "home_team_score": 12,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/316/16340",
     "home_team_division": 1,
     "away_team": "Central Ark.",
     "away_team_id": 1004,
+    "away_team_score": 2,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/1004/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398045/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398045/box_score",
+    "contest_id": 2398045
   },
   {
     "year": 2023,
@@ -455,16 +513,21 @@
     "date": "03/28/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 7,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "Arkansas St.",
     "away_team_id": 30,
+    "away_team_score": 10,
     "away_team_conference": "Sun Belt",
     "away_team_conference_id": 818,
     "away_team_slug": "/team/30/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398369/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398369/box_score",
+    "contest_id": 2398369
   },
   {
     "year": 2023,
@@ -472,16 +535,21 @@
     "date": "03/29/2023",
     "home_team": "Central Ark.",
     "home_team_id": 1004,
+    "home_team_score": 3,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/1004/16340",
     "home_team_division": 1,
     "away_team": "ULM",
     "away_team_id": 498,
+    "away_team_score": 5,
     "away_team_conference": "Sun Belt",
     "away_team_conference_id": 818,
     "away_team_slug": "/team/498/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398603/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398603/box_score",
+    "contest_id": 2398603
   },
   {
     "year": 2023,
@@ -736,6 +804,23 @@
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/32/16340",
+    "away_team_division": 1
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/26/2023",
+    "home_team": "Central Ark.",
+    "home_team_id": 1004,
+    "home_team_conference": "ASUN",
+    "home_team_conference_id": 920,
+    "home_team_slug": "/team/1004/16340",
+    "home_team_division": 1,
+    "away_team": "Missouri St.",
+    "away_team_id": 669,
+    "away_team_conference": "MVC",
+    "away_team_conference_id": 884,
+    "away_team_slug": "/team/669/16340",
     "away_team_division": 1
   },
   {

@@ -18,7 +18,8 @@
     "away_team_slug": "/team/6/16340",
     "away_team_division": 1,
     "slug": "/contests/2390445/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390445/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390445/box_score",
+    "contest_id": 2390445
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/6/16340",
     "away_team_division": 1,
     "slug": "/contests/2390778/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390778/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390778/box_score",
+    "contest_id": 2390778
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/6/16340",
     "away_team_division": 1,
     "slug": "/contests/2390978/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390978/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390978/box_score",
+    "contest_id": 2390978
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/6/16340",
     "away_team_division": 1,
     "slug": "/contests/2391176/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391176/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391176/box_score",
+    "contest_id": 2391176
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/6/16340",
     "away_team_division": 1,
     "slug": "/contests/2391238/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391238/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391238/box_score",
+    "contest_id": 2391238
   },
   {
     "year": 2023,
@@ -124,7 +129,8 @@
     "away_team_division": 1,
     "neutral_site": "New Orleans, LA",
     "slug": "/contests/2421274/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421274/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421274/box_score",
+    "contest_id": 2421274
   },
   {
     "year": 2023,
@@ -146,7 +152,8 @@
     "away_team_division": 1,
     "neutral_site": "New Orleans, LA",
     "slug": "/contests/2391750/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391750/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391750/box_score",
+    "contest_id": 2391750
   },
   {
     "year": 2023,
@@ -168,7 +175,8 @@
     "away_team_division": 1,
     "neutral_site": "New Orleans, LA",
     "slug": "/contests/2392301/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392301/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392301/box_score",
+    "contest_id": 2392301
   },
   {
     "year": 2023,
@@ -184,7 +192,8 @@
     "away_team": "Stillman",
     "away_team_score": 2,
     "slug": "/contests/2392362/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392362/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392362/box_score",
+    "contest_id": 2392362
   },
   {
     "year": 2023,
@@ -192,12 +201,17 @@
     "date": "03/04/2023",
     "home_team": "Alabama A&M",
     "home_team_id": 6,
+    "home_team_score": 6,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/6/16340",
     "home_team_division": 1,
     "away_team": "Wiley ",
-    "neutral_site": "Arlington, TX"
+    "away_team_score": 3,
+    "neutral_site": "Arlington, TX",
+    "slug": "/contests/2393016/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393016/box_score",
+    "contest_id": 2393016
   },
   {
     "year": 2023,
@@ -205,12 +219,17 @@
     "date": "03/04/2023",
     "home_team": "Alabama A&M",
     "home_team_id": 6,
+    "home_team_score": 14,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/6/16340",
     "home_team_division": 1,
     "away_team": "Wiley ",
-    "neutral_site": "Arlington, TX"
+    "away_team_score": 2,
+    "neutral_site": "Dallas, Texas",
+    "slug": "/contests/2393407/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393407/box_score",
+    "contest_id": 2393407
   },
   {
     "year": 2023,
@@ -218,16 +237,21 @@
     "date": "03/08/2023",
     "home_team": "Alabama A&M",
     "home_team_id": 6,
+    "home_team_score": 0,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/6/16340",
     "home_team_division": 1,
     "away_team": "Southeastern La.",
     "away_team_id": 655,
+    "away_team_score": 14,
     "away_team_conference": "Southland",
     "away_team_conference_id": 914,
     "away_team_slug": "/team/655/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393994/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393994/box_score",
+    "contest_id": 2393994
   },
   {
     "year": 2023,
@@ -235,16 +259,21 @@
     "date": "03/10/2023",
     "home_team": "Northwestern St.",
     "home_team_id": 508,
+    "home_team_score": 7,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/508/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394492/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394492/box_score",
+    "contest_id": 2394492
   },
   {
     "year": 2023,
@@ -252,16 +281,21 @@
     "date": "03/11/2023",
     "home_team": "Northwestern St.",
     "home_team_id": 508,
+    "home_team_score": 10,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/508/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394819/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394819/box_score",
+    "contest_id": 2394819
   },
   {
     "year": 2023,
@@ -269,16 +303,21 @@
     "date": "03/12/2023",
     "home_team": "Northwestern St.",
     "home_team_id": 508,
+    "home_team_score": 8,
     "home_team_conference": "Southland",
     "home_team_conference_id": 914,
     "home_team_slug": "/team/508/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 5,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395133/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395133/box_score",
+    "contest_id": 2395133
   },
   {
     "year": 2023,
@@ -286,16 +325,21 @@
     "date": "03/17/2023",
     "home_team": "Jackson St.",
     "home_team_id": 314,
+    "home_team_score": 9,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/314/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 13,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395847/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395847/box_score",
+    "contest_id": 2395847
   },
   {
     "year": 2023,
@@ -303,16 +347,21 @@
     "date": "03/18/2023",
     "home_team": "Jackson St.",
     "home_team_id": 314,
+    "home_team_score": 18,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/314/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 6,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396157/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396157/box_score",
+    "contest_id": 2396157
   },
   {
     "year": 2023,
@@ -320,33 +369,43 @@
     "date": "03/19/2023",
     "home_team": "Jackson St.",
     "home_team_id": 314,
+    "home_team_score": 9,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/314/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 12,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396597/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396597/box_score",
+    "contest_id": 2396597
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/21/2023",
-    "home_team": "UT Martin",
-    "home_team_id": 695,
-    "home_team_conference": "OVC",
-    "home_team_conference_id": 902,
-    "home_team_slug": "/team/695/16340",
+    "home_team": "Alabama A&M",
+    "home_team_id": 6,
+    "home_team_score": 8,
+    "home_team_conference": "SWAC",
+    "home_team_conference_id": 916,
+    "home_team_slug": "/team/6/16340",
     "home_team_division": 1,
-    "away_team": "Alabama A&M",
-    "away_team_id": 6,
-    "away_team_conference": "SWAC",
-    "away_team_conference_id": 916,
-    "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team": "UT Martin",
+    "away_team_id": 695,
+    "away_team_score": 7,
+    "away_team_conference": "OVC",
+    "away_team_conference_id": 902,
+    "away_team_slug": "/team/695/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2396860/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396860/box_score",
+    "contest_id": 2396860
   },
   {
     "year": 2023,
@@ -354,16 +413,21 @@
     "date": "03/24/2023",
     "home_team": "Florida A&M",
     "home_team_id": 228,
+    "home_team_score": 16,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/228/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 0,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397487/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397487/box_score",
+    "contest_id": 2397487
   },
   {
     "year": 2023,
@@ -371,16 +435,21 @@
     "date": "03/25/2023",
     "home_team": "Florida A&M",
     "home_team_id": 228,
+    "home_team_score": 13,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/228/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 3,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397951/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397951/box_score",
+    "contest_id": 2397951
   },
   {
     "year": 2023,
@@ -388,16 +457,21 @@
     "date": "03/26/2023",
     "home_team": "Florida A&M",
     "home_team_id": 228,
+    "home_team_score": 16,
     "home_team_conference": "SWAC",
     "home_team_conference_id": 916,
     "home_team_slug": "/team/228/16340",
     "home_team_division": 1,
     "away_team": "Alabama A&M",
     "away_team_id": 6,
+    "away_team_score": 8,
     "away_team_conference": "SWAC",
     "away_team_conference_id": 916,
     "away_team_slug": "/team/6/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398266/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398266/box_score",
+    "contest_id": 2398266
   },
   {
     "year": 2023,

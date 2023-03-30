@@ -18,7 +18,8 @@
     "away_team_slug": "/team/471/16340",
     "away_team_division": 1,
     "slug": "/contests/2390283/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390283/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390283/box_score",
+    "contest_id": 2390283
   },
   {
     "year": 2023,
@@ -40,7 +41,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2390522/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390522/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390522/box_score",
+    "contest_id": 2390522
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_slug": "/team/471/16340",
     "away_team_division": 1,
     "slug": "/contests/2390841/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390841/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390841/box_score",
+    "contest_id": 2390841
   },
   {
     "year": 2023,
@@ -83,7 +86,8 @@
     "away_team_division": 1,
     "neutral_site": "Holly Springs, N.C.",
     "slug": "/contests/2421416/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421416/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421416/box_score",
+    "contest_id": 2421416
   },
   {
     "year": 2023,
@@ -105,7 +109,8 @@
     "away_team_division": 1,
     "neutral_site": "Holly Springs, NC",
     "slug": "/contests/2408295/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408295/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408295/box_score",
+    "contest_id": 2408295
   },
   {
     "year": 2023,
@@ -127,7 +132,8 @@
     "away_team_division": 1,
     "neutral_site": "Holly Springs, NC",
     "slug": "/contests/2391712/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391712/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391712/box_score",
+    "contest_id": 2391712
   },
   {
     "year": 2023,
@@ -149,7 +155,8 @@
     "away_team_division": 1,
     "neutral_site": "Holly Springs, NC",
     "slug": "/contests/2392075/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392075/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392075/box_score",
+    "contest_id": 2392075
   },
   {
     "year": 2023,
@@ -170,7 +177,8 @@
     "away_team_slug": "/team/471/16340",
     "away_team_division": 1,
     "slug": "/contests/2392790/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392790/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392790/box_score",
+    "contest_id": 2392790
   },
   {
     "year": 2023,
@@ -191,7 +199,8 @@
     "away_team_slug": "/team/471/16340",
     "away_team_division": 1,
     "slug": "/contests/2393241/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393241/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393241/box_score",
+    "contest_id": 2393241
   },
   {
     "year": 2023,
@@ -199,16 +208,21 @@
     "date": "03/05/2023",
     "home_team": "NC State",
     "home_team_id": 490,
+    "home_team_score": 6,
     "home_team_conference": "ACC",
     "home_team_conference_id": 821,
     "home_team_slug": "/team/490/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 5,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393572/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393572/box_score",
+    "contest_id": 2393572
   },
   {
     "year": 2023,
@@ -216,50 +230,43 @@
     "date": "03/10/2023",
     "home_team": "Missouri",
     "home_team_id": 434,
+    "home_team_score": 6,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/434/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 1,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394587/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394587/box_score",
+    "contest_id": 2394587
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/11/2023",
+    "date": "03/10/2023",
     "home_team": "Missouri",
     "home_team_id": 434,
+    "home_team_score": 1,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/434/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 2,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/11/2023",
-    "home_team": "Missouri",
-    "home_team_id": 434,
-    "home_team_conference": "SEC",
-    "home_team_conference_id": 911,
-    "home_team_slug": "/team/434/16340",
-    "home_team_division": 1,
-    "away_team": "NJIT",
-    "away_team_id": 471,
-    "away_team_conference": "America East",
-    "away_team_conference_id": 845,
-    "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2408717/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408717/box_score",
+    "contest_id": 2408717
   },
   {
     "year": 2023,
@@ -267,16 +274,21 @@
     "date": "03/12/2023",
     "home_team": "Missouri",
     "home_team_id": 434,
+    "home_team_score": 5,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/434/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 3,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394952/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394952/box_score",
+    "contest_id": 2394952
   },
   {
     "year": 2023,
@@ -284,16 +296,22 @@
     "date": "03/17/2023",
     "home_team": "VCU",
     "home_team_id": 740,
+    "home_team_score": 5,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/740/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 4,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "10",
+    "slug": "/contests/2395943/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395943/box_score",
+    "contest_id": 2395943
   },
   {
     "year": 2023,
@@ -301,16 +319,21 @@
     "date": "03/18/2023",
     "home_team": "VCU",
     "home_team_id": 740,
+    "home_team_score": 12,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/740/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 4,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396437/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396437/box_score",
+    "contest_id": 2396437
   },
   {
     "year": 2023,
@@ -318,16 +341,21 @@
     "date": "03/19/2023",
     "home_team": "VCU",
     "home_team_id": 740,
+    "home_team_score": 1,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/740/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 0,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396640/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396640/box_score",
+    "contest_id": 2396640
   },
   {
     "year": 2023,
@@ -335,16 +363,21 @@
     "date": "03/22/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 7,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 1,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397119/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397119/box_score",
+    "contest_id": 2397119
   },
   {
     "year": 2023,
@@ -352,33 +385,43 @@
     "date": "03/24/2023",
     "home_team": "Bryant",
     "home_team_id": 81,
+    "home_team_score": 5,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/81/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 2,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425862/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425862/box_score",
+    "contest_id": 2425862
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/24/2023",
     "home_team": "Bryant",
     "home_team_id": 81,
+    "home_team_score": 7,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/81/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 3,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2426024/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2426024/box_score",
+    "contest_id": 2426024
   },
   {
     "year": 2023,
@@ -386,16 +429,21 @@
     "date": "03/26/2023",
     "home_team": "Bryant",
     "home_team_id": 81,
+    "home_team_score": 15,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/81/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 3,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398246/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398246/box_score",
+    "contest_id": 2398246
   },
   {
     "year": 2023,
@@ -403,16 +451,21 @@
     "date": "03/29/2023",
     "home_team": "Rutgers",
     "home_team_id": 587,
+    "home_team_score": 9,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/587/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 7,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398596/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398596/box_score",
+    "contest_id": 2398596
   },
   {
     "year": 2023,

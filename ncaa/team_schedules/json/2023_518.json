@@ -19,7 +19,8 @@
     "away_team_division": 1,
     "neutral_site": "Venice, FL",
     "slug": "/contests/2390491/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390491/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390491/box_score",
+    "contest_id": 2390491
   },
   {
     "year": 2023,
@@ -41,7 +42,8 @@
     "away_team_division": 1,
     "neutral_site": "Sarasota, FL",
     "slug": "/contests/2390797/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390797/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390797/box_score",
+    "contest_id": 2390797
   },
   {
     "year": 2023,
@@ -63,7 +65,8 @@
     "away_team_division": 1,
     "neutral_site": "Sarasota, FL",
     "slug": "/contests/2391058/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391058/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391058/box_score",
+    "contest_id": 2391058
   },
   {
     "year": 2023,
@@ -85,7 +88,8 @@
     "away_team_division": 1,
     "neutral_site": "Port Charlotte, FL",
     "slug": "/contests/2391073/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391073/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391073/box_score",
+    "contest_id": 2391073
   },
   {
     "year": 2023,
@@ -106,7 +110,8 @@
     "away_team_slug": "/team/518/16340",
     "away_team_division": 1,
     "slug": "/contests/2391250/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391250/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391250/box_score",
+    "contest_id": 2391250
   },
   {
     "year": 2023,
@@ -129,7 +134,8 @@
     "neutral_site": "Phoenix, AZ",
     "innings": "10",
     "slug": "/contests/2391506/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391506/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391506/box_score",
+    "contest_id": 2391506
   },
   {
     "year": 2023,
@@ -150,7 +156,8 @@
     "away_team_slug": "/team/518/16340",
     "away_team_division": 1,
     "slug": "/contests/2391581/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391581/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391581/box_score",
+    "contest_id": 2391581
   },
   {
     "year": 2023,
@@ -172,7 +179,8 @@
     "away_team_division": 1,
     "neutral_site": "Phoenix, AZ",
     "slug": "/contests/2392295/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392295/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392295/box_score",
+    "contest_id": 2392295
   },
   {
     "year": 2023,
@@ -194,7 +202,8 @@
     "away_team_division": 1,
     "neutral_site": "Frisco, TX",
     "slug": "/contests/2392882/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392882/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392882/box_score",
+    "contest_id": 2392882
   },
   {
     "year": 2023,
@@ -202,17 +211,22 @@
     "date": "03/04/2023",
     "home_team": "California ",
     "home_team_id": 107,
+    "home_team_score": 16,
     "home_team_conference": "Pac-12",
     "home_team_conference_id": 905,
     "home_team_slug": "/team/107/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 1,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
     "away_team_division": 1,
-    "neutral_site": "Frisco, TX"
+    "neutral_site": "Frisco, TX",
+    "slug": "/contests/2393319/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393319/box_score",
+    "contest_id": 2393319
   },
   {
     "year": 2023,
@@ -220,34 +234,22 @@
     "date": "03/05/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 12,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Oklahoma ",
     "away_team_id": 522,
+    "away_team_score": 9,
     "away_team_conference": "Big 12",
     "away_team_conference_id": 25354,
     "away_team_slug": "/team/522/16340",
     "away_team_division": 1,
-    "neutral_site": "Frisco, TX"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/10/2023",
-    "home_team": "CSU Bakersfield",
-    "home_team_id": 94,
-    "home_team_conference": "Big West",
-    "home_team_conference_id": 904,
-    "home_team_slug": "/team/94/16340",
-    "home_team_division": 1,
-    "away_team": "Ohio St.",
-    "away_team_id": 518,
-    "away_team_conference": "Big Ten",
-    "away_team_conference_id": 827,
-    "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "neutral_site": "Frisco, TX",
+    "slug": "/contests/2393664/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393664/box_score",
+    "contest_id": 2393664
   },
   {
     "year": 2023,
@@ -255,16 +257,21 @@
     "date": "03/11/2023",
     "home_team": "CSU Bakersfield",
     "home_team_id": 94,
+    "home_team_score": 5,
     "home_team_conference": "Big West",
     "home_team_conference_id": 904,
     "home_team_slug": "/team/94/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 17,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394508/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394508/box_score",
+    "contest_id": 2394508
   },
   {
     "year": 2023,
@@ -272,33 +279,43 @@
     "date": "03/12/2023",
     "home_team": "CSU Bakersfield",
     "home_team_id": 94,
+    "home_team_score": 5,
     "home_team_conference": "Big West",
     "home_team_conference_id": 904,
     "home_team_slug": "/team/94/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 9,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394909/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394909/box_score",
+    "contest_id": 2394909
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/14/2023",
-    "home_team": "Marshall",
-    "home_team_id": 388,
-    "home_team_conference": "Sun Belt",
-    "home_team_conference_id": 818,
-    "home_team_slug": "/team/388/16340",
+    "date": "03/12/2023",
+    "home_team": "CSU Bakersfield",
+    "home_team_id": 94,
+    "home_team_score": 6,
+    "home_team_conference": "Big West",
+    "home_team_conference_id": 904,
+    "home_team_slug": "/team/94/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 19,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395218/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395218/box_score",
+    "contest_id": 2395218
   },
   {
     "year": 2023,
@@ -306,16 +323,21 @@
     "date": "03/15/2023",
     "home_team": "Marshall",
     "home_team_id": 388,
+    "home_team_score": 1,
     "home_team_conference": "Sun Belt",
     "home_team_conference_id": 818,
     "home_team_slug": "/team/388/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 5,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395651/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395651/box_score",
+    "contest_id": 2395651
   },
   {
     "year": 2023,
@@ -323,33 +345,21 @@
     "date": "03/17/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 7,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Dayton",
     "away_team_id": 175,
+    "away_team_score": 2,
     "away_team_conference": "Atlantic 10",
     "away_team_conference_id": 820,
     "away_team_slug": "/team/175/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "Ohio St.",
-    "home_team_id": 518,
-    "home_team_conference": "Big Ten",
-    "home_team_conference_id": 827,
-    "home_team_slug": "/team/518/16340",
-    "home_team_division": 1,
-    "away_team": "Dayton",
-    "away_team_id": 175,
-    "away_team_conference": "Atlantic 10",
-    "away_team_conference_id": 820,
-    "away_team_slug": "/team/175/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396058/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396058/box_score",
+    "contest_id": 2396058
   },
   {
     "year": 2023,
@@ -357,16 +367,21 @@
     "date": "03/19/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 12,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Dayton",
     "away_team_id": 175,
+    "away_team_score": 8,
     "away_team_conference": "Atlantic 10",
     "away_team_conference_id": 820,
     "away_team_slug": "/team/175/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396746/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396746/box_score",
+    "contest_id": 2396746
   },
   {
     "year": 2023,
@@ -374,16 +389,21 @@
     "date": "03/21/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 0,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Wright St.",
     "away_team_id": 810,
+    "away_team_score": 3,
     "away_team_conference": "Horizon",
     "away_team_conference_id": 881,
     "away_team_slug": "/team/810/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397048/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397048/box_score",
+    "contest_id": 2397048
   },
   {
     "year": 2023,
@@ -391,33 +411,21 @@
     "date": "03/22/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 6,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Toledo",
     "away_team_id": 709,
+    "away_team_score": 4,
     "away_team_conference": "MAC",
     "away_team_conference_id": 875,
     "away_team_slug": "/team/709/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/24/2023",
-    "home_team": "Indiana",
-    "home_team_id": 306,
-    "home_team_conference": "Big Ten",
-    "home_team_conference_id": 827,
-    "home_team_slug": "/team/306/16340",
-    "home_team_division": 1,
-    "away_team": "Ohio St.",
-    "away_team_id": 518,
-    "away_team_conference": "Big Ten",
-    "away_team_conference_id": 827,
-    "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397228/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397228/box_score",
+    "contest_id": 2397228
   },
   {
     "year": 2023,
@@ -425,16 +433,21 @@
     "date": "03/25/2023",
     "home_team": "Indiana",
     "home_team_id": 306,
+    "home_team_score": 14,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/306/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 6,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397846/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397846/box_score",
+    "contest_id": 2397846
   },
   {
     "year": 2023,
@@ -442,16 +455,43 @@
     "date": "03/26/2023",
     "home_team": "Indiana",
     "home_team_id": 306,
+    "home_team_score": 9,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/306/16340",
     "home_team_division": 1,
     "away_team": "Ohio St.",
     "away_team_id": 518,
+    "away_team_score": 6,
     "away_team_conference": "Big Ten",
     "away_team_conference_id": 827,
     "away_team_slug": "/team/518/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397517/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397517/box_score",
+    "contest_id": 2397517
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/26/2023",
+    "home_team": "Indiana",
+    "home_team_id": 306,
+    "home_team_score": 7,
+    "home_team_conference": "Big Ten",
+    "home_team_conference_id": 827,
+    "home_team_slug": "/team/306/16340",
+    "home_team_division": 1,
+    "away_team": "Ohio St.",
+    "away_team_id": 518,
+    "away_team_score": 5,
+    "away_team_conference": "Big Ten",
+    "away_team_conference_id": 827,
+    "away_team_slug": "/team/518/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2398139/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398139/box_score",
+    "contest_id": 2398139
   },
   {
     "year": 2023,
@@ -459,16 +499,21 @@
     "date": "03/28/2023",
     "home_team": "Ohio St.",
     "home_team_id": 518,
+    "home_team_score": 1,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/518/16340",
     "home_team_division": 1,
     "away_team": "Xavier",
     "away_team_id": 812,
+    "away_team_score": 8,
     "away_team_conference": "Big East",
     "away_team_conference_id": 30184,
     "away_team_slug": "/team/812/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398555/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398555/box_score",
+    "contest_id": 2398555
   },
   {
     "year": 2023,

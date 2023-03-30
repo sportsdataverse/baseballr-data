@@ -18,7 +18,8 @@
     "away_team_slug": "/team/635/16340",
     "away_team_division": 1,
     "slug": "/contests/2390418/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390418/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390418/box_score",
+    "contest_id": 2390418
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/635/16340",
     "away_team_division": 1,
     "slug": "/contests/2390749/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390749/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390749/box_score",
+    "contest_id": 2390749
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/635/16340",
     "away_team_division": 1,
     "slug": "/contests/2391008/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391008/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391008/box_score",
+    "contest_id": 2391008
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, TX",
     "slug": "/contests/2391356/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391356/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391356/box_score",
+    "contest_id": 2391356
   },
   {
     "year": 2023,
@@ -104,7 +108,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, Texas",
     "slug": "/contests/2391594/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391594/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391594/box_score",
+    "contest_id": 2391594
   },
   {
     "year": 2023,
@@ -126,7 +131,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, TX",
     "slug": "/contests/2392087/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392087/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392087/box_score",
+    "contest_id": 2392087
   },
   {
     "year": 2023,
@@ -147,7 +153,8 @@
     "away_team_slug": "/team/635/16340",
     "away_team_division": 1,
     "slug": "/contests/2392858/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392858/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392858/box_score",
+    "contest_id": 2392858
   },
   {
     "year": 2023,
@@ -168,7 +175,8 @@
     "away_team_slug": "/team/635/16340",
     "away_team_division": 1,
     "slug": "/contests/2393307/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393307/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393307/box_score",
+    "contest_id": 2393307
   },
   {
     "year": 2023,
@@ -176,16 +184,21 @@
     "date": "03/05/2023",
     "home_team": "California Baptist",
     "home_team_id": 30135,
+    "home_team_score": 3,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30135/16340",
     "home_team_division": 1,
     "away_team": "Seton Hall",
     "away_team_id": 635,
+    "away_team_score": 12,
     "away_team_conference": "Big East",
     "away_team_conference_id": 30184,
     "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393489/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393489/box_score",
+    "contest_id": 2393489
   },
   {
     "year": 2023,
@@ -193,16 +206,21 @@
     "date": "03/07/2023",
     "home_team": "California Baptist",
     "home_team_id": 30135,
+    "home_team_score": 8,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30135/16340",
     "home_team_division": 1,
     "away_team": "Seton Hall",
     "away_team_id": 635,
+    "away_team_score": 4,
     "away_team_conference": "Big East",
     "away_team_conference_id": 30184,
     "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393929/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393929/box_score",
+    "contest_id": 2393929
   },
   {
     "year": 2023,
@@ -210,50 +228,21 @@
     "date": "03/09/2023",
     "home_team": "UC Santa Barbara",
     "home_team_id": 104,
+    "home_team_score": 2,
     "home_team_conference": "Big West",
     "home_team_conference_id": 904,
     "home_team_slug": "/team/104/16340",
     "home_team_division": 1,
     "away_team": "Seton Hall",
     "away_team_id": 635,
+    "away_team_score": 1,
     "away_team_conference": "Big East",
     "away_team_conference_id": 30184,
     "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/10/2023",
-    "home_team": "UC Santa Barbara",
-    "home_team_id": 104,
-    "home_team_conference": "Big West",
-    "home_team_conference_id": 904,
-    "home_team_slug": "/team/104/16340",
-    "home_team_division": 1,
-    "away_team": "Seton Hall",
-    "away_team_id": 635,
-    "away_team_conference": "Big East",
-    "away_team_conference_id": 30184,
-    "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/11/2023",
-    "home_team": "UC Santa Barbara",
-    "home_team_id": 104,
-    "home_team_conference": "Big West",
-    "home_team_conference_id": 904,
-    "home_team_slug": "/team/104/16340",
-    "home_team_division": 1,
-    "away_team": "Seton Hall",
-    "away_team_id": 635,
-    "away_team_conference": "Big East",
-    "away_team_conference_id": 30184,
-    "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394178/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394178/box_score",
+    "contest_id": 2394178
   },
   {
     "year": 2023,
@@ -261,16 +250,21 @@
     "date": "03/15/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 1,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Monmouth",
     "away_team_id": 439,
+    "away_team_score": 2,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/439/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395693/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395693/box_score",
+    "contest_id": 2395693
   },
   {
     "year": 2023,
@@ -278,16 +272,21 @@
     "date": "03/18/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 4,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Holy Cross",
     "away_team_id": 285,
+    "away_team_score": 6,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/285/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396220/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396220/box_score",
+    "contest_id": 2396220
   },
   {
     "year": 2023,
@@ -295,16 +294,22 @@
     "date": "03/18/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 4,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Holy Cross",
     "away_team_id": 285,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/285/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "10",
+    "slug": "/contests/2409062/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409062/box_score",
+    "contest_id": 2409062
   },
   {
     "year": 2023,
@@ -312,16 +317,21 @@
     "date": "03/19/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 7,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Holy Cross",
     "away_team_id": 285,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/285/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396593/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396593/box_score",
+    "contest_id": 2396593
   },
   {
     "year": 2023,
@@ -329,16 +339,21 @@
     "date": "03/21/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 6,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Saint Peter's",
     "away_team_id": 617,
+    "away_team_score": 0,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/617/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396903/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396903/box_score",
+    "contest_id": 2396903
   },
   {
     "year": 2023,
@@ -346,16 +361,21 @@
     "date": "03/22/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 7,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "NJIT",
     "away_team_id": 471,
+    "away_team_score": 1,
     "away_team_conference": "America East",
     "away_team_conference_id": 845,
     "away_team_slug": "/team/471/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397119/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397119/box_score",
+    "contest_id": 2397119
   },
   {
     "year": 2023,
@@ -363,33 +383,43 @@
     "date": "03/24/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 5,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Fordham",
     "away_team_id": 236,
+    "away_team_score": 6,
     "away_team_conference": "Atlantic 10",
     "away_team_conference_id": 820,
     "away_team_slug": "/team/236/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425956/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425956/box_score",
+    "contest_id": 2425956
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/24/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 6,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Fordham",
     "away_team_id": 236,
+    "away_team_score": 9,
     "away_team_conference": "Atlantic 10",
     "away_team_conference_id": 820,
     "away_team_slug": "/team/236/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425957/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425957/box_score",
+    "contest_id": 2425957
   },
   {
     "year": 2023,
@@ -397,16 +427,21 @@
     "date": "03/26/2023",
     "home_team": "Fordham",
     "home_team_id": 236,
+    "home_team_score": 11,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/236/16340",
     "home_team_division": 1,
     "away_team": "Seton Hall",
     "away_team_id": 635,
+    "away_team_score": 8,
     "away_team_conference": "Big East",
     "away_team_conference_id": 30184,
     "away_team_slug": "/team/635/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398220/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398220/box_score",
+    "contest_id": 2398220
   },
   {
     "year": 2023,
@@ -414,16 +449,21 @@
     "date": "03/28/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 5,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Saint Peter's",
     "away_team_id": 617,
+    "away_team_score": 1,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/617/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398412/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398412/box_score",
+    "contest_id": 2398412
   },
   {
     "year": 2023,
@@ -431,16 +471,21 @@
     "date": "03/29/2023",
     "home_team": "Seton Hall",
     "home_team_id": 635,
+    "home_team_score": 8,
     "home_team_conference": "Big East",
     "home_team_conference_id": 30184,
     "home_team_slug": "/team/635/16340",
     "home_team_division": 1,
     "away_team": "Wagner",
     "away_team_id": 748,
+    "away_team_score": 5,
     "away_team_conference": "NEC",
     "away_team_conference_id": 846,
     "away_team_slug": "/team/748/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398672/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398672/box_score",
+    "contest_id": 2398672
   },
   {
     "year": 2023,

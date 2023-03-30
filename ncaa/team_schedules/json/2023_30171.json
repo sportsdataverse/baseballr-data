@@ -14,7 +14,8 @@
     "away_team_score": 10,
     "innings": "8",
     "slug": "/contests/2420099/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2420099/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2420099/box_score",
+    "contest_id": 2420099
   },
   {
     "year": 2023,
@@ -30,7 +31,8 @@
     "away_team": "Miami-Hamilton",
     "away_team_score": 4,
     "slug": "/contests/2390505/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390505/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390505/box_score",
+    "contest_id": 2390505
   },
   {
     "year": 2023,
@@ -46,7 +48,8 @@
     "away_team": "UC Clermont",
     "away_team_score": 0,
     "slug": "/contests/2390870/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390870/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390870/box_score",
+    "contest_id": 2390870
   },
   {
     "year": 2023,
@@ -62,7 +65,8 @@
     "away_team": "UC Clermont",
     "away_team_score": 20,
     "slug": "/contests/2408510/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408510/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408510/box_score",
+    "contest_id": 2408510
   },
   {
     "year": 2023,
@@ -83,7 +87,8 @@
     "away_team_slug": "/team/120/16340",
     "away_team_division": 3,
     "slug": "/contests/2391780/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391780/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391780/box_score",
+    "contest_id": 2391780
   },
   {
     "year": 2023,
@@ -104,7 +109,8 @@
     "away_team_slug": "/team/120/16340",
     "away_team_division": 3,
     "slug": "/contests/2408467/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408467/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408467/box_score",
+    "contest_id": 2408467
   },
   {
     "year": 2023,
@@ -125,7 +131,8 @@
     "away_team_slug": "/team/120/16340",
     "away_team_division": 3,
     "slug": "/contests/2392105/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392105/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392105/box_score",
+    "contest_id": 2392105
   },
   {
     "year": 2023,
@@ -146,7 +153,8 @@
     "away_team_slug": "/team/132/16340",
     "away_team_division": 3,
     "slug": "/contests/2392463/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392463/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392463/box_score",
+    "contest_id": 2392463
   },
   {
     "year": 2023,
@@ -167,7 +175,8 @@
     "away_team_slug": "/team/30094/16340",
     "away_team_division": 3,
     "slug": "/contests/2392967/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392967/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392967/box_score",
+    "contest_id": 2392967
   },
   {
     "year": 2023,
@@ -175,16 +184,21 @@
     "date": "03/05/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 2,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Brevard",
     "away_team_id": 30094,
+    "away_team_score": 11,
     "away_team_conference": "USA South",
     "away_team_conference_id": 842,
     "away_team_slug": "/team/30094/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393342/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393342/box_score",
+    "contest_id": 2393342
   },
   {
     "year": 2023,
@@ -192,16 +206,21 @@
     "date": "03/05/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 8,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Brevard",
     "away_team_id": 30094,
+    "away_team_score": 5,
     "away_team_conference": "USA South",
     "away_team_conference_id": 842,
     "away_team_slug": "/team/30094/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408134/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408134/box_score",
+    "contest_id": 2408134
   },
   {
     "year": 2023,
@@ -209,16 +228,21 @@
     "date": "03/07/2023",
     "home_team": "Centre",
     "home_team_id": 132,
+    "home_team_score": 14,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/132/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 7,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393935/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393935/box_score",
+    "contest_id": 2393935
   },
   {
     "year": 2023,
@@ -226,33 +250,21 @@
     "date": "03/08/2023",
     "home_team": "Sewanee",
     "home_team_id": 652,
+    "home_team_score": 11,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/652/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 4,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/10/2023",
-    "home_team": "Manchester",
-    "home_team_id": 1192,
-    "home_team_conference": "HCAC",
-    "home_team_conference_id": 9174,
-    "home_team_slug": "/team/1192/16340",
-    "home_team_division": 3,
-    "away_team": "Berea",
-    "away_team_id": 30171,
-    "away_team_conference": "CCS",
-    "away_team_conference_id": 30251,
-    "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394042/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394042/box_score",
+    "contest_id": 2394042
   },
   {
     "year": 2023,
@@ -260,16 +272,21 @@
     "date": "03/11/2023",
     "home_team": "Manchester",
     "home_team_id": 1192,
+    "home_team_score": 13,
     "home_team_conference": "HCAC",
     "home_team_conference_id": 9174,
     "home_team_slug": "/team/1192/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 5,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394562/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394562/box_score",
+    "contest_id": 2394562
   },
   {
     "year": 2023,
@@ -277,33 +294,44 @@
     "date": "03/11/2023",
     "home_team": "Manchester",
     "home_team_id": 1192,
+    "home_team_score": 2,
     "home_team_conference": "HCAC",
     "home_team_conference_id": 9174,
     "home_team_slug": "/team/1192/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 1,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "innings": "8",
+    "slug": "/contests/2408692/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408692/box_score",
+    "contest_id": 2408692
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/14/2023",
+    "date": "03/16/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 10,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Ohio Wesleyan",
     "away_team_id": 520,
+    "away_team_score": 21,
     "away_team_conference": "NCAC",
     "away_team_conference_id": 897,
     "away_team_slug": "/team/520/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395313/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395313/box_score",
+    "contest_id": 2395313
   },
   {
     "year": 2023,
@@ -311,16 +339,21 @@
     "date": "03/18/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 2,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "LaGrange",
     "away_team_id": 1162,
+    "away_team_score": 6,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/1162/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396174/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396174/box_score",
+    "contest_id": 2396174
   },
   {
     "year": 2023,
@@ -328,16 +361,22 @@
     "date": "03/18/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 9,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "LaGrange",
     "away_team_id": 1162,
+    "away_team_score": 10,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/1162/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "innings": "10",
+    "slug": "/contests/2408969/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408969/box_score",
+    "contest_id": 2408969
   },
   {
     "year": 2023,
@@ -345,28 +384,38 @@
     "date": "03/19/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 6,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "LaGrange",
     "away_team_id": 1162,
+    "away_team_score": 11,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/1162/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396535/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396535/box_score",
+    "contest_id": 2396535
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/21/2023",
     "home_team": "Alice Lloyd",
+    "home_team_score": 9,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 5,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396853/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396853/box_score",
+    "contest_id": 2396853
   },
   {
     "year": 2023,
@@ -374,33 +423,21 @@
     "date": "03/23/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 16,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Maranatha Baptist",
     "away_team_id": 1194,
+    "away_team_score": 13,
     "away_team_conference": "DIII Independent",
     "away_team_conference_id": 99020,
     "away_team_slug": "/team/1194/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/23/2023",
-    "home_team": "Berea",
-    "home_team_id": 30171,
-    "home_team_conference": "CCS",
-    "home_team_conference_id": 30251,
-    "home_team_slug": "/team/30171/16340",
-    "home_team_division": 3,
-    "away_team": "Maranatha Baptist",
-    "away_team_id": 1194,
-    "away_team_conference": "DIII Independent",
-    "away_team_conference_id": 99020,
-    "away_team_slug": "/team/1194/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2425824/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425824/box_score",
+    "contest_id": 2425824
   },
   {
     "year": 2023,
@@ -408,16 +445,21 @@
     "date": "03/25/2023",
     "home_team": "Huntingdon",
     "home_team_id": 1130,
+    "home_team_score": 8,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/1130/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 0,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397756/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397756/box_score",
+    "contest_id": 2397756
   },
   {
     "year": 2023,
@@ -425,16 +467,21 @@
     "date": "03/25/2023",
     "home_team": "Huntingdon",
     "home_team_id": 1130,
+    "home_team_score": 8,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/1130/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 12,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409997/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409997/box_score",
+    "contest_id": 2409997
   },
   {
     "year": 2023,
@@ -442,16 +489,21 @@
     "date": "03/26/2023",
     "home_team": "Huntingdon",
     "home_team_id": 1130,
+    "home_team_score": 9,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/1130/16340",
     "home_team_division": 3,
     "away_team": "Berea",
     "away_team_id": 30171,
+    "away_team_score": 8,
     "away_team_conference": "CCS",
     "away_team_conference_id": 30251,
     "away_team_slug": "/team/30171/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398225/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398225/box_score",
+    "contest_id": 2398225
   },
   {
     "year": 2023,
@@ -459,16 +511,21 @@
     "date": "03/28/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 3,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Asbury",
     "away_team_id": 30243,
+    "away_team_score": 14,
     "away_team_conference": "DIII Independent",
     "away_team_conference_id": 99020,
     "away_team_slug": "/team/30243/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398346/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398346/box_score",
+    "contest_id": 2398346
   },
   {
     "year": 2023,

@@ -18,7 +18,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2389712/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389712/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389712/box_score",
+    "contest_id": 2389712
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2389791/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389791/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389791/box_score",
+    "contest_id": 2389791
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2408201/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408201/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408201/box_score",
+    "contest_id": 2408201
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/591/16340",
     "away_team_division": 2,
     "slug": "/contests/2390258/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390258/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390258/box_score",
+    "contest_id": 2390258
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/591/16340",
     "away_team_division": 2,
     "slug": "/contests/2390547/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390547/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390547/box_score",
+    "contest_id": 2390547
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/591/16340",
     "away_team_division": 2,
     "slug": "/contests/2408799/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408799/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408799/box_score",
+    "contest_id": 2408799
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2411962/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2411962/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2411962/box_score",
+    "contest_id": 2411962
   },
   {
     "year": 2023,
@@ -165,7 +172,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2411981/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2411981/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2411981/box_score",
+    "contest_id": 2411981
   },
   {
     "year": 2023,
@@ -186,7 +194,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2411947/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2411947/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2411947/box_score",
+    "contest_id": 2411947
   },
   {
     "year": 2023,
@@ -207,7 +216,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2392742/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392742/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392742/box_score",
+    "contest_id": 2392742
   },
   {
     "year": 2023,
@@ -228,24 +238,8 @@
     "away_team_slug": "/team/30124/16340",
     "away_team_division": 2,
     "slug": "/contests/2408645/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408645/box_score"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/05/2023",
-    "home_team": "Charleston (WV)",
-    "home_team_id": 1013,
-    "home_team_conference": "MEC",
-    "home_team_conference_id": 30183,
-    "home_team_slug": "/team/1013/16340",
-    "home_team_division": 2,
-    "away_team": "Cedarville",
-    "away_team_id": 30124,
-    "away_team_conference": "G-MAC",
-    "away_team_conference_id": 30182,
-    "away_team_slug": "/team/30124/16340",
-    "away_team_division": 2
+    "game_info_url": "https://stats.ncaa.org/contests/2408645/box_score",
+    "contest_id": 2408645
   },
   {
     "year": 2023,
@@ -253,16 +247,43 @@
     "date": "03/05/2023",
     "home_team": "West Virginia St.",
     "home_team_id": 1439,
+    "home_team_score": 5,
     "home_team_conference": "MEC",
     "home_team_conference_id": 30183,
     "home_team_slug": "/team/1439/16340",
     "home_team_division": 2,
     "away_team": "Cedarville",
     "away_team_id": 30124,
+    "away_team_score": 6,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/30124/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2393418/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393418/box_score",
+    "contest_id": 2393418
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/05/2023",
+    "home_team": "Charleston (WV)",
+    "home_team_id": 1013,
+    "home_team_score": 12,
+    "home_team_conference": "MEC",
+    "home_team_conference_id": 30183,
+    "home_team_slug": "/team/1013/16340",
+    "home_team_division": 2,
+    "away_team": "Cedarville",
+    "away_team_id": 30124,
+    "away_team_score": 5,
+    "away_team_conference": "G-MAC",
+    "away_team_conference_id": 30182,
+    "away_team_slug": "/team/30124/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2393300/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393300/box_score",
+    "contest_id": 2393300
   },
   {
     "year": 2023,
@@ -270,16 +291,21 @@
     "date": "03/07/2023",
     "home_team": "Tusculum",
     "home_team_id": 12830,
+    "home_team_score": 10,
     "home_team_conference": "SAC",
     "home_team_conference_id": 12850,
     "home_team_slug": "/team/12830/16340",
     "home_team_division": 2,
     "away_team": "Cedarville",
     "away_team_id": 30124,
+    "away_team_score": 7,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/30124/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2393761/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393761/box_score",
+    "contest_id": 2393761
   },
   {
     "year": 2023,
@@ -287,16 +313,65 @@
     "date": "03/10/2023",
     "home_team": "Catawba",
     "home_team_id": 1001,
+    "home_team_score": 5,
     "home_team_conference": "SAC",
     "home_team_conference_id": 12850,
     "home_team_slug": "/team/1001/16340",
     "home_team_division": 2,
     "away_team": "Cedarville",
     "away_team_id": 30124,
+    "away_team_score": 3,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/30124/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2394326/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394326/box_score",
+    "contest_id": 2394326
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/16/2023",
+    "home_team": "Cedarville",
+    "home_team_id": 30124,
+    "home_team_score": 3,
+    "home_team_conference": "G-MAC",
+    "home_team_conference_id": 30182,
+    "home_team_slug": "/team/30124/16340",
+    "home_team_division": 2,
+    "away_team": "Northwood",
+    "away_team_id": 510,
+    "away_team_score": 5,
+    "away_team_conference": "G-MAC",
+    "away_team_conference_id": 30182,
+    "away_team_slug": "/team/510/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2395858/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395858/box_score",
+    "contest_id": 2395858
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/16/2023",
+    "home_team": "Cedarville",
+    "home_team_id": 30124,
+    "home_team_score": 0,
+    "home_team_conference": "G-MAC",
+    "home_team_conference_id": 30182,
+    "home_team_slug": "/team/30124/16340",
+    "home_team_division": 2,
+    "away_team": "Northwood",
+    "away_team_id": 510,
+    "away_team_score": 2,
+    "away_team_conference": "G-MAC",
+    "away_team_conference_id": 30182,
+    "away_team_slug": "/team/510/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2408834/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408834/box_score",
+    "contest_id": 2408834
   },
   {
     "year": 2023,
@@ -304,16 +379,21 @@
     "date": "03/17/2023",
     "home_team": "Cedarville",
     "home_team_id": 30124,
+    "home_team_score": 6,
     "home_team_conference": "G-MAC",
     "home_team_conference_id": 30182,
     "home_team_slug": "/team/30124/16340",
     "home_team_division": 2,
     "away_team": "Northwood",
     "away_team_id": 510,
+    "away_team_score": 13,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2396176/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396176/box_score",
+    "contest_id": 2396176
   },
   {
     "year": 2023,
@@ -321,101 +401,65 @@
     "date": "03/17/2023",
     "home_team": "Cedarville",
     "home_team_id": 30124,
+    "home_team_score": 7,
     "home_team_conference": "G-MAC",
     "home_team_conference_id": 30182,
     "home_team_slug": "/team/30124/16340",
     "home_team_division": 2,
     "away_team": "Northwood",
     "away_team_id": 510,
+    "away_team_score": 17,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2408971/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408971/box_score",
+    "contest_id": 2408971
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/18/2023",
+    "date": "03/22/2023",
     "home_team": "Cedarville",
     "home_team_id": 30124,
-    "home_team_conference": "G-MAC",
-    "home_team_conference_id": 30182,
-    "home_team_slug": "/team/30124/16340",
-    "home_team_division": 2,
-    "away_team": "Northwood",
-    "away_team_id": 510,
-    "away_team_conference": "G-MAC",
-    "away_team_conference_id": 30182,
-    "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "Cedarville",
-    "home_team_id": 30124,
-    "home_team_conference": "G-MAC",
-    "home_team_conference_id": 30182,
-    "home_team_slug": "/team/30124/16340",
-    "home_team_division": 2,
-    "away_team": "Northwood",
-    "away_team_id": 510,
-    "away_team_conference": "G-MAC",
-    "away_team_conference_id": 30182,
-    "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/23/2023",
-    "home_team": "Cedarville",
-    "home_team_id": 30124,
+    "home_team_score": 1,
     "home_team_conference": "G-MAC",
     "home_team_conference_id": 30182,
     "home_team_slug": "/team/30124/16340",
     "home_team_division": 2,
     "away_team": "Ashland",
     "away_team_id": 35,
+    "away_team_score": 8,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/35/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397240/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397240/box_score",
+    "contest_id": 2397240
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/24/2023",
+    "date": "03/22/2023",
     "home_team": "Cedarville",
     "home_team_id": 30124,
+    "home_team_score": 4,
     "home_team_conference": "G-MAC",
     "home_team_conference_id": 30182,
     "home_team_slug": "/team/30124/16340",
     "home_team_division": 2,
     "away_team": "Ashland",
     "away_team_id": 35,
+    "away_team_score": 0,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/35/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/24/2023",
-    "home_team": "Cedarville",
-    "home_team_id": 30124,
-    "home_team_conference": "G-MAC",
-    "home_team_conference_id": 30182,
-    "home_team_slug": "/team/30124/16340",
-    "home_team_division": 2,
-    "away_team": "Ashland",
-    "away_team_id": 35,
-    "away_team_conference": "G-MAC",
-    "away_team_conference_id": 30182,
-    "away_team_slug": "/team/35/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2425476/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425476/box_score",
+    "contest_id": 2425476
   },
   {
     "year": 2023,
@@ -423,16 +467,43 @@
     "date": "03/25/2023",
     "home_team": "Cedarville",
     "home_team_id": 30124,
+    "home_team_score": 0,
     "home_team_conference": "G-MAC",
     "home_team_conference_id": 30182,
     "home_team_slug": "/team/30124/16340",
     "home_team_division": 2,
     "away_team": "Ashland",
     "away_team_id": 35,
+    "away_team_score": 11,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/35/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397354/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397354/box_score",
+    "contest_id": 2397354
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/25/2023",
+    "home_team": "Cedarville",
+    "home_team_id": 30124,
+    "home_team_score": 1,
+    "home_team_conference": "G-MAC",
+    "home_team_conference_id": 30182,
+    "home_team_slug": "/team/30124/16340",
+    "home_team_division": 2,
+    "away_team": "Ashland",
+    "away_team_id": 35,
+    "away_team_score": 9,
+    "away_team_conference": "G-MAC",
+    "away_team_conference_id": 30182,
+    "away_team_slug": "/team/35/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2397591/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397591/box_score",
+    "contest_id": 2397591
   },
   {
     "year": 2023,

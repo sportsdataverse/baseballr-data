@@ -18,7 +18,8 @@
     "away_team_slug": "/team/21830/16340",
     "away_team_division": 3,
     "slug": "/contests/2389910/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389910/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389910/box_score",
+    "contest_id": 2389910
   },
   {
     "year": 2023,
@@ -40,7 +41,8 @@
     "away_team_division": 3,
     "innings": "11",
     "slug": "/contests/2389925/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389925/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389925/box_score",
+    "contest_id": 2389925
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_slug": "/team/21830/16340",
     "away_team_division": 3,
     "slug": "/contests/2390006/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390006/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390006/box_score",
+    "contest_id": 2390006
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_slug": "/team/1454/16340",
     "away_team_division": 3,
     "slug": "/contests/2390544/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390544/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390544/box_score",
+    "contest_id": 2390544
   },
   {
     "year": 2023,
@@ -103,7 +107,8 @@
     "away_team_slug": "/team/1454/16340",
     "away_team_division": 3,
     "slug": "/contests/2408796/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408796/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408796/box_score",
+    "contest_id": 2408796
   },
   {
     "year": 2023,
@@ -124,7 +129,8 @@
     "away_team_slug": "/team/1454/16340",
     "away_team_division": 3,
     "slug": "/contests/2390818/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390818/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390818/box_score",
+    "contest_id": 2390818
   },
   {
     "year": 2023,
@@ -145,7 +151,8 @@
     "away_team_slug": "/team/105/16340",
     "away_team_division": 3,
     "slug": "/contests/2392762/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392762/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392762/box_score",
+    "contest_id": 2392762
   },
   {
     "year": 2023,
@@ -166,7 +173,8 @@
     "away_team_slug": "/team/781/16340",
     "away_team_division": 3,
     "slug": "/contests/2392962/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392962/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392962/box_score",
+    "contest_id": 2392962
   },
   {
     "year": 2023,
@@ -187,7 +195,8 @@
     "away_team_slug": "/team/781/16340",
     "away_team_division": 3,
     "slug": "/contests/2408056/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408056/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408056/box_score",
+    "contest_id": 2408056
   },
   {
     "year": 2023,
@@ -195,67 +204,87 @@
     "date": "03/09/2023",
     "home_team": "Cal Lutheran",
     "home_team_id": 105,
+    "home_team_score": 5,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
     "away_team": "Neb. Wesleyan",
     "away_team_id": 462,
+    "away_team_score": 3,
     "away_team_conference": "American Rivers",
     "away_team_conference_id": 864,
     "away_team_slug": "/team/462/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394111/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394111/box_score",
+    "contest_id": 2394111
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/11/2023",
-    "home_team": "Cal Lutheran",
-    "home_team_id": 105,
-    "home_team_conference": "SCIAC",
-    "home_team_conference_id": 910,
-    "home_team_slug": "/team/105/16340",
-    "home_team_division": 3,
-    "away_team": "Redlands",
-    "away_team_id": 567,
-    "away_team_conference": "SCIAC",
-    "away_team_conference_id": 910,
-    "away_team_slug": "/team/567/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/11/2023",
-    "home_team": "Cal Lutheran",
-    "home_team_id": 105,
-    "home_team_conference": "SCIAC",
-    "home_team_conference_id": 910,
-    "home_team_slug": "/team/105/16340",
-    "home_team_division": 3,
-    "away_team": "Redlands",
-    "away_team_id": 567,
-    "away_team_conference": "SCIAC",
-    "away_team_conference_id": 910,
-    "away_team_slug": "/team/567/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/12/2023",
     "home_team": "Redlands",
     "home_team_id": 567,
+    "home_team_score": 6,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/567/16340",
     "home_team_division": 3,
     "away_team": "Cal Lutheran",
     "away_team_id": 105,
+    "away_team_score": 5,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
     "away_team_slug": "/team/105/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394559/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394559/box_score",
+    "contest_id": 2394559
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/12/2023",
+    "home_team": "Cal Lutheran",
+    "home_team_id": 105,
+    "home_team_score": 10,
+    "home_team_conference": "SCIAC",
+    "home_team_conference_id": 910,
+    "home_team_slug": "/team/105/16340",
+    "home_team_division": 3,
+    "away_team": "Redlands",
+    "away_team_id": 567,
+    "away_team_score": 0,
+    "away_team_conference": "SCIAC",
+    "away_team_conference_id": 910,
+    "away_team_slug": "/team/567/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2394938/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394938/box_score",
+    "contest_id": 2394938
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/12/2023",
+    "home_team": "Cal Lutheran",
+    "home_team_id": 105,
+    "home_team_score": 14,
+    "home_team_conference": "SCIAC",
+    "home_team_conference_id": 910,
+    "home_team_slug": "/team/105/16340",
+    "home_team_division": 3,
+    "away_team": "Redlands",
+    "away_team_id": 567,
+    "away_team_score": 4,
+    "away_team_conference": "SCIAC",
+    "away_team_conference_id": 910,
+    "away_team_slug": "/team/567/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2408689/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408689/box_score",
+    "contest_id": 2408689
   },
   {
     "year": 2023,
@@ -263,50 +292,65 @@
     "date": "03/17/2023",
     "home_team": "Cal Lutheran",
     "home_team_id": 105,
+    "home_team_score": 8,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
     "away_team": "Claremont-M-S",
     "away_team_id": 142,
+    "away_team_score": 3,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
     "away_team_slug": "/team/142/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395789/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395789/box_score",
+    "contest_id": 2395789
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/18/2023",
-    "home_team": "Claremont-M-S",
-    "home_team_id": 142,
+    "home_team": "Cal Lutheran",
+    "home_team_id": 105,
+    "home_team_score": 6,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
-    "home_team_slug": "/team/142/16340",
+    "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
-    "away_team": "Cal Lutheran",
-    "away_team_id": 105,
+    "away_team": "Claremont-M-S",
+    "away_team_id": 142,
+    "away_team_score": 12,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
-    "away_team_slug": "/team/105/16340",
-    "away_team_division": 3
+    "away_team_slug": "/team/142/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2396267/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396267/box_score",
+    "contest_id": 2396267
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/18/2023",
-    "home_team": "Claremont-M-S",
-    "home_team_id": 142,
+    "home_team": "Cal Lutheran",
+    "home_team_id": 105,
+    "home_team_score": 8,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
-    "home_team_slug": "/team/142/16340",
+    "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
-    "away_team": "Cal Lutheran",
-    "away_team_id": 105,
+    "away_team": "Claremont-M-S",
+    "away_team_id": 142,
+    "away_team_score": 5,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
-    "away_team_slug": "/team/105/16340",
-    "away_team_division": 3
+    "away_team_slug": "/team/142/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2409254/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409254/box_score",
+    "contest_id": 2409254
   },
   {
     "year": 2023,
@@ -314,16 +358,21 @@
     "date": "03/24/2023",
     "home_team": "Cal Lutheran",
     "home_team_id": 105,
+    "home_team_score": 3,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
     "away_team": "Middlebury",
     "away_team_id": 420,
+    "away_team_score": 4,
     "away_team_conference": "NESCAC",
     "away_team_conference_id": 12817,
     "away_team_slug": "/team/420/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397281/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397281/box_score",
+    "contest_id": 2397281
   },
   {
     "year": 2023,
@@ -331,16 +380,21 @@
     "date": "03/25/2023",
     "home_team": "Cal Lutheran",
     "home_team_id": 105,
+    "home_team_score": 4,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
     "away_team": "Middlebury",
     "away_team_id": 420,
+    "away_team_score": 6,
     "away_team_conference": "NESCAC",
     "away_team_conference_id": 12817,
     "away_team_slug": "/team/420/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397641/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397641/box_score",
+    "contest_id": 2397641
   },
   {
     "year": 2023,
@@ -348,16 +402,21 @@
     "date": "03/25/2023",
     "home_team": "Cal Lutheran",
     "home_team_id": 105,
+    "home_team_score": 0,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/105/16340",
     "home_team_division": 3,
     "away_team": "Middlebury",
     "away_team_id": 420,
+    "away_team_score": 10,
     "away_team_conference": "NESCAC",
     "away_team_conference_id": 12817,
     "away_team_slug": "/team/420/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409474/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409474/box_score",
+    "contest_id": 2409474
   },
   {
     "year": 2023,
@@ -409,6 +468,18 @@
     "away_team_conference_id": 910,
     "away_team_slug": "/team/105/16340",
     "away_team_division": 3
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/03/2023",
+    "home_team": "Cal Lutheran",
+    "home_team_id": 105,
+    "home_team_conference": "SCIAC",
+    "home_team_conference_id": 910,
+    "home_team_slug": "/team/105/16340",
+    "home_team_division": 3,
+    "away_team": "Bethesda (CA)"
   },
   {
     "year": 2023,

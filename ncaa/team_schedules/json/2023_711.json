@@ -18,7 +18,8 @@
     "away_team_slug": "/team/711/16340",
     "away_team_division": 1,
     "slug": "/contests/2390295/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390295/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390295/box_score",
+    "contest_id": 2390295
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/711/16340",
     "away_team_division": 1,
     "slug": "/contests/2390532/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390532/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390532/box_score",
+    "contest_id": 2390532
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_division": 1,
     "neutral_site": "Spartanburg, SC",
     "slug": "/contests/2390596/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390596/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390596/box_score",
+    "contest_id": 2390596
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_slug": "/team/711/16340",
     "away_team_division": 1,
     "slug": "/contests/2390854/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390854/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390854/box_score",
+    "contest_id": 2390854
   },
   {
     "year": 2023,
@@ -104,7 +108,8 @@
     "away_team_division": 1,
     "neutral_site": "Winston-Salem, NC",
     "slug": "/contests/2391362/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391362/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391362/box_score",
+    "contest_id": 2391362
   },
   {
     "year": 2023,
@@ -125,7 +130,8 @@
     "away_team_slug": "/team/711/16340",
     "away_team_division": 1,
     "slug": "/contests/2391983/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391983/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391983/box_score",
+    "contest_id": 2391983
   },
   {
     "year": 2023,
@@ -147,7 +153,8 @@
     "away_team_division": 1,
     "neutral_site": "Winston-Salem, NC",
     "slug": "/contests/2392112/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392112/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392112/box_score",
+    "contest_id": 2392112
   },
   {
     "year": 2023,
@@ -168,7 +175,8 @@
     "away_team_slug": "/team/739/16340",
     "away_team_division": 1,
     "slug": "/contests/2392523/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392523/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392523/box_score",
+    "contest_id": 2392523
   },
   {
     "year": 2023,
@@ -189,7 +197,8 @@
     "away_team_slug": "/team/204/16340",
     "away_team_division": 1,
     "slug": "/contests/2392639/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392639/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392639/box_score",
+    "contest_id": 2392639
   },
   {
     "year": 2023,
@@ -210,7 +219,8 @@
     "away_team_slug": "/team/204/16340",
     "away_team_division": 1,
     "slug": "/contests/2392983/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392983/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392983/box_score",
+    "contest_id": 2392983
   },
   {
     "year": 2023,
@@ -231,7 +241,8 @@
     "away_team_slug": "/team/204/16340",
     "away_team_division": 1,
     "slug": "/contests/2408150/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408150/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408150/box_score",
+    "contest_id": 2408150
   },
   {
     "year": 2023,
@@ -239,16 +250,22 @@
     "date": "03/05/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 6,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "Eastern Mich.",
     "away_team_id": 204,
+    "away_team_score": 11,
     "away_team_conference": "MAC",
     "away_team_conference_id": 875,
     "away_team_slug": "/team/204/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "11",
+    "slug": "/contests/2393358/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393358/box_score",
+    "contest_id": 2393358
   },
   {
     "year": 2023,
@@ -256,16 +273,21 @@
     "date": "03/08/2023",
     "home_team": "George Washington",
     "home_team_id": 249,
+    "home_team_score": 11,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/249/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 21,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393984/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393984/box_score",
+    "contest_id": 2393984
   },
   {
     "year": 2023,
@@ -273,16 +295,21 @@
     "date": "03/10/2023",
     "home_team": "N.C. A&T",
     "home_team_id": 488,
+    "home_team_score": 9,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/488/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 8,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394244/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394244/box_score",
+    "contest_id": 2394244
   },
   {
     "year": 2023,
@@ -290,33 +317,43 @@
     "date": "03/11/2023",
     "home_team": "N.C. A&T",
     "home_team_id": 488,
+    "home_team_score": 3,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/488/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 10,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394550/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394550/box_score",
+    "contest_id": 2394550
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/12/2023",
+    "date": "03/11/2023",
     "home_team": "N.C. A&T",
     "home_team_id": 488,
+    "home_team_score": 6,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/488/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 3,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2424042/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2424042/box_score",
+    "contest_id": 2424042
   },
   {
     "year": 2023,
@@ -324,16 +361,21 @@
     "date": "03/14/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 9,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "Marist",
     "away_team_id": 386,
+    "away_team_score": 8,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/386/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395318/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395318/box_score",
+    "contest_id": 2395318
   },
   {
     "year": 2023,
@@ -341,16 +383,21 @@
     "date": "03/15/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 12,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "Marist",
     "away_team_id": 386,
+    "away_team_score": 4,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/386/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395569/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395569/box_score",
+    "contest_id": 2395569
   },
   {
     "year": 2023,
@@ -358,16 +405,21 @@
     "date": "03/17/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 6,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "UNCW",
     "away_team_id": 460,
+    "away_team_score": 12,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/460/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395812/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395812/box_score",
+    "contest_id": 2395812
   },
   {
     "year": 2023,
@@ -375,16 +427,21 @@
     "date": "03/18/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 5,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "UNCW",
     "away_team_id": 460,
+    "away_team_score": 10,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/460/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396128/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396128/box_score",
+    "contest_id": 2396128
   },
   {
     "year": 2023,
@@ -392,16 +449,21 @@
     "date": "03/19/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 2,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "UNCW",
     "away_team_id": 460,
+    "away_team_score": 12,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/460/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396558/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396558/box_score",
+    "contest_id": 2396558
   },
   {
     "year": 2023,
@@ -409,16 +471,21 @@
     "date": "03/21/2023",
     "home_team": "Duke",
     "home_team_id": 193,
+    "home_team_score": 19,
     "home_team_conference": "ACC",
     "home_team_conference_id": 821,
     "home_team_slug": "/team/193/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 3,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396862/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396862/box_score",
+    "contest_id": 2396862
   },
   {
     "year": 2023,
@@ -426,16 +493,21 @@
     "date": "03/22/2023",
     "home_team": "Richmond",
     "home_team_id": 575,
+    "home_team_score": 6,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/575/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 12,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397105/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397105/box_score",
+    "contest_id": 2397105
   },
   {
     "year": 2023,
@@ -443,16 +515,22 @@
     "date": "03/24/2023",
     "home_team": "Col. of Charleston",
     "home_team_id": 1014,
+    "home_team_score": 6,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/1014/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 5,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "11",
+    "slug": "/contests/2397293/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397293/box_score",
+    "contest_id": 2397293
   },
   {
     "year": 2023,
@@ -460,16 +538,22 @@
     "date": "03/25/2023",
     "home_team": "Col. of Charleston",
     "home_team_id": 1014,
+    "home_team_score": 5,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/1014/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 4,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "17",
+    "slug": "/contests/2397592/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397592/box_score",
+    "contest_id": 2397592
   },
   {
     "year": 2023,
@@ -477,16 +561,21 @@
     "date": "03/26/2023",
     "home_team": "Col. of Charleston",
     "home_team_id": 1014,
+    "home_team_score": 3,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/1014/16340",
     "home_team_division": 1,
     "away_team": "Towson",
     "away_team_id": 711,
+    "away_team_score": 2,
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398030/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398030/box_score",
+    "contest_id": 2398030
   },
   {
     "year": 2023,
@@ -494,16 +583,21 @@
     "date": "03/28/2023",
     "home_team": "Towson",
     "home_team_id": 711,
+    "home_team_score": 3,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/711/16340",
     "home_team_division": 1,
     "away_team": "Coppin St.",
     "away_team_id": 165,
+    "away_team_score": 4,
     "away_team_conference": "NEC",
     "away_team_conference_id": 846,
     "away_team_slug": "/team/165/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398473/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398473/box_score",
+    "contest_id": 2398473
   },
   {
     "year": 2023,
@@ -809,6 +903,23 @@
     "away_team_conference": "CAA",
     "away_team_conference_id": 837,
     "away_team_slug": "/team/711/16340",
+    "away_team_division": 1
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "05/03/2023",
+    "home_team": "Towson",
+    "home_team_id": 711,
+    "home_team_conference": "CAA",
+    "home_team_conference_id": 837,
+    "home_team_slug": "/team/711/16340",
+    "home_team_division": 1,
+    "away_team": "Georgetown",
+    "away_team_id": 251,
+    "away_team_conference": "Big East",
+    "away_team_conference_id": 30184,
+    "away_team_slug": "/team/251/16340",
     "away_team_division": 1
   },
   {

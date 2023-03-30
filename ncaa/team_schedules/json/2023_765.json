@@ -19,7 +19,8 @@
     "away_team_division": 2,
     "neutral_site": "Dinwiddie, VA",
     "slug": "/contests/2390674/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390674/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390674/box_score",
+    "contest_id": 2390674
   },
   {
     "year": 2023,
@@ -41,7 +42,8 @@
     "away_team_division": 2,
     "neutral_site": "Dinwiddie, VA",
     "slug": "/contests/2407997/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407997/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407997/box_score",
+    "contest_id": 2407997
   },
   {
     "year": 2023,
@@ -64,7 +66,8 @@
     "neutral_site": "Colonial Heights, VA",
     "innings": "8",
     "slug": "/contests/2418502/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2418502/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2418502/box_score",
+    "contest_id": 2418502
   },
   {
     "year": 2023,
@@ -86,7 +89,8 @@
     "away_team_division": 2,
     "neutral_site": "Colonial Heights, VA",
     "slug": "/contests/2418476/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2418476/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2418476/box_score",
+    "contest_id": 2418476
   },
   {
     "year": 2023,
@@ -108,7 +112,8 @@
     "away_team_division": 2,
     "neutral_site": "Glenville, WV",
     "slug": "/contests/2391341/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391341/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391341/box_score",
+    "contest_id": 2391341
   },
   {
     "year": 2023,
@@ -130,7 +135,8 @@
     "away_team_division": 2,
     "neutral_site": "Glenville, WV",
     "slug": "/contests/2391681/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391681/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391681/box_score",
+    "contest_id": 2391681
   },
   {
     "year": 2023,
@@ -152,7 +158,8 @@
     "away_team_division": 2,
     "neutral_site": "Glenville, W.Va.",
     "slug": "/contests/2392298/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392298/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392298/box_score",
+    "contest_id": 2392298
   },
   {
     "year": 2023,
@@ -172,9 +179,10 @@
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
     "away_team_division": 2,
-    "neutral_site": "Cary, N.C. / USA Baseball Training Complex",
+    "neutral_site": "Cary, NC",
     "slug": "/contests/2392720/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392720/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392720/box_score",
+    "contest_id": 2392720
   },
   {
     "year": 2023,
@@ -196,7 +204,8 @@
     "away_team_division": 2,
     "neutral_site": "USA Baseball National Training Complex - Cary, N.C.",
     "slug": "/contests/2393161/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393161/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393161/box_score",
+    "contest_id": 2393161
   },
   {
     "year": 2023,
@@ -218,7 +227,8 @@
     "away_team_division": 2,
     "neutral_site": "USA Baseball National Training Complex - Cary, N.C.",
     "slug": "/contests/2408617/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408617/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408617/box_score",
+    "contest_id": 2408617
   },
   {
     "year": 2023,
@@ -226,17 +236,66 @@
     "date": "03/05/2023",
     "home_team": "Augustana (SD) ",
     "home_team_id": 41,
+    "home_team_score": 5,
     "home_team_conference": "NSIC",
     "home_team_conference_id": 12853,
     "home_team_slug": "/team/41/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 1,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
     "away_team_division": 2,
-    "neutral_site": "Cary, NC"
+    "neutral_site": "Cary, N.C.",
+    "slug": "/contests/2393417/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393417/box_score",
+    "contest_id": 2393417
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/09/2023",
+    "home_team": "West Chester",
+    "home_team_id": 765,
+    "home_team_score": 7,
+    "home_team_conference": "PSAC",
+    "home_team_conference_id": 906,
+    "home_team_slug": "/team/765/16340",
+    "home_team_division": 2,
+    "away_team": "Shippensburg",
+    "away_team_id": 638,
+    "away_team_score": 1,
+    "away_team_conference": "PSAC",
+    "away_team_conference_id": 906,
+    "away_team_slug": "/team/638/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2394733/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394733/box_score",
+    "contest_id": 2394733
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/09/2023",
+    "home_team": "West Chester",
+    "home_team_id": 765,
+    "home_team_score": 6,
+    "home_team_conference": "PSAC",
+    "home_team_conference_id": 906,
+    "home_team_slug": "/team/765/16340",
+    "home_team_division": 2,
+    "away_team": "Shippensburg",
+    "away_team_id": 638,
+    "away_team_score": 1,
+    "away_team_conference": "PSAC",
+    "away_team_conference_id": 906,
+    "away_team_slug": "/team/638/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2408063/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408063/box_score",
+    "contest_id": 2408063
   },
   {
     "year": 2023,
@@ -244,67 +303,43 @@
     "date": "03/10/2023",
     "home_team": "Shippensburg",
     "home_team_id": 638,
+    "home_team_score": 15,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/638/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 10,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2394343/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394343/box_score",
+    "contest_id": 2394343
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/11/2023",
+    "date": "03/15/2023",
     "home_team": "West Chester",
     "home_team_id": 765,
-    "home_team_conference": "PSAC",
-    "home_team_conference_id": 906,
-    "home_team_slug": "/team/765/16340",
-    "home_team_division": 2,
-    "away_team": "Shippensburg",
-    "away_team_id": 638,
-    "away_team_conference": "PSAC",
-    "away_team_conference_id": 906,
-    "away_team_slug": "/team/638/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/11/2023",
-    "home_team": "West Chester",
-    "home_team_id": 765,
-    "home_team_conference": "PSAC",
-    "home_team_conference_id": 906,
-    "home_team_slug": "/team/765/16340",
-    "home_team_division": 2,
-    "away_team": "Shippensburg",
-    "away_team_id": 638,
-    "away_team_conference": "PSAC",
-    "away_team_conference_id": 906,
-    "away_team_slug": "/team/638/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/14/2023",
-    "home_team": "West Chester",
-    "home_team_id": 765,
+    "home_team_score": 16,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/765/16340",
     "home_team_division": 2,
     "away_team": "Jefferson",
     "away_team_id": 543,
+    "away_team_score": 5,
     "away_team_conference": "CACC",
     "away_team_conference_id": 28752,
     "away_team_slug": "/team/543/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2395415/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395415/box_score",
+    "contest_id": 2395415
   },
   {
     "year": 2023,
@@ -312,16 +347,21 @@
     "date": "03/17/2023",
     "home_team": "West Chester",
     "home_team_id": 765,
+    "home_team_score": 8,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/765/16340",
     "home_team_division": 2,
     "away_team": "Lock Haven",
     "away_team_id": 360,
+    "away_team_score": 2,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/360/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2395936/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395936/box_score",
+    "contest_id": 2395936
   },
   {
     "year": 2023,
@@ -329,16 +369,21 @@
     "date": "03/18/2023",
     "home_team": "Lock Haven",
     "home_team_id": 360,
+    "home_team_score": 4,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/360/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 3,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2396330/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396330/box_score",
+    "contest_id": 2396330
   },
   {
     "year": 2023,
@@ -346,16 +391,21 @@
     "date": "03/18/2023",
     "home_team": "Lock Haven",
     "home_team_id": 360,
+    "home_team_score": 11,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/360/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 8,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2409449/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409449/box_score",
+    "contest_id": 2409449
   },
   {
     "year": 2023,
@@ -363,16 +413,21 @@
     "date": "03/21/2023",
     "home_team": "Jefferson",
     "home_team_id": 543,
+    "home_team_score": 10,
     "home_team_conference": "CACC",
     "home_team_conference_id": 28752,
     "home_team_slug": "/team/543/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 11,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2396934/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396934/box_score",
+    "contest_id": 2396934
   },
   {
     "year": 2023,
@@ -380,50 +435,65 @@
     "date": "03/24/2023",
     "home_team": "Mansfield",
     "home_team_id": 384,
+    "home_team_score": 4,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/384/16340",
     "home_team_division": 2,
     "away_team": "West Chester",
     "away_team_id": 765,
+    "away_team_score": 8,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/765/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397391/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397391/box_score",
+    "contest_id": 2397391
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/28/2023",
     "home_team": "West Chester",
     "home_team_id": 765,
+    "home_team_score": 7,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/765/16340",
     "home_team_division": 2,
     "away_team": "Mansfield",
     "away_team_id": 384,
+    "away_team_score": 1,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/384/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397832/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397832/box_score",
+    "contest_id": 2397832
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/28/2023",
     "home_team": "West Chester",
     "home_team_id": 765,
+    "home_team_score": 5,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/765/16340",
     "home_team_division": 2,
     "away_team": "Mansfield",
     "away_team_id": 384,
+    "away_team_score": 2,
     "away_team_conference": "PSAC",
     "away_team_conference_id": 906,
     "away_team_slug": "/team/384/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2410278/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2410278/box_score",
+    "contest_id": 2410278
   },
   {
     "year": 2023,
@@ -431,16 +501,21 @@
     "date": "03/29/2023",
     "home_team": "West Chester",
     "home_team_id": 765,
+    "home_team_score": 12,
     "home_team_conference": "PSAC",
     "home_team_conference_id": 906,
     "home_team_slug": "/team/765/16340",
     "home_team_division": 2,
     "away_team": "Wilmington (DE)",
     "away_team_id": 1460,
+    "away_team_score": 5,
     "away_team_conference": "CACC",
     "away_team_conference_id": 28752,
     "away_team_slug": "/team/1460/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2398616/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398616/box_score",
+    "contest_id": 2398616
   },
   {
     "year": 2023,

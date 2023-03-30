@@ -18,7 +18,8 @@
     "away_team_slug": "/team/52/16340",
     "away_team_division": 1,
     "slug": "/contests/2390247/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390247/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390247/box_score",
+    "contest_id": 2390247
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/52/16340",
     "away_team_division": 1,
     "slug": "/contests/2390495/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390495/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390495/box_score",
+    "contest_id": 2390495
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_division": 1,
     "innings": "11",
     "slug": "/contests/2390815/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390815/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390815/box_score",
+    "contest_id": 2390815
   },
   {
     "year": 2023,
@@ -83,7 +86,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, TX",
     "slug": "/contests/2391357/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391357/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391357/box_score",
+    "contest_id": 2391357
   },
   {
     "year": 2023,
@@ -105,7 +109,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, TX",
     "slug": "/contests/2391698/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391698/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391698/box_score",
+    "contest_id": 2391698
   },
   {
     "year": 2023,
@@ -127,7 +132,8 @@
     "away_team_division": 1,
     "neutral_site": "Sugar Land, TX",
     "slug": "/contests/2392087/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392087/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392087/box_score",
+    "contest_id": 2392087
   },
   {
     "year": 2023,
@@ -143,7 +149,8 @@
     "away_team": "Benedictine Mesa",
     "away_team_score": 9,
     "slug": "/contests/2392332/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392332/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392332/box_score",
+    "contest_id": 2392332
   },
   {
     "year": 2023,
@@ -164,7 +171,8 @@
     "away_team_slug": "/team/534/16340",
     "away_team_division": 1,
     "slug": "/contests/2392608/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392608/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392608/box_score",
+    "contest_id": 2392608
   },
   {
     "year": 2023,
@@ -186,7 +194,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2392909/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392909/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392909/box_score",
+    "contest_id": 2392909
   },
   {
     "year": 2023,
@@ -194,16 +203,21 @@
     "date": "03/05/2023",
     "home_team": "New Mexico St.",
     "home_team_id": 472,
+    "home_team_score": 4,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/472/16340",
     "home_team_division": 1,
     "away_team": "Pacific",
     "away_team_id": 534,
+    "away_team_score": 13,
     "away_team_conference": "WCC",
     "away_team_conference_id": 922,
     "away_team_slug": "/team/534/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393329/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393329/box_score",
+    "contest_id": 2393329
   },
   {
     "year": 2023,
@@ -211,16 +225,21 @@
     "date": "03/10/2023",
     "home_team": "Grand Canyon",
     "home_team_id": 1104,
+    "home_team_score": 6,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1104/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 1,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394455/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394455/box_score",
+    "contest_id": 2394455
   },
   {
     "year": 2023,
@@ -228,16 +247,21 @@
     "date": "03/11/2023",
     "home_team": "Grand Canyon",
     "home_team_id": 1104,
+    "home_team_score": 10,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1104/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 0,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394895/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394895/box_score",
+    "contest_id": 2394895
   },
   {
     "year": 2023,
@@ -245,16 +269,21 @@
     "date": "03/12/2023",
     "home_team": "Grand Canyon",
     "home_team_id": 1104,
+    "home_team_score": 11,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1104/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 7,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395063/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395063/box_score",
+    "contest_id": 2395063
   },
   {
     "year": 2023,
@@ -262,11 +291,16 @@
     "date": "03/14/2023",
     "home_team": "New Mexico St.",
     "home_team_id": 472,
+    "home_team_score": 23,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/472/16340",
     "home_team_division": 1,
-    "away_team": "Ottawa (AZ)"
+    "away_team": "Ottawa (AZ)",
+    "away_team_score": 2,
+    "slug": "/contests/2395305/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395305/box_score",
+    "contest_id": 2395305
   },
   {
     "year": 2023,
@@ -274,16 +308,21 @@
     "date": "03/17/2023",
     "home_team": "Utah Tech",
     "home_team_id": 30095,
+    "home_team_score": 4,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30095/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 2,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396089/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396089/box_score",
+    "contest_id": 2396089
   },
   {
     "year": 2023,
@@ -291,16 +330,21 @@
     "date": "03/18/2023",
     "home_team": "Utah Tech",
     "home_team_id": 30095,
+    "home_team_score": 2,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30095/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 6,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396494/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396494/box_score",
+    "contest_id": 2396494
   },
   {
     "year": 2023,
@@ -308,16 +352,21 @@
     "date": "03/19/2023",
     "home_team": "Utah Tech",
     "home_team_id": 30095,
+    "home_team_score": 10,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30095/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 7,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396702/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396702/box_score",
+    "contest_id": 2396702
   },
   {
     "year": 2023,
@@ -325,16 +374,21 @@
     "date": "03/21/2023",
     "home_team": "New Mexico",
     "home_team_id": 473,
+    "home_team_score": 0,
     "home_team_conference": "Mountain West",
     "home_team_conference_id": 5486,
     "home_team_slug": "/team/473/16340",
     "home_team_division": 1,
     "away_team": "New Mexico St.",
     "away_team_id": 472,
+    "away_team_score": 2,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/472/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396866/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396866/box_score",
+    "contest_id": 2396866
   },
   {
     "year": 2023,
@@ -342,16 +396,21 @@
     "date": "03/24/2023",
     "home_team": "New Mexico St.",
     "home_team_id": 472,
+    "home_team_score": 9,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/472/16340",
     "home_team_division": 1,
     "away_team": "UTRGV",
     "away_team_id": 536,
+    "away_team_score": 5,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/536/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397279/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397279/box_score",
+    "contest_id": 2397279
   },
   {
     "year": 2023,
@@ -359,16 +418,21 @@
     "date": "03/25/2023",
     "home_team": "New Mexico St.",
     "home_team_id": 472,
+    "home_team_score": 4,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/472/16340",
     "home_team_division": 1,
     "away_team": "UTRGV",
     "away_team_id": 536,
+    "away_team_score": 8,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/536/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397580/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397580/box_score",
+    "contest_id": 2397580
   },
   {
     "year": 2023,
@@ -376,16 +440,21 @@
     "date": "03/26/2023",
     "home_team": "New Mexico St.",
     "home_team_id": 472,
+    "home_team_score": 6,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/472/16340",
     "home_team_division": 1,
     "away_team": "UTRGV",
     "away_team_id": 536,
+    "away_team_score": 12,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/536/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398018/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398018/box_score",
+    "contest_id": 2398018
   },
   {
     "year": 2023,

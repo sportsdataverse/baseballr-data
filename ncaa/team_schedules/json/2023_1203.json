@@ -18,7 +18,8 @@
     "away_team_slug": "/team/1203/16340",
     "away_team_division": 3,
     "slug": "/contests/2391302/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391302/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391302/box_score",
+    "contest_id": 2391302
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/1203/16340",
     "away_team_division": 3,
     "slug": "/contests/2391646/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391646/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391646/box_score",
+    "contest_id": 2391646
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/1203/16340",
     "away_team_division": 3,
     "slug": "/contests/2408035/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408035/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408035/box_score",
+    "contest_id": 2408035
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/1400/16340",
     "away_team_division": 3,
     "slug": "/contests/2392465/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392465/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392465/box_score",
+    "contest_id": 2392465
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/2741/16340",
     "away_team_division": 3,
     "slug": "/contests/2392900/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392900/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392900/box_score",
+    "contest_id": 2392900
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/2741/16340",
     "away_team_division": 3,
     "slug": "/contests/2393200/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393200/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393200/box_score",
+    "contest_id": 2393200
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/2741/16340",
     "away_team_division": 3,
     "slug": "/contests/2408655/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408655/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408655/box_score",
+    "contest_id": 2408655
   },
   {
     "year": 2023,
@@ -152,84 +159,87 @@
     "date": "03/14/2023",
     "home_team": "St. Thomas (TX)",
     "home_team_id": 2810,
+    "home_team_score": 1,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/2810/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 6,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395308/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395308/box_score",
+    "contest_id": 2395308
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/17/2023",
-    "home_team": "Mary Hardin-Baylor",
-    "home_team_id": 1203,
+    "home_team": "McMurry",
+    "home_team_id": 8530,
+    "home_team_score": 9,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
-    "home_team_slug": "/team/1203/16340",
-    "home_team_division": 3,
-    "away_team": "McMurry",
-    "away_team_id": 8530,
-    "away_team_conference": "ASC",
-    "away_team_conference_id": 14825,
-    "away_team_slug": "/team/8530/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "Mary Hardin-Baylor",
-    "home_team_id": 1203,
-    "home_team_conference": "ASC",
-    "home_team_conference_id": 14825,
-    "home_team_slug": "/team/1203/16340",
-    "home_team_division": 3,
-    "away_team": "McMurry",
-    "away_team_id": 8530,
-    "away_team_conference": "ASC",
-    "away_team_conference_id": 14825,
-    "away_team_slug": "/team/8530/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "Mary Hardin-Baylor",
-    "home_team_id": 1203,
-    "home_team_conference": "ASC",
-    "home_team_conference_id": 14825,
-    "home_team_slug": "/team/1203/16340",
-    "home_team_division": 3,
-    "away_team": "McMurry",
-    "away_team_id": 8530,
-    "away_team_conference": "ASC",
-    "away_team_conference_id": 14825,
-    "away_team_slug": "/team/8530/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/21/2023",
-    "home_team": "Texas Lutheran",
-    "home_team_id": 1400,
-    "home_team_conference": "SCAC",
-    "home_team_conference_id": 835,
-    "home_team_slug": "/team/1400/16340",
+    "home_team_slug": "/team/8530/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 13,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395809/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395809/box_score",
+    "contest_id": 2395809
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/18/2023",
+    "home_team": "McMurry",
+    "home_team_id": 8530,
+    "home_team_score": 16,
+    "home_team_conference": "ASC",
+    "home_team_conference_id": 14825,
+    "home_team_slug": "/team/8530/16340",
+    "home_team_division": 3,
+    "away_team": "Mary Hardin-Baylor",
+    "away_team_id": 1203,
+    "away_team_score": 9,
+    "away_team_conference": "ASC",
+    "away_team_conference_id": 14825,
+    "away_team_slug": "/team/1203/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2396191/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396191/box_score",
+    "contest_id": 2396191
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/18/2023",
+    "home_team": "McMurry",
+    "home_team_id": 8530,
+    "home_team_score": 3,
+    "home_team_conference": "ASC",
+    "home_team_conference_id": 14825,
+    "home_team_slug": "/team/8530/16340",
+    "home_team_division": 3,
+    "away_team": "Mary Hardin-Baylor",
+    "away_team_id": 1203,
+    "away_team_score": 13,
+    "away_team_conference": "ASC",
+    "away_team_conference_id": 14825,
+    "away_team_slug": "/team/1203/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2408986/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408986/box_score",
+    "contest_id": 2408986
   },
   {
     "year": 2023,
@@ -237,16 +247,21 @@
     "date": "03/24/2023",
     "home_team": "East Tex. Baptist",
     "home_team_id": 1062,
+    "home_team_score": 10,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/1062/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 1,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397571/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397571/box_score",
+    "contest_id": 2397571
   },
   {
     "year": 2023,
@@ -254,16 +269,21 @@
     "date": "03/25/2023",
     "home_team": "East Tex. Baptist",
     "home_team_id": 1062,
+    "home_team_score": 13,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/1062/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 3,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397909/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397909/box_score",
+    "contest_id": 2397909
   },
   {
     "year": 2023,
@@ -271,16 +291,21 @@
     "date": "03/25/2023",
     "home_team": "East Tex. Baptist",
     "home_team_id": 1062,
+    "home_team_score": 15,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/1062/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 6,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2410487/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2410487/box_score",
+    "contest_id": 2410487
   },
   {
     "year": 2023,
@@ -288,16 +313,21 @@
     "date": "03/28/2023",
     "home_team": "Trinity (TX)",
     "home_team_id": 715,
+    "home_team_score": 3,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/715/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 4,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398589/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398589/box_score",
+    "contest_id": 2398589
   },
   {
     "year": 2023,

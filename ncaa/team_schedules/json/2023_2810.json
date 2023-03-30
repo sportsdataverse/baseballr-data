@@ -18,7 +18,8 @@
     "away_team_slug": "/team/2810/16340",
     "away_team_division": 3,
     "slug": "/contests/2389948/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389948/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389948/box_score",
+    "contest_id": 2389948
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/2810/16340",
     "away_team_division": 3,
     "slug": "/contests/2390059/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390059/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390059/box_score",
+    "contest_id": 2390059
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/2810/16340",
     "away_team_division": 3,
     "slug": "/contests/2407816/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407816/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407816/box_score",
+    "contest_id": 2407816
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/8530/16340",
     "away_team_division": 3,
     "slug": "/contests/2422845/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2422845/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2422845/box_score",
+    "contest_id": 2422845
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/8530/16340",
     "away_team_division": 3,
     "slug": "/contests/2420084/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2420084/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2420084/box_score",
+    "contest_id": 2420084
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/8530/16340",
     "away_team_division": 3,
     "slug": "/contests/2390496/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390496/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390496/box_score",
+    "contest_id": 2390496
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/23121/16340",
     "away_team_division": 3,
     "slug": "/contests/2391085/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391085/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391085/box_score",
+    "contest_id": 2391085
   },
   {
     "year": 2023,
@@ -165,7 +172,8 @@
     "away_team_slug": "/team/30197/16340",
     "away_team_division": 3,
     "slug": "/contests/2391251/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391251/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391251/box_score",
+    "contest_id": 2391251
   },
   {
     "year": 2023,
@@ -186,7 +194,8 @@
     "away_team_slug": "/team/30197/16340",
     "away_team_division": 3,
     "slug": "/contests/2391276/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391276/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391276/box_score",
+    "contest_id": 2391276
   },
   {
     "year": 2023,
@@ -207,19 +216,25 @@
     "away_team_slug": "/team/30197/16340",
     "away_team_division": 3,
     "slug": "/contests/2421601/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421601/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421601/box_score",
+    "contest_id": 2421601
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/07/2023",
-    "home_team": "Huston-Tillotson",
-    "away_team": "St. Thomas (TX)",
-    "away_team_id": 2810,
-    "away_team_conference": "SCAC",
-    "away_team_conference_id": 835,
-    "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "home_team": "St. Thomas (TX)",
+    "home_team_id": 2810,
+    "home_team_score": 14,
+    "home_team_conference": "SCAC",
+    "home_team_conference_id": 835,
+    "home_team_slug": "/team/2810/16340",
+    "home_team_division": 3,
+    "away_team": "Huston-Tillotson",
+    "away_team_score": 1,
+    "slug": "/contests/2393742/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393742/box_score",
+    "contest_id": 2393742
   },
   {
     "year": 2023,
@@ -227,16 +242,21 @@
     "date": "03/10/2023",
     "home_team": "Hardin-Simmons",
     "home_team_id": 271,
+    "home_team_score": 12,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/271/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 3,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394473/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394473/box_score",
+    "contest_id": 2394473
   },
   {
     "year": 2023,
@@ -244,16 +264,21 @@
     "date": "03/11/2023",
     "home_team": "Hardin-Simmons",
     "home_team_id": 271,
+    "home_team_score": 2,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/271/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 1,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394788/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394788/box_score",
+    "contest_id": 2394788
   },
   {
     "year": 2023,
@@ -261,16 +286,21 @@
     "date": "03/11/2023",
     "home_team": "Hardin-Simmons",
     "home_team_id": 271,
+    "home_team_score": 3,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/271/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 7,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408243/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408243/box_score",
+    "contest_id": 2408243
   },
   {
     "year": 2023,
@@ -278,16 +308,21 @@
     "date": "03/14/2023",
     "home_team": "St. Thomas (TX)",
     "home_team_id": 2810,
+    "home_team_score": 1,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/2810/16340",
     "home_team_division": 3,
     "away_team": "Mary Hardin-Baylor",
     "away_team_id": 1203,
+    "away_team_score": 6,
     "away_team_conference": "ASC",
     "away_team_conference_id": 14825,
     "away_team_slug": "/team/1203/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395308/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395308/box_score",
+    "contest_id": 2395308
   },
   {
     "year": 2023,
@@ -295,16 +330,21 @@
     "date": "03/17/2023",
     "home_team": "St. Thomas (TX)",
     "home_team_id": 2810,
+    "home_team_score": 2,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/2810/16340",
     "home_team_division": 3,
     "away_team": "Schreiner",
     "away_team_id": 1355,
+    "away_team_score": 3,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/1355/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395788/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395788/box_score",
+    "contest_id": 2395788
   },
   {
     "year": 2023,
@@ -312,16 +352,21 @@
     "date": "03/18/2023",
     "home_team": "St. Thomas (TX)",
     "home_team_id": 2810,
+    "home_team_score": 16,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/2810/16340",
     "home_team_division": 3,
     "away_team": "Schreiner",
     "away_team_id": 1355,
+    "away_team_score": 2,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/1355/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396170/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396170/box_score",
+    "contest_id": 2396170
   },
   {
     "year": 2023,
@@ -329,16 +374,21 @@
     "date": "03/18/2023",
     "home_team": "St. Thomas (TX)",
     "home_team_id": 2810,
+    "home_team_score": 8,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/2810/16340",
     "home_team_division": 3,
     "away_team": "Schreiner",
     "away_team_id": 1355,
+    "away_team_score": 7,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/1355/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408965/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408965/box_score",
+    "contest_id": 2408965
   },
   {
     "year": 2023,
@@ -346,16 +396,21 @@
     "date": "03/21/2023",
     "home_team": "Texas-Dallas",
     "home_team_id": 23121,
+    "home_team_score": 12,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/23121/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 8,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396850/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396850/box_score",
+    "contest_id": 2396850
   },
   {
     "year": 2023,
@@ -363,16 +418,21 @@
     "date": "03/24/2023",
     "home_team": "Southwestern (TX)",
     "home_team_id": 8746,
+    "home_team_score": 12,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/8746/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 9,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397304/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397304/box_score",
+    "contest_id": 2397304
   },
   {
     "year": 2023,
@@ -380,16 +440,21 @@
     "date": "03/25/2023",
     "home_team": "Southwestern (TX)",
     "home_team_id": 8746,
+    "home_team_score": 14,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/8746/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 6,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397599/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397599/box_score",
+    "contest_id": 2397599
   },
   {
     "year": 2023,
@@ -397,16 +462,21 @@
     "date": "03/26/2023",
     "home_team": "Southwestern (TX)",
     "home_team_id": 8746,
+    "home_team_score": 5,
     "home_team_conference": "SCAC",
     "home_team_conference_id": 835,
     "home_team_slug": "/team/8746/16340",
     "home_team_division": 3,
     "away_team": "St. Thomas (TX)",
     "away_team_id": 2810,
+    "away_team_score": 2,
     "away_team_conference": "SCAC",
     "away_team_conference_id": 835,
     "away_team_slug": "/team/2810/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398039/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398039/box_score",
+    "contest_id": 2398039
   },
   {
     "year": 2023,

@@ -18,7 +18,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390000/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390000/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390000/box_score",
+    "contest_id": 2390000
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390110/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390110/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390110/box_score",
+    "contest_id": 2390110
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390150/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390150/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390150/box_score",
+    "contest_id": 2390150
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390218/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390218/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390218/box_score",
+    "contest_id": 2390218
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390243/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390243/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390243/box_score",
+    "contest_id": 2390243
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390391/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390391/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390391/box_score",
+    "contest_id": 2390391
   },
   {
     "year": 2023,
@@ -144,24 +150,8 @@
     "away_team_slug": "/team/561/16340",
     "away_team_division": 2,
     "slug": "/contests/2390637/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390637/box_score"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/03/2023",
-    "home_team": "Quincy",
-    "home_team_id": 561,
-    "home_team_conference": "GLVC",
-    "home_team_conference_id": 855,
-    "home_team_slug": "/team/561/16340",
-    "home_team_division": 2,
-    "away_team": "Northwood",
-    "away_team_id": 510,
-    "away_team_conference": "G-MAC",
-    "away_team_conference_id": 30182,
-    "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
+    "game_info_url": "https://stats.ncaa.org/contests/2390637/box_score",
+    "contest_id": 2390637
   },
   {
     "year": 2023,
@@ -182,7 +172,8 @@
     "away_team_slug": "/team/510/16340",
     "away_team_division": 2,
     "slug": "/contests/2393111/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393111/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393111/box_score",
+    "contest_id": 2393111
   },
   {
     "year": 2023,
@@ -203,7 +194,8 @@
     "away_team_slug": "/team/510/16340",
     "away_team_division": 2,
     "slug": "/contests/2408476/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408476/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408476/box_score",
+    "contest_id": 2408476
   },
   {
     "year": 2023,
@@ -211,16 +203,43 @@
     "date": "03/05/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 10,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Northwood",
     "away_team_id": 510,
+    "away_team_score": 8,
     "away_team_conference": "G-MAC",
     "away_team_conference_id": 30182,
     "away_team_slug": "/team/510/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2423170/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423170/box_score",
+    "contest_id": 2423170
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/05/2023",
+    "home_team": "Quincy",
+    "home_team_id": 561,
+    "home_team_score": 8,
+    "home_team_conference": "GLVC",
+    "home_team_conference_id": 855,
+    "home_team_slug": "/team/561/16340",
+    "home_team_division": 2,
+    "away_team": "Northwood",
+    "away_team_id": 510,
+    "away_team_score": 7,
+    "away_team_conference": "G-MAC",
+    "away_team_conference_id": 30182,
+    "away_team_slug": "/team/510/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2423171/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423171/box_score",
+    "contest_id": 2423171
   },
   {
     "year": 2023,
@@ -228,16 +247,21 @@
     "date": "03/10/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 7,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Augustana (SD)",
     "away_team_id": 41,
+    "away_team_score": 2,
     "away_team_conference": "NSIC",
     "away_team_conference_id": 12853,
     "away_team_slug": "/team/41/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2394317/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394317/box_score",
+    "contest_id": 2394317
   },
   {
     "year": 2023,
@@ -245,16 +269,21 @@
     "date": "03/10/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 7,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Augustana (SD)",
     "away_team_id": 41,
+    "away_team_score": 2,
     "away_team_conference": "NSIC",
     "away_team_conference_id": 12853,
     "away_team_slug": "/team/41/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2408277/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408277/box_score",
+    "contest_id": 2408277
   },
   {
     "year": 2023,
@@ -262,16 +291,21 @@
     "date": "03/11/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 10,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Augustana (SD)",
     "away_team_id": 41,
+    "away_team_score": 0,
     "away_team_conference": "NSIC",
     "away_team_conference_id": 12853,
     "away_team_slug": "/team/41/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2394690/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394690/box_score",
+    "contest_id": 2394690
   },
   {
     "year": 2023,
@@ -279,50 +313,43 @@
     "date": "03/17/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 10,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Missouri S&T",
     "away_team_id": 435,
+    "away_team_score": 20,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/435/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2425043/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425043/box_score",
+    "contest_id": 2425043
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/18/2023",
+    "date": "03/17/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 5,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Missouri S&T",
     "away_team_id": 435,
+    "away_team_score": 4,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/435/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/18/2023",
-    "home_team": "Quincy",
-    "home_team_id": 561,
-    "home_team_conference": "GLVC",
-    "home_team_conference_id": 855,
-    "home_team_slug": "/team/561/16340",
-    "home_team_division": 2,
-    "away_team": "Missouri S&T",
-    "away_team_id": 435,
-    "away_team_conference": "GLVC",
-    "away_team_conference_id": 855,
-    "away_team_slug": "/team/435/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2425111/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425111/box_score",
+    "contest_id": 2425111
   },
   {
     "year": 2023,
@@ -330,33 +357,43 @@
     "date": "03/19/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 11,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Missouri S&T",
     "away_team_id": 435,
+    "away_team_score": 2,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/435/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2396287/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396287/box_score",
+    "contest_id": 2396287
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/21/2023",
-    "home_team": "Central Mo.",
-    "home_team_id": 130,
-    "home_team_conference": "Mid-America Intercollegiate",
-    "home_team_conference_id": 883,
-    "home_team_slug": "/team/130/16340",
+    "date": "03/19/2023",
+    "home_team": "Quincy",
+    "home_team_id": 561,
+    "home_team_score": 19,
+    "home_team_conference": "GLVC",
+    "home_team_conference_id": 855,
+    "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
-    "away_team": "Quincy",
-    "away_team_id": 561,
+    "away_team": "Missouri S&T",
+    "away_team_id": 435,
+    "away_team_score": 11,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
-    "away_team_slug": "/team/561/16340",
-    "away_team_division": 2
+    "away_team_slug": "/team/435/16340",
+    "away_team_division": 2,
+    "slug": "/contests/2409266/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409266/box_score",
+    "contest_id": 2409266
   },
   {
     "year": 2023,
@@ -364,16 +401,21 @@
     "date": "03/24/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 14,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Truman St.",
     "away_team_id": 499,
+    "away_team_score": 4,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/499/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397407/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397407/box_score",
+    "contest_id": 2397407
   },
   {
     "year": 2023,
@@ -381,16 +423,21 @@
     "date": "03/25/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 6,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Truman St.",
     "away_team_id": 499,
+    "away_team_score": 2,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/499/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2397746/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397746/box_score",
+    "contest_id": 2397746
   },
   {
     "year": 2023,
@@ -398,16 +445,21 @@
     "date": "03/25/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 4,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Truman St.",
     "away_team_id": 499,
+    "away_team_score": 1,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/499/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2409987/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409987/box_score",
+    "contest_id": 2409987
   },
   {
     "year": 2023,
@@ -415,16 +467,21 @@
     "date": "03/26/2023",
     "home_team": "Quincy",
     "home_team_id": 561,
+    "home_team_score": 20,
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/561/16340",
     "home_team_division": 2,
     "away_team": "Truman St.",
     "away_team_id": 499,
+    "away_team_score": 7,
     "away_team_conference": "GLVC",
     "away_team_conference_id": 855,
     "away_team_slug": "/team/499/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2398125/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398125/box_score",
+    "contest_id": 2398125
   },
   {
     "year": 2023,
@@ -486,6 +543,23 @@
     "home_team_conference": "GLVC",
     "home_team_conference_id": 855,
     "home_team_slug": "/team/30050/16340",
+    "home_team_division": 2,
+    "away_team": "Quincy",
+    "away_team_id": 561,
+    "away_team_conference": "GLVC",
+    "away_team_conference_id": 855,
+    "away_team_slug": "/team/561/16340",
+    "away_team_division": 2
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/04/2023",
+    "home_team": "Central Mo.",
+    "home_team_id": 130,
+    "home_team_conference": "Mid-America Intercollegiate",
+    "home_team_conference_id": 883,
+    "home_team_slug": "/team/130/16340",
     "home_team_division": 2,
     "away_team": "Quincy",
     "away_team_id": 561,

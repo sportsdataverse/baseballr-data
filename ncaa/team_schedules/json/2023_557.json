@@ -18,7 +18,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2389711/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389711/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389711/box_score",
+    "contest_id": 2389711
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2389771/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389771/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389771/box_score",
+    "contest_id": 2389771
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2408092/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408092/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408092/box_score",
+    "contest_id": 2408092
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2389840/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389840/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389840/box_score",
+    "contest_id": 2389840
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2390028/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390028/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390028/box_score",
+    "contest_id": 2390028
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2408915/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408915/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408915/box_score",
+    "contest_id": 2408915
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2390123/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390123/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390123/box_score",
+    "contest_id": 2390123
   },
   {
     "year": 2023,
@@ -165,7 +172,8 @@
     "away_team_slug": "/team/780/16340",
     "away_team_division": 3,
     "slug": "/contests/2390573/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390573/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390573/box_score",
+    "contest_id": 2390573
   },
   {
     "year": 2023,
@@ -184,7 +192,10 @@
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/780/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408892/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408892/box_score",
+    "contest_id": 2408892
   },
   {
     "year": 2023,
@@ -205,41 +216,8 @@
     "away_team_slug": "/team/780/16340",
     "away_team_division": 3,
     "slug": "/contests/2390865/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390865/box_score"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/04/2023",
-    "home_team": "Puget Sound",
-    "home_team_id": 557,
-    "home_team_conference": "NWC",
-    "home_team_conference_id": 25300,
-    "home_team_slug": "/team/557/16340",
-    "home_team_division": 3,
-    "away_team": "Linfield",
-    "away_team_id": 1179,
-    "away_team_conference": "NWC",
-    "away_team_conference_id": 25300,
-    "away_team_slug": "/team/1179/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/04/2023",
-    "home_team": "Puget Sound",
-    "home_team_id": 557,
-    "home_team_conference": "NWC",
-    "home_team_conference_id": 25300,
-    "home_team_slug": "/team/557/16340",
-    "home_team_division": 3,
-    "away_team": "Linfield",
-    "away_team_id": 1179,
-    "away_team_conference": "NWC",
-    "away_team_conference_id": 25300,
-    "away_team_slug": "/team/1179/16340",
-    "away_team_division": 3
+    "game_info_url": "https://stats.ncaa.org/contests/2390865/box_score",
+    "contest_id": 2390865
   },
   {
     "year": 2023,
@@ -247,16 +225,65 @@
     "date": "03/05/2023",
     "home_team": "Puget Sound",
     "home_team_id": 557,
+    "home_team_score": 16,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/557/16340",
     "home_team_division": 3,
     "away_team": "Linfield",
     "away_team_id": 1179,
+    "away_team_score": 7,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/1179/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393088/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393088/box_score",
+    "contest_id": 2393088
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/05/2023",
+    "home_team": "Puget Sound",
+    "home_team_id": 557,
+    "home_team_score": 7,
+    "home_team_conference": "NWC",
+    "home_team_conference_id": 25300,
+    "home_team_slug": "/team/557/16340",
+    "home_team_division": 3,
+    "away_team": "Linfield",
+    "away_team_id": 1179,
+    "away_team_score": 6,
+    "away_team_conference": "NWC",
+    "away_team_conference_id": 25300,
+    "away_team_slug": "/team/1179/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2408410/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408410/box_score",
+    "contest_id": 2408410
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/06/2023",
+    "home_team": "Puget Sound",
+    "home_team_id": 557,
+    "home_team_score": 3,
+    "home_team_conference": "NWC",
+    "home_team_conference_id": 25300,
+    "home_team_slug": "/team/557/16340",
+    "home_team_division": 3,
+    "away_team": "Linfield",
+    "away_team_id": 1179,
+    "away_team_score": 2,
+    "away_team_conference": "NWC",
+    "away_team_conference_id": 25300,
+    "away_team_slug": "/team/1179/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2393522/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393522/box_score",
+    "contest_id": 2393522
   },
   {
     "year": 2023,
@@ -264,16 +291,21 @@
     "date": "03/11/2023",
     "home_team": "Pacific (OR)",
     "home_team_id": 2751,
+    "home_team_score": 4,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/2751/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 3,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394696/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394696/box_score",
+    "contest_id": 2394696
   },
   {
     "year": 2023,
@@ -281,16 +313,21 @@
     "date": "03/11/2023",
     "home_team": "Pacific (OR)",
     "home_team_id": 2751,
+    "home_team_score": 12,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/2751/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 3,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2407876/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2407876/box_score",
+    "contest_id": 2407876
   },
   {
     "year": 2023,
@@ -298,33 +335,21 @@
     "date": "03/12/2023",
     "home_team": "Pacific (OR)",
     "home_team_id": 2751,
+    "home_team_score": 7,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/2751/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 3,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/14/2023",
-    "home_team": "Puget Sound",
-    "home_team_id": 557,
-    "home_team_conference": "NWC",
-    "home_team_conference_id": 25300,
-    "home_team_slug": "/team/557/16340",
-    "home_team_division": 3,
-    "away_team": "Saint Martin's",
-    "away_team_id": 1343,
-    "away_team_conference": "Great Northwest",
-    "away_team_conference_id": 30012,
-    "away_team_slug": "/team/1343/16340",
-    "away_team_division": 2
+    "away_team_division": 3,
+    "slug": "/contests/2395053/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395053/box_score",
+    "contest_id": 2395053
   },
   {
     "year": 2023,
@@ -332,16 +357,21 @@
     "date": "03/15/2023",
     "home_team": "Lewis & Clark",
     "home_team_id": 22235,
+    "home_team_score": 2,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/22235/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 7,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2391634/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2391634/box_score",
+    "contest_id": 2391634
   },
   {
     "year": 2023,
@@ -349,16 +379,21 @@
     "date": "03/15/2023",
     "home_team": "Lewis & Clark",
     "home_team_id": 22235,
+    "home_team_score": 16,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/22235/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 3,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2408023/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408023/box_score",
+    "contest_id": 2408023
   },
   {
     "year": 2023,
@@ -366,16 +401,21 @@
     "date": "03/18/2023",
     "home_team": "Puget Sound",
     "home_team_id": 557,
+    "home_team_score": 6,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/557/16340",
     "home_team_division": 3,
     "away_team": "Willamette",
     "away_team_id": 785,
+    "away_team_score": 4,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/785/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396348/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396348/box_score",
+    "contest_id": 2396348
   },
   {
     "year": 2023,
@@ -383,16 +423,21 @@
     "date": "03/18/2023",
     "home_team": "Puget Sound",
     "home_team_id": 557,
+    "home_team_score": 3,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/557/16340",
     "home_team_division": 3,
     "away_team": "Willamette",
     "away_team_id": 785,
+    "away_team_score": 1,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/785/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409467/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409467/box_score",
+    "contest_id": 2409467
   },
   {
     "year": 2023,
@@ -400,16 +445,21 @@
     "date": "03/19/2023",
     "home_team": "Puget Sound",
     "home_team_id": 557,
+    "home_team_score": 4,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/557/16340",
     "home_team_division": 3,
     "away_team": "Willamette",
     "away_team_id": 785,
+    "away_team_score": 2,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/785/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396690/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396690/box_score",
+    "contest_id": 2396690
   },
   {
     "year": 2023,
@@ -417,33 +467,21 @@
     "date": "03/25/2023",
     "home_team": "George Fox",
     "home_team_id": 1094,
+    "home_team_score": 4,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/1094/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 8,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "George Fox",
-    "home_team_id": 1094,
-    "home_team_conference": "NWC",
-    "home_team_conference_id": 25300,
-    "home_team_slug": "/team/1094/16340",
-    "home_team_division": 3,
-    "away_team": "Puget Sound",
-    "away_team_id": 557,
-    "away_team_conference": "NWC",
-    "away_team_conference_id": 25300,
-    "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397683/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397683/box_score",
+    "contest_id": 2397683
   },
   {
     "year": 2023,
@@ -451,16 +489,43 @@
     "date": "03/26/2023",
     "home_team": "George Fox",
     "home_team_id": 1094,
+    "home_team_score": 6,
     "home_team_conference": "NWC",
     "home_team_conference_id": 25300,
     "home_team_slug": "/team/1094/16340",
     "home_team_division": 3,
     "away_team": "Puget Sound",
     "away_team_id": 557,
+    "away_team_score": 5,
     "away_team_conference": "NWC",
     "away_team_conference_id": 25300,
     "away_team_slug": "/team/557/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398065/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398065/box_score",
+    "contest_id": 2398065
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/26/2023",
+    "home_team": "George Fox",
+    "home_team_id": 1094,
+    "home_team_score": 6,
+    "home_team_conference": "NWC",
+    "home_team_conference_id": 25300,
+    "home_team_slug": "/team/1094/16340",
+    "home_team_division": 3,
+    "away_team": "Puget Sound",
+    "away_team_id": 557,
+    "away_team_score": 5,
+    "away_team_conference": "NWC",
+    "away_team_conference_id": 25300,
+    "away_team_slug": "/team/557/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2409696/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409696/box_score",
+    "contest_id": 2409696
   },
   {
     "year": 2023,
@@ -580,6 +645,23 @@
     "away_team_conference_id": 910,
     "away_team_slug": "/team/142/16340",
     "away_team_division": 3
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "04/12/2023",
+    "home_team": "Puget Sound",
+    "home_team_id": 557,
+    "home_team_conference": "NWC",
+    "home_team_conference_id": 25300,
+    "home_team_slug": "/team/557/16340",
+    "home_team_division": 3,
+    "away_team": "Saint Martin's",
+    "away_team_id": 1343,
+    "away_team_conference": "Great Northwest",
+    "away_team_conference_id": 30012,
+    "away_team_slug": "/team/1343/16340",
+    "away_team_division": 2
   },
   {
     "year": 2023,

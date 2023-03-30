@@ -19,7 +19,8 @@
     "away_team_division": 1,
     "neutral_site": "Cleburne, TX",
     "slug": "/contests/2390312/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390312/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390312/box_score",
+    "contest_id": 2390312
   },
   {
     "year": 2023,
@@ -41,7 +42,8 @@
     "away_team_division": 1,
     "neutral_site": "Cleburne, TX",
     "slug": "/contests/2390581/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390581/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390581/box_score",
+    "contest_id": 2390581
   },
   {
     "year": 2023,
@@ -63,7 +65,8 @@
     "away_team_division": 1,
     "neutral_site": "Cleburne, TX",
     "slug": "/contests/2390877/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390877/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390877/box_score",
+    "contest_id": 2390877
   },
   {
     "year": 2023,
@@ -85,7 +88,8 @@
     "away_team_division": 1,
     "innings": "13",
     "slug": "/contests/2391490/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391490/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391490/box_score",
+    "contest_id": 2391490
   },
   {
     "year": 2023,
@@ -106,7 +110,8 @@
     "away_team_slug": "/team/725/16340",
     "away_team_division": 1,
     "slug": "/contests/2391912/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391912/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391912/box_score",
+    "contest_id": 2391912
   },
   {
     "year": 2023,
@@ -127,7 +132,8 @@
     "away_team_slug": "/team/725/16340",
     "away_team_division": 1,
     "slug": "/contests/2392230/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392230/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392230/box_score",
+    "contest_id": 2392230
   },
   {
     "year": 2023,
@@ -148,7 +154,8 @@
     "away_team_slug": "/team/725/16340",
     "away_team_division": 1,
     "slug": "/contests/2392822/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392822/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392822/box_score",
+    "contest_id": 2392822
   },
   {
     "year": 2023,
@@ -170,7 +177,8 @@
     "away_team_division": 1,
     "neutral_site": "Manhattan, Kan (Tointon Family Stadium)",
     "slug": "/contests/2393313/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393313/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393313/box_score",
+    "contest_id": 2393313
   },
   {
     "year": 2023,
@@ -178,17 +186,22 @@
     "date": "03/05/2023",
     "home_team": "Army West Point",
     "home_team_id": 725,
+    "home_team_score": 4,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/725/16340",
     "home_team_division": 1,
     "away_team": "Stonehill ",
     "away_team_id": 682,
+    "away_team_score": 7,
     "away_team_conference": "NEC",
     "away_team_conference_id": 846,
     "away_team_slug": "/team/682/16340",
     "away_team_division": 1,
-    "neutral_site": "Manhattan, Kan (Tointon Family Stadium)"
+    "neutral_site": "Manhattan, Kan (Tointon Family Stadium)",
+    "slug": "/contests/2393630/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393630/box_score",
+    "contest_id": 2393630
   },
   {
     "year": 2023,
@@ -196,16 +209,21 @@
     "date": "03/05/2023",
     "home_team": "Kansas St.",
     "home_team_id": 327,
+    "home_team_score": 14,
     "home_team_conference": "Big 12",
     "home_team_conference_id": 25354,
     "home_team_slug": "/team/327/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 8,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393662/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393662/box_score",
+    "contest_id": 2393662
   },
   {
     "year": 2023,
@@ -213,33 +231,21 @@
     "date": "03/07/2023",
     "home_team": "Arkansas",
     "home_team_id": 31,
+    "home_team_score": 7,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/31/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 5,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/10/2023",
-    "home_team": "Wright St.",
-    "home_team_id": 810,
-    "home_team_conference": "Horizon",
-    "home_team_conference_id": 881,
-    "home_team_slug": "/team/810/16340",
-    "home_team_division": 1,
-    "away_team": "Army West Point",
-    "away_team_id": 725,
-    "away_team_conference": "Patriot",
-    "away_team_conference_id": 838,
-    "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393870/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393870/box_score",
+    "contest_id": 2393870
   },
   {
     "year": 2023,
@@ -247,16 +253,21 @@
     "date": "03/11/2023",
     "home_team": "Wright St.",
     "home_team_id": 810,
+    "home_team_score": 1,
     "home_team_conference": "Horizon",
     "home_team_conference_id": 881,
     "home_team_slug": "/team/810/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 8,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394588/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394588/box_score",
+    "contest_id": 2394588
   },
   {
     "year": 2023,
@@ -264,16 +275,21 @@
     "date": "03/11/2023",
     "home_team": "Wright St.",
     "home_team_id": 810,
+    "home_team_score": 5,
     "home_team_conference": "Horizon",
     "home_team_conference_id": 881,
     "home_team_slug": "/team/810/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 4,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2408718/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408718/box_score",
+    "contest_id": 2408718
   },
   {
     "year": 2023,
@@ -281,33 +297,21 @@
     "date": "03/12/2023",
     "home_team": "Wright St.",
     "home_team_id": 810,
+    "home_team_score": 9,
     "home_team_conference": "Horizon",
     "home_team_conference_id": 881,
     "home_team_slug": "/team/810/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 7,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/14/2023",
-    "home_team": "Army West Point",
-    "home_team_id": 725,
-    "home_team_conference": "Patriot",
-    "home_team_conference_id": 838,
-    "home_team_slug": "/team/725/16340",
-    "home_team_division": 1,
-    "away_team": "UAlbany",
-    "away_team_id": 14,
-    "away_team_conference": "America East",
-    "away_team_conference_id": 845,
-    "away_team_slug": "/team/14/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394953/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394953/box_score",
+    "contest_id": 2394953
   },
   {
     "year": 2023,
@@ -315,16 +319,21 @@
     "date": "03/17/2023",
     "home_team": "South Fla.",
     "home_team_id": 651,
+    "home_team_score": 8,
     "home_team_conference": "AAC",
     "home_team_conference_id": 823,
     "home_team_slug": "/team/651/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 7,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396093/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396093/box_score",
+    "contest_id": 2396093
   },
   {
     "year": 2023,
@@ -332,16 +341,21 @@
     "date": "03/18/2023",
     "home_team": "South Fla.",
     "home_team_id": 651,
+    "home_team_score": 5,
     "home_team_conference": "AAC",
     "home_team_conference_id": 823,
     "home_team_slug": "/team/651/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396449/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396449/box_score",
+    "contest_id": 2396449
   },
   {
     "year": 2023,
@@ -349,16 +363,21 @@
     "date": "03/19/2023",
     "home_team": "South Fla.",
     "home_team_id": 651,
+    "home_team_score": 1,
     "home_team_conference": "AAC",
     "home_team_conference_id": 823,
     "home_team_slug": "/team/651/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 6,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396731/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396731/box_score",
+    "contest_id": 2396731
   },
   {
     "year": 2023,
@@ -366,16 +385,22 @@
     "date": "03/22/2023",
     "home_team": "Army West Point",
     "home_team_id": 725,
+    "home_team_score": 5,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/725/16340",
     "home_team_division": 1,
     "away_team": "Siena",
     "away_team_id": 639,
+    "away_team_score": 4,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/639/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "16",
+    "slug": "/contests/2397100/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397100/box_score",
+    "contest_id": 2397100
   },
   {
     "year": 2023,
@@ -383,50 +408,43 @@
     "date": "03/24/2023",
     "home_team": "Holy Cross",
     "home_team_id": 285,
+    "home_team_score": 4,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/285/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397339/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397339/box_score",
+    "contest_id": 2397339
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/24/2023",
     "home_team": "Holy Cross",
     "home_team_id": 285,
+    "home_team_score": 0,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/285/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 1,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "Holy Cross",
-    "home_team_id": 285,
-    "home_team_conference": "Patriot",
-    "home_team_conference_id": 838,
-    "home_team_slug": "/team/285/16340",
-    "home_team_division": 1,
-    "away_team": "Army West Point",
-    "away_team_id": 725,
-    "away_team_conference": "Patriot",
-    "away_team_conference_id": 838,
-    "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398075/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398075/box_score",
+    "contest_id": 2398075
   },
   {
     "year": 2023,
@@ -434,16 +452,43 @@
     "date": "03/26/2023",
     "home_team": "Holy Cross",
     "home_team_id": 285,
+    "home_team_score": 0,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/285/16340",
     "home_team_division": 1,
     "away_team": "Army West Point",
     "away_team_id": 725,
+    "away_team_score": 10,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/725/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397692/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397692/box_score",
+    "contest_id": 2397692
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/26/2023",
+    "home_team": "Holy Cross",
+    "home_team_id": 285,
+    "home_team_score": 2,
+    "home_team_conference": "Patriot",
+    "home_team_conference_id": 838,
+    "home_team_slug": "/team/285/16340",
+    "home_team_division": 1,
+    "away_team": "Army West Point",
+    "away_team_id": 725,
+    "away_team_score": 13,
+    "away_team_conference": "Patriot",
+    "away_team_conference_id": 838,
+    "away_team_slug": "/team/725/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2409705/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409705/box_score",
+    "contest_id": 2409705
   },
   {
     "year": 2023,
@@ -451,16 +496,21 @@
     "date": "03/28/2023",
     "home_team": "Army West Point",
     "home_team_id": 725,
+    "home_team_score": 8,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/725/16340",
     "home_team_division": 1,
     "away_team": "Marist",
     "away_team_id": 386,
+    "away_team_score": 4,
     "away_team_conference": "MAAC",
     "away_team_conference_id": 871,
     "away_team_slug": "/team/386/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398377/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398377/box_score",
+    "contest_id": 2398377
   },
   {
     "year": 2023,

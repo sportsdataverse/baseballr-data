@@ -18,7 +18,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2390380/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390380/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390380/box_score",
+    "contest_id": 2390380
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2390653/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390653/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390653/box_score",
+    "contest_id": 2390653
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2407902/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407902/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407902/box_score",
+    "contest_id": 2407902
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2391044/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391044/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391044/box_score",
+    "contest_id": 2391044
   },
   {
     "year": 2023,
@@ -103,7 +107,8 @@
     "away_team_division": 1,
     "neutral_site": "Mesa, Ariz",
     "slug": "/contests/2421475/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421475/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421475/box_score",
+    "contest_id": 2421475
   },
   {
     "year": 2023,
@@ -125,7 +130,8 @@
     "away_team_division": 1,
     "neutral_site": "Mesa, Ariz",
     "slug": "/contests/2421476/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421476/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421476/box_score",
+    "contest_id": 2421476
   },
   {
     "year": 2023,
@@ -146,7 +152,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2421856/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421856/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421856/box_score",
+    "contest_id": 2421856
   },
   {
     "year": 2023,
@@ -167,7 +174,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2421887/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421887/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421887/box_score",
+    "contest_id": 2421887
   },
   {
     "year": 2023,
@@ -188,7 +196,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2392825/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392825/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392825/box_score",
+    "contest_id": 2392825
   },
   {
     "year": 2023,
@@ -209,7 +218,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2393199/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393199/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393199/box_score",
+    "contest_id": 2393199
   },
   {
     "year": 2023,
@@ -230,7 +240,8 @@
     "away_team_slug": "/team/30024/16340",
     "away_team_division": 1,
     "slug": "/contests/2408654/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408654/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408654/box_score",
+    "contest_id": 2408654
   },
   {
     "year": 2023,
@@ -238,16 +249,21 @@
     "date": "03/05/2023",
     "home_team": "Portland",
     "home_team_id": 551,
+    "home_team_score": 7,
     "home_team_conference": "WCC",
     "home_team_conference_id": 922,
     "home_team_slug": "/team/551/16340",
     "home_team_division": 1,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 5,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2423663/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423663/box_score",
+    "contest_id": 2423663
   },
   {
     "year": 2023,
@@ -255,45 +271,21 @@
     "date": "03/06/2023",
     "home_team": "Northwest Nazarene",
     "home_team_id": 1274,
+    "home_team_score": 3,
     "home_team_conference": "Great Northwest",
     "home_team_conference_id": 30012,
     "home_team_slug": "/team/1274/16340",
     "home_team_division": 2,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 4,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/06/2023",
-    "home_team": "Pacific (OR)",
-    "home_team_id": 2751,
-    "home_team_conference": "NWC",
-    "home_team_conference_id": 25300,
-    "home_team_slug": "/team/2751/16340",
-    "home_team_division": 3,
-    "away_team": "Utah Valley",
-    "away_team_id": 30024,
-    "away_team_conference": "WAC",
-    "away_team_conference_id": 923,
-    "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/06/2023",
-    "home_team": "Eastern Ore.",
-    "away_team": "Utah Valley",
-    "away_team_id": 30024,
-    "away_team_conference": "WAC",
-    "away_team_conference_id": 923,
-    "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2422497/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2422497/box_score",
+    "contest_id": 2422497
   },
   {
     "year": 2023,
@@ -301,16 +293,21 @@
     "date": "03/10/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 7,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "Lehigh",
     "away_team_id": 352,
+    "away_team_score": 9,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/352/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394412/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394412/box_score",
+    "contest_id": 2394412
   },
   {
     "year": 2023,
@@ -318,16 +315,21 @@
     "date": "03/11/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 3,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "Lehigh",
     "away_team_id": 352,
+    "away_team_score": 12,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/352/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394744/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394744/box_score",
+    "contest_id": 2394744
   },
   {
     "year": 2023,
@@ -335,16 +337,21 @@
     "date": "03/11/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 9,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "Lehigh",
     "away_team_id": 352,
+    "away_team_score": 4,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/352/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2408069/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408069/box_score",
+    "contest_id": 2408069
   },
   {
     "year": 2023,
@@ -352,16 +359,21 @@
     "date": "03/12/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 13,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "Lehigh",
     "away_team_id": 352,
+    "away_team_score": 9,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/352/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395100/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395100/box_score",
+    "contest_id": 2395100
   },
   {
     "year": 2023,
@@ -369,16 +381,21 @@
     "date": "03/13/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 11,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "Northwest Nazarene",
     "away_team_id": 1274,
+    "away_team_score": 9,
     "away_team_conference": "Great Northwest",
     "away_team_conference_id": 30012,
     "away_team_slug": "/team/1274/16340",
-    "away_team_division": 2
+    "away_team_division": 2,
+    "slug": "/contests/2395292/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395292/box_score",
+    "contest_id": 2395292
   },
   {
     "year": 2023,
@@ -386,16 +403,21 @@
     "date": "03/17/2023",
     "home_team": "Seattle U",
     "home_team_id": 1356,
+    "home_team_score": 1,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1356/16340",
     "home_team_division": 1,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 5,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396018/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396018/box_score",
+    "contest_id": 2396018
   },
   {
     "year": 2023,
@@ -403,16 +425,21 @@
     "date": "03/18/2023",
     "home_team": "Seattle U",
     "home_team_id": 1356,
+    "home_team_score": 14,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1356/16340",
     "home_team_division": 1,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 0,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396502/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396502/box_score",
+    "contest_id": 2396502
   },
   {
     "year": 2023,
@@ -420,16 +447,21 @@
     "date": "03/19/2023",
     "home_team": "Seattle U",
     "home_team_id": 1356,
+    "home_team_score": 8,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/1356/16340",
     "home_team_division": 1,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 6,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396765/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396765/box_score",
+    "contest_id": 2396765
   },
   {
     "year": 2023,
@@ -437,67 +469,44 @@
     "date": "03/21/2023",
     "home_team": "BYU",
     "home_team_id": 77,
+    "home_team_score": 15,
     "home_team_conference": "WCC",
     "home_team_conference_id": 922,
     "home_team_slug": "/team/77/16340",
     "home_team_division": 1,
     "away_team": "Utah Valley",
     "away_team_id": 30024,
+    "away_team_score": 7,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
     "away_team_slug": "/team/30024/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/24/2023",
-    "home_team": "Utah Valley",
-    "home_team_id": 30024,
-    "home_team_conference": "WAC",
-    "home_team_conference_id": 923,
-    "home_team_slug": "/team/30024/16340",
-    "home_team_division": 1,
-    "away_team": "Tarleton St.",
-    "away_team_id": 1395,
-    "away_team_conference": "WAC",
-    "away_team_conference_id": 923,
-    "away_team_slug": "/team/1395/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397067/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397067/box_score",
+    "contest_id": 2397067
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/25/2023",
-    "home_team": "Utah Valley",
-    "home_team_id": 30024,
+    "home_team": "Tarleton St. ",
+    "home_team_id": 1395,
+    "home_team_score": 6,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
-    "home_team_slug": "/team/30024/16340",
+    "home_team_slug": "/team/1395/16340",
     "home_team_division": 1,
-    "away_team": "Tarleton St.",
-    "away_team_id": 1395,
+    "away_team": "Utah Valley",
+    "away_team_id": 30024,
+    "away_team_score": 7,
     "away_team_conference": "WAC",
     "away_team_conference_id": 923,
-    "away_team_slug": "/team/1395/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/26/2023",
-    "home_team": "Utah Valley",
-    "home_team_id": 30024,
-    "home_team_conference": "WAC",
-    "home_team_conference_id": 923,
-    "home_team_slug": "/team/30024/16340",
-    "home_team_division": 1,
-    "away_team": "Tarleton St.",
-    "away_team_id": 1395,
-    "away_team_conference": "WAC",
-    "away_team_conference_id": 923,
-    "away_team_slug": "/team/1395/16340",
-    "away_team_division": 1
+    "away_team_slug": "/team/30024/16340",
+    "away_team_division": 1,
+    "neutral_site": "St. George, Utah",
+    "slug": "/contests/2397970/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397970/box_score",
+    "contest_id": 2397970
   },
   {
     "year": 2023,
@@ -505,16 +514,21 @@
     "date": "03/28/2023",
     "home_team": "Utah Valley",
     "home_team_id": 30024,
+    "home_team_score": 9,
     "home_team_conference": "WAC",
     "home_team_conference_id": 923,
     "home_team_slug": "/team/30024/16340",
     "home_team_division": 1,
     "away_team": "BYU",
     "away_team_id": 77,
+    "away_team_score": 8,
     "away_team_conference": "WCC",
     "away_team_conference_id": 922,
     "away_team_slug": "/team/77/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398578/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398578/box_score",
+    "contest_id": 2398578
   },
   {
     "year": 2023,

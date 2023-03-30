@@ -18,7 +18,8 @@
     "away_team_slug": "/team/265/16340",
     "away_team_division": 3,
     "slug": "/contests/2390546/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390546/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390546/box_score",
+    "contest_id": 2390546
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/265/16340",
     "away_team_division": 3,
     "slug": "/contests/2408798/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408798/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408798/box_score",
+    "contest_id": 2408798
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/30243/16340",
     "away_team_division": 3,
     "slug": "/contests/2391087/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391087/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391087/box_score",
+    "contest_id": 2391087
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_division": 3,
     "neutral_site": "Millington, TN",
     "slug": "/contests/2391348/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391348/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391348/box_score",
+    "contest_id": 2391348
   },
   {
     "year": 2023,
@@ -104,7 +108,8 @@
     "away_team_division": 3,
     "neutral_site": "Millington, TN",
     "slug": "/contests/2391687/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391687/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391687/box_score",
+    "contest_id": 2391687
   },
   {
     "year": 2023,
@@ -126,7 +131,8 @@
     "away_team_division": 3,
     "neutral_site": "Millington, TN",
     "slug": "/contests/2421526/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421526/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421526/box_score",
+    "contest_id": 2421526
   },
   {
     "year": 2023,
@@ -148,7 +154,8 @@
     "away_team_division": 3,
     "neutral_site": "Millington, TN",
     "slug": "/contests/2421508/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421508/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421508/box_score",
+    "contest_id": 2421508
   },
   {
     "year": 2023,
@@ -167,31 +174,10 @@
     "away_team_conference": "SIAC",
     "away_team_conference_id": 913,
     "away_team_slug": "/team/332/16340",
-    "away_team_division": 2
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/04/2023",
-    "home_team": "Asbury",
-    "home_team_id": 30243,
-    "home_team_conference": "DIII Independent",
-    "home_team_conference_id": 99020,
-    "home_team_slug": "/team/30243/16340",
-    "home_team_division": 3,
-    "away_team": "Concordia (MI)"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/04/2023",
-    "home_team": "Asbury",
-    "home_team_id": 30243,
-    "home_team_conference": "DIII Independent",
-    "home_team_conference_id": 99020,
-    "home_team_slug": "/team/30243/16340",
-    "home_team_division": 3,
-    "away_team": "Concordia (MI)"
+    "away_team_division": 2,
+    "slug": "/contests/2392336/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2392336/box_score",
+    "contest_id": 2392336
   },
   {
     "year": 2023,
@@ -199,23 +185,41 @@
     "date": "03/06/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 4,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "Concordia (MI)"
+    "away_team": "Concordia (MI)",
+    "away_team_score": 15
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/07/2023",
-    "home_team": "Oakland City",
-    "away_team": "Asbury",
-    "away_team_id": 30243,
-    "away_team_conference": "DIII Independent",
-    "away_team_conference_id": 99020,
-    "away_team_slug": "/team/30243/16340",
-    "away_team_division": 3
+    "home_team": "Asbury",
+    "home_team_id": 30243,
+    "home_team_score": 0,
+    "home_team_conference": "DIII Independent",
+    "home_team_conference_id": 99020,
+    "home_team_slug": "/team/30243/16340",
+    "home_team_division": 3,
+    "away_team": "Concordia (MI)",
+    "away_team_score": 5
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/07/2023",
+    "home_team": "Asbury",
+    "home_team_id": 30243,
+    "home_team_score": 0,
+    "home_team_conference": "DIII Independent",
+    "home_team_conference_id": 99020,
+    "home_team_slug": "/team/30243/16340",
+    "home_team_division": 3,
+    "away_team": "Concordia (MI)",
+    "away_team_score": 8
   },
   {
     "year": 2023,
@@ -223,11 +227,13 @@
     "date": "03/11/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 2,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "Wright St.-Lake"
+    "away_team": "Wright St.-Lake",
+    "away_team_score": 3
   },
   {
     "year": 2023,
@@ -235,11 +241,13 @@
     "date": "03/11/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 6,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "Wright St.-Lake"
+    "away_team": "Wright St.-Lake",
+    "away_team_score": 5
   },
   {
     "year": 2023,
@@ -247,11 +255,13 @@
     "date": "03/12/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 8,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "Wright St.-Lake"
+    "away_team": "Wright St.-Lake",
+    "away_team_score": 1
   },
   {
     "year": 2023,
@@ -259,16 +269,21 @@
     "date": "03/14/2023",
     "home_team": "Centre",
     "home_team_id": 132,
+    "home_team_score": 10,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/132/16340",
     "home_team_division": 3,
     "away_team": "Asbury",
     "away_team_id": 30243,
+    "away_team_score": 5,
     "away_team_conference": "DIII Independent",
     "away_team_conference_id": 99020,
     "away_team_slug": "/team/30243/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395314/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395314/box_score",
+    "contest_id": 2395314
   },
   {
     "year": 2023,
@@ -276,12 +291,14 @@
     "date": "03/15/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 8,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
     "away_team": "Ohio Wesleyan",
     "away_team_id": 520,
+    "away_team_score": 9,
     "away_team_conference": "NCAC",
     "away_team_conference_id": 897,
     "away_team_slug": "/team/520/16340",
@@ -293,12 +310,14 @@
     "date": "03/17/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 19,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
     "away_team": "MUW",
     "away_team_id": 431,
+    "away_team_score": 4,
     "away_team_conference": "SLIAC",
     "away_team_conference_id": 12974,
     "away_team_slug": "/team/431/16340",
@@ -310,12 +329,14 @@
     "date": "03/17/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 10,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
     "away_team": "MUW",
     "away_team_id": 431,
+    "away_team_score": 3,
     "away_team_conference": "SLIAC",
     "away_team_conference_id": 12974,
     "away_team_slug": "/team/431/16340",
@@ -327,12 +348,14 @@
     "date": "03/18/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 13,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
     "away_team": "MUW",
     "away_team_id": 431,
+    "away_team_score": 7,
     "away_team_conference": "SLIAC",
     "away_team_conference_id": 12974,
     "away_team_slug": "/team/431/16340",
@@ -344,12 +367,14 @@
     "date": "03/21/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 15,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
     "away_team": "Wilmington (OH)",
     "away_team_id": 1461,
+    "away_team_score": 5,
     "away_team_conference": "OAC",
     "away_team_conference_id": 901,
     "away_team_slug": "/team/1461/16340",
@@ -358,50 +383,30 @@
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/22/2023",
+    "date": "03/23/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 13,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "Oakland City"
+    "away_team": "IUPUC",
+    "away_team_score": 12
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/24/2023",
+    "date": "03/23/2023",
     "home_team": "Asbury",
     "home_team_id": 30243,
+    "home_team_score": 22,
     "home_team_conference": "DIII Independent",
     "home_team_conference_id": 99020,
     "home_team_slug": "/team/30243/16340",
     "home_team_division": 3,
-    "away_team": "IUPUC"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "Asbury",
-    "home_team_id": 30243,
-    "home_team_conference": "DIII Independent",
-    "home_team_conference_id": 99020,
-    "home_team_slug": "/team/30243/16340",
-    "home_team_division": 3,
-    "away_team": "IUPUC"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/25/2023",
-    "home_team": "Asbury",
-    "home_team_id": 30243,
-    "home_team_conference": "DIII Independent",
-    "home_team_conference_id": 99020,
-    "home_team_slug": "/team/30243/16340",
-    "home_team_division": 3,
-    "away_team": "IUPUC"
+    "away_team": "IUPUC",
+    "away_team_score": 5
   },
   {
     "year": 2023,
@@ -409,16 +414,21 @@
     "date": "03/28/2023",
     "home_team": "Berea",
     "home_team_id": 30171,
+    "home_team_score": 3,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/30171/16340",
     "home_team_division": 3,
     "away_team": "Asbury",
     "away_team_id": 30243,
+    "away_team_score": 14,
     "away_team_conference": "DIII Independent",
     "away_team_conference_id": 99020,
     "away_team_slug": "/team/30243/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398346/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398346/box_score",
+    "contest_id": 2398346
   },
   {
     "year": 2023,

@@ -19,7 +19,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2390472/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390472/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390472/box_score",
+    "contest_id": 2390472
   },
   {
     "year": 2023,
@@ -40,7 +41,8 @@
     "away_team_slug": "/team/454/16340",
     "away_team_division": 1,
     "slug": "/contests/2390773/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390773/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390773/box_score",
+    "contest_id": 2390773
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_slug": "/team/454/16340",
     "away_team_division": 1,
     "slug": "/contests/2391039/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391039/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391039/box_score",
+    "contest_id": 2391039
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_slug": "/team/695/16340",
     "away_team_division": 1,
     "slug": "/contests/2391107/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391107/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391107/box_score",
+    "contest_id": 2391107
   },
   {
     "year": 2023,
@@ -104,7 +108,8 @@
     "away_team_division": 1,
     "neutral_site": "Hoover, Ala.",
     "slug": "/contests/2391324/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391324/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391324/box_score",
+    "contest_id": 2391324
   },
   {
     "year": 2023,
@@ -126,7 +131,8 @@
     "away_team_division": 1,
     "neutral_site": "Hoover Met Stadium, Hoover Met Stadium",
     "slug": "/contests/2391615/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391615/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391615/box_score",
+    "contest_id": 2391615
   },
   {
     "year": 2023,
@@ -148,7 +154,8 @@
     "away_team_division": 1,
     "neutral_site": "Hoover Met Stadium, Hoover Met Stadium",
     "slug": "/contests/2392052/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392052/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392052/box_score",
+    "contest_id": 2392052
   },
   {
     "year": 2023,
@@ -169,7 +176,8 @@
     "away_team_slug": "/team/331/16340",
     "away_team_division": 1,
     "slug": "/contests/2392358/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392358/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392358/box_score",
+    "contest_id": 2392358
   },
   {
     "year": 2023,
@@ -190,7 +198,8 @@
     "away_team_slug": "/team/331/16340",
     "away_team_division": 1,
     "slug": "/contests/2392496/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392496/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392496/box_score",
+    "contest_id": 2392496
   },
   {
     "year": 2023,
@@ -211,7 +220,8 @@
     "away_team_slug": "/team/505/16340",
     "away_team_division": 1,
     "slug": "/contests/2392660/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392660/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392660/box_score",
+    "contest_id": 2392660
   },
   {
     "year": 2023,
@@ -232,7 +242,8 @@
     "away_team_slug": "/team/505/16340",
     "away_team_division": 1,
     "slug": "/contests/2392941/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392941/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392941/box_score",
+    "contest_id": 2392941
   },
   {
     "year": 2023,
@@ -240,16 +251,21 @@
     "date": "03/05/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 10,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Northern Ky.",
     "away_team_id": 505,
+    "away_team_score": 5,
     "away_team_conference": "Horizon",
     "away_team_conference_id": 881,
     "away_team_slug": "/team/505/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393377/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393377/box_score",
+    "contest_id": 2393377
   },
   {
     "year": 2023,
@@ -257,16 +273,21 @@
     "date": "03/07/2023",
     "home_team": "Kentucky",
     "home_team_id": 334,
+    "home_team_score": 6,
     "home_team_conference": "SEC",
     "home_team_conference_id": 911,
     "home_team_slug": "/team/334/16340",
     "home_team_division": 1,
     "away_team": "Murray St.",
     "away_team_id": 454,
+    "away_team_score": 2,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/454/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393738/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393738/box_score",
+    "contest_id": 2393738
   },
   {
     "year": 2023,
@@ -274,16 +295,44 @@
     "date": "03/10/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 3,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Milwaukee",
     "away_team_id": 797,
+    "away_team_score": 2,
     "away_team_conference": "Horizon",
     "away_team_conference_id": 881,
     "away_team_slug": "/team/797/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "innings": "8",
+    "slug": "/contests/2423838/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423838/box_score",
+    "contest_id": 2423838
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/10/2023",
+    "home_team": "Murray St.",
+    "home_team_id": 454,
+    "home_team_score": 2,
+    "home_team_conference": "MVC",
+    "home_team_conference_id": 884,
+    "home_team_slug": "/team/454/16340",
+    "home_team_division": 1,
+    "away_team": "Milwaukee",
+    "away_team_id": 797,
+    "away_team_score": 3,
+    "away_team_conference": "Horizon",
+    "away_team_conference_id": 881,
+    "away_team_slug": "/team/797/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2423873/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423873/box_score",
+    "contest_id": 2423873
   },
   {
     "year": 2023,
@@ -291,33 +340,21 @@
     "date": "03/11/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 8,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Milwaukee",
     "away_team_id": 797,
+    "away_team_score": 3,
     "away_team_conference": "Horizon",
     "away_team_conference_id": 881,
     "away_team_slug": "/team/797/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/12/2023",
-    "home_team": "Murray St.",
-    "home_team_id": 454,
-    "home_team_conference": "MVC",
-    "home_team_conference_id": 884,
-    "home_team_slug": "/team/454/16340",
-    "home_team_division": 1,
-    "away_team": "Milwaukee",
-    "away_team_id": 797,
-    "away_team_conference": "Horizon",
-    "away_team_conference_id": 881,
-    "away_team_slug": "/team/797/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394543/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394543/box_score",
+    "contest_id": 2394543
   },
   {
     "year": 2023,
@@ -325,16 +362,21 @@
     "date": "03/14/2023",
     "home_team": "North Ala.",
     "home_team_id": 487,
+    "home_team_score": 6,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/487/16340",
     "home_team_division": 1,
     "away_team": "Murray St.",
     "away_team_id": 454,
+    "away_team_score": 9,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/454/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395481/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395481/box_score",
+    "contest_id": 2395481
   },
   {
     "year": 2023,
@@ -342,16 +384,21 @@
     "date": "03/17/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 15,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Southern Ind.",
     "away_team_id": 661,
+    "away_team_score": 1,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/661/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395972/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395972/box_score",
+    "contest_id": 2395972
   },
   {
     "year": 2023,
@@ -359,16 +406,21 @@
     "date": "03/18/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 11,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Southern Ind.",
     "away_team_id": 661,
+    "away_team_score": 4,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/661/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396477/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396477/box_score",
+    "contest_id": 2396477
   },
   {
     "year": 2023,
@@ -376,50 +428,43 @@
     "date": "03/19/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 13,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Southern Ind.",
     "away_team_id": 661,
+    "away_team_score": 3,
     "away_team_conference": "OVC",
     "away_team_conference_id": 902,
     "away_team_slug": "/team/661/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396781/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396781/box_score",
+    "contest_id": 2396781
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/21/2023",
+    "date": "03/22/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 3,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Austin Peay",
     "away_team_id": 43,
+    "away_team_score": 10,
     "away_team_conference": "ASUN",
     "away_team_conference_id": 920,
     "away_team_slug": "/team/43/16340",
-    "away_team_division": 1
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/24/2023",
-    "home_team": "Murray St.",
-    "home_team_id": 454,
-    "home_team_conference": "MVC",
-    "home_team_conference_id": 884,
-    "home_team_slug": "/team/454/16340",
-    "home_team_division": 1,
-    "away_team": "Bradley",
-    "away_team_id": 72,
-    "away_team_conference": "MVC",
-    "away_team_conference_id": 884,
-    "away_team_slug": "/team/72/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397025/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397025/box_score",
+    "contest_id": 2397025
   },
   {
     "year": 2023,
@@ -427,16 +472,21 @@
     "date": "03/25/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 5,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Bradley",
     "away_team_id": 72,
+    "away_team_score": 9,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/72/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397625/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397625/box_score",
+    "contest_id": 2397625
   },
   {
     "year": 2023,
@@ -444,16 +494,43 @@
     "date": "03/26/2023",
     "home_team": "Murray St.",
     "home_team_id": 454,
+    "home_team_score": 3,
     "home_team_conference": "MVC",
     "home_team_conference_id": 884,
     "home_team_slug": "/team/454/16340",
     "home_team_division": 1,
     "away_team": "Bradley",
     "away_team_id": 72,
+    "away_team_score": 4,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/72/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397334/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397334/box_score",
+    "contest_id": 2397334
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/26/2023",
+    "home_team": "Murray St.",
+    "home_team_id": 454,
+    "home_team_score": 11,
+    "home_team_conference": "MVC",
+    "home_team_conference_id": 884,
+    "home_team_slug": "/team/454/16340",
+    "home_team_division": 1,
+    "away_team": "Bradley",
+    "away_team_id": 72,
+    "away_team_score": 1,
+    "away_team_conference": "MVC",
+    "away_team_conference_id": 884,
+    "away_team_slug": "/team/72/16340",
+    "away_team_division": 1,
+    "slug": "/contests/2398070/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398070/box_score",
+    "contest_id": 2398070
   },
   {
     "year": 2023,
@@ -461,16 +538,21 @@
     "date": "03/28/2023",
     "home_team": "Austin Peay",
     "home_team_id": 43,
+    "home_team_score": 6,
     "home_team_conference": "ASUN",
     "home_team_conference_id": 920,
     "home_team_slug": "/team/43/16340",
     "home_team_division": 1,
     "away_team": "Murray St.",
     "away_team_id": 454,
+    "away_team_score": 12,
     "away_team_conference": "MVC",
     "away_team_conference_id": 884,
     "away_team_slug": "/team/454/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398559/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398559/box_score",
+    "contest_id": 2398559
   },
   {
     "year": 2023,

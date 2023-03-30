@@ -18,7 +18,8 @@
     "away_team_slug": "/team/23008/16340",
     "away_team_division": 3,
     "slug": "/contests/2389879/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389879/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389879/box_score",
+    "contest_id": 2389879
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/1044/16340",
     "away_team_division": 3,
     "slug": "/contests/2390088/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390088/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390088/box_score",
+    "contest_id": 2390088
   },
   {
     "year": 2023,
@@ -61,7 +63,8 @@
     "away_team_division": 3,
     "innings": "9",
     "slug": "/contests/2407888/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407888/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407888/box_score",
+    "contest_id": 2407888
   },
   {
     "year": 2023,
@@ -82,7 +85,8 @@
     "away_team_slug": "/team/1044/16340",
     "away_team_division": 3,
     "slug": "/contests/2390159/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390159/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390159/box_score",
+    "contest_id": 2390159
   },
   {
     "year": 2023,
@@ -103,7 +107,8 @@
     "away_team_slug": "/team/30197/16340",
     "away_team_division": 3,
     "slug": "/contests/2390308/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390308/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390308/box_score",
+    "contest_id": 2390308
   },
   {
     "year": 2023,
@@ -124,7 +129,8 @@
     "away_team_slug": "/team/30197/16340",
     "away_team_division": 3,
     "slug": "/contests/2408326/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408326/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408326/box_score",
+    "contest_id": 2408326
   },
   {
     "year": 2023,
@@ -145,7 +151,8 @@
     "away_team_slug": "/team/424/16340",
     "away_team_division": 3,
     "slug": "/contests/2390949/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390949/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390949/box_score",
+    "contest_id": 2390949
   },
   {
     "year": 2023,
@@ -166,7 +173,8 @@
     "away_team_slug": "/team/755/16340",
     "away_team_division": 3,
     "slug": "/contests/2421616/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2421616/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2421616/box_score",
+    "contest_id": 2421616
   },
   {
     "year": 2023,
@@ -187,7 +195,8 @@
     "away_team_slug": "/team/755/16340",
     "away_team_division": 3,
     "slug": "/contests/2408804/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408804/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408804/box_score",
+    "contest_id": 2408804
   },
   {
     "year": 2023,
@@ -209,7 +218,8 @@
     "away_team_division": 3,
     "innings": "9",
     "slug": "/contests/2393180/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393180/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393180/box_score",
+    "contest_id": 2393180
   },
   {
     "year": 2023,
@@ -230,7 +240,8 @@
     "away_team_slug": "/team/1124/16340",
     "away_team_division": 3,
     "slug": "/contests/2408618/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408618/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408618/box_score",
+    "contest_id": 2408618
   },
   {
     "year": 2023,
@@ -238,33 +249,43 @@
     "date": "03/05/2023",
     "home_team": "Oglethorpe",
     "home_team_id": 2713,
+    "home_team_score": 1,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/2713/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 8,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393547/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393547/box_score",
+    "contest_id": 2393547
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/07/2023",
-    "home_team": "Hendrix",
-    "home_team_id": 1124,
-    "home_team_conference": "SAA",
-    "home_team_conference_id": 30169,
-    "home_team_slug": "/team/1124/16340",
+    "home_team": "East Tex. Baptist",
+    "home_team_id": 1062,
+    "home_team_score": 13,
+    "home_team_conference": "ASC",
+    "home_team_conference_id": 14825,
+    "home_team_slug": "/team/1062/16340",
     "home_team_division": 3,
-    "away_team": "East Tex. Baptist",
-    "away_team_id": 1062,
-    "away_team_conference": "ASC",
-    "away_team_conference_id": 14825,
-    "away_team_slug": "/team/1062/16340",
-    "away_team_division": 3
+    "away_team": "Hendrix",
+    "away_team_id": 1124,
+    "away_team_score": 4,
+    "away_team_conference": "SAA",
+    "away_team_conference_id": 30169,
+    "away_team_slug": "/team/1124/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2393890/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393890/box_score",
+    "contest_id": 2393890
   },
   {
     "year": 2023,
@@ -272,67 +293,87 @@
     "date": "03/10/2023",
     "home_team": "Hendrix",
     "home_team_id": 1124,
+    "home_team_score": 4,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
     "away_team": "Sewanee",
     "away_team_id": 652,
+    "away_team_score": 2,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/652/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2423866/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423866/box_score",
+    "contest_id": 2423866
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/11/2023",
+    "date": "03/10/2023",
     "home_team": "Hendrix",
     "home_team_id": 1124,
+    "home_team_score": 8,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
     "away_team": "Sewanee",
     "away_team_id": 652,
+    "away_team_score": 0,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/652/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2423901/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2423901/box_score",
+    "contest_id": 2423901
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/11/2023",
+    "date": "03/12/2023",
     "home_team": "Hendrix",
     "home_team_id": 1124,
+    "home_team_score": 12,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
     "away_team": "Sewanee",
     "away_team_id": 652,
+    "away_team_score": 2,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/652/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394793/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394793/box_score",
+    "contest_id": 2394793
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/14/2023",
-    "home_team": "East Tex. Baptist",
-    "home_team_id": 1062,
-    "home_team_conference": "ASC",
-    "home_team_conference_id": 14825,
-    "home_team_slug": "/team/1062/16340",
+    "home_team": "Hendrix",
+    "home_team_id": 1124,
+    "home_team_score": 6,
+    "home_team_conference": "SAA",
+    "home_team_conference_id": 30169,
+    "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
-    "away_team": "Hendrix",
-    "away_team_id": 1124,
-    "away_team_conference": "SAA",
-    "away_team_conference_id": 30169,
-    "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team": "East Tex. Baptist",
+    "away_team_id": 1062,
+    "away_team_score": 4,
+    "away_team_conference": "ASC",
+    "away_team_conference_id": 14825,
+    "away_team_slug": "/team/1062/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2395451/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395451/box_score",
+    "contest_id": 2395451
   },
   {
     "year": 2023,
@@ -340,16 +381,21 @@
     "date": "03/18/2023",
     "home_team": "Millsaps",
     "home_team_id": 426,
+    "home_team_score": 10,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/426/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 4,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396381/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396381/box_score",
+    "contest_id": 2396381
   },
   {
     "year": 2023,
@@ -357,16 +403,21 @@
     "date": "03/18/2023",
     "home_team": "Millsaps",
     "home_team_id": 426,
+    "home_team_score": 2,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/426/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 10,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409543/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409543/box_score",
+    "contest_id": 2409543
   },
   {
     "year": 2023,
@@ -374,34 +425,44 @@
     "date": "03/19/2023",
     "home_team": "Millsaps",
     "home_team_id": 426,
+    "home_team_score": 6,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/426/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 3,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396639/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396639/box_score",
+    "contest_id": 2396639
   },
   {
     "year": 2023,
     "season_id": 16340,
     "date": "03/20/2023",
-    "home_team": "Carroll (WI) ",
-    "home_team_id": 120,
-    "home_team_conference": "CCIW",
-    "home_team_conference_id": 836,
-    "home_team_slug": "/team/120/16340",
+    "home_team": "Hendrix",
+    "home_team_id": 1124,
+    "home_team_score": 5,
+    "home_team_conference": "SAA",
+    "home_team_conference_id": 30169,
+    "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
-    "away_team": "Hendrix",
-    "away_team_id": 1124,
-    "away_team_conference": "SAA",
-    "away_team_conference_id": 30169,
-    "away_team_slug": "/team/1124/16340",
+    "away_team": "Wis.-Whitewater ",
+    "away_team_id": 805,
+    "away_team_score": 10,
+    "away_team_conference": "WIAC",
+    "away_team_conference_id": 1473,
+    "away_team_slug": "/team/805/16340",
     "away_team_division": 3,
-    "neutral_site": "Pensicaola, FL"
+    "neutral_site": "Pensacola, FL",
+    "slug": "/contests/2425543/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425543/box_score",
+    "contest_id": 2425543
   },
   {
     "year": 2023,
@@ -409,17 +470,22 @@
     "date": "03/21/2023",
     "home_team": "Hendrix",
     "home_team_id": 1124,
+    "home_team_score": 8,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
     "away_team": "Wis.-Platteville ",
     "away_team_id": 800,
+    "away_team_score": 1,
     "away_team_conference": "WIAC",
     "away_team_conference_id": 1473,
     "away_team_slug": "/team/800/16340",
     "away_team_division": 3,
-    "neutral_site": "Pensacola, FL"
+    "neutral_site": "Pensacola, FL",
+    "slug": "/contests/2396915/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396915/box_score",
+    "contest_id": 2396915
   },
   {
     "year": 2023,
@@ -427,17 +493,22 @@
     "date": "03/22/2023",
     "home_team": "Grinnell ",
     "home_team_id": 264,
+    "home_team_score": 3,
     "home_team_conference": "MWC",
     "home_team_conference_id": 23119,
     "home_team_slug": "/team/264/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 9,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
     "away_team_division": 3,
-    "neutral_site": "Pensacola, FL"
+    "neutral_site": "Pensacola, FL",
+    "slug": "/contests/2397132/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397132/box_score",
+    "contest_id": 2397132
   },
   {
     "year": 2023,
@@ -445,17 +516,22 @@
     "date": "03/23/2023",
     "home_team": "Hendrix",
     "home_team_id": 1124,
+    "home_team_score": 7,
     "home_team_conference": "SAA",
     "home_team_conference_id": 30169,
     "home_team_slug": "/team/1124/16340",
     "home_team_division": 3,
     "away_team": "Wis.-Whitewater ",
     "away_team_id": 805,
+    "away_team_score": 4,
     "away_team_conference": "WIAC",
     "away_team_conference_id": 1473,
     "away_team_slug": "/team/805/16340",
     "away_team_division": 3,
-    "neutral_site": "Pensacola, FL"
+    "neutral_site": "Pensacola, FL",
+    "slug": "/contests/2425823/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425823/box_score",
+    "contest_id": 2425823
   },
   {
     "year": 2023,
@@ -463,16 +539,21 @@
     "date": "03/28/2023",
     "home_team": "Ozarks (AR)",
     "home_team_id": 23008,
+    "home_team_score": 5,
     "home_team_conference": "ASC",
     "home_team_conference_id": 14825,
     "home_team_slug": "/team/23008/16340",
     "home_team_division": 3,
     "away_team": "Hendrix",
     "away_team_id": 1124,
+    "away_team_score": 17,
     "away_team_conference": "SAA",
     "away_team_conference_id": 30169,
     "away_team_slug": "/team/1124/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398573/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398573/box_score",
+    "contest_id": 2398573
   },
   {
     "year": 2023,

@@ -20,6 +20,8 @@ suppressPackageStartupMessages(suppressMessages(library(rvest, lib.loc = lib_pat
 suppressPackageStartupMessages(suppressMessages(library(httr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(tictoc, lib.loc = lib_path)))
 
+source("R/utils.R")
+
 # this should give you the same IP as step 1 (ignore the "\n")
 option_list <- list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
@@ -42,17 +44,7 @@ rescrape <- opt$r
 #   dplyr::slice(533:540)
 # a very common library for webscraping
 # rvest::html_text(xml2::read_html("http://checkip.amazonaws.com/"))
-proxies <- data.table::fread("../proxylist.csv")
-select_proxy <- function(proxies) {
-  proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
-  proxy_selected <- proxies %>%
-    dplyr::filter(.data$ip == proxy)
-  my_proxy <- httr::use_proxy(url = proxy_selected$ip,
-                              port = proxy_selected$port,
-                              username = proxy_selected$login,
-                              password = proxy_selected$password)
-  return(my_proxy)
-}
+
 ncaa_baseball_pbp_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball pbp parse for {y}! (Rescrape: {tolower(rescrape)})")
   sched <- data.table::fread(paste0("ncaa/schedules/csv/ncaa_baseball_schedule_", y, ".csv"))
@@ -81,7 +73,7 @@ ncaa_baseball_pbp_scrape <- function(y) {
       tryCatch(
         expr = {
 
-          proxy <- select_proxy(proxies)
+          proxy <- select_proxy()
           df <- baseballr::ncaa_pbp(
             game_info_url = x,
             proxy = proxy

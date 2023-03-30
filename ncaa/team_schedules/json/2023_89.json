@@ -13,7 +13,8 @@
     "away_team_slug": "/team/89/16340",
     "away_team_division": 3,
     "slug": "/contests/2389682/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2389682/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2389682/box_score",
+    "contest_id": 2389682
   },
   {
     "year": 2023,
@@ -30,7 +31,8 @@
     "away_team_division": 3,
     "innings": "8",
     "slug": "/contests/2412105/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2412105/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2412105/box_score",
+    "contest_id": 2412105
   },
   {
     "year": 2023,
@@ -51,7 +53,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2390028/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390028/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390028/box_score",
+    "contest_id": 2390028
   },
   {
     "year": 2023,
@@ -72,7 +75,8 @@
     "away_team_slug": "/team/557/16340",
     "away_team_division": 3,
     "slug": "/contests/2408915/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408915/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408915/box_score",
+    "contest_id": 2408915
   },
   {
     "year": 2023,
@@ -93,7 +97,8 @@
     "away_team_slug": "/team/89/16340",
     "away_team_division": 3,
     "slug": "/contests/2390349/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390349/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390349/box_score",
+    "contest_id": 2390349
   },
   {
     "year": 2023,
@@ -114,7 +119,8 @@
     "away_team_slug": "/team/516/16340",
     "away_team_division": 3,
     "slug": "/contests/2390619/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390619/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390619/box_score",
+    "contest_id": 2390619
   },
   {
     "year": 2023,
@@ -135,7 +141,8 @@
     "away_team_slug": "/team/516/16340",
     "away_team_division": 3,
     "slug": "/contests/2408944/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408944/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408944/box_score",
+    "contest_id": 2408944
   },
   {
     "year": 2023,
@@ -143,45 +150,21 @@
     "date": "03/05/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 11,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "Neb. Wesleyan",
     "away_team_id": 462,
+    "away_team_score": 6,
     "away_team_conference": "American Rivers",
     "away_team_conference_id": 864,
     "away_team_slug": "/team/462/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/05/2023",
-    "home_team": "Caltech",
-    "home_team_id": 89,
-    "home_team_conference": "SCIAC",
-    "home_team_conference_id": 910,
-    "home_team_slug": "/team/89/16340",
-    "home_team_division": 3,
-    "away_team": "Neb. Wesleyan",
-    "away_team_id": 462,
-    "away_team_conference": "American Rivers",
-    "away_team_conference_id": 864,
-    "away_team_slug": "/team/462/16340",
-    "away_team_division": 3
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/10/2023",
-    "home_team": "Caltech",
-    "home_team_id": 89,
-    "home_team_conference": "SCIAC",
-    "home_team_conference_id": 910,
-    "home_team_slug": "/team/89/16340",
-    "home_team_division": 3,
-    "away_team": "Bethesda (CA)"
+    "away_team_division": 3,
+    "slug": "/contests/2408777/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408777/box_score",
+    "contest_id": 2408777
   },
   {
     "year": 2023,
@@ -189,11 +172,16 @@
     "date": "03/11/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 4,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
-    "away_team": "Bethesda (CA)"
+    "away_team": "Bethesda (CA)",
+    "away_team_score": 12,
+    "slug": "/contests/2393003/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393003/box_score",
+    "contest_id": 2393003
   },
   {
     "year": 2023,
@@ -201,11 +189,33 @@
     "date": "03/11/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 2,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
-    "away_team": "Bethesda (CA)"
+    "away_team": "Bethesda (CA)",
+    "away_team_score": 8,
+    "slug": "/contests/2408170/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2408170/box_score",
+    "contest_id": 2408170
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/12/2023",
+    "home_team": "Caltech",
+    "home_team_id": 89,
+    "home_team_score": 4,
+    "home_team_conference": "SCIAC",
+    "home_team_conference_id": 910,
+    "home_team_slug": "/team/89/16340",
+    "home_team_division": 3,
+    "away_team": "Bethesda (CA)",
+    "away_team_score": 9,
+    "slug": "/contests/2424186/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2424186/box_score",
+    "contest_id": 2424186
   },
   {
     "year": 2023,
@@ -213,17 +223,22 @@
     "date": "03/19/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 14,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "Oberlin ",
     "away_team_id": 515,
+    "away_team_score": 15,
     "away_team_conference": "NCAC",
     "away_team_conference_id": 897,
     "away_team_slug": "/team/515/16340",
     "away_team_division": 3,
-    "neutral_site": "Tucson, AZ"
+    "neutral_site": "Tucson, AZ",
+    "slug": "/contests/2421118/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2421118/box_score",
+    "contest_id": 2421118
   },
   {
     "year": 2023,
@@ -231,17 +246,22 @@
     "date": "03/20/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 3,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "Carleton ",
     "away_team_id": 118,
+    "away_team_score": 7,
     "away_team_conference": "MIAC",
     "away_team_conference_id": 882,
     "away_team_slug": "/team/118/16340",
     "away_team_division": 3,
-    "neutral_site": "Tucson, AZ"
+    "neutral_site": "Tucson, AZ",
+    "slug": "/contests/2418712/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2418712/box_score",
+    "contest_id": 2418712
   },
   {
     "year": 2023,
@@ -249,17 +269,22 @@
     "date": "03/20/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 18,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "Luther ",
     "away_team_id": 372,
+    "away_team_score": 8,
     "away_team_conference": "American Rivers",
     "away_team_conference_id": 864,
     "away_team_slug": "/team/372/16340",
     "away_team_division": 3,
-    "neutral_site": "Tuscon, AZ"
+    "neutral_site": "Tuscon, AZ",
+    "slug": "/contests/2418341/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2418341/box_score",
+    "contest_id": 2418341
   },
   {
     "year": 2023,
@@ -267,17 +292,22 @@
     "date": "03/21/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 6,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "Oberlin ",
     "away_team_id": 515,
+    "away_team_score": 8,
     "away_team_conference": "NCAC",
     "away_team_conference_id": 897,
     "away_team_slug": "/team/515/16340",
     "away_team_division": 3,
-    "neutral_site": "Tucson, AZ"
+    "neutral_site": "Tucson, AZ",
+    "slug": "/contests/2421138/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2421138/box_score",
+    "contest_id": 2421138
   },
   {
     "year": 2023,
@@ -285,16 +315,21 @@
     "date": "03/24/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 4,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
     "away_team": "La Verne",
     "away_team_id": 341,
+    "away_team_score": 8,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
     "away_team_slug": "/team/341/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397442/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397442/box_score",
+    "contest_id": 2397442
   },
   {
     "year": 2023,
@@ -302,16 +337,21 @@
     "date": "03/25/2023",
     "home_team": "La Verne",
     "home_team_id": 341,
+    "home_team_score": 5,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/341/16340",
     "home_team_division": 3,
     "away_team": "Caltech",
     "away_team_id": 89,
+    "away_team_score": 0,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
     "away_team_slug": "/team/89/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397722/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397722/box_score",
+    "contest_id": 2397722
   },
   {
     "year": 2023,
@@ -319,16 +359,21 @@
     "date": "03/25/2023",
     "home_team": "La Verne",
     "home_team_id": 341,
+    "home_team_score": 18,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/341/16340",
     "home_team_division": 3,
     "away_team": "Caltech",
     "away_team_id": 89,
+    "away_team_score": 0,
     "away_team_conference": "SCIAC",
     "away_team_conference_id": 910,
     "away_team_slug": "/team/89/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409841/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409841/box_score",
+    "contest_id": 2409841
   },
   {
     "year": 2023,
@@ -336,11 +381,16 @@
     "date": "03/28/2023",
     "home_team": "Caltech",
     "home_team_id": 89,
+    "home_team_score": 11,
     "home_team_conference": "SCIAC",
     "home_team_conference_id": 910,
     "home_team_slug": "/team/89/16340",
     "home_team_division": 3,
-    "away_team": "Bethesda (CA)"
+    "away_team": "Bethesda (CA)",
+    "away_team_score": 5,
+    "slug": "/contests/2391110/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2391110/box_score",
+    "contest_id": 2391110
   },
   {
     "year": 2023,

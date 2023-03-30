@@ -18,7 +18,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2390441/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390441/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390441/box_score",
+    "contest_id": 2390441
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2390763/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390763/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390763/box_score",
+    "contest_id": 2390763
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2408282/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408282/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408282/box_score",
+    "contest_id": 2408282
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2390970/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390970/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390970/box_score",
+    "contest_id": 2390970
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2391305/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391305/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391305/box_score",
+    "contest_id": 2391305
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2391600/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391600/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391600/box_score",
+    "contest_id": 2391600
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2392030/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392030/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392030/box_score",
+    "contest_id": 2392030
   },
   {
     "year": 2023,
@@ -166,7 +173,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2392539/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392539/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392539/box_score",
+    "contest_id": 2392539
   },
   {
     "year": 2023,
@@ -187,7 +195,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2392828/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392828/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392828/box_score",
+    "contest_id": 2392828
   },
   {
     "year": 2023,
@@ -209,7 +218,8 @@
     "away_team_division": 1,
     "innings": "10",
     "slug": "/contests/2407778/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2407778/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2407778/box_score",
+    "contest_id": 2407778
   },
   {
     "year": 2023,
@@ -230,7 +240,8 @@
     "away_team_slug": "/team/342/16340",
     "away_team_division": 1,
     "slug": "/contests/2393166/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2393166/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2393166/box_score",
+    "contest_id": 2393166
   },
   {
     "year": 2023,
@@ -238,16 +249,21 @@
     "date": "03/05/2023",
     "home_team": "High Point",
     "home_team_id": 19651,
+    "home_team_score": 15,
     "home_team_conference": "Big South",
     "home_team_conference_id": 826,
     "home_team_slug": "/team/19651/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2393557/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393557/box_score",
+    "contest_id": 2393557
   },
   {
     "year": 2023,
@@ -255,33 +271,43 @@
     "date": "03/10/2023",
     "home_team": "Stony Brook",
     "home_team_id": 683,
+    "home_team_score": 11,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/683/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 6,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394222/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394222/box_score",
+    "contest_id": 2394222
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/11/2023",
+    "date": "03/10/2023",
     "home_team": "Stony Brook",
     "home_team_id": 683,
+    "home_team_score": 9,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/683/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 7,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394534/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394534/box_score",
+    "contest_id": 2394534
   },
   {
     "year": 2023,
@@ -289,33 +315,43 @@
     "date": "03/12/2023",
     "home_team": "Stony Brook",
     "home_team_id": 683,
+    "home_team_score": 9,
     "home_team_conference": "CAA",
     "home_team_conference_id": 837,
     "home_team_slug": "/team/683/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 3,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2394943/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394943/box_score",
+    "contest_id": 2394943
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/14/2023",
+    "date": "03/16/2023",
     "home_team": "Fordham",
     "home_team_id": 236,
+    "home_team_score": 11,
     "home_team_conference": "Atlantic 10",
     "home_team_conference_id": 820,
     "home_team_slug": "/team/236/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 1,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395430/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395430/box_score",
+    "contest_id": 2395430
   },
   {
     "year": 2023,
@@ -323,16 +359,21 @@
     "date": "03/17/2023",
     "home_team": "Binghamton",
     "home_team_id": 62,
+    "home_team_score": 4,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/62/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 1,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2395958/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395958/box_score",
+    "contest_id": 2395958
   },
   {
     "year": 2023,
@@ -340,33 +381,43 @@
     "date": "03/18/2023",
     "home_team": "Binghamton",
     "home_team_id": 62,
+    "home_team_score": 5,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/62/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 4,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425191/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425191/box_score",
+    "contest_id": 2425191
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/19/2023",
+    "date": "03/18/2023",
     "home_team": "Binghamton",
     "home_team_id": 62,
+    "home_team_score": 14,
     "home_team_conference": "America East",
     "home_team_conference_id": 845,
     "home_team_slug": "/team/62/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 6,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2396463/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396463/box_score",
+    "contest_id": 2396463
   },
   {
     "year": 2023,
@@ -374,50 +425,65 @@
     "date": "03/22/2023",
     "home_team": "Rutgers",
     "home_team_id": 587,
+    "home_team_score": 13,
     "home_team_conference": "Big Ten",
     "home_team_conference_id": 827,
     "home_team_slug": "/team/587/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 8,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2397087/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397087/box_score",
+    "contest_id": 2397087
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/24/2023",
     "home_team": "Bucknell",
     "home_team_id": 83,
+    "home_team_score": 11,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/83/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 0,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425869/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425869/box_score",
+    "contest_id": 2425869
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/25/2023",
+    "date": "03/24/2023",
     "home_team": "Bucknell",
     "home_team_id": 83,
+    "home_team_score": 20,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/83/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 2,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2425953/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2425953/box_score",
+    "contest_id": 2425953
   },
   {
     "year": 2023,
@@ -425,16 +491,21 @@
     "date": "03/26/2023",
     "home_team": "Navy",
     "home_team_id": 726,
+    "home_team_score": 0,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/726/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 8,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398295/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398295/box_score",
+    "contest_id": 2398295
   },
   {
     "year": 2023,
@@ -442,16 +513,21 @@
     "date": "03/26/2023",
     "home_team": "Navy",
     "home_team_id": 726,
+    "home_team_score": 6,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/726/16340",
     "home_team_division": 1,
     "away_team": "Lafayette",
     "away_team_id": 342,
+    "away_team_score": 4,
     "away_team_conference": "Patriot",
     "away_team_conference_id": 838,
     "away_team_slug": "/team/342/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2410282/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2410282/box_score",
+    "contest_id": 2410282
   },
   {
     "year": 2023,
@@ -459,16 +535,21 @@
     "date": "03/28/2023",
     "home_team": "Lafayette",
     "home_team_id": 342,
+    "home_team_score": 6,
     "home_team_conference": "Patriot",
     "home_team_conference_id": 838,
     "home_team_slug": "/team/342/16340",
     "home_team_division": 1,
     "away_team": "Penn",
     "away_team_id": 540,
+    "away_team_score": 5,
     "away_team_conference": "Ivy League",
     "away_team_conference_id": 865,
     "away_team_slug": "/team/540/16340",
-    "away_team_division": 1
+    "away_team_division": 1,
+    "slug": "/contests/2398479/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398479/box_score",
+    "contest_id": 2398479
   },
   {
     "year": 2023,

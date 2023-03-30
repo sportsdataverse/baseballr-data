@@ -18,7 +18,8 @@
     "away_team_slug": "/team/491/16340",
     "away_team_division": 3,
     "slug": "/contests/2390103/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390103/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390103/box_score",
+    "contest_id": 2390103
   },
   {
     "year": 2023,
@@ -39,7 +40,8 @@
     "away_team_slug": "/team/491/16340",
     "away_team_division": 3,
     "slug": "/contests/2390180/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390180/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390180/box_score",
+    "contest_id": 2390180
   },
   {
     "year": 2023,
@@ -60,7 +62,8 @@
     "away_team_slug": "/team/773/16340",
     "away_team_division": 3,
     "slug": "/contests/2390608/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2390608/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2390608/box_score",
+    "contest_id": 2390608
   },
   {
     "year": 2023,
@@ -81,7 +84,8 @@
     "away_team_slug": "/team/773/16340",
     "away_team_division": 3,
     "slug": "/contests/2408933/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408933/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408933/box_score",
+    "contest_id": 2408933
   },
   {
     "year": 2023,
@@ -102,7 +106,8 @@
     "away_team_slug": "/team/75/16340",
     "away_team_division": 3,
     "slug": "/contests/2391225/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391225/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391225/box_score",
+    "contest_id": 2391225
   },
   {
     "year": 2023,
@@ -123,7 +128,8 @@
     "away_team_slug": "/team/25719/16340",
     "away_team_division": 3,
     "slug": "/contests/2391733/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2391733/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2391733/box_score",
+    "contest_id": 2391733
   },
   {
     "year": 2023,
@@ -144,7 +150,8 @@
     "away_team_slug": "/team/25719/16340",
     "away_team_division": 3,
     "slug": "/contests/2408333/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2408333/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2408333/box_score",
+    "contest_id": 2408333
   },
   {
     "year": 2023,
@@ -165,28 +172,8 @@
     "away_team_slug": "/team/526/16340",
     "away_team_division": 3,
     "slug": "/contests/2392192/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392192/box_score"
-  },
-  {
-    "year": 2023,
-    "season_id": 16340,
-    "date": "03/04/2023",
-    "home_team": "Piedmont",
-    "home_team_id": 21830,
-    "home_team_score": 14,
-    "home_team_conference": "CCS",
-    "home_team_conference_id": 30251,
-    "home_team_slug": "/team/21830/16340",
-    "home_team_division": 3,
-    "away_team": "Bridgewater (VA)",
-    "away_team_id": 75,
-    "away_team_score": 2,
-    "away_team_conference": "ODAC",
-    "away_team_conference_id": 903,
-    "away_team_slug": "/team/75/16340",
-    "away_team_division": 3,
-    "slug": "/contests/2422661/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2422661/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392192/box_score",
+    "contest_id": 2392192
   },
   {
     "year": 2023,
@@ -208,7 +195,30 @@
     "away_team_division": 3,
     "neutral_site": "Demorest, GA",
     "slug": "/contests/2392599/box_score",
-    "game_info_url": "https://stats.ncaa.org/contests/2392599/box_score"
+    "game_info_url": "https://stats.ncaa.org/contests/2392599/box_score",
+    "contest_id": 2392599
+  },
+  {
+    "year": 2023,
+    "season_id": 16340,
+    "date": "03/04/2023",
+    "home_team": "Piedmont",
+    "home_team_id": 21830,
+    "home_team_score": 14,
+    "home_team_conference": "CCS",
+    "home_team_conference_id": 30251,
+    "home_team_slug": "/team/21830/16340",
+    "home_team_division": 3,
+    "away_team": "Bridgewater (VA)",
+    "away_team_id": 75,
+    "away_team_score": 2,
+    "away_team_conference": "ODAC",
+    "away_team_conference_id": 903,
+    "away_team_slug": "/team/75/16340",
+    "away_team_division": 3,
+    "slug": "/contests/2422661/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2422661/box_score",
+    "contest_id": 2422661
   },
   {
     "year": 2023,
@@ -216,16 +226,21 @@
     "date": "03/05/2023",
     "home_team": "Piedmont",
     "home_team_id": 21830,
+    "home_team_score": 7,
     "home_team_conference": "CCS",
     "home_team_conference_id": 30251,
     "home_team_slug": "/team/21830/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 1,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2392821/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2392821/box_score",
+    "contest_id": 2392821
   },
   {
     "year": 2023,
@@ -233,16 +248,21 @@
     "date": "03/07/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 14,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Mary Baldwin",
     "away_team_id": 389,
+    "away_team_score": 2,
     "away_team_conference": "USA South",
     "away_team_conference_id": 842,
     "away_team_slug": "/team/389/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2393860/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2393860/box_score",
+    "contest_id": 2393860
   },
   {
     "year": 2023,
@@ -250,29 +270,36 @@
     "date": "03/08/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 5,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Chris. Newport",
     "away_team_id": 139,
+    "away_team_score": 4,
     "away_team_conference": "C2C",
     "away_team_conference_id": 15810,
     "away_team_slug": "/team/139/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2394056/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2394056/box_score",
+    "contest_id": 2394056
   },
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/12/2023",
+    "date": "03/11/2023",
     "home_team": "Lynchburg",
     "home_team_id": 374,
+    "home_team_score": 9,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/374/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 3,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
@@ -281,19 +308,24 @@
   {
     "year": 2023,
     "season_id": 16340,
-    "date": "03/12/2023",
+    "date": "03/11/2023",
     "home_team": "Lynchburg",
     "home_team_id": 374,
+    "home_team_score": 6,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/374/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 5,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2424026/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2424026/box_score",
+    "contest_id": 2424026
   },
   {
     "year": 2023,
@@ -301,16 +333,21 @@
     "date": "03/14/2023",
     "home_team": "Mary Washington",
     "home_team_id": 390,
+    "home_team_score": 7,
     "home_team_conference": "C2C",
     "home_team_conference_id": 15810,
     "home_team_slug": "/team/390/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 3,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395428/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395428/box_score",
+    "contest_id": 2395428
   },
   {
     "year": 2023,
@@ -318,16 +355,21 @@
     "date": "03/15/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 20,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Mary Baldwin",
     "away_team_id": 389,
+    "away_team_score": 5,
     "away_team_conference": "USA South",
     "away_team_conference_id": 842,
     "away_team_slug": "/team/389/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2395687/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2395687/box_score",
+    "contest_id": 2395687
   },
   {
     "year": 2023,
@@ -335,16 +377,22 @@
     "date": "03/18/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 6,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Averett",
     "away_team_id": 44,
+    "away_team_score": 5,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/44/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "innings": "10",
+    "slug": "/contests/2396281/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396281/box_score",
+    "contest_id": 2396281
   },
   {
     "year": 2023,
@@ -352,16 +400,21 @@
     "date": "03/18/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 11,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Averett",
     "away_team_id": 44,
+    "away_team_score": 10,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/44/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2409260/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2409260/box_score",
+    "contest_id": 2409260
   },
   {
     "year": 2023,
@@ -369,16 +422,21 @@
     "date": "03/19/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 10,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Trinity (CT)",
     "away_team_id": 713,
+    "away_team_score": 8,
     "away_team_conference": "NESCAC",
     "away_team_conference_id": 12817,
     "away_team_slug": "/team/713/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396708/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396708/box_score",
+    "contest_id": 2396708
   },
   {
     "year": 2023,
@@ -386,16 +444,21 @@
     "date": "03/21/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 8,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Hood",
     "away_team_id": 8404,
+    "away_team_score": 0,
     "away_team_conference": "MAC Commonwealth",
     "away_team_conference_id": 28744,
     "away_team_slug": "/team/8404/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2396999/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2396999/box_score",
+    "contest_id": 2396999
   },
   {
     "year": 2023,
@@ -403,16 +466,21 @@
     "date": "03/22/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 1,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Shenandoah",
     "away_team_id": 637,
+    "away_team_score": 4,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/637/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397181/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397181/box_score",
+    "contest_id": 2397181
   },
   {
     "year": 2023,
@@ -420,16 +488,21 @@
     "date": "03/25/2023",
     "home_team": "Va. Wesleyan",
     "home_team_id": 745,
+    "home_team_score": 8,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/745/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 10,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2397767/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2397767/box_score",
+    "contest_id": 2397767
   },
   {
     "year": 2023,
@@ -437,16 +510,21 @@
     "date": "03/25/2023",
     "home_team": "Va. Wesleyan",
     "home_team_id": 745,
+    "home_team_score": 9,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/745/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 5,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2410008/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2410008/box_score",
+    "contest_id": 2410008
   },
   {
     "year": 2023,
@@ -454,16 +532,21 @@
     "date": "03/28/2023",
     "home_team": "Wash. & Lee",
     "home_team_id": 752,
+    "home_team_score": 5,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/752/16340",
     "home_team_division": 3,
     "away_team": "Bridgewater (VA)",
     "away_team_id": 75,
+    "away_team_score": 6,
     "away_team_conference": "ODAC",
     "away_team_conference_id": 903,
     "away_team_slug": "/team/75/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398516/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398516/box_score",
+    "contest_id": 2398516
   },
   {
     "year": 2023,
@@ -471,16 +554,21 @@
     "date": "03/29/2023",
     "home_team": "Bridgewater (VA)",
     "home_team_id": 75,
+    "home_team_score": 6,
     "home_team_conference": "ODAC",
     "home_team_conference_id": 903,
     "home_team_slug": "/team/75/16340",
     "home_team_division": 3,
     "away_team": "Mary Washington",
     "away_team_id": 390,
+    "away_team_score": 8,
     "away_team_conference": "C2C",
     "away_team_conference_id": 15810,
     "away_team_slug": "/team/390/16340",
-    "away_team_division": 3
+    "away_team_division": 3,
+    "slug": "/contests/2398673/box_score",
+    "game_info_url": "https://stats.ncaa.org/contests/2398673/box_score",
+    "contest_id": 2398673
   },
   {
     "year": 2023,
