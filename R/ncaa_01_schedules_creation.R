@@ -20,6 +20,8 @@ suppressPackageStartupMessages(suppressMessages(library(rvest, lib.loc = lib_pat
 suppressPackageStartupMessages(suppressMessages(library(httr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(tictoc, lib.loc = lib_path)))
 
+source("R/utils.R")
+
 option_list <- list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
     type = "integer", help = "Start year of the seasons to process"),
@@ -35,17 +37,8 @@ years_vec <- opt$s:opt$e
 rescrape <- opt$r
 # y <- 2023
 # rvest::html_text(xml2::read_html("http://checkip.amazonaws.com/"))
-proxies <- data.table::fread("../proxylist.csv")
-select_proxy <- function(proxies) {
-  proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
-  proxy_selected <- proxies %>%
-    dplyr::filter(.data$ip == proxy)
-  my_proxy <- httr::use_proxy(url = proxy_selected$ip,
-                              port = proxy_selected$port,
-                              username = proxy_selected$login,
-                              password = proxy_selected$password)
-  return(my_proxy)
-}
+
+
 ncaa_baseball_schedules_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
   ncaa_teams_lookup <- baseballr::load_ncaa_baseball_teams() %>%
@@ -61,7 +54,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
       df <- data.frame()
       tryCatch(
         expr = {
-          proxy <- select_proxy(proxies)
+          proxy <- select_proxy()
           df <- baseballr::ncaa_schedule_info(team_id = x, year = y, proxy = proxy)
           data.table::fwrite(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
           jsonlite::write_json(df, glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
