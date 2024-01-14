@@ -25,17 +25,20 @@ source("R/utils.R")
 # this should give you the same IP as step 1 (ignore the "\n")
 option_list <- list(
   make_option(c("-s", "--start_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
-    type = "integer", help = "Start year of the seasons to process"),
+              type = "integer", help = "Start year of the seasons to process"),
   make_option(c("-e", "--end_year"), action = "store", default = baseballr:::most_recent_ncaa_baseball_season(),
-    type = "integer", help = "End year of the seasons to process"),
+              type = "integer", help = "End year of the seasons to process"),
   make_option(c("-r", "--rescrape"), action = "store", default = FALSE,
-    type = "logical", help = "Rescrape the raw JSON files from web api")
+              type = "logical", help = "Rescrape the raw JSON files from web api")
 )
 opt <- parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
-years_vec <- opt$s:opt$e
-rescrape <- opt$r
+years_vec <- 2023
+rescrape <- TRUE
+
+
+proxies_df <- get_proxy_ips()
 # years_vec <- 2022
 # rescrape <- FALSE
 # y <- 2022
@@ -59,21 +62,21 @@ ncaa_baseball_pbp_scrape <- function(y) {
     dplyr::mutate(
       contest_id = as.integer(stringr::str_extract(.data$game_info_url, "\\d+"))) %>%
     dplyr::distinct()
-
+  
   pbp_dir <- data.frame(contest_id = pbp_dir)
   if (rescrape == FALSE) {
     pbp_links <- pbp_links %>%
       dplyr::filter(!(.data$contest_id %in% pbp_dir$contest_id))
   }
-
+  
   if (nrow(pbp_links) > 0) {
-    future::plan("multisession")
+    future::plan("sequential")
     pbp_g <- furrr::future_map(pbp_links$game_info_url, function(x) {
       df <- data.frame()
       tryCatch(
         expr = {
-
-          proxy <- select_proxy()
+          
+          proxy <- select_proxy(proxies = proxies_df)
           df <- baseballr::ncaa_pbp(
             game_info_url = x,
             proxy = proxy
@@ -84,10 +87,10 @@ ncaa_baseball_pbp_scrape <- function(y) {
           arrow::write_parquet(df, glue::glue("ncaa/contest_pbp/parquet/{contest_id}.parquet"))
           saveRDS(df, glue::glue("ncaa/contest_pbp/rds/{contest_id}.rds"))
           jsonlite::write_json(df, glue::glue("ncaa/contest_pbp/json/{contest_id}.json"), pretty = 2)
-          Sys.sleep(3)
+          Sys.sleep(1)
         },
         error = function(e) {
-          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_info_url: {x}, proxy: {proxy}"))
+          message(glue::glue("{Sys.time()}: Invalid arguments provided for game_info_url: {x}"))
         },
         finally = {
         }
@@ -97,7 +100,7 @@ ncaa_baseball_pbp_scrape <- function(y) {
     .options = furrr::furrr_options(seed = TRUE)) %>%
       baseballr:::rbindlist_with_attrs()
   }
-
+  
   pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/contest_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
     dplyr::filter(!is.na(.data$game_info_url)) %>%
@@ -105,15 +108,15 @@ ncaa_baseball_pbp_scrape <- function(y) {
     dplyr::mutate(
       contest_id = as.integer(stringr::str_extract(.data$game_info_url, "\\d+"))) %>%
     dplyr::distinct()
-
+  
   pbp_games_dir <- data.frame(contest_id = pbp_games_dir)
-
+  
   contest_pbp_files_year <- pbp_links %>%
     dplyr::filter((.data$contest_id %in% pbp_games_dir$contest_id)) %>%
     dplyr::select("contest_id")
-
+  
   contest_pbp_files_year <- contest_pbp_files_year$contest_id[!is.na(contest_pbp_files_year$contest_id)]
-
+  
   future::plan("multisession")
   ncaa_contest_pbps <- furrr::future_map(contest_pbp_files_year, function(x) {
     df <- arrow::read_parquet(glue::glue("ncaa/contest_pbp/parquet/{x}.parquet"))
@@ -121,13 +124,13 @@ ncaa_baseball_pbp_scrape <- function(y) {
   },
   .options = furrr::furrr_options(seed = TRUE)) %>%
     baseballr:::rbindlist_with_attrs()
-
+  
   ncaa_contest_pbps <- ncaa_contest_pbps %>%
     dplyr::arrange(desc(.data$game_date))
-
+  
   ncaa_contest_pbps <- ncaa_contest_pbps %>%
     baseballr:::make_baseballr_data("NCAA Play-by-Play Information from baseballr data repository", Sys.time())
-
+  
   sportsdataversedata::sportsdataverse_save(
     data_frame = ncaa_contest_pbps,
     file_name =  glue::glue("ncaa_baseball_pbp_{y}"),
