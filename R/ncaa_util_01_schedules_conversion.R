@@ -1,6 +1,9 @@
 lib_path <- Sys.getenv("R_LIBS")
+# Fall back to the default library paths when R_LIBS is unset (CI installs
+# deps into the default .libPaths(); lib.loc = NULL / lib = NULL search there).
+if (!nzchar(lib_path)) lib_path <- NULL
 if (!requireNamespace("pacman", quietly = TRUE)){
-  install.packages("pacman", lib = Sys.getenv("R_LIBS"), repo = "http://cran.us.r-project.org")
+  install.packages("pacman", lib = lib_path, repo = "http://cran.us.r-project.org")
 }
 suppressPackageStartupMessages(suppressMessages(library(cli, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(dplyr, lib.loc = lib_path)))

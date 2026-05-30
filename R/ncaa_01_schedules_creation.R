@@ -1,6 +1,11 @@
 lib_path <- Sys.getenv("R_LIBS")
+# Fall back to the default library paths when R_LIBS is unset. The external
+# scheduler exports R_LIBS to a pre-warmed library, but CI installs deps via
+# r-lib/actions setup-r-dependencies into the default .libPaths(); lib.loc =
+# NULL (and lib = NULL) make R search/install there instead of a literal "".
+if (!nzchar(lib_path)) lib_path <- NULL
 if (!requireNamespace("pacman", quietly = TRUE)){
-  install.packages("pacman", lib = Sys.getenv("R_LIBS"), repo = "http://cran.us.r-project.org")
+  install.packages("pacman", lib = lib_path, repo = "http://cran.us.r-project.org")
 }
 suppressPackageStartupMessages(suppressMessages(library(cli, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(dplyr, lib.loc = lib_path)))

@@ -1,4 +1,7 @@
 lib_path <- Sys.getenv("R_LIBS")
+# Fall back to the default library paths when R_LIBS is unset (CI installs
+# deps into the default .libPaths(); lib.loc = NULL searches there).
+if (!nzchar(lib_path)) lib_path <- NULL
 
 suppressPackageStartupMessages(suppressMessages(library(dplyr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(httr, lib.loc = lib_path)))
