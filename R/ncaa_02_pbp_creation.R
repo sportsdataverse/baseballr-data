@@ -34,8 +34,8 @@ option_list <- list(
 opt <- parse_args(OptionParser(option_list = option_list))
 options(stringsAsFactors = FALSE)
 options(scipen = 999)
-years_vec <- 2023
-rescrape <- TRUE
+years_vec <- opt$s:opt$e
+rescrape <- opt$r
 
 
 proxies_df <- get_proxy_ips()
@@ -75,7 +75,7 @@ ncaa_baseball_pbp_scrape <- function(y) {
       df <- data.frame()
       tryCatch(
         expr = {
-          
+
           proxy <- select_proxy(proxies = proxies_df)
           df <- baseballr::ncaa_pbp(
             game_info_url = x,

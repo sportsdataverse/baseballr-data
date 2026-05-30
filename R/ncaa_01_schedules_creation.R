@@ -37,7 +37,7 @@ years_vec <- opt$s:opt$e
 rescrape <- opt$r
 # y <- 2023
 # rvest::html_text(xml2::read_html("http://checkip.amazonaws.com/"))
-
+proxies_df <- get_proxy_ips()
 
 ncaa_baseball_schedules_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")
@@ -54,7 +54,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
       df <- data.frame()
       tryCatch(
         expr = {
-          proxy <- select_proxy()
+          proxy <- select_proxy(proxies = proxies_df)
           df <- baseballr::ncaa_schedule_info(team_id = x, year = y, proxy = proxy)
           data.table::fwrite(df, glue::glue("ncaa/team_schedules/csv/{y}_{x}.csv"))
           jsonlite::write_json(df, glue::glue("ncaa/team_schedules/json/{y}_{x}.json"), pretty = 2)
