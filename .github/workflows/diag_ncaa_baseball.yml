@@ -1,0 +1,41 @@
+name: DIAG NCAA Baseball schedule probe
+
+# Throwaway diagnostic: runs R/diag_ncaa_schedule.R to inspect what
+# baseballr::ncaa_schedule_info() returns for 2025 vs 2026 through the proxy.
+# Manual dispatch only. Delete once the 2026 scrape issue is understood.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Setting up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Setting up R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 1
+          extra-packages: |
+            BillPetti/baseballr@development_branch
+            sportsdataverse/sportsdataverse-data
+            ropensci/piggyback
+
+      - name: Run diagnostic probe
+        env:
+          PROXY_KEY: ${{ secrets.PROXY_KEY }}
+          PROXY_PKG: ${{ secrets.PROXY_PKG }}
+          PROXY_ENDPOINT: ${{ secrets.PROXY_ENDPOINT }}
+        run: Rscript R/diag_ncaa_schedule.R
