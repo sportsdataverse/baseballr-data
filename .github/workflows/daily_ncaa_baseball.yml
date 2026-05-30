@@ -1,0 +1,89 @@
+name: Update NCAA Baseball Data
+
+on:
+  schedule:
+    # NCAA baseball season runs ~mid-Feb through late June: refresh daily.
+    - cron: "0 11 * 2-6 *"
+    # Off-season (Jul-Jan): refresh on the 1st of the month.
+    - cron: "0 11 1 1,7-12 *"
+  repository_dispatch:
+    types: [daily_ncaa_baseball_data]
+  workflow_dispatch:
+    inputs:
+      start_year:
+        required: false
+        description: "Start Year (e.g., 2024)"
+        type: string
+      end_year:
+        required: false
+        description: "End Year (e.g., 2024)"
+        type: string
+      rescrape:
+        required: false
+        description: "Rescrape raw JSON from stats.ncaa.org (TRUE/FALSE)"
+        type: string
+        default: "FALSE"
+
+jobs:
+  update_ncaa_baseball_data:
+    runs-on: ${{ matrix.config.os }}
+    name: Update NCAA Baseball Data ${{ inputs.start_year }}-${{ inputs.end_year }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: "ubuntu-latest", r: "release" }
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      START_YEAR: ${{ inputs.start_year }}
+      END_YEAR: ${{ inputs.end_year }}
+      RESCRAPE: ${{ inputs.rescrape }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setting up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Setting up R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 1
+          extra-packages: |
+            sportsdataverse/baseballr
+            sportsdataverse/sportsdataverse-data
+            ropensci/piggyback
+
+      - name: Resolve year range from dispatch payload
+        if: ${{ github.event.client_payload.event_name == 'daily_ncaa_baseball_data' }}
+        shell: bash
+        run: |
+          echo START_YEAR=$(echo "${{ github.event.client_payload.commit_message }}" | grep -o -E '[0-9]+' | head -1) >> $GITHUB_ENV
+          echo END_YEAR=$(echo "${{ github.event.client_payload.commit_message }}" | grep -o -E '[0-9]+' | tail -1) >> $GITHUB_ENV
+
+      - name: Default to most recent season when inputs are empty
+        if: ${{ env.START_YEAR == '' }}
+        shell: bash
+        run: |
+          echo START_YEAR=$(Rscript -e "cat(baseballr:::most_recent_ncaa_baseball_season())") >> $GITHUB_ENV
+          echo END_YEAR=$(Rscript -e "cat(baseballr:::most_recent_ncaa_baseball_season())") >> $GITHUB_ENV
+
+      - name: Default rescrape flag
+        if: ${{ env.RESCRAPE == '' }}
+        shell: bash
+        run: echo "RESCRAPE=FALSE" >> $GITHUB_ENV
+
+      - name: Update NCAA Baseball Data ${{ env.START_YEAR }}-${{ env.END_YEAR }}
+        shell: bash
+        env:
+          # Cross-repo write access to sportsdataverse/sportsdataverse-data releases.
+          GITHUB_PAT: ${{ secrets.SDV_GH_TOKEN }}
+        run: |
+          bash scripts/daily_ncaa_baseball_R_processor.sh -s "${{ env.START_YEAR }}" -e "${{ env.END_YEAR }}" -r "${{ env.RESCRAPE }}"
