@@ -122,6 +122,27 @@ statcast/                             # Historical Statcast monthly extracts (pa
   `PROXY_ENDPOINT`. These are required for the per-team scrape loop in
   `ncaa_01_schedules_creation.R` (NCAA aggressively rate-limits direct
   IPs). Don't commit credentials; CI provides them via Actions secrets.
+  - `get_proxy_ips()` returns a pool with columns `ip`, `port_http`,
+    `login`, `password`. `select_proxy()` returns the **httr2-shaped
+    named list** `list(url = "http://HOST:PORT", username, password)` —
+    NOT an `httr::use_proxy()` object — because baseballr's
+    `request_with_proxy()` (on `BillPetti/baseballr@development_branch`,
+    the pinned remote) routes through `httr2::req_proxy()` and spreads
+    the list by name. Returning an httr v1 object makes every request
+    fail with baseballr's "Invalid arguments provided".
+  - `select_proxy()` hands out IPs **round-robin** (shuffle once, cycle
+    the whole pool before any repeat) per process, so each `furrr`
+    worker rotates independently — minimises per-IP request rate.
+- **Proxy preflight (fail-fast)**: both scrape scripts call
+  `preflight_proxy_check(proxies_df)` right after `get_proxy_ips()`. It
+  probes `stats.ncaa.org` through up to 5 rotating proxies and
+  `cli_abort`s if all return 403/errors, so a blocked pool fails in
+  seconds with a clear message instead of silently scraping nothing for
+  ~30 min and crashing at assembly. **NCAA (Akamai) blocks by IP and
+  403s datacenter proxies** — the scrape needs a working
+  **residential/mobile** pool. A green preflight is the prerequisite for
+  any successful run; if it aborts, the proxy service is the problem,
+  not this repo's code.
 - **Parallelism**: scrape loops use `future::plan("multisession")` +
   `furrr::future_map()`. Memory pressure is real for full-season pbp
   rebuilds — keep `Sys.sleep(5)` calls inside the team loop to space out
@@ -168,9 +189,13 @@ the `(Start: YYYY End: YYYY)` shape intact.
   for `baseballr::scrape_statcast_savant()` consumers. Do not extend the
   daily flow to overwrite them without confirming the downstream loader
   contract.
-- `R/utils.R` defines `select_proxy()` twice (the second redefinition
-  shadows the first). This is a known minor bug; don't "fix" by deleting
-  one without verifying which signature the production scrapers expect.
+- `baseballr` is pinned to `BillPetti/baseballr@development_branch` in
+  `DESCRIPTION` Remotes and the workflow `extra-packages`, **not**
+  `master`. `master`'s `DESCRIPTION` still declares the now-archived
+  CRAN package `qs (>= 0.25.1)`, which breaks `setup-r-dependencies`
+  resolution; the dev branch dropped it. (`qs` is referenced nowhere in
+  baseballr's code — it's a stale declared dep.) Revisit if the qs
+  removal lands on `master`.
 - `make_baseballr_data()` lives in the `baseballr` package's non-exported
   namespace and is referenced via `baseballr:::` (triple colon). Same for
   `rbindlist_with_attrs()` and `most_recent_ncaa_baseball_season()`. If
