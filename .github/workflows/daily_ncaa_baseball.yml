@@ -85,5 +85,13 @@ jobs:
         env:
           # Cross-repo write access to sportsdataverse/sportsdataverse-data releases.
           GITHUB_PAT: ${{ secrets.SDV_GH_TOKEN }}
+          # Proxy rotation for the per-team / per-game scrape loops in
+          # R/ncaa_01_schedules_creation.R and R/ncaa_02_pbp_creation.R.
+          # Required: R/utils.R::get_proxy_ips() reads these directly and
+          # NCAA aggressively rate-limits direct runner IPs, so the
+          # schedule scrape fails without them.
+          PROXY_KEY: ${{ secrets.PROXY_KEY }}
+          PROXY_PKG: ${{ secrets.PROXY_PKG }}
+          PROXY_ENDPOINT: ${{ secrets.PROXY_ENDPOINT }}
         run: |
           bash scripts/daily_ncaa_baseball_R_processor.sh -s "${{ env.START_YEAR }}" -e "${{ env.END_YEAR }}" -r "${{ env.RESCRAPE }}"
