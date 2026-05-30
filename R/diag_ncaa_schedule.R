@@ -55,19 +55,18 @@ cli::cli_h2("Raw proxied fetch of schedule pages")
 raw_fetch <- function(team_id, year) {
   id <- sid$id[sid$season == year][1]
   url <- paste0("https://stats.ncaa.org/team/", team_id, "/", id)
-  px <- select_proxy(proxies = proxies_df)
+  px <- select_proxy(proxies = proxies_df)   # list(url=, username=, password=)
   out <- tryCatch({
-    resp <- httr::GET(
-      url,
-      httr::use_proxy(url = sub("^http://", "", strsplit(px$url, ":")[[1]][1]),
-                      port = as.integer(strsplit(sub("^http://", "", px$url), ":")[[1]][2]),
-                      username = px$username, password = px$password),
-      httr::user_agent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"),
-      httr::timeout(30)
-    )
-    body <- httr::content(resp, as = "text", encoding = "UTF-8")
+    # Mirror baseballr::request_with_proxy: httr2 request + req_proxy(list...).
+    req <- httr2::request(url)
+    req <- do.call(httr2::req_proxy, c(list(req), px))
+    req <- httr2::req_user_agent(req, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36")
+    req <- httr2::req_timeout(req, 30)
+    req <- httr2::req_error(req, is_error = function(resp) FALSE)  # don't throw on 4xx/5xx
+    resp <- httr2::req_perform(req)
+    body <- httr2::resp_body_string(resp)
     sprintf("team %s yr %s url=%s -> HTTP %s, %s bytes; has<fieldset>=%s has<table>=%s; head: %s",
-            team_id, year, url, httr::status_code(resp), nchar(body),
+            team_id, year, url, httr2::resp_status(resp), nchar(body),
             grepl("fieldset", body, ignore.case = TRUE),
             grepl("<table", body, ignore.case = TRUE),
             gsub("\\s+", " ", substr(body, 1, 240)))
