@@ -36,10 +36,18 @@ get_proxy_ips <- function(
 select_proxy <- function(proxies = get_proxy_ips()) {
   proxy <- sample(proxies$ip, 1)          # pick a random proxy from the list above
   proxy_selected <- proxies %>%
-    dplyr::filter(.data$ip == proxy)
-  my_proxy <- httr::use_proxy(url = proxy_selected$ip,
-                              port = as.integer(proxy_selected$port_http),
-                              username = proxy_selected$login,
-                              password = proxy_selected$password)
-  return(my_proxy)
+    dplyr::filter(.data$ip == proxy) %>%
+    dplyr::slice(1)                        # guard against duplicate IPs -> multi-row
+  # baseballr's request_with_proxy() (development_branch) routes NCAA requests
+  # through httr2::req_proxy() and expects a NAMED LIST, not an httr::use_proxy()
+  # object: list(url = "http://HOST:PORT", username = ..., password = ...). It
+  # does do.call(httr2::req_proxy, c(list(req), proxy)), so the list names must
+  # match req_proxy()'s args (url/username/password). An httr (v1) use_proxy()
+  # object has names proxy/proxyuserpwd/proxyport/proxyauth and errors there ->
+  # "Invalid arguments provided" for every team.
+  list(
+    url      = paste0("http://", proxy_selected$ip, ":", proxy_selected$port_http),
+    username = proxy_selected$login,
+    password = proxy_selected$password
+  )
 }
