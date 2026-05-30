@@ -13,8 +13,6 @@ suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = li
 suppressPackageStartupMessages(suppressMessages(library(magrittr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(jsonlite, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(purrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(furrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(future, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(progressr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_path)))
@@ -76,8 +74,7 @@ ncaa_baseball_pbp_scrape <- function(y) {
   }
   
   if (nrow(pbp_links) > 0) {
-    future::plan("sequential")
-    pbp_g <- furrr::future_map(pbp_links$game_info_url, function(x) {
+    pbp_g <- purrr::map(pbp_links$game_info_url, function(x) {
       df <- data.frame()
       tryCatch(
         expr = {
@@ -102,11 +99,10 @@ ncaa_baseball_pbp_scrape <- function(y) {
         }
       )
       return(df)
-    },
-    .options = furrr::furrr_options(seed = TRUE)) %>%
+    }) %>%
       baseballr:::rbindlist_with_attrs()
   }
-  
+
   pbp_games_dir <- as.integer(stringr::str_extract(list.files("ncaa/contest_pbp/parquet/"), "\\d+"))
   pbp_links <- sched %>%
     dplyr::filter(!is.na(.data$game_info_url)) %>%
@@ -123,12 +119,10 @@ ncaa_baseball_pbp_scrape <- function(y) {
   
   contest_pbp_files_year <- contest_pbp_files_year$contest_id[!is.na(contest_pbp_files_year$contest_id)]
   
-  future::plan("multisession")
-  ncaa_contest_pbps <- furrr::future_map(contest_pbp_files_year, function(x) {
+  ncaa_contest_pbps <- purrr::map(contest_pbp_files_year, function(x) {
     df <- arrow::read_parquet(glue::glue("ncaa/contest_pbp/parquet/{x}.parquet"))
     return(df)
-  },
-  .options = furrr::furrr_options(seed = TRUE)) %>%
+  }) %>%
     baseballr:::rbindlist_with_attrs()
   
   ncaa_contest_pbps <- ncaa_contest_pbps %>%

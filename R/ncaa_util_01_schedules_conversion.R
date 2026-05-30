@@ -11,8 +11,6 @@ suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = li
 suppressPackageStartupMessages(suppressMessages(library(magrittr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(jsonlite, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(purrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(furrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(future, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(progressr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_path)))
@@ -63,8 +61,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
   ifelse(!dir.exists(file.path("ncaa/team_schedules/json")), dir.create(file.path("ncaa/team_schedules/json")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/team_schedules/parquet")), dir.create(file.path("ncaa/team_schedules/parquet")), FALSE)
   if (rescrape == TRUE) {
-    future::plan("multisession")
-    ncaa_teams_schedule <- furrr::future_map(ncaa_teams_lookup$team_id, function(x) {
+    ncaa_teams_schedule <- purrr::map(ncaa_teams_lookup$team_id, function(x) {
       df <- data.frame()
       tryCatch(
         expr = {
@@ -81,8 +78,7 @@ ncaa_baseball_schedules_scrape <- function(y) {
         }
       )
       return(df)
-    },
-    .options = furrr::furrr_options(seed = TRUE)) %>%
+    }) %>%
       baseballr:::rbindlist_with_attrs()
   }
 
@@ -90,12 +86,10 @@ ncaa_baseball_schedules_scrape <- function(y) {
   team_schedules_files_year <- stringr::str_extract(team_schedules_files, glue::glue("{y}_\\d+.csv"))
   team_schedules_files_year <- team_schedules_files_year[!is.na(team_schedules_files_year)]
 
-  future::plan("multisession")
-  ncaa_teams_schedule <- furrr::future_map(team_schedules_files_year, function(x) {
+  ncaa_teams_schedule <- purrr::map(team_schedules_files_year, function(x) {
     df <- data.table::fread(glue::glue("ncaa/team_schedules/csv/{x}"))
     return(df)
-  },
-  .options = furrr::furrr_options(seed = TRUE)) %>%
+  }) %>%
     baseballr:::rbindlist_with_attrs()
   ifelse(!dir.exists(file.path("ncaa/schedules")), dir.create(file.path("ncaa/schedules")), FALSE)
   ifelse(!dir.exists(file.path("ncaa/schedules/csv")), dir.create(file.path("ncaa/schedules/csv")), FALSE)

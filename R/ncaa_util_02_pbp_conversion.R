@@ -11,8 +11,6 @@ suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = li
 suppressPackageStartupMessages(suppressMessages(library(magrittr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(jsonlite, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(purrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(furrr, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(future, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(progressr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_path)))
@@ -59,14 +57,12 @@ ncaa_baseball_pbp_compilation <- function(y) {
 
   game_pbp_files_year <- game_pbp_files_year$game_pbp_id[!is.na(game_pbp_files_year$game_pbp_id)]
 
-  future::plan("multisession")
-  ncaa_game_pbps <- furrr::future_map(game_pbp_files_year, function(x) {
+  ncaa_game_pbps <- purrr::map(game_pbp_files_year, function(x) {
     df <- readRDS(glue::glue("ncaa/game_pbp/rds/{x}.rds"))
     jsonlite::write_json(df, glue::glue("ncaa/game_pbp/json/{x}.json"), pretty = 2)
     arrow::write_parquet(df, glue::glue("ncaa/game_pbp/parquet/{x}.parquet"))
     return(df)
-  },
-.options = furrr::furrr_options(seed = TRUE)) %>%
+  }) %>%
     baseballr:::rbindlist_with_attrs()
 
   ncaa_game_pbps <- ncaa_game_pbps %>%

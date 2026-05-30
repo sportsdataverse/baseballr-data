@@ -131,8 +131,9 @@ statcast/                             # Historical Statcast monthly extracts (pa
     the list by name. Returning an httr v1 object makes every request
     fail with baseballr's "Invalid arguments provided".
   - `select_proxy()` hands out IPs **round-robin** (shuffle once, cycle
-    the whole pool before any repeat) per process, so each `furrr`
-    worker rotates independently — minimises per-IP request rate.
+    the whole pool before any repeat). The scrape loops run sequentially
+    (`purrr::map`) in one process, so this is a single continuous
+    rotation over the whole run — minimises per-IP request rate.
 - **Proxy preflight (fail-fast)**: both scrape scripts call
   `preflight_proxy_check(proxies_df)` right after `get_proxy_ips()`. It
   probes `stats.ncaa.org` through up to 5 rotating proxies and
@@ -143,10 +144,15 @@ statcast/                             # Historical Statcast monthly extracts (pa
   **residential/mobile** pool. A green preflight is the prerequisite for
   any successful run; if it aborts, the proxy service is the problem,
   not this repo's code.
-- **Parallelism**: scrape loops use `future::plan("multisession")` +
-  `furrr::future_map()`. Memory pressure is real for full-season pbp
-  rebuilds — keep `Sys.sleep(5)` calls inside the team loop to space out
-  requests.
+- **Sequential scrape loops**: the scrape/aggregation loops use
+  `purrr::map()` (not `furrr`/`future`) — one request at a time in a
+  single process. This is intentional: NCAA rate-limits, the loops are
+  sleep/I-O bound (`Sys.sleep()` per item), and sequential keeps the
+  proxy round-robin and request pacing predictable. Keep the
+  `Sys.sleep(5)` (schedule) / `Sys.sleep(1)` (pbp) calls inside the
+  loops to space out requests. Don't reintroduce parallelism without a
+  reason — it complicates rotation/pacing for little gain on a
+  sleep-bound workload.
 - **File-write trio**: every persisted table is written as CSV + RDS +
   Parquet. Consumers may load any of the three; don't drop one without
   updating `baseballr`'s loaders.

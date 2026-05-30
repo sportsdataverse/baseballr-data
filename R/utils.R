@@ -33,9 +33,9 @@ get_proxy_ips <- function(
   return(proxies)
 }
 
-# Per-process proxy rotation state. Each furrr worker is a separate R process
-# that re-sources this file, so every worker keeps its own independent rotation
-# (shuffled differently), which is exactly what we want for IP diversity.
+# Proxy rotation state. The scrape loops run sequentially (purrr::map) in a
+# single R process, so this is one continuous round-robin over the whole pool
+# for the entire run -- no IP is reused until every other has been tried.
 .proxy_rotation <- new.env(parent = emptyenv())
 
 # select_proxy hands out proxies in ROUND-ROBIN order: the pool is shuffled

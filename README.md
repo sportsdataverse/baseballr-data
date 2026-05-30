@@ -130,7 +130,7 @@ ncaa/
   source("R/0000_create_baseballr_releases_init.R")  # create empty release tags
   source("R/0001_push_existing_release_data.R")      # backfill historical seasons
   ```
-- **Dependencies:** `arrow`, `data.table`, `dplyr`, `furrr`/`future`, `glue`,
-  `purrr`, `rvest`, `httr`, `optparse`, plus `piggyback` (release creation) and
+- **Dependencies:** `arrow`, `data.table`, `dplyr`, `glue`,
+  `purrr`, `rvest`, `httr`, `httr2`, `optparse`, plus `piggyback` (release creation) and
   `sportsdataversedata` (`sportsdataverse_save()`); the GitHub CLI (`gh`) must be
   available on the runner for asset uploads.

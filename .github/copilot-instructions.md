@@ -68,9 +68,10 @@ write, and (for daily artifacts) also uploaded via
 - Load packages at the top with
   `suppressPackageStartupMessages(suppressMessages(library(pkg, lib.loc = lib_path)))`
   where `lib_path <- Sys.getenv("R_LIBS")`. CI provides a pre-warmed library.
-- Per-team / per-game iteration uses `furrr::future_map()` with
-  `future::plan("multisession")` and `furrr::furrr_options(seed = TRUE)`.
-  Keep `Sys.sleep(5)` between calls; NCAA aggressively rate-limits.
+- Per-team / per-game iteration uses `purrr::map()` (sequential, single
+  process — not `furrr`/`future`). Keep `Sys.sleep()` between calls; NCAA
+  aggressively rate-limits. Don't reintroduce parallelism: the loops are
+  sleep/I-O bound and sequential keeps proxy rotation + pacing predictable.
 - Proxy rotation: `get_proxy_ips()` + `select_proxy()` in `R/utils.R` read
   the `PROXY_KEY`, `PROXY_PKG`, `PROXY_ENDPOINT` env vars. CI supplies
   these via Actions secrets — never commit credentials.
