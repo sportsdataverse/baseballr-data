@@ -27,12 +27,11 @@ Imports:
     optparse (>= 1.6.2),
     progressr (>= 0.6.0),
     purrr (>= 1.0.0),
-    qs,
     rvest (>= 1.0.0),
     stringr (>= 1.3.0),
     tictoc
 Remotes:
     ropensci/piggyback,
-    sportsdataverse/baseballr,
+    BillPetti/baseballr,
     sportsdataverse/sportsdataverse-data
 Encoding: UTF-8

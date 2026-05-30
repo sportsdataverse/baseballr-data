@@ -12,7 +12,6 @@ suppressPackageStartupMessages(suppressMessages(library(furrr, lib.loc = lib_pat
 suppressPackageStartupMessages(suppressMessages(library(future, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(progressr, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(data.table, lib.loc = lib_path)))
-suppressPackageStartupMessages(suppressMessages(library(qs, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(arrow, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(glue, lib.loc = lib_path)))
 suppressPackageStartupMessages(suppressMessages(library(optparse, lib.loc = lib_path)))
