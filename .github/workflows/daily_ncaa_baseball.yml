@@ -57,7 +57,7 @@ jobs:
         with:
           cache-version: 1
           extra-packages: |
-            BillPetti/baseballr
+            BillPetti/baseballr@development_branch
             sportsdataverse/sportsdataverse-data
             ropensci/piggyback
 
