@@ -38,7 +38,7 @@ select_proxy <- function(proxies = get_proxy_ips()) {
   proxy_selected <- proxies %>%
     dplyr::filter(.data$ip == proxy)
   my_proxy <- httr::use_proxy(url = proxy_selected$ip,
-                              port = proxy_selected$port,
+                              port = as.integer(proxy_selected$port_http),
                               username = proxy_selected$login,
                               password = proxy_selected$password)
   return(my_proxy)
