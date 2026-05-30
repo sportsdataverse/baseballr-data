@@ -42,6 +42,9 @@ rescrape <- opt$r
 # y <- 2023
 # rvest::html_text(xml2::read_html("http://checkip.amazonaws.com/"))
 proxies_df <- get_proxy_ips()
+# Fail fast if the proxy pool is blocked by NCAA, instead of silently scraping
+# nothing for ~30 min and crashing at schedule assembly.
+preflight_proxy_check(proxies_df)
 
 ncaa_baseball_schedules_scrape <- function(y) {
   cli::cli_process_start("Starting NCAA Baseball schedule parse for {y}! (Rescrape: {tolower(rescrape)})")

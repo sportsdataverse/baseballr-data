@@ -43,6 +43,8 @@ rescrape <- opt$r
 
 
 proxies_df <- get_proxy_ips()
+# Fail fast if the proxy pool is blocked by NCAA before the long PBP loop.
+preflight_proxy_check(proxies_df)
 # years_vec <- 2022
 # rescrape <- FALSE
 # y <- 2022
