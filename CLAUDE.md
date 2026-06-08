@@ -126,8 +126,8 @@ statcast/                             # Historical Statcast monthly extracts (pa
     `login`, `password`. `select_proxy()` returns the **httr2-shaped
     named list** `list(url = "http://HOST:PORT", username, password)` —
     NOT an `httr::use_proxy()` object — because baseballr's
-    `request_with_proxy()` (on `BillPetti/baseballr@development_branch`,
-    the pinned remote) routes through `httr2::req_proxy()` and spreads
+    `request_with_proxy()` (on `BillPetti/baseballr`, the installed
+    remote) routes through `httr2::req_proxy()` and spreads
     the list by name. Returning an httr v1 object makes every request
     fail with baseballr's "Invalid arguments provided".
   - `select_proxy()` hands out IPs **round-robin** (shuffle once, cycle
@@ -195,13 +195,13 @@ the `(Start: YYYY End: YYYY)` shape intact.
   for `baseballr::scrape_statcast_savant()` consumers. Do not extend the
   daily flow to overwrite them without confirming the downstream loader
   contract.
-- `baseballr` is pinned to `BillPetti/baseballr@development_branch` in
-  `DESCRIPTION` Remotes and the workflow `extra-packages`, **not**
-  `master`. `master`'s `DESCRIPTION` still declares the now-archived
-  CRAN package `qs (>= 0.25.1)`, which breaks `setup-r-dependencies`
-  resolution; the dev branch dropped it. (`qs` is referenced nowhere in
-  baseballr's code — it's a stale declared dep.) Revisit if the qs
-  removal lands on `master`.
+- `baseballr` is installed from `BillPetti/baseballr` (bare — the default
+  `master` branch) in `DESCRIPTION` Remotes and the workflow
+  `extra-packages`. The 2.0.0 release merged the former
+  `development_branch` into `master` (httr2 migration, NCAA/proxy fixes,
+  and the drop of the now-archived `qs` dependency that previously broke
+  `setup-r-dependencies` resolution), so the bare remote resolves cleanly.
+  Do **not** re-pin to a branch.
 - `make_baseballr_data()` lives in the `baseballr` package's non-exported
   namespace and is referenced via `baseballr:::` (triple colon). Same for
   `rbindlist_with_attrs()` and `most_recent_ncaa_baseball_season()`. If

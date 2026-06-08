@@ -66,7 +66,7 @@ select_proxy <- function(proxies = get_proxy_ips()) {
   }
 
   row <- proxies[idx, , drop = FALSE]
-  # baseballr's request_with_proxy() (development_branch) routes NCAA requests
+  # baseballr's request_with_proxy() routes NCAA requests
   # through httr2::req_proxy() and expects a NAMED LIST, not an httr::use_proxy()
   # object: list(url = "http://HOST:PORT", username = ..., password = ...). It
   # does do.call(httr2::req_proxy, c(list(req), proxy)), so the list names must
