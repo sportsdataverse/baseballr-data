@@ -37,9 +37,11 @@ following release tags (visible in `R/ncaa_01_*.R` and `R/ncaa_02_*.R`):
 - `ncaa_baseball_pbp` — per-season play-by-play
 - `ncaa_baseball_teams` — team/season lookups
 
-There is no separate "data trigger" workflow here; the release push from
-the scrapers' `sportsdataverse_save()` call is what downstream loaders
-read.
+Downstream loaders read whatever the scrapers' `sportsdataverse_save()`
+call pushes to the release tags. The in-repo
+`.github/workflows/daily_ncaa_baseball.yml` is the scheduled driver (see
+**Daily Cron** below); it can also be kicked by a `repository_dispatch`
+event of type `daily_ncaa_baseball_data`.
 
 ## Build & Development Commands
 
@@ -91,16 +93,23 @@ R/                           # Scraper + aggregation scripts (see below)
 
 ```
 R/
+  0000_create_baseballr_releases_init.R   # One-time: create the sportsdataverse-data release tags
+  0001_push_existing_release_data.R       # One-time: backfill historical seasons into releases
   ncaa_01_schedules_creation.R   # Per-team schedule scrape -> unified per-season schedule
   ncaa_02_pbp_creation.R         # Per-game PBP scrape -> unified per-season PBP
   ncaa_season_ids.R              # Rebuild season_id lookup table
   ncaa_teams_info.R              # Refresh ncaa_team_lookup with current division 1-3 teams
+  ncaa_teams_season_team_id_backfill.R  # Backfill season_team_id (inst_team_list)
+  ncaa_teams_roster_gapfill.R           # Roster-based season_team_id gap-fill
   ncaa_util_01_schedules_conversion.R  # One-off format conversion utility
   ncaa_util_02_pbp_conversion.R        # One-off format conversion utility
   utils.R                        # get_proxy_ips(), select_proxy() — proxy rotation helpers
-daily_ncaa_baseball_scraper.sh        # CI/cron entry point: schedules
-daily_ncaa_baseball_pbp_scraper.sh    # CI/cron entry point: play-by-play
+scripts/
+  daily_ncaa_baseball_R_processor.sh    # Per-year orchestrator used by the CI workflow
+daily_ncaa_baseball_scraper.sh        # Manual entry point: schedules (git pull/add/commit/push wrapper)
+daily_ncaa_baseball_pbp_scraper.sh    # Manual entry point: play-by-play (same wrapper)
 bash_functions.sh                     # Helper for resolving current NCAA season from baseballr
+.github/workflows/daily_ncaa_baseball.yml  # Scheduled / dispatchable CI release-update workflow
 ncaa/                                 # Committed scraped output (consumed downstream)
 mlb/                                  # Cached MLB lookup .rda files
 statcast/                             # Historical Statcast monthly extracts (parquet + rds)
@@ -167,21 +176,38 @@ statcast/                             # Historical Statcast monthly extracts (pa
 
 ## Daily Cron
 
-The daily flow currently runs from an external scheduler (not a GitHub
-Actions cron in-repo, as there is no `.github/workflows/` directory at the
-time of writing). The two shell scripts are called in sequence:
+`.github/workflows/daily_ncaa_baseball.yml` (job name **Update NCAA
+Baseball Data**, `ubuntu-latest`, R release) is the in-repo driver. It
+fires on three triggers:
 
-1. `daily_ncaa_baseball_scraper.sh -s $YEAR -e $YEAR -r false`
-   → writes `ncaa/schedules/...`, publishes `ncaa_baseball_schedules`
-   release, commits `"NCAA Schedules update (Start: $START_YEAR End: $END_YEAR)"`.
-2. `daily_ncaa_baseball_pbp_scraper.sh -s $YEAR -e $YEAR -r false`
-   → writes `ncaa/pbp/...`, publishes `ncaa_baseball_pbp` release,
-   commits `"NCAA PBP update (Start: $START_YEAR End: $END_YEAR)"`.
+- **`schedule`** — daily during the season (`cron: "0 11 * 2-6 *"`,
+  Feb–Jun) and monthly off-season (`cron: "0 11 1 1,7-12 *"`, on the 1st).
+- **`repository_dispatch`** type `daily_ncaa_baseball_data` — the
+  `client_payload.commit_message` is grepped for the first/last integers
+  to resolve `START_YEAR`/`END_YEAR`.
+- **`workflow_dispatch`** — manual `start_year` / `end_year` / `rescrape`
+  inputs.
 
-Both shell scripts wrap the R invocation in `git pull` / `git add` /
-`git commit` / `git push`, so the cumulative diff lands on `main` in one
-push per dataset. The commit message format is parsed downstream — keep
-the `(Start: YYYY End: YYYY)` shape intact.
+When the year inputs are empty it defaults both to
+`baseballr:::most_recent_ncaa_baseball_season()`. The job runs
+`scripts/daily_ncaa_baseball_R_processor.sh -s $START_YEAR -e $END_YEAR
+-r $RESCRAPE`, which loops each season calling
+`R/ncaa_01_schedules_creation.R` then `R/ncaa_02_pbp_creation.R` (those
+scripts publish to the sportsdataverse-data releases via
+`sportsdataverse_save()`), then commits the local `ncaa/*` artifacts with
+subject `"NCAA Baseball Data Update (Start: $i End: $i)"` and pushes.
+
+Required Actions secrets: `SDV_GH_TOKEN` (cross-repo write to
+sportsdataverse-data releases — the per-step `GITHUB_PAT`) plus the
+`PROXY_KEY` / `PROXY_PKG` / `PROXY_ENDPOINT` proxy pool (the scrape
+otherwise 403s on GitHub runner IPs).
+
+The two **root** scripts `daily_ncaa_baseball_scraper.sh` and
+`daily_ncaa_baseball_pbp_scraper.sh` are the older manual per-dataset
+entry points; they commit `"NCAA Schedules update (Start: … End: …)"` /
+`"NCAA PBP update (Start: … End: …)"` respectively. All three commit
+subjects carry the load-bearing `(Start: YYYY End: YYYY)` shape — keep it
+intact.
 
 ## Project-Specific Gotchas
 
