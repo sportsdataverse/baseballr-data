@@ -1,0 +1,29 @@
+[project]
+name = "baseballr-data-python"
+version = "0.1.0"
+description = "Python producers for baseballr-data: NCAA pbp capture + the MLB model-dataset publisher (mlb_model_publish)."
+requires-python = ">=3.11"
+dependencies = [
+    "sportsdataverse>=0.0.71",
+    "polars>=1.0,<2.0",
+    "pyarrow>=15.0",
+    "requests>=2.28",
+    # stuff+/command+ score through bundled xgboost boosters; OAA/framing/xERA
+    # ride sklearn/scipy/numpy inside sdv-py.
+    "xgboost>=2.0",
+    "scikit-learn>=1.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+# The MLB model surface (T6.x) lives on sdv-py main, ahead of the last PyPI
+# release -- same pin pattern as the hoopR/wehoop data repos.
+[tool.uv.sources]
+sportsdataverse = { git = "https://github.com/sportsdataverse/sportsdataverse-py", branch = "main" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

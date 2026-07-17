@@ -1,0 +1,163 @@
+"""Build the four MLB model-dataset tags for the sportsdataverse-data release.
+
+Thin orchestration over :mod:`mlb_model_publish.computes`, mirroring the
+cfb/pwhl/mbb `*_model_publish` builders. Each tag publishes MULTIPLE stems per
+season (e.g. ``mlb_hitting_models`` carries expected-stats + xHR + projection
+parquet) under ONE release tag -- the nfl_model_artifacts precedent.
+
+The compute seams are injectable for hermetic tests; the real wiring lives in
+``computes.py``.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+# Statcast era. game_state could go deeper on statsapi, but a uniform floor
+# keeps the four tags' spans aligned (plan Phase 4).
+MIN_SEASON = 2015
+
+#: primary stem per tag -- the one whose emptiness means "season not built".
+_PRIMARY = {
+    "mlb_game_state": "mlb_re24_matrix",
+    "mlb_hitting_models": "mlb_expected_stats",
+    "mlb_fielding_models": "mlb_oaa",
+    "mlb_pitching_models": "mlb_xera",
+}
+
+
+def build_tag(
+    tag: str,
+    seasons: list[int],
+    out_dir,
+    *,
+    compute,
+) -> list[dict]:
+    """Shared season loop: compute -> refuse-empty -> write one parquet per stem.
+
+    Args:
+        tag: Release tag (keys :data:`_PRIMARY`).
+        seasons: Seasons to build, processed ascending (the hitting builder's
+            projection-history accumulation depends on this).
+        out_dir: Output directory (created if absent).
+        compute: ``compute(season) -> {stem: DataFrame}``.
+
+    Returns:
+        List of ``{"season", "rows" (primary stem), "stems": {stem: rows},
+        "paths"}`` dicts, in season order.
+
+    Raises:
+        ValueError: If a season is below :data:`MIN_SEASON`, or any returned
+            stem is empty (publishing a silently-empty asset is refused).
+    """
+    too_old = [s for s in seasons if s < MIN_SEASON]
+    if too_old:
+        raise ValueError(f"{tag}: seasons {too_old} predate the {MIN_SEASON} Statcast floor")
+
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    results: list[dict] = []
+    for season in sorted(seasons):
+        frames = compute(season)
+        empty = [stem for stem, df in frames.items() if df.height == 0]
+        if empty:
+            raise ValueError(
+                f"{tag}: season {season} produced 0 rows for {empty} -- refusing to publish an empty asset"
+            )
+        stems: dict[str, int] = {}
+        paths: list[str] = []
+        for stem, df in frames.items():
+            path = out_dir / f"{stem}_{season}.parquet"
+            df.write_parquet(path)
+            stems[stem] = df.height
+            paths.append(str(path))
+        primary = _PRIMARY[tag]
+        results.append({"season": season, "rows": stems.get(primary, 0), "stems": stems, "paths": paths})
+        print(f"{tag}: season={season} " + " ".join(f"{k}={v}" for k, v in stems.items()))
+    return results
+
+
+_CARD_META = {
+    "mlb_game_state": {
+        "grain": "re24_matrix: one row per base-out state; we_table: one row per state bucket; wpa: one row per plate appearance",
+        "source": "sdv-py mlb_run_expectancy / mlb_win_expectancy over statsapi.mlb.com regular-season pbp",
+        "gates": {
+            "re24_vs_tango_max_abs_diff": 0.05,
+            "wpa_spearman_vs_statsapi_wp": 0.95,
+            "per_game_wpa_sum_identity_tol": 0.02,
+        },
+        "notes": [
+            "Game results derive from each game's terminal result_*_score --"
+            " one statsapi pull per season, no second surface.",
+            "Leverage index is not published; compute it from we_table + pbp_base_out_states via sdv-py.",
+        ],
+    },
+    "mlb_hitting_models": {
+        "grain": "one row per batter-season (expected_stats, expected_hr); one row per batter per target season (batter_projection)",
+        "source": "sdv-py mlb_expected_stats / mlb_expected_home_runs / mlb_batter_projection over Baseball Savant",
+        "gates": {
+            "xwoba_spearman_same_input": 0.95,
+            "xba_spearman_same_input": 0.95,
+            "xhr_full_season_spearman_live": 0.90,
+        },
+        "notes": [
+            "The projection for season S trains only on seasons < S (as-of"
+            " enforced) and uses the accumulated expected-stats history, so"
+            " the backfill pays no extra Savant pulls.",
+            "The earliest built season carries no projection stem (no prior history inside the run).",
+        ],
+    },
+    "mlb_fielding_models": {
+        "grain": "oaa: one row per (fielder_id, position, season); catcher_framing: one row per catcher-season",
+        "source": "sdv-py mlb_fielding_oaa / mlb_catcher_framing over Baseball Savant (balls in play = type=='X')",
+        "gates": {
+            "oaa_full_season_pearson_live": 0.55,
+            "framing_full_season_pearson_live": 0.40,
+        },
+        "notes": [
+            "Observed full-season 2024: OAA 0.605, framing 0.468. Ceilings are"
+            " feature-capped -- the public per-pitch feed lacks fielder start"
+            " coordinates and receiving data.",
+            "Catcher throwing/blocking, baserunning and SB value are EXCLUDED:"
+            " data-ceiling-limited (live floors 0.03-0.073 vs 0.80+ design"
+            " targets; only ~23% of SB/CS attempts are narrated in this feed).",
+        ],
+    },
+    "mlb_pitching_models": {
+        "grain": "xera: one row per qualifying pitcher-season; stuff_plus: one row per (pitcher, pitch_type, season); command_plus: one row per pitcher-season",
+        "source": "sdv-py x_era / mlb_stuff_plus / mlb_command_plus over the pitch_features substrate (Baseball Savant)",
+        "gates": {
+            "xera_mae_vs_savant_xera": 0.30,
+            "stuff_plus_spearman_vs_run_value": 0.20,
+            "command_plus_spearman_vs_run_value": 0.04,
+        },
+        "notes": [
+            "Command+ carries a DIRECTIONAL gate only (0.04) -- treat it as a"
+            " weak ordinal signal, not a calibrated scale.",
+            "SIERA-like is not published (coefficients are unfitted literature"
+            " placeholders); pitch tunneling / sequence run value are not"
+            " published (no public oracle to gate against).",
+        ],
+    },
+}
+
+
+def write_card(tag: str, results: list[dict], out_dir) -> Path:
+    """Write the tag's model card next to the season parquet."""
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    meta = _CARD_META[tag]
+    card = {
+        "tag": tag,
+        "grain": meta["grain"],
+        "source": meta["source"],
+        "seasons": [r["season"] for r in results],
+        "rows_by_season": {str(r["season"]): r["stems"] for r in results},
+        "gate_anchors": meta["gates"],
+        "notes": meta["notes"],
+    }
+    path = out_dir / f"{tag}_card.json"
+    path.write_text(json.dumps(card, indent=2) + "\n", encoding="utf-8")
+    print(f"card: {path}")
+    return path
