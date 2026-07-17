@@ -27,6 +27,53 @@ _PRIMARY = {
 }
 
 
+#: the committed data tree at the repo root -- absolute, so a CLI run from
+#: python/ can never silently write a python/mlb_models/ shadow tree (the
+#: wbb_data_build --base lesson). Layout: mlb_models/{tag}/{format}/{stem}_{season}.{ext}
+REPO_TREE = Path(__file__).resolve().parents[2] / "mlb"
+
+
+def _write_stem(df, out_dir: Path, stem: str, season: int) -> list[str]:
+    """Write one stem-season in the family's three formats (parquet+csv+rds).
+
+    The rds is written natively (sdv-py ``write_rds``) with baseballr's S3
+    class chain + attribute pair so R consumers get the family print method;
+    unsigned columns are cast to Int64 for the rds only (R has no unsigned).
+    """
+    from datetime import datetime, timezone
+
+    import polars as pl
+    from sportsdataverse._rds import write_rds
+
+    paths: list[str] = []
+    for fmt in ("parquet", "csv", "rds"):
+        d = out_dir / fmt
+        d.mkdir(parents=True, exist_ok=True)
+        path = d / f"{stem}_{season}.{fmt}"
+        if fmt == "parquet":
+            df.write_parquet(path)
+        elif fmt == "csv":
+            df.write_csv(path)
+        else:
+            rds_df = df.with_columns(
+                pl.col(c).cast(pl.Int64)
+                for c, t in df.schema.items()
+                if t in (pl.UInt32, pl.UInt64, pl.UInt16, pl.UInt8)
+            )
+            stamped = datetime.now(timezone.utc)
+            write_rds(
+                rds_df,
+                path,
+                cls=["baseballr_data", "tbl_df", "tbl", "data.table", "data.frame"],
+                attributes={
+                    "baseballr_timestamp": stamped,
+                    "baseballr_type": f"MLB {stem} data",
+                },
+            )
+        paths.append(str(path))
+    return paths
+
+
 def build_tag(
     tag: str,
     seasons: list[int],
@@ -70,10 +117,8 @@ def build_tag(
         stems: dict[str, int] = {}
         paths: list[str] = []
         for stem, df in frames.items():
-            path = out_dir / f"{stem}_{season}.parquet"
-            df.write_parquet(path)
+            paths.extend(_write_stem(df, out_dir, stem, season))
             stems[stem] = df.height
-            paths.append(str(path))
         primary = _PRIMARY[tag]
         results.append(
             {
