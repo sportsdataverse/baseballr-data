@@ -30,7 +30,7 @@ _PRIMARY = {
 #: the committed data tree at the repo root -- absolute, so a CLI run from
 #: python/ can never silently write a python/mlb_models/ shadow tree (the
 #: wbb_data_build --base lesson). Layout: mlb_models/{tag}/{format}/{stem}_{season}.{ext}
-REPO_TREE = Path(__file__).resolve().parents[1] / "mlb"
+REPO_TREE = Path(__file__).resolve().parents[2] / "mlb"
 
 
 def _write_stem(df, out_dir: Path, stem: str, season: int) -> list[str]:
