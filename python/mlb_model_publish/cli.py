@@ -72,7 +72,9 @@ def _make_compute(cmd: str, args):
         history = pl.concat(history_frames[-3:]) if history_frames else None
         out = computes.compute_hitting(season, cache_dir=cache, history=history)
         if "mlb_expected_stats" in out and out["mlb_expected_stats"].height > 0:
-            history_frames.append(out["mlb_expected_stats"])
+            # age-join at accumulation time: mlb_batter_projection's history
+            # contract requires the `age` column (seasonal age, June 30 cutoff)
+            history_frames.append(computes.age_join(out["mlb_expected_stats"]))
         return out
 
     return compute

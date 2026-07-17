@@ -99,9 +99,12 @@ def compute_game_state(season: int) -> dict[str, pl.DataFrame]:
 def compute_hitting(season: int, *, cache_dir=None, history: pl.DataFrame | None = None) -> dict[str, pl.DataFrame]:
     """Expected stats + xHR + (history permitting) the batter projection.
 
-    ``history`` is the concatenated ``mlb_expected_stats`` output of PRIOR
-    seasons (the builder accumulates it season-ascending) so the projection
-    never re-pulls Savant for its training window.
+    ``history`` is the AGE-JOINED concatenated ``mlb_expected_stats`` output of
+    PRIOR seasons (the builder accumulates it season-ascending through
+    :func:`age_join`) so the projection never re-pulls Savant for its training
+    window. ``mlb_batter_projection``'s documented history contract requires
+    the ``age`` column ("ages must already be present on a supplied history
+    frame").
     """
     from sportsdataverse.mlb.mlb_batter_projection import mlb_batter_projection
     from sportsdataverse.mlb.mlb_expected_home_runs import mlb_expected_home_runs
@@ -119,6 +122,64 @@ def compute_hitting(season: int, *, cache_dir=None, history: pl.DataFrame | None
     if history is not None and history.height > 0:
         out["mlb_batter_projection"] = mlb_batter_projection(season, history=history)
     return out
+
+
+#: batter id -> ISO birthDate string, cached for the process (a backfill sees
+#: mostly the same ~1-3K batters across seasons; the bulk people endpoint
+#: resolves ~100 ids per call, so the whole backfill costs a few dozen calls).
+_BIRTHDATES: dict[int, str] = {}
+
+
+def _resolve_birthdates(batter_ids: list[int]) -> None:
+    from sportsdataverse.mlb.mlb_api import mlb_people
+
+    missing = sorted({int(b) for b in batter_ids} - set(_BIRTHDATES))
+    for i in range(0, len(missing), 100):
+        chunk = missing[i : i + 100]
+        people = mlb_people(person_ids=chunk)
+        if people is None or people.height == 0:
+            continue
+        bd_col = next((c for c in people.columns if c.lower().replace("_", "") == "birthdate"), None)
+        if bd_col is None:
+            continue
+        for pid, bd in zip(people["id"].to_list(), people[bd_col].to_list()):
+            if bd:
+                _BIRTHDATES[int(pid)] = str(bd)
+
+
+def age_join(xstats: pl.DataFrame) -> pl.DataFrame:
+    """Join MLB seasonal age (age on June 30 of ``season``) onto expected stats.
+
+    Batters whose birthdate cannot be resolved get a null ``age`` and are
+    dropped -- the aging curve cannot place them, and silently guessing an age
+    would corrupt the year-over-year deltas.
+    """
+    if xstats.height == 0:
+        return xstats
+    _resolve_birthdates(xstats["batter"].to_list())
+    bd = pl.DataFrame(
+        {
+            "batter": list(_BIRTHDATES.keys()),
+            "_birth_date": list(_BIRTHDATES.values()),
+        }
+    ).with_columns(pl.col("batter").cast(pl.Int64), pl.col("_birth_date").str.to_date())
+    return (
+        xstats.with_columns(pl.col("batter").cast(pl.Int64))
+        .join(bd, on="batter", how="left")
+        .with_columns(
+            (
+                pl.col("season")
+                - pl.col("_birth_date").dt.year()
+                # seasonal age = age on June 30: born after the cutoff -> one year younger
+                - (
+                    (pl.col("_birth_date").dt.month() > 6)
+                    | ((pl.col("_birth_date").dt.month() == 6) & (pl.col("_birth_date").dt.day() > 30))
+                ).cast(pl.Int64)
+            ).alias("age")
+        )
+        .drop("_birth_date")
+        .drop_nulls(subset=["age"])
+    )
 
 
 def compute_fielding(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
