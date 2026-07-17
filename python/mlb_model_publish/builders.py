@@ -53,7 +53,9 @@ def build_tag(
     """
     too_old = [s for s in seasons if s < MIN_SEASON]
     if too_old:
-        raise ValueError(f"{tag}: seasons {too_old} predate the {MIN_SEASON} Statcast floor")
+        raise ValueError(
+            f"{tag}: seasons {too_old} predate the {MIN_SEASON} Statcast floor"
+        )
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -73,8 +75,17 @@ def build_tag(
             stems[stem] = df.height
             paths.append(str(path))
         primary = _PRIMARY[tag]
-        results.append({"season": season, "rows": stems.get(primary, 0), "stems": stems, "paths": paths})
-        print(f"{tag}: season={season} " + " ".join(f"{k}={v}" for k, v in stems.items()))
+        results.append(
+            {
+                "season": season,
+                "rows": stems.get(primary, 0),
+                "stems": stems,
+                "paths": paths,
+            }
+        )
+        print(
+            f"{tag}: season={season} " + " ".join(f"{k}={v}" for k, v in stems.items())
+        )
     return results
 
 
@@ -143,21 +154,38 @@ _CARD_META = {
 }
 
 
-def write_card(tag: str, results: list[dict], out_dir) -> Path:
-    """Write the tag's model card next to the season parquet."""
+def write_card(
+    tag: str, results: list[dict], out_dir, *, existing: dict | None = None
+) -> Path:
+    """Write the tag's model card next to the season parquet.
+
+    Args:
+        existing: The currently-published card (fetched best-effort by the
+            CLI) -- its per-season rows are carried forward so the card always
+            reflects the full published span, not just this invocation's.
+    """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     meta = _CARD_META[tag]
+    # Merge with the previously-published card so a partial-range invocation
+    # (the daily current-season cron, a range extension) never clobbers the
+    # other seasons' record. This run's seasons win on collision.
+    by_season: dict[int, dict] = {}
+    if existing:
+        for s, stems in (existing.get("rows_by_season") or {}).items():
+            by_season[int(s)] = stems
+    for r in results:
+        by_season[int(r["season"])] = r["stems"]
     card = {
         "tag": tag,
         "grain": meta["grain"],
         "source": meta["source"],
-        "seasons": [r["season"] for r in results],
-        "rows_by_season": {str(r["season"]): r["stems"] for r in results},
+        "seasons": sorted(by_season),
+        "rows_by_season": {str(s): by_season[s] for s in sorted(by_season)},
         "gate_anchors": meta["gates"],
         "notes": meta["notes"],
     }
     path = out_dir / f"{tag}_card.json"
     path.write_text(json.dumps(card, indent=2) + "\n", encoding="utf-8")
-    print(f"card: {path}")
+    print(f"card: {path} (seasons {card['seasons'][0]}..{card['seasons'][-1]})")
     return path
