@@ -5,7 +5,7 @@ import json
 import subprocess
 
 from .artifacts import upload_artifacts
-from .builders import build_tag, write_card
+from .builders import REPO_TREE, build_tag, write_card
 
 
 def _fetch_existing_card(tag: str, repo: str) -> dict | None:
@@ -68,7 +68,10 @@ def build_parser() -> argparse.ArgumentParser:
             required=True,
             help="a season (2024) or an inclusive range (2015:2025)",
         )
-        p.add_argument("--out", default=f"out/{tag}")
+        # default = the COMMITTED repo tree (absolute), so builds land in
+        # mlb/{dataset}/{format}/ (family layout, e.g. mlb/game_state/parquet/)
+        # and the cron's commit step picks them up
+        p.add_argument("--out", default=str(REPO_TREE / tag.removeprefix("mlb_")))
         p.add_argument("--tag", default=tag)
         p.add_argument("--repo", default="sportsdataverse/sportsdataverse-data")
         if cmd != "game-state":
@@ -146,7 +149,7 @@ def main(argv=None) -> int:
         args.out,
         tag,
         args.repo,
-        pattern="mlb_*.*",
+        pattern="**/mlb_*.*",  # reaches the parquet/csv/rds format subdirs + the card
         dry_run=args.dry_run,
     )
     created = " (created release)" if res.get("created_release") else ""

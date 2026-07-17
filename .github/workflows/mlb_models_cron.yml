@@ -27,7 +27,8 @@ on:
     - cron: '30 10 * 4-10 *'
 
 permissions:
-  contents: read
+  # the job commits the mlb/ data tree back to this repo after publishing
+  contents: write
 
 env:
   PUBLISH_REPO: sportsdataverse/sportsdataverse-data
@@ -113,3 +114,20 @@ jobs:
           uv run --no-sync python -m mlb_model_publish pitching \
             --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
             ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      # The builders write into the committed mlb/{dataset}/{format}/ tree;
+      # mirror it back to the repo (the family tree+releases convention). The
+      # (Start: End:) commit-subject shape is the repo's load-bearing format.
+      - name: Commit the mlb data tree
+        if: ${{ !inputs.dry_run }}
+        working-directory: .
+        run: |
+          git config user.name "Github Action"
+          git config user.email "action@github.com"
+          git add mlb
+          if git diff --staged --quiet; then
+            echo "no tree changes"
+          else
+            git commit -m "MLB Models update (Start: ${SEASONS%%:*} End: ${SEASONS##*:})"
+            git push
+          fi

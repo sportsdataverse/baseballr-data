@@ -1,9 +1,9 @@
-"""Hermetic tests for the mlb_model_publish builders.
+"""Hermetic tests for the mlb model-publish builders.
 
-Compute seams are stubbed -- these assert orchestration (multi-stem writes,
-season ordering, empty-stem refusal, floor, cards, per-file upload, the
-hitting history accumulation) -- not the model math (gated in sdv-py's MLB
-oracle suites).
+Compute seams are stubbed -- these assert orchestration (three-format
+tree writes, season ordering, empty-stem refusal, floor, merged cards,
+per-file upload, the hitting history accumulation + bootstrap) -- not the
+model math (gated in sdv-py's MLB oracle suites).
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ def _fake_game_state(season: int) -> dict:
     }
 
 
-def test_build_tag_writes_one_parquet_per_stem_per_season(tmp_path):
+def test_build_tag_writes_three_formats_per_stem_per_season(tmp_path):
     results = build_tag(
         "mlb_game_state", [2016, 2015], tmp_path, compute=_fake_game_state
     )
@@ -35,9 +35,11 @@ def test_build_tag_writes_one_parquet_per_stem_per_season(tmp_path):
     assert [r["season"] for r in results] == [2015, 2016]
     for season in (2015, 2016):
         for stem in ("mlb_re24_matrix", "mlb_we_table", "mlb_wpa"):
-            path = tmp_path / f"{stem}_{season}.parquet"
-            assert path.exists()
-            assert pl.read_parquet(path)["season"].unique().to_list() == [season]
+            # the family tree convention: parquet + csv + rds per stem-season
+            for fmt in ("parquet", "csv", "rds"):
+                assert (tmp_path / fmt / f"{stem}_{season}.{fmt}").exists(), (stem, fmt)
+            frame = pl.read_parquet(tmp_path / "parquet" / f"{stem}_{season}.parquet")
+            assert frame["season"].unique().to_list() == [season]
     assert results[0]["rows"] == 1  # primary stem = re24 matrix
 
 
@@ -50,7 +52,7 @@ def test_build_tag_refuses_an_empty_stem(tmp_path):
     with pytest.raises(ValueError, match="mlb_wpa"):
         build_tag("mlb_game_state", [2020], tmp_path, compute=compute)
 
-    assert not (tmp_path / "mlb_wpa_2020.parquet").exists()
+    assert not (tmp_path / "parquet" / "mlb_wpa_2020.parquet").exists()
 
 
 def test_build_tag_rejects_seasons_below_the_statcast_floor(tmp_path):
@@ -130,8 +132,8 @@ def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
 
     assert rc == 0
     assert seen_history == {2015: None, 2016: 2, 2017: 4}
-    assert not (tmp_path / "mlb_batter_projection_2015.parquet").exists()
-    assert (tmp_path / "mlb_batter_projection_2016.parquet").exists()
+    assert not (tmp_path / "parquet" / "mlb_batter_projection_2015.parquet").exists()
+    assert (tmp_path / "parquet" / "mlb_batter_projection_2016.parquet").exists()
     assert (tmp_path / "mlb_hitting_models_card.json").exists()
 
 
@@ -174,11 +176,13 @@ def test_single_season_run_bootstraps_history_from_published_assets(
 
     assert rc == 0
     assert seen_history == {2026: 3}  # the bootstrapped frame reached the compute
-    assert (tmp_path / "mlb_batter_projection_2026.parquet").exists()
+    assert (tmp_path / "parquet" / "mlb_batter_projection_2026.parquet").exists()
 
 
-def test_upload_pattern_selects_stems_and_card(tmp_path):
-    (tmp_path / "mlb_re24_matrix_2020.parquet").write_bytes(b"x")
+def test_upload_pattern_reaches_format_subdirs_and_card(tmp_path):
+    for fmt in ("parquet", "csv", "rds"):
+        (tmp_path / fmt).mkdir()
+        (tmp_path / fmt / f"mlb_re24_matrix_2020.{fmt}").write_bytes(b"x")
     (tmp_path / "mlb_game_state_card.json").write_text("{}")
     (tmp_path / "unrelated.txt").write_text("no")
 
@@ -187,14 +191,19 @@ def test_upload_pattern_selects_stems_and_card(tmp_path):
         tmp_path,
         "mlb_game_state",
         "sportsdataverse/sportsdataverse-data",
-        pattern="mlb_*.*",
+        pattern="**/mlb_*.*",
         runner=lambda args: calls.append(args),
         exists_check=lambda tag, repo: True,
     )
 
     names = sorted(p.rsplit("\\", 1)[-1].rsplit("/", 1)[-1] for p in res["files"])
-    assert names == ["mlb_game_state_card.json", "mlb_re24_matrix_2020.parquet"]
-    assert res["uploaded"] == 2
+    assert names == [
+        "mlb_game_state_card.json",
+        "mlb_re24_matrix_2020.csv",
+        "mlb_re24_matrix_2020.parquet",
+        "mlb_re24_matrix_2020.rds",
+    ]
+    assert res["uploaded"] == 4
     assert all("--clobber" in c for c in calls)
 
 
