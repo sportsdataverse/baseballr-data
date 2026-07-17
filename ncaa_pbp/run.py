@@ -17,8 +17,8 @@ import argparse
 import os
 import sys
 
-from capture import capture_season
-from discover import browser_fetch_fn, discover_season
+from ncaa_pbp.capture import capture_season
+from ncaa_pbp.discover import browser_fetch_fn, discover_season
 
 
 def _pool() -> "list[str]":

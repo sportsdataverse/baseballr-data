@@ -7,9 +7,9 @@ import json
 from pathlib import Path
 
 import pytest
-from capture import bundle_path, capture_contest, capture_season, is_captured
+from ncaa_pbp.capture import bundle_path, capture_contest, capture_season, is_captured
 
-FIX = Path(__file__).resolve().parent / "tests" / "fixtures" / "mba_pbp_6357953.html"
+FIX = Path(__file__).resolve().parent / "fixtures" / "mba_pbp_6357953.html"
 
 
 def _real_pbp() -> str:
