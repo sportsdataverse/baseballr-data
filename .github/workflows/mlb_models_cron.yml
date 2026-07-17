@@ -83,6 +83,7 @@ jobs:
       - name: Build + publish mlb_game_state ${{ env.SEASONS }}
         env:
           GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        working-directory: python
         run: |
           uv run --no-sync python -m mlb_model_publish game-state \
             --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
@@ -91,6 +92,7 @@ jobs:
       - name: Build + publish mlb_hitting_models ${{ env.SEASONS }}
         env:
           GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        working-directory: python
         run: |
           uv run --no-sync python -m mlb_model_publish hitting \
             --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
@@ -99,6 +101,7 @@ jobs:
       - name: Build + publish mlb_fielding_models ${{ env.SEASONS }}
         env:
           GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        working-directory: python
         run: |
           uv run --no-sync python -m mlb_model_publish fielding \
             --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
@@ -107,6 +110,7 @@ jobs:
       - name: Build + publish mlb_pitching_models ${{ env.SEASONS }}
         env:
           GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        working-directory: python
         run: |
           uv run --no-sync python -m mlb_model_publish pitching \
             --seasons "$SEASONS" --repo "$PUBLISH_REPO" \

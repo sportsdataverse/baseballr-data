@@ -112,10 +112,11 @@ scripts/
 .github/workflows/
   daily_ncaa_baseball.yml               # Scheduled / dispatchable NCAA release-update workflow
   mlb_models_cron.yml                   # Daily (Apr-Oct) MLB model datasets: build + publish + tree commit
-pyproject.toml / uv.lock                # Root uv project for the Python producers below
-mlb_model_publish/                      # MLB model-dataset publisher (4 sportsdataverse-data tags)
-ncaa_pbp/                               # NCAA baseball pbp discover+capture producer (python -m ncaa_pbp.run)
-tests/                                  # Python tests (uv run pytest tests/)
+pyproject.toml / uv.lock                # Root uv project for the Python producers under python/
+python/
+  mlb_model_publish/                    # MLB model-dataset publisher (4 sportsdataverse-data tags)
+  ncaa_pbp/                             # NCAA baseball pbp discover+capture producer
+  tests/                                # Python tests (uv run pytest)
 ncaa/                                 # Committed scraped output (consumed downstream)
 mlb/                                  # Cached MLB lookup .rda files + committed mlb/{dataset}/parquet/ model tree
 statcast/                             # Historical Statcast monthly extracts (parquet + rds)
@@ -272,23 +273,24 @@ chore(deps): bump baseballr pin in the CI library
 
 ## Python (uv, repo root)
 
-The Python producer surface lives at the repo root (uv project: `pyproject.toml` +
-`uv.lock`; sportsdataverse pinned to git@main via `tool.uv.sources`). Run everything
-with `uv run` from the repo root; tests: `uv run pytest tests/`.
+The uv project lives at the repo root (`pyproject.toml` +
+`uv.lock`; sportsdataverse pinned to git@main via `tool.uv.sources`); the producer
+packages live under `python/`. `uv run` works from any subdir (uv walks up to the
+root project); tests from the root: `uv run pytest` (testpaths/pythonpath -> `python/`).
 
-- **`mlb_model_publish/`** — builds + publishes the four MLB model-dataset releases on
+- **`python/mlb_model_publish/`** — builds + publishes the four MLB model-dataset releases on
   sportsdataverse-data (`mlb_game_state`, `mlb_hitting_models`, `mlb_fielding_models`,
   `mlb_pitching_models`; Statcast-era floor 2015; multiple parquet stems + a merged
   model card per tag; **csv + rds + parquet uploaded per release**, rds written natively
   with baseballr's S3 class chain). Also writes the committed `mlb/{dataset}/parquet/`
   tree — csv/rds are gitignored release staging, parquet is the only committed format.
-  Entry: `uv run python -m mlb_model_publish <game-state|hitting|fielding|pitching>
+  Entry (run from `python/`): `uv run python -m mlb_model_publish <game-state|hitting|fielding|pitching>
   --seasons 2015:2025`. Cron: `.github/workflows/mlb_models_cron.yml` (daily Apr–Oct;
   commits the tree with the load-bearing `MLB Models update (Start: Y End: Y)` subject).
   The three Savant tags share one cached per-season pull (`SDV_MLB_STATCAST_CACHE`,
   ~55 min/season); statsapi pacing via `SDV_MLB_STATSAPI_SLEEP`.
-- **`ncaa_pbp/`** — the NCAA baseball pbp discover+capture producer (patchright browser
-  transport + residential proxy pool via `NCAA_PROXY_POOL`); see `ncaa_pbp/README.md`.
-  Entry: `uv run python -m ncaa_pbp.run`.
+- **`python/ncaa_pbp/`** — the NCAA baseball pbp discover+capture producer (patchright browser
+  transport + residential proxy pool via `NCAA_PROXY_POOL`); see `python/ncaa_pbp/README.md`.
+  Entry (run from `python/`): `uv run python -m ncaa_pbp.run`.
 
 **Important: Never include AI agents or assistants (e.g., Claude, Copilot, Cursor, GPT, Gemini) as co-authors on commits.** Omit all `Co-Authored-By` trailers referencing AI tools. This applies whether the change was generated, refactored, or reviewed with AI assistance — the human author is the sole attributable contributor.

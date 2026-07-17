@@ -107,16 +107,17 @@ breaking changes.
 
 ## Python (uv, repo root)
 
-The Python producers live at the repo root (uv: `pyproject.toml` + `uv.lock`,
-sportsdataverse pinned to git@main). Tests: `uv run pytest tests/`.
+The uv project lives at the repo root (`pyproject.toml` + `uv.lock`,
+sportsdataverse pinned to git@main); the producer packages live under
+`python/`. Tests from the root: `uv run pytest`.
 
-- `mlb_model_publish/` publishes the four MLB model releases on
+- `python/mlb_model_publish/` publishes the four MLB model releases on
   sportsdataverse-data (`mlb_game_state`, `mlb_hitting_models`,
   `mlb_fielding_models`, `mlb_pitching_models`) in csv+rds+parquet, and
   commits the parquet-only `mlb/{dataset}/parquet/` tree (csv/rds are
   gitignored staging). Cron: `.github/workflows/mlb_models_cron.yml`, tree
   commits use the load-bearing `MLB Models update (Start: Y End: Y)` subject.
-- `ncaa_pbp/` is the NCAA baseball pbp discover+capture producer
-  (`uv run python -m ncaa_pbp.run`; see `ncaa_pbp/README.md`).
+- `python/ncaa_pbp/` is the NCAA baseball pbp discover+capture producer
+  (from `python/`: `uv run python -m ncaa_pbp.run`; see `python/ncaa_pbp/README.md`).
 
 **Important: Never include AI agents or assistants (e.g., Claude, Copilot, Cursor, GPT, Gemini) as co-authors on commits.** Omit all `Co-Authored-By` trailers referencing AI tools. This applies whether the change was generated, refactored, or reviewed with AI assistance — the human author is the sole attributable contributor.

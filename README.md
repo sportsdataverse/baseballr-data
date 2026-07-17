@@ -119,10 +119,11 @@ scripts/
 .github/workflows/
   daily_ncaa_baseball.yml                 # scheduled NCAA release-update workflow
   mlb_models_cron.yml                     # daily MLB model datasets (Apr-Oct)
-pyproject.toml / uv.lock                  # root uv project (Python producers below)
-mlb_model_publish/                        # MLB model-dataset publisher (4 release tags)
-ncaa_pbp/                                 # NCAA baseball pbp discover+capture producer
-tests/                                    # Python tests (uv run pytest tests/)
+pyproject.toml / uv.lock                  # root uv project (Python producers under python/)
+python/
+  mlb_model_publish/                      # MLB model-dataset publisher (4 release tags)
+  ncaa_pbp/                               # NCAA baseball pbp discover+capture producer
+  tests/                                  # Python tests (uv run pytest)
 ncaa/
   schedules/{rds,csv,parquet}/            # compiled per-year schedule artifacts
   pbp/{rds,csv,parquet}/                  # compiled per-year play-by-play artifacts
