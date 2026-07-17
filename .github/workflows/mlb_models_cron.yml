@@ -1,0 +1,115 @@
+name: MLB Model Datasets
+
+# Refreshes the four MLB model-dataset releases on sportsdataverse-data:
+# mlb_game_state (statsapi RE24/WE/WPA), and mlb_hitting_models /
+# mlb_fielding_models / mlb_pitching_models off ONE shared Savant season pull
+# (~55 min) cached between the three steps. Sources are cloud-IP friendly
+# (Savant is rate-limited but forgiving; the search client chunks + halves on
+# the 25K row cap and rides download()'s status-retry backoff).
+#
+# Credential scoping: the cross-repo publish PAT (SDV_GH_TOKEN) is NOT
+# exported job-wide; it is set only on the build+publish steps.
+
+on:
+  workflow_dispatch:
+    inputs:
+      seasons:
+        description: 'Season or inclusive range (e.g. 2025 or 2015:2025). Default: the current season.'
+        required: false
+        type: string
+      dry_run:
+        description: 'Build only; plan the uploads without publishing'
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    # Daily in the MLB season window (Apr-Oct), off-peak.
+    - cron: '30 10 * 4-10 *'
+
+permissions:
+  contents: read
+
+env:
+  PUBLISH_REPO: sportsdataverse/sportsdataverse-data
+  # the three Savant tags share this per-season parquet cache within the job
+  SDV_MLB_STATCAST_CACHE: .mlb_statcast_cache
+  SDV_MLB_STATSAPI_SLEEP: '0.2'
+
+jobs:
+  models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - name: Checkout baseballr-data
+        uses: actions/checkout@v5
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: python/uv.lock
+
+      - name: Sync deps
+        run: uv sync --frozen
+
+      # Canary: this repo pins sportsdataverse to git@main via tool.uv.sources;
+      # fail loudly here if a re-pin ever drops the MLB model surface.
+      - name: Verify the model surfaces import
+        run: |
+          uv run --no-sync python -c "
+          from sportsdataverse.mlb.mlb_run_expectancy import mlb_run_expectancy_matrix
+          from sportsdataverse.mlb.mlb_expected_stats import mlb_expected_stats
+          from sportsdataverse.mlb.mlb_fielding_oaa import mlb_fielding_oaa
+          from sportsdataverse.mlb.mlb_stuff_plus import mlb_stuff_plus
+          import importlib.metadata as md
+          print('mlb model surface OK (sportsdataverse', md.version('sportsdataverse'), ')')
+          "
+
+      - name: Resolve seasons
+        env:
+          # Via env, not `${{ }}` inline in the script: a dispatch input
+          # interpolated straight into `run:` is a shell-injection sink.
+          SEASONS_INPUT: ${{ inputs.seasons }}
+        run: |
+          if [ -n "$SEASONS_INPUT" ]; then
+            SEASONS="$SEASONS_INPUT"
+          else
+            SEASONS=$(date -u +%Y)
+          fi
+          echo "SEASONS=$SEASONS" >> $GITHUB_ENV
+          echo "building MLB model datasets for seasons: $SEASONS"
+
+      - name: Build + publish mlb_game_state ${{ env.SEASONS }}
+        env:
+          GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        run: |
+          uv run --no-sync python -m mlb_model_publish game-state \
+            --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Build + publish mlb_hitting_models ${{ env.SEASONS }}
+        env:
+          GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        run: |
+          uv run --no-sync python -m mlb_model_publish hitting \
+            --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Build + publish mlb_fielding_models ${{ env.SEASONS }}
+        env:
+          GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        run: |
+          uv run --no-sync python -m mlb_model_publish fielding \
+            --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Build + publish mlb_pitching_models ${{ env.SEASONS }}
+        env:
+          GH_TOKEN: ${{ secrets.SDV_GH_TOKEN }}
+        run: |
+          uv run --no-sync python -m mlb_model_publish pitching \
+            --seasons "$SEASONS" --repo "$PUBLISH_REPO" \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
