@@ -5,3 +5,8 @@
 .gapfill_checkpoint.csv
 .gapfill.log
 .backfill*.log
+
+# python artifacts
+__pycache__/
+*.pyc
+.omc/
