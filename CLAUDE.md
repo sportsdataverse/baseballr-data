@@ -49,10 +49,10 @@ The repo is driven by two shell entry points that wrap the R scripts:
 
 ```sh
 # Daily schedule scrape (one or more seasons)
-bash daily_ncaa_baseball_scraper.sh -s 2026 -e 2026 -r false
+bash scripts/daily_ncaa_baseball_scraper.sh -s 2026 -e 2026 -r false
 
 # Daily play-by-play scrape (one or more seasons)
-bash daily_ncaa_baseball_pbp_scraper.sh -s 2026 -e 2026 -r false
+bash scripts/daily_ncaa_baseball_pbp_scraper.sh -s 2026 -e 2026 -r false
 
 # Or call the R scripts directly when iterating
 Rscript R/ncaa_01_schedules_creation.R -s 2026 -e 2026 -r FALSE
@@ -106,12 +106,18 @@ R/
   utils.R                        # get_proxy_ips(), select_proxy() — proxy rotation helpers
 scripts/
   daily_ncaa_baseball_R_processor.sh    # Per-year orchestrator used by the CI workflow
-daily_ncaa_baseball_scraper.sh        # Manual entry point: schedules (git pull/add/commit/push wrapper)
-daily_ncaa_baseball_pbp_scraper.sh    # Manual entry point: play-by-play (same wrapper)
-bash_functions.sh                     # Helper for resolving current NCAA season from baseballr
-.github/workflows/daily_ncaa_baseball.yml  # Scheduled / dispatchable CI release-update workflow
+  daily_ncaa_baseball_scraper.sh        # Manual entry point: schedules (git pull/add/commit/push wrapper)
+  daily_ncaa_baseball_pbp_scraper.sh    # Manual entry point: play-by-play (same wrapper)
+  bash_functions.sh                     # Helper for resolving current NCAA season from baseballr
+.github/workflows/
+  daily_ncaa_baseball.yml               # Scheduled / dispatchable NCAA release-update workflow
+  mlb_models_cron.yml                   # Daily (Apr-Oct) MLB model datasets: build + publish + tree commit
+pyproject.toml / uv.lock                # Root uv project for the Python producers below
+mlb_model_publish/                      # MLB model-dataset publisher (4 sportsdataverse-data tags)
+ncaa_pbp/                               # NCAA baseball pbp discover+capture producer (python -m ncaa_pbp.run)
+tests/                                  # Python tests (uv run pytest tests/)
 ncaa/                                 # Committed scraped output (consumed downstream)
-mlb/                                  # Cached MLB lookup .rda files
+mlb/                                  # Cached MLB lookup .rda files + committed mlb/{dataset}/parquet/ model tree
 statcast/                             # Historical Statcast monthly extracts (parquet + rds)
 ```
 
@@ -202,8 +208,8 @@ sportsdataverse-data releases — the per-step `GITHUB_PAT`) plus the
 `PROXY_KEY` / `PROXY_PKG` / `PROXY_ENDPOINT` proxy pool (the scrape
 otherwise 403s on GitHub runner IPs).
 
-The two **root** scripts `daily_ncaa_baseball_scraper.sh` and
-`daily_ncaa_baseball_pbp_scraper.sh` are the older manual per-dataset
+The two scripts `scripts/daily_ncaa_baseball_scraper.sh` and
+`scripts/daily_ncaa_baseball_pbp_scraper.sh` are the older manual per-dataset
 entry points; they commit `"NCAA Schedules update (Start: … End: …)"` /
 `"NCAA PBP update (Start: … End: …)"` respectively. All three commit
 subjects carry the load-bearing `(Start: YYYY End: YYYY)` shape — keep it
@@ -217,7 +223,7 @@ intact.
   library path, the optparse defaults will error before getopts even
   parses. Always export `R_LIBS` before running the shell entry point.
 - The MLB Statcast extracts under `statcast/` are **historical** — they
-  pre-date the current scrape pipeline and are kept as a static archive
+  pre-date the current scrape pipeline; statcast/ stays a static archive, while mlb/ now also carries the cron-maintained model-dataset parquet tree
   for `baseballr::scrape_statcast_savant()` consumers. Do not extend the
   daily flow to overwrite them without confirming the downstream loader
   contract.
@@ -263,5 +269,26 @@ feat(scrape): add NCAA Tournament fallback IDs to ncaa_01_schedules_creation.R
 fix(scrape): handle 503s in ncaa_02_pbp_creation.R without aborting the season loop
 chore(deps): bump baseballr pin in the CI library
 ```
+
+## Python (uv, repo root)
+
+The Python producer surface lives at the repo root (uv project: `pyproject.toml` +
+`uv.lock`; sportsdataverse pinned to git@main via `tool.uv.sources`). Run everything
+with `uv run` from the repo root; tests: `uv run pytest tests/`.
+
+- **`mlb_model_publish/`** — builds + publishes the four MLB model-dataset releases on
+  sportsdataverse-data (`mlb_game_state`, `mlb_hitting_models`, `mlb_fielding_models`,
+  `mlb_pitching_models`; Statcast-era floor 2015; multiple parquet stems + a merged
+  model card per tag; **csv + rds + parquet uploaded per release**, rds written natively
+  with baseballr's S3 class chain). Also writes the committed `mlb/{dataset}/parquet/`
+  tree — csv/rds are gitignored release staging, parquet is the only committed format.
+  Entry: `uv run python -m mlb_model_publish <game-state|hitting|fielding|pitching>
+  --seasons 2015:2025`. Cron: `.github/workflows/mlb_models_cron.yml` (daily Apr–Oct;
+  commits the tree with the load-bearing `MLB Models update (Start: Y End: Y)` subject).
+  The three Savant tags share one cached per-season pull (`SDV_MLB_STATCAST_CACHE`,
+  ~55 min/season); statsapi pacing via `SDV_MLB_STATSAPI_SLEEP`.
+- **`ncaa_pbp/`** — the NCAA baseball pbp discover+capture producer (patchright browser
+  transport + residential proxy pool via `NCAA_PROXY_POOL`); see `ncaa_pbp/README.md`.
+  Entry: `uv run python -m ncaa_pbp.run`.
 
 **Important: Never include AI agents or assistants (e.g., Claude, Copilot, Cursor, GPT, Gemini) as co-authors on commits.** Omit all `Co-Authored-By` trailers referencing AI tools. This applies whether the change was generated, refactored, or reviewed with AI assistance — the human author is the sole attributable contributor.

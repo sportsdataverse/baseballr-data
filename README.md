@@ -46,6 +46,10 @@ dataset; assets are named `*_{year}.rds` / `.csv` / `.parquet`):
 |---|---|---|
 | [`ncaa_baseball_pbp`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/ncaa_baseball_pbp) | `baseballr::load_ncaa_baseball_pbp()` | `ncaa_baseball_pbp_{year}.rds` |
 | [`ncaa_baseball_schedules`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/ncaa_baseball_schedules) | `baseballr::load_ncaa_baseball_schedule()` | `ncaa_baseball_schedule_{year}.rds` |
+| [`mlb_game_state`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_game_state) | `sportsdataverse.mlb.load_mlb_re24_matrix()` / `_we_table` / `_wpa` (Python) | `mlb_{stem}_{season}.{csv,rds,parquet}` |
+| [`mlb_hitting_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_hitting_models) | `load_mlb_expected_stats()` / `_expected_hr` / `_batter_projection` | `mlb_{stem}_{season}.{csv,rds,parquet}` |
+| [`mlb_fielding_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_fielding_models) | `load_mlb_oaa()` / `_catcher_framing` | `mlb_{stem}_{season}.{csv,rds,parquet}` |
+| [`mlb_pitching_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_pitching_models) | `load_mlb_xera()` / `_stuff_plus` / `_command_plus` | `mlb_{stem}_{season}.{csv,rds,parquet}` |
 
 > Note the schedules release uses the **plural** tag `ncaa_baseball_schedules`
 > with **singular** asset names `ncaa_baseball_schedule_{year}`.
@@ -109,13 +113,25 @@ R/
   ncaa_teams_roster_gapfill.R             # roster-based season_team_id gap-fill
 scripts/
   daily_ncaa_baseball_R_processor.sh      # per-year orchestrator (used by CI)
+  daily_ncaa_baseball_scraper.sh          # manual entry point: schedules (git wrapper)
+  daily_ncaa_baseball_pbp_scraper.sh      # manual entry point: play-by-play (git wrapper)
+  bash_functions.sh                       # shared shell helpers
 .github/workflows/
-  daily_ncaa_baseball.yml                 # scheduled release-update workflow
+  daily_ncaa_baseball.yml                 # scheduled NCAA release-update workflow
+  mlb_models_cron.yml                     # daily MLB model datasets (Apr-Oct)
+pyproject.toml / uv.lock                  # root uv project (Python producers below)
+mlb_model_publish/                        # MLB model-dataset publisher (4 release tags)
+ncaa_pbp/                                 # NCAA baseball pbp discover+capture producer
+tests/                                    # Python tests (uv run pytest tests/)
 ncaa/
   schedules/{rds,csv,parquet}/            # compiled per-year schedule artifacts
   pbp/{rds,csv,parquet}/                  # compiled per-year play-by-play artifacts
   teams_info/                             # ncaa_team_lookup.* (load_ncaa_baseball_teams)
   seasons_info/                           # ncaa_season_id_lu.*  (load_ncaa_baseball_season_ids)
+mlb/
+  {game_state,hitting_models,...}/parquet/  # committed MLB model-dataset tree (cron-maintained)
+  *.rda                                   # static lookup tables (historical archive)
+statcast/                                 # static historical Statcast monthly extracts
 ```
 
 ## Maintainer setup

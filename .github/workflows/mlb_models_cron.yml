@@ -40,9 +40,6 @@ jobs:
   models:
     runs-on: ubuntu-latest
     timeout-minutes: 300
-    defaults:
-      run:
-        working-directory: python
     steps:
       - name: Checkout baseballr-data
         uses: actions/checkout@v5
@@ -51,7 +48,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-          cache-dependency-glob: python/uv.lock
+          cache-dependency-glob: uv.lock
 
       - name: Sync deps
         run: uv sync --frozen
@@ -120,7 +117,6 @@ jobs:
       # (Start: End:) commit-subject shape is the repo's load-bearing format.
       - name: Commit the mlb data tree
         if: ${{ !inputs.dry_run }}
-        working-directory: .
         run: |
           git config user.name "Github Action"
           git config user.email "action@github.com"

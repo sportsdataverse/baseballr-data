@@ -14,3 +14,4 @@ __pycache__/
 # model-dataset trees commit parquet only; csv/rds are release-asset staging
 mlb/*/csv/
 mlb/*/rds/
+*.out

@@ -12,15 +12,17 @@ files as GitHub releases on `sportsdataverse-data` via
 
 Pipeline: `stats.ncaa.org -> baseballr-data [HERE] -> sportsdataverse-data releases -> baseballr R package`.
 
-The `mlb/` and `statcast/` directories are a static archive of
-`.rda` lookup tables and historical Statcast monthly extracts; the daily
-flow only touches `ncaa/`.
+`statcast/` is a static archive of historical Statcast monthly extracts;
+`mlb/` holds static `.rda` lookup tables PLUS the committed
+`mlb/{dataset}/parquet/` model-dataset tree maintained by the MLB models
+cron (see the Python section below). The NCAA daily flow only touches
+`ncaa/`.
 
 ## Repository Workflow
 
 - Branch from `main`; `main` is the default and release branch.
-- CI entry points are `daily_ncaa_baseball_scraper.sh` (schedules) and
-  `daily_ncaa_baseball_pbp_scraper.sh` (play-by-play). Both wrap the R
+- CI entry points are `scripts/daily_ncaa_baseball_scraper.sh` (schedules) and
+  `scripts/daily_ncaa_baseball_pbp_scraper.sh` (play-by-play). Both wrap the R
   scripts with `git pull` / `git add` / `git commit` / `git push`.
 - Bug fixes to NCAA HTML parsing belong upstream in `baseballr`, not here.
 - Don't reorganize the `ncaa/` output tree without aligning `baseballr`'s
@@ -31,10 +33,10 @@ flow only touches `ncaa/`.
 
 ```sh
 # Daily schedule scrape (schedules per team, then unified per season)
-bash daily_ncaa_baseball_scraper.sh -s 2026 -e 2026 -r false
+bash scripts/daily_ncaa_baseball_scraper.sh -s 2026 -e 2026 -r false
 
 # Daily play-by-play scrape (per-game pbp, then unified per season)
-bash daily_ncaa_baseball_pbp_scraper.sh -s 2026 -e 2026 -r false
+bash scripts/daily_ncaa_baseball_pbp_scraper.sh -s 2026 -e 2026 -r false
 
 # Iterate without the git wrapper
 Rscript R/ncaa_01_schedules_creation.R -s 2026 -e 2026 -r FALSE
@@ -102,5 +104,19 @@ For human-authored commits, use Conventional Commits:
 `type(scope): description`. Common types: `feat`, `fix`, `chore`, `ci`,
 `docs`, `refactor`. Use `type!:` or a `BREAKING CHANGE:` footer for
 breaking changes.
+
+## Python (uv, repo root)
+
+The Python producers live at the repo root (uv: `pyproject.toml` + `uv.lock`,
+sportsdataverse pinned to git@main). Tests: `uv run pytest tests/`.
+
+- `mlb_model_publish/` publishes the four MLB model releases on
+  sportsdataverse-data (`mlb_game_state`, `mlb_hitting_models`,
+  `mlb_fielding_models`, `mlb_pitching_models`) in csv+rds+parquet, and
+  commits the parquet-only `mlb/{dataset}/parquet/` tree (csv/rds are
+  gitignored staging). Cron: `.github/workflows/mlb_models_cron.yml`, tree
+  commits use the load-bearing `MLB Models update (Start: Y End: Y)` subject.
+- `ncaa_pbp/` is the NCAA baseball pbp discover+capture producer
+  (`uv run python -m ncaa_pbp.run`; see `ncaa_pbp/README.md`).
 
 **Important: Never include AI agents or assistants (e.g., Claude, Copilot, Cursor, GPT, Gemini) as co-authors on commits.** Omit all `Co-Authored-By` trailers referencing AI tools. This applies whether the change was generated, refactored, or reviewed with AI assistance — the human author is the sole attributable contributor.

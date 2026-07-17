@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import pytest
-from discover import discover_season, parse_contest_ids, parse_team_ids, team_list_path
+from ncaa_pbp.discover import discover_season, parse_contest_ids, parse_team_ids, team_list_path
 
 
 def test_team_list_path_baseball_and_softball() -> None:
