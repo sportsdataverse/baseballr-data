@@ -1,9 +1,45 @@
 from __future__ import annotations
 
 import argparse
+import json
+import subprocess
 
 from .artifacts import upload_artifacts
 from .builders import build_tag, write_card
+
+
+def _fetch_existing_card(tag: str, repo: str) -> dict | None:
+    """Best-effort download of the currently-published card (None on any miss).
+
+    Feeds ``write_card``'s merge so a partial-range invocation (the daily
+    current-season cron) never clobbers the other seasons out of the card.
+    """
+    try:
+        r = subprocess.run(
+            [
+                "gh",
+                "release",
+                "download",
+                tag,
+                "-R",
+                repo,
+                "-p",
+                f"{tag}_card.json",
+                "-O",
+                "-",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if r.returncode != 0 or not r.stdout.strip():
+        return None
+    try:
+        return json.loads(r.stdout)
+    except json.JSONDecodeError:
+        return None
 
 
 def _seasons(spec: str) -> list[int]:
@@ -83,11 +119,21 @@ def _make_compute(cmd: str, args):
 def main(argv=None) -> int:
     args = build_parser().parse_args(argv)
     tag = args.tag
-    results = build_tag(_TAGS[args.cmd], _seasons(args.seasons), args.out, compute=_make_compute(args.cmd, args))
-    write_card(_TAGS[args.cmd], results, args.out)
+    results = build_tag(
+        _TAGS[args.cmd],
+        _seasons(args.seasons),
+        args.out,
+        compute=_make_compute(args.cmd, args),
+    )
+    # --build-only stays fully offline; a publishing run merges with the
+    # already-published card so partial ranges never clobber the record.
+    existing = None if args.build_only else _fetch_existing_card(tag, args.repo)
+    write_card(_TAGS[args.cmd], results, args.out, existing=existing)
     total = sum(r["rows"] for r in results)
     if args.build_only:
-        print(f"{tag}: built seasons={len(results)} rows={total} -> {args.out} (build-only)")
+        print(
+            f"{tag}: built seasons={len(results)} rows={total} -> {args.out} (build-only)"
+        )
         return 0
     res = upload_artifacts(
         args.out,
@@ -99,6 +145,8 @@ def main(argv=None) -> int:
     created = " (created release)" if res.get("created_release") else ""
     print(
         f"publish: seasons={len(results)} rows={total} uploaded={res['uploaded']} "
-        f"-> {args.repo}:{res['tag']}" + created + (" (dry-run)" if args.dry_run else "")
+        f"-> {args.repo}:{res['tag']}"
+        + created
+        + (" (dry-run)" if args.dry_run else "")
     )
     return 0

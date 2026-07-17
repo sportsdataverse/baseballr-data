@@ -27,7 +27,9 @@ def _fake_game_state(season: int) -> dict:
 
 
 def test_build_tag_writes_one_parquet_per_stem_per_season(tmp_path):
-    results = build_tag("mlb_game_state", [2016, 2015], tmp_path, compute=_fake_game_state)
+    results = build_tag(
+        "mlb_game_state", [2016, 2015], tmp_path, compute=_fake_game_state
+    )
 
     # processed ascending regardless of input order
     assert [r["season"] for r in results] == [2015, 2016]
@@ -53,7 +55,9 @@ def test_build_tag_refuses_an_empty_stem(tmp_path):
 
 def test_build_tag_rejects_seasons_below_the_statcast_floor(tmp_path):
     with pytest.raises(ValueError, match=str(MIN_SEASON)):
-        build_tag("mlb_game_state", [MIN_SEASON - 1], tmp_path, compute=_fake_game_state)
+        build_tag(
+            "mlb_game_state", [MIN_SEASON - 1], tmp_path, compute=_fake_game_state
+        )
 
 
 def test_card_carries_stem_rows_and_gate_anchors(tmp_path):
@@ -64,6 +68,26 @@ def test_card_carries_stem_rows_and_gate_anchors(tmp_path):
     assert card["tag"] == "mlb_game_state"
     assert card["rows_by_season"]["2020"]["mlb_wpa"] == 2
     assert card["gate_anchors"]["re24_vs_tango_max_abs_diff"] == pytest.approx(0.05)
+
+
+def test_card_merges_with_the_published_card(tmp_path):
+    """A partial-range invocation (the daily current-season cron) must carry
+    the already-published seasons forward -- this run's seasons win on
+    collision. Three clobber incidents made this a rule."""
+    results = build_tag("mlb_game_state", [2026], tmp_path, compute=_fake_game_state)
+    existing = {
+        "seasons": [2015, 2026],
+        "rows_by_season": {
+            "2015": {"mlb_re24_matrix": 24, "mlb_we_table": 5023, "mlb_wpa": 186878},
+            "2026": {"mlb_re24_matrix": 24, "mlb_we_table": 1, "mlb_wpa": 1},  # stale
+        },
+    }
+    path = write_card("mlb_game_state", results, tmp_path, existing=existing)
+
+    card = json.loads(path.read_text(encoding="utf-8"))
+    assert card["seasons"] == [2015, 2026]
+    assert card["rows_by_season"]["2015"]["mlb_wpa"] == 186878  # carried forward
+    assert card["rows_by_season"]["2026"]["mlb_wpa"] == 2  # this run wins
 
 
 def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
@@ -77,20 +101,30 @@ def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
     def fake_hitting(season, *, cache_dir=None, history=None):
         seen_history[season] = None if history is None else history.height
         out = {
-            "mlb_expected_stats": pl.DataFrame({"batter": [1, 2], "season": [season, season]}),
+            "mlb_expected_stats": pl.DataFrame(
+                {"batter": [1, 2], "season": [season, season]}
+            ),
             "mlb_expected_hr": pl.DataFrame({"batter": [1], "season": [season]}),
         }
         if history is not None:
-            out["mlb_batter_projection"] = pl.DataFrame({"batter": [1], "season": [season]})
+            out["mlb_batter_projection"] = pl.DataFrame(
+                {"batter": [1], "season": [season]}
+            )
         return out
 
     monkeypatch.setattr(computes, "compute_hitting", fake_hitting)
     # the accumulator age-joins each season's frame; stub it as identity so
     # the hermetic test stays offline (the join hits the statsapi people API)
     monkeypatch.setattr(computes, "age_join", lambda df: df)
-    monkeypatch.setattr(cli, "upload_artifacts", lambda *a, **k: pytest.fail("--build-only must not upload"))
+    monkeypatch.setattr(
+        cli,
+        "upload_artifacts",
+        lambda *a, **k: pytest.fail("--build-only must not upload"),
+    )
 
-    rc = main(["hitting", "--seasons", "2015:2017", "--out", str(tmp_path), "--build-only"])
+    rc = main(
+        ["hitting", "--seasons", "2015:2017", "--out", str(tmp_path), "--build-only"]
+    )
 
     assert rc == 0
     assert seen_history == {2015: None, 2016: 2, 2017: 4}
