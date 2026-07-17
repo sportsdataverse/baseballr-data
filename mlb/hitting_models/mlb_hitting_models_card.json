@@ -1,0 +1,89 @@
+{
+  "tag": "mlb_hitting_models",
+  "grain": "one row per batter-season (expected_stats, expected_hr); one row per batter per target season (batter_projection)",
+  "source": "sdv-py mlb_expected_stats / mlb_expected_home_runs / mlb_batter_projection over Baseball Savant",
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "rows_by_season": {
+    "2015": {
+      "mlb_expected_stats": 2040,
+      "mlb_expected_hr": 947
+    },
+    "2016": {
+      "mlb_expected_stats": 2050,
+      "mlb_expected_hr": 1021,
+      "mlb_batter_projection": 2035
+    },
+    "2017": {
+      "mlb_expected_stats": 2054,
+      "mlb_expected_hr": 1071,
+      "mlb_batter_projection": 2688
+    },
+    "2018": {
+      "mlb_expected_stats": 2111,
+      "mlb_expected_hr": 1076,
+      "mlb_batter_projection": 3238
+    },
+    "2019": {
+      "mlb_expected_stats": 2097,
+      "mlb_expected_hr": 1088,
+      "mlb_batter_projection": 3295
+    },
+    "2020": {
+      "mlb_expected_stats": 1470,
+      "mlb_expected_hr": 806,
+      "mlb_batter_projection": 3342
+    },
+    "2021": {
+      "mlb_expected_stats": 1416,
+      "mlb_expected_hr": 1188,
+      "mlb_batter_projection": 3031
+    },
+    "2022": {
+      "mlb_expected_stats": 1655,
+      "mlb_expected_hr": 1091,
+      "mlb_batter_projection": 2672
+    },
+    "2023": {
+      "mlb_expected_stats": 1820,
+      "mlb_expected_hr": 1319,
+      "mlb_batter_projection": 2601
+    },
+    "2024": {
+      "mlb_expected_stats": 1777,
+      "mlb_expected_hr": 1280,
+      "mlb_batter_projection": 2766
+    },
+    "2025": {
+      "mlb_expected_stats": 1752,
+      "mlb_expected_hr": 1489,
+      "mlb_batter_projection": 2659
+    },
+    "2026": {
+      "mlb_expected_stats": 1925,
+      "mlb_expected_hr": 1777,
+      "mlb_batter_projection": 2731
+    }
+  },
+  "gate_anchors": {
+    "xwoba_spearman_same_input": 0.95,
+    "xba_spearman_same_input": 0.95,
+    "xhr_full_season_spearman_live": 0.9
+  },
+  "notes": [
+    "The projection for season S trains only on seasons < S (as-of enforced) and uses the accumulated expected-stats history, so the backfill pays no extra Savant pulls.",
+    "The earliest built season carries no projection stem (no prior history inside the run)."
+  ]
+}

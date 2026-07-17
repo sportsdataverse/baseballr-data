@@ -1,0 +1,77 @@
+{
+  "tag": "mlb_fielding_models",
+  "grain": "oaa: one row per (fielder_id, position, season); catcher_framing: one row per catcher-season",
+  "source": "sdv-py mlb_fielding_oaa / mlb_catcher_framing over Baseball Savant (balls in play = type=='X')",
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "rows_by_season": {
+    "2015": {
+      "mlb_oaa": 1193,
+      "mlb_catcher_framing": 145
+    },
+    "2016": {
+      "mlb_oaa": 1390,
+      "mlb_catcher_framing": 144
+    },
+    "2017": {
+      "mlb_oaa": 1470,
+      "mlb_catcher_framing": 148
+    },
+    "2018": {
+      "mlb_oaa": 1471,
+      "mlb_catcher_framing": 145
+    },
+    "2019": {
+      "mlb_oaa": 1548,
+      "mlb_catcher_framing": 142
+    },
+    "2020": {
+      "mlb_oaa": 1343,
+      "mlb_catcher_framing": 140
+    },
+    "2021": {
+      "mlb_oaa": 1842,
+      "mlb_catcher_framing": 179
+    },
+    "2022": {
+      "mlb_oaa": 1944,
+      "mlb_catcher_framing": 185
+    },
+    "2023": {
+      "mlb_oaa": 2317,
+      "mlb_catcher_framing": 208
+    },
+    "2024": {
+      "mlb_oaa": 2126,
+      "mlb_catcher_framing": 202
+    },
+    "2025": {
+      "mlb_oaa": 2549,
+      "mlb_catcher_framing": 231
+    },
+    "2026": {
+      "mlb_oaa": 3049,
+      "mlb_catcher_framing": 280
+    }
+  },
+  "gate_anchors": {
+    "oaa_full_season_pearson_live": 0.55,
+    "framing_full_season_pearson_live": 0.4
+  },
+  "notes": [
+    "Observed full-season 2024: OAA 0.605, framing 0.468. Ceilings are feature-capped -- the public per-pitch feed lacks fielder start coordinates and receiving data.",
+    "Catcher throwing/blocking, baserunning and SB value are EXCLUDED: data-ceiling-limited (live floors 0.03-0.073 vs 0.80+ design targets; only ~23% of SB/CS attempts are narrated in this feed)."
+  ]
+}

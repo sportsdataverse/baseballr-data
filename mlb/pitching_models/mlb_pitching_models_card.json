@@ -1,0 +1,90 @@
+{
+  "tag": "mlb_pitching_models",
+  "grain": "xera: one row per qualifying pitcher-season; stuff_plus: one row per (pitcher, pitch_type, season); command_plus: one row per pitcher-season",
+  "source": "sdv-py x_era / mlb_stuff_plus / mlb_command_plus over the pitch_features substrate (Baseball Savant)",
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "rows_by_season": {
+    "2015": {
+      "mlb_xera": 736,
+      "mlb_stuff_plus": 4676,
+      "mlb_command_plus": 883
+    },
+    "2016": {
+      "mlb_xera": 742,
+      "mlb_stuff_plus": 4920,
+      "mlb_command_plus": 916
+    },
+    "2017": {
+      "mlb_xera": 755,
+      "mlb_stuff_plus": 4459,
+      "mlb_command_plus": 862
+    },
+    "2018": {
+      "mlb_xera": 799,
+      "mlb_stuff_plus": 4344,
+      "mlb_command_plus": 902
+    },
+    "2019": {
+      "mlb_xera": 830,
+      "mlb_stuff_plus": 4379,
+      "mlb_command_plus": 944
+    },
+    "2020": {
+      "mlb_xera": 737,
+      "mlb_stuff_plus": 3944,
+      "mlb_command_plus": 869
+    },
+    "2021": {
+      "mlb_xera": 909,
+      "mlb_stuff_plus": 4543,
+      "mlb_command_plus": 1069
+    },
+    "2022": {
+      "mlb_xera": 871,
+      "mlb_stuff_plus": 4676,
+      "mlb_command_plus": 1069
+    },
+    "2023": {
+      "mlb_xera": 863,
+      "mlb_stuff_plus": 5761,
+      "mlb_command_plus": 1282
+    },
+    "2024": {
+      "mlb_xera": 855,
+      "mlb_stuff_plus": 5795,
+      "mlb_command_plus": 1281
+    },
+    "2025": {
+      "mlb_xera": 873,
+      "mlb_stuff_plus": 6569,
+      "mlb_command_plus": 1508
+    },
+    "2026": {
+      "mlb_xera": 744,
+      "mlb_stuff_plus": 7382,
+      "mlb_command_plus": 1723
+    }
+  },
+  "gate_anchors": {
+    "xera_mae_vs_savant_xera": 0.3,
+    "stuff_plus_spearman_vs_run_value": 0.2,
+    "command_plus_spearman_vs_run_value": 0.04
+  },
+  "notes": [
+    "Command+ carries a DIRECTIONAL gate only (0.04) -- treat it as a weak ordinal signal, not a calibrated scale.",
+    "SIERA-like is not published (coefficients are unfitted literature placeholders); pitch tunneling / sequence run value are not published (no public oracle to gate against)."
+  ]
+}
