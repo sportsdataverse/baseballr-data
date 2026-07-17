@@ -96,7 +96,39 @@ def compute_game_state(season: int) -> dict[str, pl.DataFrame]:
     }
 
 
-def compute_hitting(season: int, *, cache_dir=None, history: pl.DataFrame | None = None) -> dict[str, pl.DataFrame]:
+_RELEASE_DL = (
+    "https://github.com/sportsdataverse/sportsdataverse-data/releases/download"
+)
+
+
+def bootstrap_history(season: int) -> pl.DataFrame | None:
+    """Age-joined expected-stats history for ``season`` from the PUBLISHED assets.
+
+    A single-season invocation (the daily current-season cron) has no
+    in-process history accumulator, so without this the projection stem for
+    the current season would never publish. Downloads the prior three
+    seasons' ``mlb_expected_stats_{s}.parquet`` best-effort (missing seasons
+    skip) and age-joins them -- no Savant pulls.
+    """
+    import io
+    import urllib.request
+
+    frames: list[pl.DataFrame] = []
+    for s in (season - 3, season - 2, season - 1):
+        url = f"{_RELEASE_DL}/mlb_hitting_models/mlb_expected_stats_{s}.parquet"
+        try:
+            with urllib.request.urlopen(url, timeout=120) as r:
+                frames.append(pl.read_parquet(io.BytesIO(r.read())))
+        except Exception:  # noqa: BLE001 -- missing season = skip, not fail
+            continue
+    if not frames:
+        return None
+    return age_join(pl.concat(frames, how="diagonal_relaxed"))
+
+
+def compute_hitting(
+    season: int, *, cache_dir=None, history: pl.DataFrame | None = None
+) -> dict[str, pl.DataFrame]:
     """Expected stats + xHR + (history permitting) the batter projection.
 
     ``history`` is the AGE-JOINED concatenated ``mlb_expected_stats`` output of
@@ -116,8 +148,12 @@ def compute_hitting(season: int, *, cache_dir=None, history: pl.DataFrame | None
 
     puller = lambda start, end, **kw: pitches  # noqa: E731 -- injection seam
     start, end = f"{season}-01-01", f"{season}-12-01"
-    xstats = mlb_expected_stats(start, end, puller=puller).with_columns(pl.lit(season, dtype=pl.Int64).alias("season"))
-    xhr = mlb_expected_home_runs(start, end, puller=puller).with_columns(pl.lit(season, dtype=pl.Int64).alias("season"))
+    xstats = mlb_expected_stats(start, end, puller=puller).with_columns(
+        pl.lit(season, dtype=pl.Int64).alias("season")
+    )
+    xhr = mlb_expected_home_runs(start, end, puller=puller).with_columns(
+        pl.lit(season, dtype=pl.Int64).alias("season")
+    )
     out = {"mlb_expected_stats": xstats, "mlb_expected_hr": xhr}
     if history is not None and history.height > 0:
         out["mlb_batter_projection"] = mlb_batter_projection(season, history=history)
@@ -139,7 +175,10 @@ def _resolve_birthdates(batter_ids: list[int]) -> None:
         people = mlb_people(person_ids=chunk)
         if people is None or people.height == 0:
             continue
-        bd_col = next((c for c in people.columns if c.lower().replace("_", "") == "birthdate"), None)
+        bd_col = next(
+            (c for c in people.columns if c.lower().replace("_", "") == "birthdate"),
+            None,
+        )
         if bd_col is None:
             continue
         for pid, bd in zip(people["id"].to_list(), people[bd_col].to_list()):
@@ -173,7 +212,10 @@ def age_join(xstats: pl.DataFrame) -> pl.DataFrame:
                 # seasonal age = age on June 30: born after the cutoff -> one year younger
                 - (
                     (pl.col("_birth_date").dt.month() > 6)
-                    | ((pl.col("_birth_date").dt.month() == 6) & (pl.col("_birth_date").dt.day() > 30))
+                    | (
+                        (pl.col("_birth_date").dt.month() == 6)
+                        & (pl.col("_birth_date").dt.day() > 30)
+                    )
                 ).cast(pl.Int64)
             ).alias("age")
         )
@@ -197,7 +239,9 @@ def compute_fielding(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
         return {"mlb_oaa": pl.DataFrame()}
 
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
-    oaa = mlb_fielding_oaa(pitches.filter(pl.col("type") == "X")).with_columns(season_col)
+    oaa = mlb_fielding_oaa(pitches.filter(pl.col("type") == "X")).with_columns(
+        season_col
+    )
     framing = mlb_catcher_framing(pitches).with_columns(season_col)
     return {"mlb_oaa": oaa, "mlb_catcher_framing": framing}
 
@@ -212,7 +256,10 @@ def compute_pitching(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
     """
     from sportsdataverse.mlb.mlb_command_plus import mlb_command_plus
     from sportsdataverse.mlb.mlb_pitch_era import x_era
-    from sportsdataverse.mlb.mlb_pitch_features import add_sequence_features, pitch_features
+    from sportsdataverse.mlb.mlb_pitch_features import (
+        add_sequence_features,
+        pitch_features,
+    )
     from sportsdataverse.mlb.mlb_stuff_plus import mlb_stuff_plus
 
     pitches = load_season_pitches(season, cache_dir=cache_dir)
@@ -223,6 +270,10 @@ def compute_pitching(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
     return {
         "mlb_xera": x_era(feats, season).with_columns(season_col),
-        "mlb_stuff_plus": mlb_stuff_plus(feats, level="arsenal").with_columns(season_col),
-        "mlb_command_plus": mlb_command_plus(feats, level="pitcher").with_columns(season_col),
+        "mlb_stuff_plus": mlb_stuff_plus(feats, level="arsenal").with_columns(
+            season_col
+        ),
+        "mlb_command_plus": mlb_command_plus(feats, level="pitcher").with_columns(
+            season_col
+        ),
     }

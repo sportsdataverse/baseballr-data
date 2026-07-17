@@ -105,7 +105,14 @@ def _make_compute(cmd: str, args):
     history_frames: list[pl.DataFrame] = []
 
     def compute(season: int):
-        history = pl.concat(history_frames[-3:]) if history_frames else None
+        # empty accumulator (a single-season cron run, or the range's first
+        # season) bootstraps history from the PUBLISHED expected-stats assets,
+        # so current-season runs still produce the projection stem
+        history = (
+            pl.concat(history_frames[-3:])
+            if history_frames
+            else computes.bootstrap_history(season)
+        )
         out = computes.compute_hitting(season, cache_dir=cache, history=history)
         if "mlb_expected_stats" in out and out["mlb_expected_stats"].height > 0:
             # age-join at accumulation time: mlb_batter_projection's history

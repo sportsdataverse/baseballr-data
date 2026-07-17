@@ -116,6 +116,8 @@ def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
     # the accumulator age-joins each season's frame; stub it as identity so
     # the hermetic test stays offline (the join hits the statsapi people API)
     monkeypatch.setattr(computes, "age_join", lambda df: df)
+    # no published assets to bootstrap from in this scenario (fresh backfill)
+    monkeypatch.setattr(computes, "bootstrap_history", lambda season: None)
     monkeypatch.setattr(
         cli,
         "upload_artifacts",
@@ -131,6 +133,48 @@ def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
     assert not (tmp_path / "mlb_batter_projection_2015.parquet").exists()
     assert (tmp_path / "mlb_batter_projection_2016.parquet").exists()
     assert (tmp_path / "mlb_hitting_models_card.json").exists()
+
+
+def test_single_season_run_bootstraps_history_from_published_assets(
+    tmp_path, monkeypatch
+):
+    """The daily current-season cron runs one season with an empty accumulator;
+    without the bootstrap its projection stem would never publish."""
+    import mlb_model_publish.cli as cli
+    import mlb_model_publish.computes as computes
+
+    seen_history: dict[int, int | None] = {}
+
+    def fake_hitting(season, *, cache_dir=None, history=None):
+        seen_history[season] = None if history is None else history.height
+        out = {
+            "mlb_expected_stats": pl.DataFrame({"batter": [1], "season": [season]}),
+            "mlb_expected_hr": pl.DataFrame({"batter": [1], "season": [season]}),
+        }
+        if history is not None:
+            out["mlb_batter_projection"] = pl.DataFrame(
+                {"batter": [1], "season": [season]}
+            )
+        return out
+
+    monkeypatch.setattr(computes, "compute_hitting", fake_hitting)
+    monkeypatch.setattr(computes, "age_join", lambda df: df)
+    monkeypatch.setattr(
+        computes,
+        "bootstrap_history",
+        lambda season: pl.DataFrame({"batter": [1, 2, 3], "season": [season - 1] * 3}),
+    )
+    monkeypatch.setattr(
+        cli,
+        "upload_artifacts",
+        lambda *a, **k: pytest.fail("--build-only must not upload"),
+    )
+
+    rc = main(["hitting", "--seasons", "2026", "--out", str(tmp_path), "--build-only"])
+
+    assert rc == 0
+    assert seen_history == {2026: 3}  # the bootstrapped frame reached the compute
+    assert (tmp_path / "mlb_batter_projection_2026.parquet").exists()
 
 
 def test_upload_pattern_selects_stems_and_card(tmp_path):
