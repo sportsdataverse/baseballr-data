@@ -36,6 +36,22 @@ def test_capture_contest_writes_bundle(tmp_path: Path) -> None:
     assert "captured_at" in bundle
 
 
+def test_all_game_tabs_are_bundled(tmp_path: Path) -> None:
+    import re
+
+    def fetch(path: str) -> str:
+        if "play_by_play" in path:
+            return _real_pbp()
+        m = re.search(r"contests/\d+/(\w+)", path)
+        return f"<html>TAB:{m.group(1)}" if m else "x"
+
+    assert capture_contest(fetch, "6357953", tmp_path) == "captured"
+    with gzip.open(bundle_path("6357953", tmp_path), "rt", encoding="utf-8") as fh:
+        b = json.load(fh)
+    for tab in ("box_score", "team_stats", "individual_stats", "situational_stats"):
+        assert b[tab] == f"<html>TAB:{tab}", tab
+
+
 def test_capture_is_idempotent(tmp_path: Path) -> None:
     fetch = _fetch(_real_pbp())
     assert capture_contest(fetch, "6357953", tmp_path) == "captured"
