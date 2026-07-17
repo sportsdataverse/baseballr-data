@@ -85,6 +85,9 @@ def test_hitting_history_accumulates_across_seasons(tmp_path, monkeypatch):
         return out
 
     monkeypatch.setattr(computes, "compute_hitting", fake_hitting)
+    # the accumulator age-joins each season's frame; stub it as identity so
+    # the hermetic test stays offline (the join hits the statsapi people API)
+    monkeypatch.setattr(computes, "age_join", lambda df: df)
     monkeypatch.setattr(cli, "upload_artifacts", lambda *a, **k: pytest.fail("--build-only must not upload"))
 
     rc = main(["hitting", "--seasons", "2015:2017", "--out", str(tmp_path), "--build-only"])
