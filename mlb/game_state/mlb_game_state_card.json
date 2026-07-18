@@ -1,0 +1,90 @@
+{
+  "tag": "mlb_game_state",
+  "grain": "re24_matrix: one row per base-out state; we_table: one row per state bucket; wpa: one row per plate appearance",
+  "source": "sdv-py mlb_run_expectancy / mlb_win_expectancy over statsapi.mlb.com regular-season pbp",
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "rows_by_season": {
+    "2015": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 5023,
+      "mlb_wpa": 186878
+    },
+    "2016": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4997,
+      "mlb_wpa": 187517
+    },
+    "2017": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4974,
+      "mlb_wpa": 188126
+    },
+    "2018": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4978,
+      "mlb_wpa": 188172
+    },
+    "2019": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 5055,
+      "mlb_wpa": 189617
+    },
+    "2020": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4434,
+      "mlb_wpa": 67701
+    },
+    "2021": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 5079,
+      "mlb_wpa": 185215
+    },
+    "2022": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4943,
+      "mlb_wpa": 184985
+    },
+    "2023": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 5062,
+      "mlb_wpa": 187451
+    },
+    "2024": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4985,
+      "mlb_wpa": 185540
+    },
+    "2025": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 5003,
+      "mlb_wpa": 186115
+    },
+    "2026": {
+      "mlb_re24_matrix": 24,
+      "mlb_we_table": 4781,
+      "mlb_wpa": 112258
+    }
+  },
+  "gate_anchors": {
+    "re24_vs_tango_max_abs_diff": 0.05,
+    "wpa_spearman_vs_statsapi_wp": 0.95,
+    "per_game_wpa_sum_identity_tol": 0.02
+  },
+  "notes": [
+    "Game results derive from each game's terminal result_*_score -- one statsapi pull per season, no second surface.",
+    "Leverage index is not published; compute it from we_table + pbp_base_out_states via sdv-py."
+  ]
+}
