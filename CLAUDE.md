@@ -294,3 +294,28 @@ root project); tests from the root: `uv run pytest` (testpaths/pythonpath -> `py
   Entry (run from `python/`): `uv run python -m ncaa_pbp.run`.
 
 **Important: Never include AI agents or assistants (e.g., Claude, Copilot, Cursor, GPT, Gemini) as co-authors on commits.** Omit all `Co-Authored-By` trailers referencing AI tools. This applies whether the change was generated, refactored, or reviewed with AI assistance — the human author is the sole attributable contributor.
+
+## Model registry
+
+A row here is mandatory for every new published model/artifact family; `frozen`
+is a valid cadence but must be stated explicitly. The estimators themselves are
+fit inside sdv-py (`sportsdataverse.mlb.*`) — this repo's builders *recompute
+the season tables*, they never refit. The gates listed are each tag's model-card
+`gate_anchors` (validated in sdv-py's oracle test suite when the models shipped);
+the publish-time gate enforced in this repo is refuse-empty per stem
+(`builders.build_tag`) plus the 2015 Statcast-era season floor. Every stem-season
+uploads as parquet + csv + rds (rds via sdv-py `write_rds` with baseballr's S3
+class chain) alongside a merged `{tag}_card.json`.
+
+| model | artifact(s) | release tag | training data (seasons/source) | fitting script | gates at publish | last retrain | cadence |
+|---|---|---|---|---|---|---|---|
+| `mlb_game_state` (RE24 matrix / WE table / per-PA WPA) | `mlb_re24_matrix_{season}`, `mlb_we_table_{season}`, `mlb_wpa_{season}` (.parquet/.csv/.rds) + `mlb_game_state_card.json` | `mlb_game_state` on `sportsdataverse-data` | 2015–2026 regular-season statsapi.mlb.com pbp (one pull per season) | `python/mlb_model_publish/computes.py` (`compute_game_state`; sdv-py `mlb_run_expectancy` / `mlb_win_expectancy`) | refuse-empty; card anchors: RE24 vs Tango max abs diff 0.05, WPA Spearman vs statsapi WP 0.95, per-game WPA-sum identity tol 0.02 | full 2015–2026 backfill 2026-07-17; current season last rebuilt 2026-07-27 | daily Apr–Oct cron (`mlb_models_cron.yml`, current season) |
+| `mlb_hitting_models` (expected stats / xHR / batter projection) | `mlb_expected_stats_{season}`, `mlb_expected_hr_{season}`, `mlb_batter_projection_{season}` + `mlb_hitting_models_card.json` | `mlb_hitting_models` on `sportsdataverse-data` | 2015–2026 Baseball Savant full-season pitch pulls (shared `SDV_MLB_STATCAST_CACHE`); projection trains as-of on prior seasons' age-joined expected stats only (earliest built season ships no projection stem) | `computes.py` (`compute_hitting` + `age_join` / `bootstrap_history`; sdv-py `mlb_expected_stats` / `mlb_expected_home_runs` / `mlb_batter_projection`) | refuse-empty; card anchors: xwOBA + xBA Spearman same-input 0.95, xHR full-season Spearman live 0.90 | full 2015–2026 backfill 2026-07-17; current season last rebuilt 2026-07-27 | daily Apr–Oct cron (current season) |
+| `mlb_fielding_models` (OAA / catcher framing) | `mlb_oaa_{season}`, `mlb_catcher_framing_{season}` + `mlb_fielding_models_card.json` | `mlb_fielding_models` on `sportsdataverse-data` | 2015–2026 Savant pitches (balls in play = `type == "X"` for OAA; raw pitch frame for framing) | `computes.py` (`compute_fielding`; sdv-py `mlb_fielding_oaa` / `mlb_catcher_framing`) | refuse-empty; card anchors: OAA full-season Pearson ≥ 0.55, framing ≥ 0.40 (feature-capped — public feed lacks fielder start coords / receiving data; catcher throwing/blocking + SB value deliberately excluded) | full 2015–2026 backfill 2026-07-17; current season last rebuilt 2026-07-27 | daily Apr–Oct cron (current season) |
+| `mlb_pitching_models` (xERA / arsenal Stuff+ / Command+) | `mlb_xera_{season}`, `mlb_stuff_plus_{season}`, `mlb_command_plus_{season}` + `mlb_pitching_models_card.json` | `mlb_pitching_models` on `sportsdataverse-data` | 2015–2026 Savant pitches via the `pitch_features` → `add_sequence_features` substrate | `computes.py` (`compute_pitching`; sdv-py `x_era` / `mlb_stuff_plus` / `mlb_command_plus`) | refuse-empty; card anchors: xERA MAE vs Savant xERA 0.30, Stuff+ Spearman vs run value 0.20, Command+ 0.04 (directional only; SIERA-like + tunneling deliberately not published) | full 2015–2026 backfill 2026-07-17; current season last rebuilt 2026-07-27 | daily Apr–Oct cron (current season) |
+
+TODO (lineage not establishable from this repo): the fit provenance of the
+underlying sdv-py estimators (training windows / hyperparameters for the
+expected-stats, xHR, OAA, framing, xERA, Stuff+ and Command+ models) lives in
+sdv-py and its oracle fixtures, not here — consult sdv-py's MLB model docs
+before treating the gate anchors as re-verifiable from this repo alone.
