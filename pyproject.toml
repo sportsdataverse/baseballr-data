@@ -25,5 +25,5 @@ dev = ["pytest>=8.0"]
 sportsdataverse = { git = "https://github.com/sportsdataverse/sportsdataverse-py", branch = "main" }
 
 [tool.pytest.ini_options]
-testpaths = ["python/tests"]
+testpaths = ["tests"]
 pythonpath = ["python"]
