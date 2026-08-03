@@ -17,7 +17,10 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8.0"]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
 
 # The MLB model surface (T6.x) lives on sdv-py main, ahead of the last PyPI
 # release -- same pin pattern as the hoopR/wehoop data repos.
@@ -27,3 +30,12 @@ sportsdataverse = { git = "https://github.com/sportsdataverse/sportsdataverse-py
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["python"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# Pinned rule set: relying on ruff defaults makes the gate version-sensitive.
+select = ["E4", "E7", "E9", "F", "I"]
+# Explicit polars bool masks (pl.col(...) == True) are the project convention.
+ignore = ["E712"]

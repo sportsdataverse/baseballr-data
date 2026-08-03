@@ -12,7 +12,6 @@ import json
 
 import polars as pl
 import pytest
-
 from mlb_model_publish.artifacts import upload_artifacts
 from mlb_model_publish.builders import MIN_SEASON, build_tag, write_card
 from mlb_model_publish.cli import _seasons, main
