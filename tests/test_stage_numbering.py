@@ -26,9 +26,10 @@ STAGES = (
     ("04", "ncaa_baseball_04_rosters_scrape", "ncaa_pbp.rosters"),
     ("05", "ncaa_baseball_05_datasets_build", "ncaa_pbp.datasets"),
     ("06", "ncaa_baseball_06_xwalk_build", "ncaa_pbp.xwalk"),
+    ("07", "ncaa_baseball_07_datasets_publish", "ncaa_baseball_data_build.cli"),
 )
 PARENT_OWNED_HOLES: "set[str]" = set()  # 03 filled 2026-08-26
-OFFLINE_STAGES = {"03", "05", "06"}  # no NCAA transport needed
+OFFLINE_STAGES = {"03", "05", "06", "07"}  # no NCAA transport needed (07: gh only)
 
 
 def test_stage_set_and_ordering() -> None:
@@ -43,7 +44,9 @@ def test_stage_set_and_ordering() -> None:
 def test_shim_delegates(monkeypatch, num, shim, delegate) -> None:
     mod = importlib.import_module(shim)
     seen: "list[list[str]]" = []
-    monkeypatch.setattr(importlib.import_module(delegate), "main", lambda argv: seen.append(argv) or 7)
+    monkeypatch.setattr(
+        importlib.import_module(delegate), "main", lambda argv: seen.append(argv) or 7
+    )
     assert mod.main(["--season", "2026"]) == 7
     assert seen == [["--season", "2026"]]
 

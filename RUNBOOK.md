@@ -24,6 +24,7 @@ ad-hoc one-session runner.
 | 04 | rosters: `teams/{id}/roster` → `ncaa/rosters_html/{season}/` | `python/ncaa_baseball_04_rosters_scrape.py` | `scripts/run_04_rosters_scrape.sh` | online (≈1 page/team) | teams with roster html skipped | `./scripts/run_04_rosters_scrape.sh --season 2026` |
 | 05 | datasets: persisted html → `ncaa/teams/parquet/{season}_d{div}.parquet`, `ncaa/schedule_master/parquet/{season}.parquet`, `ncaa/rosters/parquet/{season}.parquet` (sdv-py `scrape.ncaa.reference` parsers) | `python/ncaa_baseball_05_datasets_build.py` | `scripts/run_05_datasets_build.sh` | **offline** (no proxy) | pure function of the tree; re-run overwrites | `./scripts/run_05_datasets_build.sh --season 2026` |
 | 06 | xwalk: NCAA↔ESPN game crosswalk → `ncaa/xwalk/espn_game_id/{season}.json`; scoreboard sweep cached to `ncaa/xwalk/espn_scoreboard/{season}/{date}.json` | `python/ncaa_baseball_06_xwalk_build.py` | `scripts/run_06_xwalk_build.sh` | offline for NCAA; uncached days hit the ESPN scoreboard API once, then re-runs are fully offline | re-run overwrites; cache makes it offline | `./scripts/run_06_xwalk_build.sh --season 2026` |
+| 07 | season datasets: parsed payloads + reference parquet → `ncaa/{dataset}/parquet/ncaa_baseball_{dataset}_{season}.parquet` (+ `ncaa/qa/qa_pbp_finals_{season}.parquet` on `--dataset all`); `--publish` uploads parquet+csv.gz+rds to the `ncaa_baseball_*` releases; `check` audits built vs published | `python/ncaa_baseball_07_datasets_publish.py` | `scripts/run_07_datasets_publish.sh` | **offline** except `gh` | pure function of the tree; re-run overwrites; uploads idempotent (`--clobber`) | `./scripts/run_07_datasets_publish.sh build --season 2024 --publish` |
 | — | combined ad-hoc runner (discover + capture in one browser session) | `python/ncaa_pbp/run.py` | — | online | as above | `NCAA_PROXY_POOL=... python -m ncaa_pbp.run --year 2026 --out ./ncaa` |
 
 `scripts/_env.sh` is sourced by every launcher (not run): repo root, sdv-py
@@ -41,9 +42,10 @@ tees to `logs/<prefix>_<ts>.log` and prints `EXIT=<rc>`.
 ./scripts/run_02_games_scrape.sh     --season 2026 --max 200  # repeat until 0 new
 ./scripts/run_05_datasets_build.sh   --season 2026            # offline
 ./scripts/run_06_xwalk_build.sh      --season 2026            # ESPN crosswalk
+./scripts/run_07_datasets_publish.sh build --season 2026 --publish  # season datasets + release
 ```
 
-Watch any stage live: `tail -f logs/<schedules|games|rosters|datasets|xwalk>_<ts>.log`
+Watch any stage live: `tail -f logs/<schedules|games|rosters|datasets|xwalk|datasets_publish>_<ts>.log`
 (the path is printed at start). Completion: grep `EXIT=` in the log.
 
 ## Backfill
@@ -67,6 +69,6 @@ PYTHONPATH="/mnt/sdv_repos/sdv-py:$PWD/python" \
 ```
 
 `tests/test_stage_numbering.py` is the stage gate: the built stage set is
-exactly {01, 02, 04, 05, 06} with the 03 hole open, each shim delegates to its
-`ncaa_pbp.*` module, each `run_NN_*.sh` invokes its own shim, and this runbook
-lists every stage and launcher.
+exactly {01..07}, each shim delegates to its working module (`ncaa_pbp.*`, or
+`ncaa_baseball_data_build.cli` for 07), each `run_NN_*.sh` invokes its own
+shim, and this runbook lists every stage and launcher.
