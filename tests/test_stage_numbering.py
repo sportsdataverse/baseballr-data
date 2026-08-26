@@ -22,12 +22,13 @@ REPO = Path(__file__).resolve().parents[1]
 STAGES = (
     ("01", "ncaa_baseball_01_schedules_scrape", "ncaa_pbp.schedules"),
     ("02", "ncaa_baseball_02_games_scrape", "ncaa_pbp.games"),
+    ("03", "ncaa_baseball_03_games_parse", "ncaa_pbp.parse"),
     ("04", "ncaa_baseball_04_rosters_scrape", "ncaa_pbp.rosters"),
     ("05", "ncaa_baseball_05_datasets_build", "ncaa_pbp.datasets"),
     ("06", "ncaa_baseball_06_xwalk_build", "ncaa_pbp.xwalk"),
 )
-PARENT_OWNED_HOLES = {"03"}  # parse -- built on feat/ncaa-baseball-parse
-OFFLINE_STAGES = {"05", "06"}  # no NCAA transport needed
+PARENT_OWNED_HOLES: "set[str]" = set()  # 03 filled 2026-08-26
+OFFLINE_STAGES = {"03", "05", "06"}  # no NCAA transport needed
 
 
 def test_stage_set_and_ordering() -> None:

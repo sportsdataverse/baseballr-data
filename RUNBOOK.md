@@ -2,9 +2,9 @@
 
 Numbered, idempotent pipeline stages (SDV pipeline-stage convention), mirroring
 `ncaa-mfb-football-raw` / `ncaa-mbb-hoops-raw` so a stage number means the same
-thing across the NCAA raw repos. **03 (parse) is a deliberate hole** — it is
-built separately (branch `feat/ncaa-baseball-parse`); a reserved stage leaves a
-hole rather than renumbering.
+thing across the NCAA raw repos. Stage 03 (parse) owns BOTH eras — it is
+the offline reconciliation stage: capture bundles and the legacy R-era trees
+resolve into one payload shape through the same sdv-py decomposition engine.
 
 Every stage shim in `python/` is a thin argparse wrapper that delegates to the
 working `ncaa_pbp.*` modules; `python/ncaa_pbp/run.py` remains the combined
@@ -20,7 +20,7 @@ ad-hoc one-session runner.
 | --- | --- | --- | --- | --- | --- | --- |
 | 01 | schedules: team lists + team pages → `ncaa/teams_html/{season}_d{div}.html`, `ncaa/schedules_html/{season}/`, `ncaa/schedule_master/parquet/{season}.parquet` | `python/ncaa_baseball_01_schedules_scrape.py` | `scripts/run_01_schedules_scrape.sh` | online (≈1 page/team) | persisted html re-read, not re-fetched | `./scripts/run_01_schedules_scrape.sh --season 2026` |
 | 02 | games: 5-tab bundle per contest → `ncaa/raw/{season}/{contest_id}.json.gz` (contest ids from the schedule master, not rediscovery) | `python/ncaa_baseball_02_games_scrape.py` | `scripts/run_02_games_scrape.sh` | online (5 pages/game) | captured contests skipped; ban ⇒ breaker, rc=1 hard-stop, re-run resumes; chunk `--max`, fan out `--shard i/N` (one process each) | `./scripts/run_02_games_scrape.sh --season 2026 --max 200` |
-| 03 | *(hole — parse; built separately on `feat/ncaa-baseball-parse`)* | — | — | — | — | — |
+| 03 | parse: raw bundles + legacy R-era trees → `ncaa/json/{game_key}.json.gz` parsed+enriched payloads (both eras through the sdv-py decomposition engine) | `python/ncaa_baseball_03_games_parse.py` | `scripts/run_03_games_parse.sh` | **offline** | resumable (`--force` overwrites); `--season N` and/or `--legacy [--year Y]`; spawn pool `--workers` | `./scripts/run_03_games_parse.sh --legacy --year 2017` |
 | 04 | rosters: `teams/{id}/roster` → `ncaa/rosters_html/{season}/` | `python/ncaa_baseball_04_rosters_scrape.py` | `scripts/run_04_rosters_scrape.sh` | online (≈1 page/team) | teams with roster html skipped | `./scripts/run_04_rosters_scrape.sh --season 2026` |
 | 05 | datasets: persisted html → `ncaa/teams/parquet/{season}_d{div}.parquet`, `ncaa/schedule_master/parquet/{season}.parquet`, `ncaa/rosters/parquet/{season}.parquet` (sdv-py `scrape.ncaa.reference` parsers) | `python/ncaa_baseball_05_datasets_build.py` | `scripts/run_05_datasets_build.sh` | **offline** (no proxy) | pure function of the tree; re-run overwrites | `./scripts/run_05_datasets_build.sh --season 2026` |
 | 06 | xwalk: NCAA↔ESPN game crosswalk → `ncaa/xwalk/espn_game_id/{season}.json`; scoreboard sweep cached to `ncaa/xwalk/espn_scoreboard/{season}/{date}.json` | `python/ncaa_baseball_06_xwalk_build.py` | `scripts/run_06_xwalk_build.sh` | offline for NCAA; uncached days hit the ESPN scoreboard API once, then re-runs are fully offline | re-run overwrites; cache makes it offline | `./scripts/run_06_xwalk_build.sh --season 2026` |

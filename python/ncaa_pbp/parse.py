@@ -127,3 +127,97 @@ def build_capture_payload(
             ).items()
         },
     }
+
+
+# --- stage-03 drivers ------------------------------------------------------
+
+
+def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[str, str]":
+    """Worker: one raw bundle -> one payload. (spawn pool; imports stay local)."""
+    root_s, cid, season, espn, force = args
+    root = Path(root_s)
+    out = parsed_path(root, cid)
+    if out.exists() and not force:
+        return cid, "skipped"
+    raw = root / "ncaa" / "raw" / str(season) / f"{cid}.json.gz"
+    try:
+        with gzip.open(raw, "rt", encoding="utf-8") as fh:
+            bundle = json.load(fh)
+        write_payload(root, build_capture_payload(bundle, season, espn_game_id=espn))
+        return cid, "parsed"
+    except Exception as exc:  # noqa: BLE001 -- one bad bundle must not kill the sweep
+        return cid, f"error: {type(exc).__name__}: {exc}"
+
+
+def _legacy_job(args: "tuple[str, str, bool]") -> "tuple[str, str]":
+    root_s, path_s, force = args
+    from ncaa_pbp.legacy import build_legacy_payload, read_legacy_game
+
+    root = Path(root_s)
+    try:
+        rows = read_legacy_game(path_s)
+        payload = build_legacy_payload(rows)
+        out = parsed_path(root, payload["game_key"])
+        if out.exists() and not force:
+            return payload["game_key"], "skipped"
+        write_payload(root, payload)
+        return payload["game_key"], "parsed"
+    except Exception as exc:  # noqa: BLE001
+        return Path(path_s).stem, f"error: {type(exc).__name__}: {exc}"
+
+
+def _run_pool(jobs: "list", worker, workers: int) -> "dict[str, int]":
+    # spawn, not fork: polars/Rayon locks deadlock forked children at 0% CPU
+    from multiprocessing import get_context
+
+    stats: "dict[str, int]" = {}
+    if workers <= 1:
+        results = map(worker, jobs)
+        for key, status in results:
+            s = status.split(":")[0]
+            stats[s] = stats.get(s, 0) + 1
+            if status.startswith("error"):
+                print(f"{key}: {status}", flush=True)
+        return stats
+    with get_context("spawn").Pool(workers) as pool:
+        for key, status in pool.imap_unordered(worker, jobs, chunksize=16):
+            s = status.split(":")[0]
+            stats[s] = stats.get(s, 0) + 1
+            if status.startswith("error"):
+                print(f"{key}: {status}", flush=True)
+    return stats
+
+
+def main(argv: "list[str] | None" = None) -> int:
+    """CLI -- capture-era sweep (``--season``) and/or legacy sweep (``--legacy``)."""
+    import argparse
+
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--root", default=str(Path(__file__).resolve().parents[2]))
+    ap.add_argument("--season", type=int, default=None, help="parse ncaa/raw/{season} bundles")
+    ap.add_argument("--legacy", action="store_true", help="parse the legacy R-era trees")
+    ap.add_argument("--year", type=int, default=None, help="restrict --legacy to one year")
+    ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--force", action="store_true")
+    args = ap.parse_args(argv)
+    if args.season is None and not args.legacy:
+        ap.error("pass --season N and/or --legacy")
+    root = Path(args.root)
+
+    if args.season is not None:
+        from ncaa_pbp.xwalk import load_espn_game_index
+
+        idx = load_espn_game_index(root, args.season)
+        raw_dir = root / "ncaa" / "raw" / str(args.season)
+        cids = sorted(p.name.removesuffix(".json.gz") for p in raw_dir.glob("*.json.gz"))
+        jobs = [(str(root), c, args.season, idx.get(c), args.force) for c in cids]
+        print(f"capture {args.season}: {_run_pool(jobs, _capture_job, args.workers)}", flush=True)
+
+    if args.legacy:
+        from ncaa_pbp.legacy import iter_legacy_games
+
+        paths = [str(p) for p, _rows in iter_legacy_games(root, year=args.year)]
+        jobs = [(str(root), p, args.force) for p in paths]
+        label = f"legacy{f' {args.year}' if args.year else ''}"
+        print(f"{label}: {_run_pool(jobs, _legacy_job, args.workers)}", flush=True)
+    return 0
