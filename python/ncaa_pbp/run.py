@@ -6,36 +6,34 @@ the ``NCAA_PROXY_POOL`` env var (newline/comma-separated ``http://user:pass@host
 
 Usage::
 
-    NCAA_PROXY_POOL="$(cat proxies.txt)" python python/run.py --sport MBA --year 2025 --out ./raw
+    NCAA_PROXY_POOL="$(cat proxies.txt)" python python/run.py --sport MBA --year 2025 --out ./ncaa
 
 stats.ncaa.org IP-bans scrapers -- run sparingly, paced, from a residential IP.
+
+The numbered stage pipeline (``python/ncaa_baseball_NN_*.py``; see RUNBOOK.md) is
+the maintained path -- this combined runner remains for one-shot ad-hoc captures.
 """
 
 from __future__ import annotations
 
 import argparse
-import os
 import sys
+from pathlib import Path
 
 from ncaa_pbp.capture import capture_season
-from ncaa_pbp.discover import browser_fetch_fn, discover_season
-
-
-def _pool() -> "list[str]":
-    raw = os.environ.get("NCAA_PROXY_POOL", "")
-    return [p.strip() for p in raw.replace(",", "\n").splitlines() if p.strip()]
+from ncaa_pbp.discover import browser_fetch_fn, discover_season, proxy_pool_from_env
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="NCAA baseball/softball raw pbp capture")
     ap.add_argument("--sport", default="MBA", choices=["MBA", "WSB"], help="MBA=baseball, WSB=softball")
-    ap.add_argument("--year", type=int, required=True, help="academic year, e.g. 2025")
+    ap.add_argument("--year", type=int, required=True, help="season = calendar year, e.g. 2026")
     ap.add_argument("--division", type=int, default=1)
-    ap.add_argument("--out", required=True, help="output repo root for the json/ tree")
+    ap.add_argument("--out", required=True, help="output root; bundles land in {out}/raw/{year}/")
     ap.add_argument("--max", type=int, default=None, help="cap NEW captures this run (chunking)")
     args = ap.parse_args()
 
-    pool = _pool()
+    pool = proxy_pool_from_env()
     if not pool:
         print("NCAA_PROXY_POOL is empty -- set a US-residential proxy pool", file=sys.stderr)
         return 2
@@ -44,7 +42,8 @@ def main() -> int:
     print(f"[discover] {args.sport} {args.year} D{args.division} ...", flush=True)
     contests = discover_season(args.year, args.division, args.sport, fetch_fn=fetch)
     print(f"[discover] {len(contests)} contests", flush=True)
-    stats = capture_season(contests, fetch, args.out, max_contests=args.max)
+    out_dir = Path(args.out) / "raw" / str(args.year)
+    stats = capture_season(contests, fetch, out_dir, max_contests=args.max)
     print(f"[capture] {stats}", flush=True)
     return 0
 

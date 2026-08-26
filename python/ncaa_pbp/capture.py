@@ -4,9 +4,10 @@ resumable.
 Fetches all game-detail tabs -- ``/contests/{id}/play_by_play`` plus
 ``box_score``, ``team_stats``, ``individual_stats`` and ``situational_stats`` --
 via an injectable ``fetch_fn`` (live: a held ``NcaaFetcher.with_browser`` session)
-and writes one gzipped JSON bundle per contest to ``{out_dir}/json/{id}.json.gz``
--- the tree the ``-data`` ingest + the sdv-py ``college_baseball_ncaa_*`` parsers
-read. ``play_by_play`` is the validity gate; the other tabs are best-effort
+and writes one gzipped JSON bundle per contest to ``{out_dir}/{id}.json.gz``
+(stage 02 passes ``ncaa/raw/{season}``) -- the tree the ``-data`` ingest + the
+sdv-py ``college_baseball_ncaa_*`` parsers read. ``play_by_play`` is the validity
+gate; the other tabs are best-effort
 (stored ``null`` if a fetch fails). Resume is file-exists based (Ctrl-C safe). A
 consecutive-failure breaker hard-stops a ban/challenge storm instead of grinding.
 
@@ -29,16 +30,14 @@ from typing import Callable, Iterable, Optional
 
 FetchFn = Callable[[str], str]
 
-_MIN_PBP_BYTES = (
-    15_000  # a real baseball/softball pbp page is ~45-55 KB; a stub/ban is < 2 KB
-)
+_MIN_PBP_BYTES = 15_000  # a real baseball/softball pbp page is ~45-55 KB; a stub/ban is < 2 KB
 # Extra game-detail tabs captured alongside play_by_play (best-effort). Each maps
 # to a stats.ncaa.org ``/contests/{id}/{tab}`` page and a sdv-py college_baseball parser.
 _EXTRA_TABS = ("box_score", "team_stats", "individual_stats", "situational_stats")
 
 
 def bundle_path(contest_id: "str | int", out_dir: "str | Path") -> Path:
-    return Path(out_dir) / "json" / f"{contest_id}.json.gz"
+    return Path(out_dir) / f"{contest_id}.json.gz"
 
 
 def is_captured(contest_id: "str | int", out_dir: "str | Path") -> bool:
@@ -49,14 +48,10 @@ def is_captured(contest_id: "str | int", out_dir: "str | Path") -> bool:
 def _looks_real(html: "Optional[str]") -> bool:
     # a real pbp page renders innings as <table class="table">; a challenge stub /
     # ban page is tiny and table-less.
-    return (
-        bool(html) and len(html) >= _MIN_PBP_BYTES and 'class="table"' in html.lower()
-    )
+    return bool(html) and len(html) >= _MIN_PBP_BYTES and 'class="table"' in html.lower()
 
 
-def capture_contest(
-    fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | Path"
-) -> str:
+def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | Path") -> str:
     """Fetch + persist one contest bundle.
 
     Returns ``"skipped"`` (already captured), ``"captured"``, or ``"failed"``
@@ -95,9 +90,9 @@ def capture_season(
     """Capture every not-yet-captured contest. Idempotent; hard-stops on a storm.
 
     Args:
-        contest_ids: from ``discover.discover_season``.
+        contest_ids: from the schedule master (stage 02) or ``discover.discover_season``.
         fetch_fn: ``(path) -> html`` (hold one browser session -- no per-call relaunch).
-        out_dir: repo root for the raw ``json/`` tree.
+        out_dir: directory the ``{contest_id}.json.gz`` bundles land in.
         max_contests: stop after this many NEW captures (chunking; None = all).
         max_consecutive_failures: trip the breaker after this many failures in a row.
 
