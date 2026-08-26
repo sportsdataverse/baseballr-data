@@ -17,6 +17,7 @@ cron; this producer is the capture half of the Python replacement.
 
 from __future__ import annotations
 
+import os
 import re
 from typing import Callable, List, Optional
 
@@ -26,11 +27,10 @@ _TEAM_ID_RE = re.compile(r"/teams/(\d+)")
 _CONTEST_ID_RE = re.compile(r"/contests/(\d+)/")
 
 
-def team_list_path(
-    academic_year: int, division: int = 1, sport_code: str = "MBA"
-) -> str:
+def team_list_path(academic_year: int, division: int = 1, sport_code: str = "MBA") -> str:
     """stats.ncaa.org team-list path. ``sport_code`` MBA=baseball / WSB=softball;
-    ``division`` 1/2/3 = D-I/II/III."""
+    ``division`` 1/2/3 = D-I/II/III. For spring sports ``academic_year`` equals
+    the calendar-year season key (2026 = spring 2026) -- no offset."""
     return f"team/inst_team_list?academic_year={academic_year}&conf_id=-1&division={division}&sport_code={sport_code}"
 
 
@@ -42,6 +42,13 @@ def parse_team_ids(html: str) -> List[str]:
 def parse_contest_ids(html: str) -> List[str]:
     """Distinct ``/contests/{id}`` ids from a team page (order preserved)."""
     return list(dict.fromkeys(_CONTEST_ID_RE.findall(html or "")))
+
+
+def proxy_pool_from_env() -> "list[str]":
+    """US-residential proxy pool from ``NCAA_PROXY_POOL`` (newline/comma-separated
+    ``http://user:pass@host:port``). Empty list when unset."""
+    raw = os.environ.get("NCAA_PROXY_POOL", "")
+    return [p.strip() for p in raw.replace(",", "\n").splitlines() if p.strip()]
 
 
 def browser_fetch_fn(proxy_pool: "Optional[List[str]]" = None) -> FetchFn:
@@ -82,8 +89,7 @@ def discover_season(
     if not teams:
         raise ValueError(
             f"no teams for academic_year={academic_year} division={division} "
-            f"sport_code={sport_code}"
-            + (" (WSB team-list flow is a known TODO)" if sport_code == "WSB" else "")
+            f"sport_code={sport_code}" + (" (WSB team-list flow is a known TODO)" if sport_code == "WSB" else "")
         )
     contests: "set[str]" = set()
     for team_id in teams:

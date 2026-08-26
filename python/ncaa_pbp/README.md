@@ -4,26 +4,32 @@ Python-side capture of NCAA baseball (`sport_code=MBA`) play-by-play from
 `stats.ncaa.org`, the replacement for the legacy R scrape path (`R/ncaa_0*.R` via
 `baseballr::ncaa_*`) per the standing directive to move -data extraction to Python.
 
-Discovers a season's contests (team list → team pages → contest_ids) and captures
-the raw pbp HTML as idempotent, resumable gzip bundles. **Parsing lives in sdv-py**
-(`sportsdataverse.baseball.college_baseball.parse_college_baseball_ncaa_pbp`,
-validated on 3 real D1 games: 0 unknown play types, `runs_scored` reconciles to the
-final score); this producer is capture-only.
+The maintained entry points are the **numbered pipeline stages** — see the
+repo-root `RUNBOOK.md` for the stage table (01 schedules, 02 games, 04 rosters,
+05 datasets, 06 xwalk; 03 = parse hole, built separately). **Parsing lives in
+sdv-py** (`sportsdataverse.baseball.college_baseball.parse_college_baseball_ncaa_pbp`
++ the `sportsdataverse.scrape.ncaa.reference` team-list/schedule/roster parsers);
+this producer is capture-only.
 
 ```
-discover.py       # team list (MBA) -> team pages -> contest_ids
-capture.py        # /contests/{id}/play_by_play (+ box_score) -> json/{id}.json.gz
-run.py            # live runner (holds one browser session; NCAA_PROXY_POOL env)
-test_discover.py  # offline (pure parsers + injected fetch)
-test_capture.py   # offline (real fixture + tmp out_dir)
-tests/fixtures/   # a real captured pbp page
+discover.py       # team list (MBA) -> team pages -> contest_ids; NCAA_PROXY_POOL helper
+capture.py        # /contests/{id}/* 5-tab bundle -> {out_dir}/{id}.json.gz
+schedules.py      # stage 01: teams_html + schedules_html + schedule master parquet
+games.py          # stage 02: master-driven bundle capture -> ncaa/raw/{season}/
+rosters.py        # stage 04: teams/{id}/roster -> rosters_html
+datasets.py       # stage 05 (offline): persisted html -> reference parquet frames
+xwalk.py          # stage 06: NCAA<->ESPN game crosswalk (cached scoreboard sweep)
+run.py            # combined ad-hoc runner (holds one browser session)
+tests/            # offline: real fixtures + injected fetch_fn (../../tests/)
 ```
 
 ## Run
 
 ```sh
+./scripts/run_01_schedules_scrape.sh --season 2026     # see RUNBOOK.md
+# ad-hoc combined runner:
 NCAA_PROXY_POOL="$(cat proxies.txt)" \
-  python python/run.py --sport MBA --year 2025 --out ./ncaa --max 200
+  python -m ncaa_pbp.run --sport MBA --year 2026 --out ./ncaa --max 200
 ```
 
 Transport = `sportsdataverse.mbb.mbb_ncaa_fetch.NcaaFetcher.with_browser`
