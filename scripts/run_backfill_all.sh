@@ -18,7 +18,10 @@ export PYTHONPATH="${ROOT}/python" PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
 # (2026-08-21: leaked profiles filled / on the MFB campaign).
 export TMPDIR=/mnt/sdv_repos/tmp
 mkdir -p logs "$TMPDIR"
-PY="${ROOT}/.venv/bin/python"; [ -x "$PY" ] || PY=/mnt/sdv_repos/sdv-py/.venv/bin/python
+# sdv-py's venv FIRST: the browser stages need patchright (+ its chromium),
+# which is intentionally not a dependency of this repo's own venv.
+PY=/mnt/sdv_repos/sdv-py/.venv/bin/python; [ -x "$PY" ] || PY="${ROOT}/.venv/bin/python"
+export PYTHONPATH="/mnt/sdv_repos/sdv-py:${PYTHONPATH}"
 
 # NCAA_PROXY_POOL from .Renviron Decodo creds (a pre-set value wins)
 if [ -z "${NCAA_PROXY_POOL:-}" ]; then
