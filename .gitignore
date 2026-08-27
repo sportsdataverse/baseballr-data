@@ -15,3 +15,7 @@ __pycache__/
 mlb/*/csv/
 mlb/*/rds/
 *.out
+
+# D-II/III bundles captured before the 2026-08-27 D-I scope call -- kept on
+# disk as a head start for a future backfill, deliberately not committed.
+ncaa/raw_other_divisions/

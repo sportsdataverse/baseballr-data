@@ -27,6 +27,13 @@ from ncaa_pbp.discover import (
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DIVISIONS = (1, 2, 3)
+#: Divisions the EXPENSIVE stages touch by default: D-I only (2026-08-27 scope
+#: call -- D-II/III game capture is a `--division` flag away when wanted).
+#: Discovery (this module) deliberately still sweeps all of DIVISIONS: the
+#: R-era `ncaa_baseball_schedules` releases ship D-I..D-III, so a D-I-only
+#: schedule master would REGRESS a published dataset, and team pages are ~3%
+#: of a season's fetch cost.
+DEFAULT_DIVISIONS = (1,)
 
 
 def teams_html_path(root: "str | Path", season: int, division: int) -> Path:
@@ -85,7 +92,7 @@ def main(argv: "list[str] | None" = None) -> int:
         type=int,
         choices=DIVISIONS,
         default=None,
-        help="one division (default: all three)",
+        help="one division (default: all three -- schedules stay D-I..D-III)",
     )
     ap.add_argument("--root", default=str(REPO_ROOT))
     args = ap.parse_args(argv)

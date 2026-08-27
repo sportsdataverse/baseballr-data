@@ -14,7 +14,13 @@ from pathlib import Path
 from typing import Dict, Tuple
 
 from ncaa_pbp.discover import FetchFn, browser_fetch_fn, proxy_pool_from_env
-from ncaa_pbp.schedules import DIVISIONS, REPO_ROOT, fetch_persisted, teams_html_path
+from ncaa_pbp.schedules import (
+    DEFAULT_DIVISIONS,
+    DIVISIONS,
+    REPO_ROOT,
+    fetch_persisted,
+    teams_html_path,
+)
 
 
 def roster_html_path(root: "str | Path", season: int, team_id: str) -> Path:
@@ -23,7 +29,7 @@ def roster_html_path(root: "str | Path", season: int, team_id: str) -> Path:
 
 def scrape_rosters(
     season: int,
-    divisions: "Tuple[int, ...]" = DIVISIONS,
+    divisions: "Tuple[int, ...]" = DEFAULT_DIVISIONS,
     *,
     root: "str | Path" = REPO_ROOT,
     fetch_fn: FetchFn,
@@ -56,7 +62,7 @@ def main(argv: "list[str] | None" = None) -> int:
         type=int,
         choices=DIVISIONS,
         default=None,
-        help="one division (default: all three)",
+        help="one division (default: D-I only)",
     )
     ap.add_argument("--root", default=str(REPO_ROOT))
     args = ap.parse_args(argv)
@@ -67,7 +73,7 @@ def main(argv: "list[str] | None" = None) -> int:
         return 2
     fetch = browser_fetch_fn(proxy_pool=pool)  # one held session
 
-    divisions = (args.division,) if args.division else DIVISIONS
+    divisions = (args.division,) if args.division else DEFAULT_DIVISIONS
     stats = scrape_rosters(args.season, divisions, root=Path(args.root), fetch_fn=fetch)
     print(f"[rosters] {args.season}: {stats}", flush=True)
     return 0

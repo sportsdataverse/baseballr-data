@@ -174,3 +174,21 @@ def test_rosters_scrape_resumable(tmp_path: Path) -> None:
 def test_rosters_scrape_requires_stage_01(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError, match="run stage 01"):
         rosters.scrape_rosters(2026, (1,), root=tmp_path, fetch_fn=lambda p: "")
+
+
+def test_contest_ids_from_master_filters_divisions(tmp_path: Path) -> None:
+    """D-I only by default (2026-08-27 scope call); every division on request."""
+    import polars as pl
+    from ncaa_pbp.datasets import master_parquet_path
+
+    out = master_parquet_path(tmp_path, 2026)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    pl.DataFrame(
+        {
+            "contest_id": ["1", "1", "2", "3", None],
+            "division": [1, 1, 2, 3, 1],
+        }
+    ).write_parquet(out)
+    assert games.contest_ids_from_master(tmp_path, 2026) == ["1"]
+    assert games.contest_ids_from_master(tmp_path, 2026, (2, 3)) == ["2", "3"]
+    assert games.contest_ids_from_master(tmp_path, 2026, None) == ["1", "2", "3"]

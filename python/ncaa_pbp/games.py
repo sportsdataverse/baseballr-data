@@ -16,32 +16,43 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from ncaa_pbp.capture import capture_season
 from ncaa_pbp.datasets import master_parquet_path
 from ncaa_pbp.discover import browser_fetch_fn, proxy_pool_from_env
-from ncaa_pbp.schedules import REPO_ROOT
+from ncaa_pbp.schedules import DEFAULT_DIVISIONS, DIVISIONS, REPO_ROOT
 
 
 def raw_dir(root: "str | Path", season: int) -> Path:
     return Path(root) / "ncaa" / "raw" / str(season)
 
 
-def contest_ids_from_master(root: "str | Path", season: int) -> "List[str]":
-    """Sorted unique non-null contest ids from the season's schedule master."""
+def contest_ids_from_master(
+    root: "str | Path",
+    season: int,
+    divisions: "Optional[Tuple[int, ...]]" = DEFAULT_DIVISIONS,
+) -> "List[str]":
+    """Sorted unique non-null contest ids from the season's schedule master.
+
+    ``divisions`` filters on the master's ``division`` column (D-I only by
+    default -- see :data:`ncaa_pbp.schedules.DEFAULT_DIVISIONS`); pass ``None``
+    for every division. A cross-division contest is kept when EITHER side is in
+    ``divisions`` (the master holds one row per team-game, so a D-I team's game
+    against a D-II opponent appears under the D-I team's row).
+    """
     import polars as pl
 
     path = master_parquet_path(root, season)
     if not path.is_file():
-        raise FileNotFoundError(f"{path} missing -- run stage 01 (schedules_scrape) for season {season} first")
-    return sorted(
-        pl.read_parquet(path, columns=["contest_id"])
-        .drop_nulls("contest_id")
-        .get_column("contest_id")
-        .unique()
-        .to_list()
-    )
+        raise FileNotFoundError(
+            f"{path} missing -- run stage 01 (schedules_scrape) for season {season} first"
+        )
+    cols = ["contest_id"] + (["division"] if divisions else [])
+    frame = pl.read_parquet(path, columns=cols).drop_nulls("contest_id")
+    if divisions:
+        frame = frame.filter(pl.col("division").is_in(list(divisions)))
+    return sorted(frame.get_column("contest_id").unique().to_list())
 
 
 def parse_shard(spec: str) -> "Tuple[int, int]":
@@ -67,10 +78,23 @@ def main(argv: "list[str] | None" = None) -> int:
         default=None,
         help="i/N -- capture only contests where index %% N == i (fan-out, one process each)",
     )
+    ap.add_argument(
+        "--division",
+        type=int,
+        choices=DIVISIONS,
+        default=None,
+        help="one division (default: D-I only; --all-divisions for every one)",
+    )
+    ap.add_argument(
+        "--all-divisions",
+        action="store_true",
+        help="capture every division in the master (D-II/III backfill)",
+    )
     args = ap.parse_args(argv)
     root = Path(args.root)
 
-    contests = contest_ids_from_master(root, args.season)
+    divisions = None if args.all_divisions else ((args.division,) if args.division else DEFAULT_DIVISIONS)
+    contests = contest_ids_from_master(root, args.season, divisions)
     if args.shard:
         i, n = args.shard
         contests = contests[i::n]

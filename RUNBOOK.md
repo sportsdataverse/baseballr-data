@@ -73,6 +73,19 @@ exactly {01..07}, each shim delegates to its working module (`ncaa_pbp.*`, or
 `ncaa_baseball_data_build.cli` for 07), each `run_NN_*.sh` invokes its own
 shim, and this runbook lists every stage and launcher.
 
+## Division scope
+
+**Game capture is D-I only** (2026-08-27 scope call; D-II/III backfill when the
+community wants it): stage 02 filters the schedule master by `division`, and
+`ncaa_pbp.schedules.DEFAULT_DIVISIONS = (1,)` carries that policy. Widen with
+`--division 2` / `--all-divisions` on stage 02 (and `--division` on stage 04).
+
+**Schedule discovery stays D-I..D-III** — the R-era `ncaa_baseball_schedules`
+releases ship all three divisions, so a D-I-only master would regress a
+published dataset, and team pages are ~3% of a season's fetch cost. The
+published `schedule` dataset therefore keeps its full division coverage while
+pbp/box datasets are D-I.
+
 ## Campaign orchestrator
 
 `scripts/run_backfill_all.sh START END` runs the full per-season chain
