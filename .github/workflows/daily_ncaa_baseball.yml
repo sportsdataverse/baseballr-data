@@ -13,11 +13,20 @@ concurrency:
   cancel-in-progress: false
 
 on:
-  schedule:
-    # NCAA baseball season runs ~mid-Feb through late June: refresh daily.
-    - cron: "0 11 * 2-6 *"
-    # Off-season (Jul-Jan): refresh on the 1st of the month.
-    - cron: "0 11 1 1,7-12 *"
+  # SCHEDULE DISABLED 2026-08-27 -- the Python stage 07 producer
+  # (python/ncaa_baseball_data_build, run by scripts/run_backfill_all.sh and the
+  # sdv-orch `py.*` stages) is now the canonical publisher of the
+  # ncaa_baseball_pbp / ncaa_baseball_schedules tags this workflow writes. A
+  # scheduled R run would overwrite the Python-built assets with R-built ones
+  # (different columns, no espn_game_id, no D-I scope), so the crons are parked
+  # rather than deleted: the R path stays intact and dispatchable as a fallback
+  # until the Python capture campaign has covered every season.
+  # Re-enable by uncommenting these two lines (and pausing the Python publish).
+  #  schedule:
+  #    # NCAA baseball season runs ~mid-Feb through late June: refresh daily.
+  #    - cron: "0 11 * 2-6 *"
+  #    # Off-season (Jul-Jan): refresh on the 1st of the month.
+  #    - cron: "0 11 1 1,7-12 *"
   repository_dispatch:
     types: [daily_ncaa_baseball_data]
   workflow_dispatch:
