@@ -28,6 +28,12 @@ from ncaa_baseball_data_build._logging import get_logger
 
 log = get_logger()
 
+#: Divisions the RELEASE datasets cover (2026-08-27 scope call). The raw and
+#: parsed trees archive every division captured; publishing filters to these so
+#: a partially-captured division never ships as if it were complete. Widen via
+#: ``build --all-divisions`` when a D-II/III capture backfill lands.
+RELEASE_DIVISIONS = (1,)
+
 #: Datasets built from the payload sweep (everything except teams/schedule/rosters).
 PAYLOAD_DATASETS = (
     "pbp",
@@ -62,12 +68,44 @@ QA_SCHEMA: "dict[str, pl.DataType]" = {
 }
 
 
-def iter_payloads(root: Path, season: int) -> "Iterator[dict[str, Any]]":
+def division_contest_ids(
+    root: Path, season: int, divisions: "tuple[int, ...]"
+) -> "set[str] | None":
+    """Contest ids in ``divisions`` per the season's schedule master.
+
+    ``None`` when the master is absent (the legacy R-era seasons, which carry
+    no division information in their payloads) -- callers then publish every
+    payload they have, which is what those seasons' releases already contain.
+    """
+    master = root / "ncaa" / "schedule_master" / "parquet" / f"{season}.parquet"
+    if not master.is_file():
+        return None
+    frame = pl.read_parquet(master).drop_nulls("contest_id")
+    if "division" not in frame.columns:
+        # master predates the division sweep -- publish everything it lists
+        log.warning("%s has no division column; release scope not filtered", master.name)
+        return None
+    return set(
+        frame.filter(pl.col("division").is_in(list(divisions))).get_column("contest_id").to_list()
+    )
+
+
+def iter_payloads(
+    root: Path,
+    season: int,
+    keep_contests: "set[str] | None" = None,
+) -> "Iterator[dict[str, Any]]":
     """Payloads whose ``season`` matches; a corrupt file logs and skips.
 
     The json tree is flat (both eras share it), so this scans every payload
     and filters on the stamped ``season`` -- the one pass ``build_season``
     amortises across all datasets.
+
+    ``keep_contests`` (when given) additionally restricts to those contest ids:
+    the raw/parsed trees archive every division we ever captured, while the
+    RELEASE datasets are D-I (2026-08-27 scope call). Payloads with no
+    ``contest_id`` (legacy R era) are kept -- the filter only applies where a
+    contest id exists to judge.
     """
     json_dir = root / "ncaa" / "json"
     for p in sorted(json_dir.glob("*.json.gz")):
@@ -77,8 +115,12 @@ def iter_payloads(root: Path, season: int) -> "Iterator[dict[str, Any]]":
         except Exception as exc:  # noqa: BLE001 -- one bad payload must not sink the season
             log.warning("unreadable payload %s: %s", p.name, exc)
             continue
-        if payload.get("season") == season:
-            yield payload
+        if payload.get("season") != season:
+            continue
+        cid = payload.get("contest_id")
+        if keep_contests is not None and cid is not None and str(cid) not in keep_contests:
+            continue
+        yield payload
 
 
 def _frame(rows: "list[dict]", schema: "dict[str, pl.DataType]") -> pl.DataFrame:
@@ -188,7 +230,11 @@ def _concat(frames: "list[pl.DataFrame]", empty_schema: "dict[str, pl.DataType]"
     return pl.concat(frames, how="diagonal_relaxed")
 
 
-def build_season(season: int, root: Path) -> "dict[str, pl.DataFrame]":
+def build_season(
+    season: int,
+    root: Path,
+    divisions: "tuple[int, ...]" = RELEASE_DIVISIONS,
+) -> "dict[str, pl.DataFrame]":
     """ALL payload-family frames for a season from ONE payload sweep.
 
     Returns ``{name: frame}`` for every :data:`PAYLOAD_DATASETS` entry plus
@@ -208,7 +254,8 @@ def build_season(season: int, root: Path) -> "dict[str, pl.DataFrame]":
     games: "list[dict]" = []
     qa: "list[dict]" = []
     n_payloads = 0
-    for payload in iter_payloads(root, season):
+    keep = division_contest_ids(root, season, divisions) if divisions else None
+    for payload in iter_payloads(root, season, keep):
         n_payloads += 1
         for name, schema in (
             ("pbp", PBP_SCHEMA),

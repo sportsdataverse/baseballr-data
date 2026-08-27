@@ -19,7 +19,7 @@ from pathlib import Path
 import polars as pl
 
 from ncaa_baseball_data_build._logging import get_logger
-from ncaa_baseball_data_build.builders import PAYLOAD_DATASETS, build_season
+from ncaa_baseball_data_build.builders import PAYLOAD_DATASETS, RELEASE_DIVISIONS, build_season
 from ncaa_baseball_data_build.config import REGISTRY, DatasetSpec, raw_root
 from ncaa_baseball_data_build.io import write_dataset
 
@@ -73,6 +73,7 @@ def build_dataset(
     raw: Path,
     *,
     release: bool = False,
+    divisions: "tuple[int, ...]" = RELEASE_DIVISIONS,
 ) -> pl.DataFrame:
     """Build ONE dataset for a season and write it via ``io``.
 
@@ -81,7 +82,7 @@ def build_dataset(
     which shares one sweep instead.
     """
     if spec.name in PAYLOAD_DATASETS:
-        frames = build_season(season, raw)
+        frames = build_season(season, raw, divisions)
         if not frames["games"].height:
             raise FileNotFoundError(
                 f"{spec.name} {season}: no parsed payloads under {raw / 'ncaa' / 'json'}"
@@ -120,10 +121,14 @@ def _build(args: argparse.Namespace) -> int:
     raw = Path(args.raw_root) if args.raw_root else raw_root()
     base = Path(args.base)
     release = args.publish or args.dry_run
+    # release scope: D-I unless explicitly widened (the raw/parsed trees keep
+    # every captured division; publishing filters so a partially-captured
+    # division never ships as if complete)
+    divisions = () if getattr(args, "all_divisions", False) else RELEASE_DIVISIONS
 
     if args.dataset != "all":
         spec = REGISTRY[args.dataset]
-        build_dataset(spec, args.season, base, raw, release=release)
+        build_dataset(spec, args.season, base, raw, release=release, divisions=divisions)
         if release:
             _publish(spec, args.season, base, args.dry_run)
         return 0
@@ -133,7 +138,7 @@ def _build(args: argparse.Namespace) -> int:
     for name in ("teams", "schedule", "rosters"):
         spec = REGISTRY[name]
         try:
-            build_dataset(spec, args.season, base, raw, release=release)
+            build_dataset(spec, args.season, base, raw, release=release, divisions=divisions)
         except FileNotFoundError as exc:
             # pre-capture seasons have no teams/rosters source at all; only the
             # schedule has a legacy fallback, so its absence stays fatal.
@@ -144,7 +149,7 @@ def _build(args: argparse.Namespace) -> int:
         if release:
             _publish(spec, args.season, base, args.dry_run)
 
-    frames = build_season(args.season, raw)
+    frames = build_season(args.season, raw, divisions)
     if not frames["games"].height:
         raise FileNotFoundError(
             f"season {args.season}: no parsed payloads under {raw / 'ncaa' / 'json'}"

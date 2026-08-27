@@ -48,10 +48,13 @@ def contest_ids_from_master(
         raise FileNotFoundError(
             f"{path} missing -- run stage 01 (schedules_scrape) for season {season} first"
         )
-    cols = ["contest_id"] + (["division"] if divisions else [])
-    frame = pl.read_parquet(path, columns=cols).drop_nulls("contest_id")
-    if divisions:
+    frame = pl.read_parquet(path).drop_nulls("contest_id")
+    if divisions and "division" in frame.columns:
         frame = frame.filter(pl.col("division").is_in(list(divisions)))
+    elif divisions:
+        # a master without the column predates the division sweep -- capture
+        # everything rather than silently returning nothing
+        print(f"[games] {path.name} has no division column; capturing all contests", flush=True)
     return sorted(frame.get_column("contest_id").unique().to_list())
 
 

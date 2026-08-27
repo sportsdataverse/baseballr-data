@@ -80,6 +80,11 @@ community wants it): stage 02 filters the schedule master by `division`, and
 `ncaa_pbp.schedules.DEFAULT_DIVISIONS = (1,)` carries that policy. Widen with
 `--division 2` / `--all-divisions` on stage 02 (and `--division` on stage 04).
 
+The raw and parsed trees **archive every division ever captured** (nothing is
+thrown away); stage 07 filters to `builders.RELEASE_DIVISIONS` when building,
+so a partially-captured division never ships as if it were complete. Widen a
+build with `--all-divisions`.
+
 **Schedule discovery stays D-I..D-III** — the R-era `ncaa_baseball_schedules`
 releases ship all three divisions, so a D-I-only master would regress a
 published dataset, and team pages are ~3% of a season's fetch cost. The
