@@ -54,7 +54,9 @@ tail -f logs/bf_2026_*.log
 
 It stops cleanly once a season's D1 team list comes back empty (the coverage
 floor). To drive one stage at a time — re-running a failed stage, or filling a
-single division — each has its own launcher, in campaign order:
+single division — each has its own launcher. The order below is the one
+`run_backfill_all.sh` itself uses; [`RUNBOOK.md`](RUNBOOK.md) documents the
+manual one-season order and the per-stage detail.
 
 | Stage | Launcher | Network | What it does |
 |---|---|---|---|
@@ -72,8 +74,8 @@ ids that stage 06 resolves. Stage 02 is the one to chunk (`--max`) and fan out
 across disjoint `--shard i/N` processes; a ban hard-stops that run with `rc=1`,
 so cool down and re-run — it resumes from what is already on disk.
 
-Each launcher prints its own usage; `--season` is required and `--division`
-narrows stages 01 and 04.
+Each launcher prints its own usage; `--season` (the **calendar** year — 2026 is
+the spring-2026 season) is required, and `--division` narrows stages 01 and 04.
 
 ## Data releases
 
