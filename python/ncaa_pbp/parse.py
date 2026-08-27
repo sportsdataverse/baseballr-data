@@ -101,6 +101,7 @@ def build_capture_payload(
             {"team": away, "home_away": "away", "final": fa, "espn_game_id": espn_game_id},
             {"team": home, "home_away": "home", "final": fh, "espn_game_id": espn_game_id},
         ]
+    ls0 = linescore[0] if linescore else {}
     return {
         "game_key": cid,
         "contest_id": cid,
@@ -108,6 +109,10 @@ def build_capture_payload(
         "season": season,
         "source": "capture",
         "espn_game_id": espn_game_id,
+        # game meta, top-level like the legacy payloads (R-era pbp compat cols)
+        "game_date": ls0.get("game_date"),
+        "location": ls0.get("venue"),
+        "attendance": ls0.get("attendance"),
         "teams": teams,
         "pbp": pbp,
         "linescore": linescore,

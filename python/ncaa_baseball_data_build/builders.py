@@ -91,11 +91,19 @@ def _frame(rows: "list[dict]", schema: "dict[str, pl.DataType]") -> pl.DataFrame
 
 
 def _stamp(df: pl.DataFrame, payload: "dict[str, Any]") -> pl.DataFrame:
-    """Per-payload provenance columns: source / espn_game_id / game_key."""
+    """Per-payload provenance + game-meta columns.
+
+    ``game_date``/``location``/``attendance`` were per-row columns in the
+    R-era released pbp -- ``baseballr::load_ncaa_baseball_pbp()`` consumers
+    read them -- so the superseding build keeps them on every game-grain row.
+    """
     return df.with_columns(
         pl.lit(payload.get("source"), dtype=pl.Utf8).alias("source"),
         pl.lit(payload.get("espn_game_id"), dtype=pl.Utf8).alias("espn_game_id"),
         pl.lit(str(payload.get("game_key")), dtype=pl.Utf8).alias("game_key"),
+        pl.lit(payload.get("game_date"), dtype=pl.Utf8).alias("game_date"),
+        pl.lit(payload.get("location"), dtype=pl.Utf8).alias("location"),
+        pl.lit(_int(payload.get("attendance")), dtype=pl.Int64).alias("attendance"),
     )
 
 
