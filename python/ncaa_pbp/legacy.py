@@ -80,8 +80,17 @@ def _final_score(rows: "list[dict]") -> "tuple[Optional[int], Optional[int]]":
     return None, None
 
 
-def build_legacy_payload(rows: "list[dict]") -> "dict[str, Any]":
-    """One legacy per-game row list -> the stage-03 payload dict (pure, offline)."""
+def build_legacy_payload(
+    rows: "list[dict]", fallback_id: "Optional[str]" = None
+) -> "dict[str, Any]":
+    """One legacy per-game row list -> the stage-03 payload dict (pure, offline).
+
+    ``fallback_id`` keys the 31 R-era files whose rows carry NO id at all (the
+    scrape saved them by id but left ``game_pbp_id`` null) -- pass the source
+    filename stem, which IS that id. Without it they all collapse onto one
+    ``gNone`` key and clobber each other. They also carry no ``year``, so they
+    are excluded from every season dataset until someone dates them.
+    """
     from sportsdataverse.baseball.college_baseball import decompose_college_baseball_plays
 
     meta = rows[0]
@@ -89,7 +98,7 @@ def build_legacy_payload(rows: "list[dict]") -> "dict[str, Any]":
     contest_id = meta.get("contest_id")  # bridge-era files only
     # "g" namespaces the legacy game-id space away from contest ids (see the
     # module docstring -- the ranges overlap and a bare key silently collides)
-    game_key = str(contest_id) if contest_id else f"g{gp_id}"
+    game_key = str(contest_id) if contest_id else f"g{gp_id or fallback_id}"
     year = meta.get("year")
 
     # away team bats the top of an inning; derive the away/home identities from

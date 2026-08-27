@@ -168,7 +168,7 @@ def _legacy_job(args: "tuple[str, str, bool]") -> "tuple[str, str]":
     root = Path(root_s)
     try:
         rows = read_legacy_game(path_s)
-        payload = build_legacy_payload(rows)
+        payload = build_legacy_payload(rows, fallback_id=Path(path_s).stem)
         out = parsed_path(root, payload["game_key"])
         if out.exists() and not force:
             return payload["game_key"], "skipped"
