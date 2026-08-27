@@ -69,3 +69,29 @@ def test_capture_payload_finals_come_from_runs_total() -> None:
         ("UC Irvine", "away", 5),
         ("Sacramento St.", "home", 7),
     ]
+
+
+def test_legacy_game_key_is_namespaced() -> None:
+    """A game_pbp_id key is prefixed `g`; a contest_id key stays bare.
+
+    The two id spaces overlap numerically (legacy 4.28-5.42M vs 2024 contest
+    ids 4.49-5.34M), so a bare legacy key silently collides with a real
+    contest and stage 03 "skips" the capture-era game -- that cost season 2024
+    1,775 games before it was caught (2026-08-27).
+    """
+    rows = [
+        {
+            "game_pbp_id": 4491801,
+            "year": 2018,
+            "inning": 1,
+            "inning_top_bot": "top",
+            "batting": "A",
+            "fielding": "B",
+            "score": "0-0",
+            "description": "Smith, J. singled to left field.",
+        }
+    ]
+    assert build_legacy_payload(rows)["game_key"] == "g4491801"
+    bridge = [dict(rows[0], contest_id="6357953")]
+    p = build_legacy_payload(bridge)
+    assert p["game_key"] == "6357953" and p["game_pbp_id"] == 4491801

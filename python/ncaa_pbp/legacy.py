@@ -12,10 +12,17 @@ produces, with **zero re-scraping**. Families the R era never captured
 distinguishes the eras downstream.
 
 Game keys: the legacy trees are keyed by the old ``/game/play_by_play/{id}``
-``game_pbp_id``. The newer ``contest_pbp`` files (the bridge era) also carry
-the modern ``contest_id`` -- when present it becomes the ``game_key``,
-otherwise the ``game_pbp_id`` does (their observed ranges are disjoint:
-legacy ~4.2-4.8M vs contests ~6.3M+).
+``game_pbp_id``; the newer ``contest_pbp`` files (the bridge era) also carry a
+modern ``contest_id``. These are two DIFFERENT id namespaces that OVERLAP
+numerically -- legacy game ids run 4,279,874..5,424,024 and the 2024 season's
+contest ids run 4,491,801..5,336,815, entirely inside that band. A bare
+``game_pbp_id`` key therefore collides with real contest ids, and the collision
+is silent: stage 03 sees the key taken and "skips" the capture-era game, which
+cost season 2024 1,775 games before this was caught on 2026-08-27.
+
+So a ``game_pbp_id`` key is prefixed ``g``; a ``contest_id`` key stays bare
+(it IS a contest id, and the capture era writes the same key for the same game).
+Both ids remain available as payload fields regardless of which one keys the file.
 """
 
 from __future__ import annotations
@@ -80,7 +87,9 @@ def build_legacy_payload(rows: "list[dict]") -> "dict[str, Any]":
     meta = rows[0]
     gp_id = meta.get("game_pbp_id")
     contest_id = meta.get("contest_id")  # bridge-era files only
-    game_key = str(contest_id) if contest_id else str(gp_id)
+    # "g" namespaces the legacy game-id space away from contest ids (see the
+    # module docstring -- the ranges overlap and a bare key silently collides)
+    game_key = str(contest_id) if contest_id else f"g{gp_id}"
     year = meta.get("year")
 
     # away team bats the top of an inning; derive the away/home identities from
