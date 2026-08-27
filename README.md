@@ -37,6 +37,44 @@ flowchart LR
    existing assets).
 4. `baseballr`'s `load_*()` functions download the release assets on demand.
 
+### NCAA capture campaign (manual)
+
+The daily workflow above maintains the *published* seasons. Capturing a season
+from scratch is a separate, human-run campaign against `stats.ncaa.org`: it is
+slow, rate-sensitive, and every stage is file-exists resumable, so it is driven
+from a terminal rather than from CI.
+
+Run the whole thing with the orchestrator — newest season to oldest, committing
+and pushing per stage:
+
+```sh
+./scripts/run_backfill_all.sh 2026 2024      # SHARDS=8 by default
+tail -f logs/bf_2026_*.log
+```
+
+It stops cleanly once a season's D1 team list comes back empty (the coverage
+floor). To drive one stage at a time — re-running a failed stage, or filling a
+single division — each has its own launcher, in campaign order:
+
+| Stage | Launcher | Network | What it does |
+|---|---|---|---|
+| 01 | `scripts/run_01_schedules_scrape.sh` | online | team lists + team pages → persisted html + `ncaa/schedule_master/parquet/{season}.parquet` |
+| 04 | `scripts/run_04_rosters_scrape.sh` | online | `teams/{id}/roster` → `ncaa/rosters_html/{season}/` |
+| 02 | `scripts/run_02_games_scrape.sh` | online | the 5-tab bundle per uncaptured contest → `ncaa/raw/{season}/{contest_id}.json.gz` |
+| 03 | `scripts/run_03_games_parse.sh` | offline | raw bundles + legacy R-era trees → parsed payloads under `ncaa/json/` |
+| 06 | `scripts/run_06_xwalk_build.sh` | mostly offline | NCAA↔ESPN game crosswalk → `ncaa/xwalk/espn_game_id/{season}.json` |
+| 03 | `scripts/run_03_games_parse.sh` | offline | re-run, so parsed payloads pick up the ESPN stamps from 06 |
+| 05 | `scripts/run_05_datasets_build.sh` | offline | persisted html → `ncaa/{teams,schedule_master,rosters}` reference parquet |
+| 07 | `scripts/run_07_datasets_publish.sh` | offline + `gh` | season frames under `ncaa/{dataset}/parquet/`, then the release upload |
+
+Stage 03 runs twice on purpose: the second pass is what writes the ESPN game
+ids that stage 06 resolves. Stage 02 is the one to chunk (`--max`) and fan out
+across disjoint `--shard i/N` processes; a ban hard-stops that run with `rc=1`,
+so cool down and re-run — it resumes from what is already on disk.
+
+Each launcher prints its own usage; `--season` is required and `--division`
+narrows stages 01 and 04.
+
 ## Data releases
 
 Published to **`sportsdataverse/sportsdataverse-data`** releases (one tag per
@@ -116,6 +154,15 @@ scripts/
   daily_ncaa_baseball_scraper.sh          # manual entry point: schedules (git wrapper)
   daily_ncaa_baseball_pbp_scraper.sh      # manual entry point: play-by-play (git wrapper)
   bash_functions.sh                       # shared shell helpers
+  run_backfill_all.sh                     # NCAA capture campaign, one season at a time
+  run_01_schedules_scrape.sh              # campaign stage 01 (see run order above)
+  run_02_games_scrape.sh                  # campaign stage 02
+  run_03_games_parse.sh                   # campaign stage 03
+  run_04_rosters_scrape.sh                # campaign stage 04
+  run_05_datasets_build.sh                # campaign stage 05
+  run_06_xwalk_build.sh                   # campaign stage 06
+  run_07_datasets_publish.sh              # campaign stage 07
+  _env.sh                                 # shared stage env + run_stage helper
 .github/workflows/
   daily_ncaa_baseball.yml                 # scheduled NCAA release-update workflow
   mlb_models_cron.yml                     # daily MLB model datasets (Apr-Oct)
