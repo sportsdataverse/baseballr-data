@@ -47,6 +47,13 @@ def write_payload(root: "str | Path", payload: "dict[str, Any]") -> Path:
 
 
 def _teams_block(linescore_rows: "list[dict]", espn_game_id: "Optional[str]") -> "list[dict]":
+    """One entry per team from the linescore rows (which repeat per inning).
+
+    The baseball linescore names the final ``runs_total`` -- ``final`` is the
+    FOOTBALL column name, and reading it here silently nulled every
+    capture-era final (caught 2026-08-27 by an all-unverifiable QA frame).
+    Accept either so the block is right whichever schema built the payload.
+    """
     out = []
     for r in linescore_rows:
         if not r.get("team"):
@@ -55,7 +62,7 @@ def _teams_block(linescore_rows: "list[dict]", espn_game_id: "Optional[str]") ->
             {
                 "team": r["team"],
                 "home_away": r.get("home_away"),
-                "final": r.get("final"),
+                "final": r.get("runs_total", r.get("final")),
                 "espn_game_id": espn_game_id,
             }
         )

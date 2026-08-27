@@ -52,3 +52,20 @@ def test_legacy_payload_reconciles() -> None:
     # summary rows filtered; decomposition engaged (mostly classified)
     types = [r["play_type"] for r in p["pbp"]]
     assert types.count("unknown") / len(types) < 0.3
+
+
+def test_capture_payload_finals_come_from_runs_total() -> None:
+    """Baseball linescores name the final ``runs_total``; reading the football
+    ``final`` nulled every capture-era final (2026-08-27). Locked here."""
+    from ncaa_pbp.parse import _teams_block
+
+    rows = [
+        {"team": "UC Irvine", "home_away": "away", "inning": "1", "runs": 0, "runs_total": 5},
+        {"team": "UC Irvine", "home_away": "away", "inning": "2", "runs": 0, "runs_total": 5},
+        {"team": "Sacramento St.", "home_away": "home", "inning": "1", "runs": 1, "runs_total": 7},
+    ]
+    teams = _teams_block(rows, None)
+    assert [(t["team"], t["home_away"], t["final"]) for t in teams] == [
+        ("UC Irvine", "away", 5),
+        ("Sacramento St.", "home", 7),
+    ]
