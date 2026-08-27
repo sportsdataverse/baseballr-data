@@ -20,13 +20,17 @@ jobs:
       - uses: actions/checkout@v5
         with:
           # Sparse: these repos carry large committed data trees and a full
-          # checkout is slow to useless here -- no test reads them (verified).
+          # checkout is slow to useless here -- no test reads the DATA trees.
+          # RUNBOOK.md is not data: test_stage_numbering reads it, and leaving
+          # it out is why that test failed with FileNotFoundError on a file
+          # that has been committed the whole time.
           sparse-checkout: |
             python
             tests
             scripts
             pyproject.toml
             uv.lock
+            RUNBOOK.md
           sparse-checkout-cone-mode: false
 
       - name: Set up uv
