@@ -72,3 +72,15 @@ PYTHONPATH="/mnt/sdv_repos/sdv-py:$PWD/python" \
 exactly {01..07}, each shim delegates to its working module (`ncaa_pbp.*`, or
 `ncaa_baseball_data_build.cli` for 07), each `run_NN_*.sh` invokes its own
 shim, and this runbook lists every stage and launcher.
+
+## Campaign orchestrator
+
+`scripts/run_backfill_all.sh START END` runs the full per-season chain
+(01 schedules → 04 rosters → 02 games ×`SHARDS` → 06 xwalk → 03 parse →
+05 reference datasets → 07 build+publish), committing and pushing after every
+stage — season-sized batches. Resumable end to end; stops at the coverage
+floor (empty D1 team list). Proxy pool auto-built from `~/.Renviron` Decodo
+creds; Chromium tmp on block storage; 5G root-disk guard.
+
+    ./scripts/run_backfill_all.sh 2026 2024      # capture era
+    tail -f logs/bf_<season>_*.log
