@@ -270,3 +270,28 @@ statcast/                                 # static historical Statcast monthly e
   `purrr`, `rvest`, `httr`, `httr2`, `optparse`, plus `piggyback` (release creation) and
   `sportsdataversedata` (`sportsdataverse_save()`); the GitHub CLI (`gh`) must be
   available on the runner for asset uploads.
+
+## Consumers
+
+The packages that read what this repo produces:
+
+- **R:** [baseballr](https://baseballr.sportsdataverse.org) — docs at <https://baseballr.sportsdataverse.org>
+- **Python:** [`sportsdataverse.mlb / sportsdataverse.baseball`](https://github.com/sportsdataverse/sportsdataverse-py) — docs at <https://py.sportsdataverse.org>
+
+## Stage inventory
+
+Every numbered pipeline stage in `python/` (auto-listed; run subsets with the `scripts/*.sh` drivers by number or name):
+
+- `python/mlb_model_01_game_state.py`
+- `python/mlb_model_02_hitting.py`
+- `python/mlb_model_03_pitching.py`
+- `python/mlb_model_04_fielding.py`
+- `python/ncaa_baseball_01_schedules_scrape.py`
+- `python/ncaa_baseball_02_games_scrape.py`
+- `python/ncaa_baseball_03_games_parse.py`
+- `python/ncaa_baseball_04_rosters_scrape.py`
+- `python/ncaa_baseball_05_datasets_build.py`
+- `python/ncaa_baseball_06_xwalk_build.py`
+- `python/ncaa_baseball_07_datasets_publish.py`
+
+Model release tags published from here: `mlb_fielding_models`, `mlb_game_state`, `mlb_hitting_models`, `mlb_pitching_models`
