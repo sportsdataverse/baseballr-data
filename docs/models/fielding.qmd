@@ -1,0 +1,257 @@
+---
+title: "MLB fielding models — OAA and catcher framing"
+format:
+  gfm:
+    fig-dpi: 120
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+#| output: false
+import numpy as np
+import polars as pl
+from pathlib import Path
+from plotnine import (
+    ggplot, aes, geom_point, geom_histogram, geom_boxplot, geom_abline,
+    labs, theme_minimal, facet_wrap,
+)
+from great_tables import GT
+from IPython.display import HTML, display
+
+ROOT = Path.cwd()
+while not (ROOT / "mlb" / "fielding_models" / "parquet").is_dir():
+    ROOT = ROOT.parent
+FM = ROOT / "mlb" / "fielding_models" / "parquet"
+
+def fam(stem):
+    fs = sorted(FM.glob(f"{stem}_*.parquet"))
+    frames = []
+    for f in fs:
+        d = pl.read_parquet(f)
+        if "season" not in d.columns:
+            d = d.with_columns(pl.lit(int(f.stem.rsplit("_", 1)[-1])).alias("season"))
+        frames.append(d)
+    return pl.concat(frames, how="diagonal_relaxed")
+
+oaa = fam("mlb_oaa")
+frm = fam("mlb_catcher_framing")
+SEASONS = sorted(oaa["season"].unique().to_list())
+
+def gt_show(g):
+    display(HTML(g.as_raw_html()))
+
+def mlbam_names(ids):
+    ids = [int(i) for i in ids]
+    try:
+        import requests
+        out = {}
+        for i in range(0, len(ids), 80):
+            chunk = ids[i:i + 80]
+            r = requests.get("https://statsapi.mlb.com/api/v1/people",
+                             params={"personIds": ",".join(map(str, chunk))}, timeout=20)
+            for p in r.json().get("people", []):
+                out[int(p["id"])] = p.get("fullName", str(p["id"]))
+        return {i: out.get(i, str(i)) for i in ids}
+    except Exception:
+        return {i: str(i) for i in ids}
+```
+
+Two surfaces ship on the `mlb_fielding_models` release tag: **Outs Above
+Average** over balls in play, and **catcher framing** (called-strike value
+above average at the zone edges). The builders live in sdv-py
+(`mlb_fielding_oaa`, `mlb_catcher_framing`) over Baseball Savant balls-in-play
+and pitch-location data; this repository commits per-season outputs under
+`mlb/fielding_models/` and publishes them daily in-season.
+
+The design constraint is stated up front because it prices the gates: the
+public feed lacks fielder start coordinates, so OAA here conditions on
+batted-ball properties and fielder identity rather than true opportunity
+geometry — a **feature-capped ceiling that is priced into the gates** (OAA
+full-season Pearson vs Savant's live OAA ≥ 0.55; framing ≥ 0.40) instead of
+hidden. The registry also records what is deliberately NOT published from
+this family (catcher throwing/blocking, baserunning, SB value): their live
+floors of 0.03–0.073 against 0.80+ design targets are data-ceiling-limited,
+recorded so nobody "finds" the gap later.
+
+Given that ceiling, the evaluation that matters most is **year-over-year
+reliability** — whether the surviving metrics measure something stable about
+the fielder rather than re-rolling noise annually. That is computed below
+across every adjacent committed season pair, per position for OAA.
+
+## Training data
+
+```{python}
+tbl = (
+    oaa.group_by("season").agg(pl.len().alias("fielders"),
+                               pl.col("opportunities").sum().alias("opportunities"))
+    .join(frm.group_by("season").agg(pl.len().alias("catchers"),
+                                     pl.col("takes").sum().alias("takes")),
+          on="season", how="full", coalesce=True)
+    .sort("season")
+)
+gt_show(
+    GT(tbl.to_pandas())
+    .tab_header(title="Committed fielding-model assets, by season",
+                subtitle="from mlb/fielding_models/parquet/; computed at render time")
+    .fmt_number(columns=["opportunities", "takes"], sep_mark=",", decimals=0)
+)
+```
+
+## Exploratory data analysis
+
+```{python}
+#| fig-cap: "OAA distribution by position, latest season."
+latest = SEASONS[-1]
+ol = oaa.filter(pl.col("season") == latest)
+(
+    ggplot(ol.to_pandas(), aes("position", "oaa"))
+    + geom_boxplot(fill="#2a6f97", alpha=0.6)
+    + labs(x="position", y="OAA", title=f"Outs Above Average by position — {latest}")
+    + theme_minimal()
+)
+```
+
+```{python}
+#| fig-cap: "Framing runs vs strikes gained — the run value is a near-linear function of strikes."
+(
+    ggplot(frm.to_pandas(), aes("strikes_gained", "framing_runs"))
+    + geom_point(alpha=0.4, color="#2a6f97")
+    + labs(x="strikes gained", y="framing runs",
+           title="Catcher framing — all committed seasons")
+    + theme_minimal()
+)
+```
+
+The internal consistency check is visible in the framing scatter: framing
+runs scale linearly with strikes gained at roughly the canonical run value of
+a called strike. OAA centers near zero by construction at every position —
+it is an *above-average* metric, so the league sums to ~0 each season:
+
+```{python}
+zero = (
+    oaa.group_by(["season"]).agg(pl.col("oaa").sum().alias("league_oaa_sum"),
+                                 pl.len().alias("fielders"))
+    .sort("season")
+)
+gt_show(
+    GT(zero.to_pandas())
+    .tab_header(title="League OAA sum by season (zero-centering check)")
+    .fmt_number(columns="league_oaa_sum", decimals=1)
+)
+```
+
+## Evaluation — year-over-year reliability
+
+```{python}
+def yoy(df, key, col, extra=None):
+    a = df.select([key, "season", pl.col(col).alias("v0")] + (extra or []))
+    b = df.select(key, (pl.col("season") - 1).alias("season"), pl.col(col).alias("v1"))
+    return a.join(b, on=[key, "season"], how="inner")
+
+rows = []
+for pos in sorted(oaa["position"].unique().to_list()):
+    sub = oaa.filter(pl.col("position") == pos)
+    j = yoy(sub, "fielder_id", "oaa")
+    if j.height >= 30:
+        rows.append({"metric": f"OAA — {pos}", "pairs": j.height,
+                     "yoy_pearson": float(j.select(pl.corr("v0", "v1")).item())})
+jf = yoy(frm, "catcher_id", "framing_runs")
+rows.append({"metric": "Framing runs", "pairs": jf.height,
+             "yoy_pearson": float(jf.select(pl.corr("v0", "v1")).item())})
+rel = pl.DataFrame(rows).sort("yoy_pearson", descending=True)
+gt_show(
+    GT(rel.to_pandas())
+    .tab_header(title="Year-over-year reliability — same fielder, adjacent seasons",
+                subtitle="all committed season pairs pooled; higher = more stable skill")
+    .fmt_number(columns="yoy_pearson", decimals=3)
+)
+```
+
+```{python}
+#| fig-cap: "Framing runs, season S vs season S+1 — the most reliable fielding skill."
+(
+    ggplot(jf.to_pandas(), aes("v0", "v1"))
+    + geom_abline(slope=1, intercept=0, linetype="dashed", color="gray")
+    + geom_point(alpha=0.5, color="#2a6f97")
+    + labs(x="framing runs (season S)", y="framing runs (season S+1)",
+           title="Catcher framing YoY stability")
+    + theme_minimal()
+)
+```
+
+Framing is famously the stickiest defensive skill and the reliability table
+reproduces that: catcher framing tops the list, while OAA reliability varies
+by position with the infield generally steadier than the outfield at these
+sample sizes. This is the correct lens for a feature-capped model — even
+without start coordinates, a metric that correlates season-over-season is
+measuring the fielder, not the noise.
+
+## Results
+
+```{python}
+topf = frm.filter(pl.col("season") == latest).sort("framing_runs", descending=True).head(10)
+names = mlbam_names(topf["catcher_id"].to_list())
+topf = topf.with_columns(
+    pl.col("catcher_id").map_elements(lambda i: names[int(i)], return_dtype=pl.Utf8).alias("player"),
+    ("<img src='https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_100/v1/people/"
+     + pl.col("catcher_id").cast(pl.Int64).cast(pl.Utf8) + "/headshot/67/current' height='42'/>").alias("headshot"),
+)
+gt_show(
+    GT(topf.select("headshot", "player", "takes", "strikes_gained", "framing_runs").to_pandas())
+    .tab_header(title=f"Top 10 framing catchers — {latest}")
+    .fmt_markdown(columns="headshot")
+    .fmt_number(columns=["takes"], sep_mark=",", decimals=0)
+    .fmt_number(columns=["strikes_gained", "framing_runs"], decimals=1)
+    .cols_label(headshot="", player="Catcher", takes="Takes",
+                strikes_gained="Strikes gained", framing_runs="Framing runs")
+)
+```
+
+```{python}
+topo = ol.sort("oaa", descending=True).head(10)
+names_o = mlbam_names(topo["fielder_id"].to_list())
+topo = topo.with_columns(
+    pl.col("fielder_id").map_elements(lambda i: names_o[int(i)], return_dtype=pl.Utf8).alias("player"),
+    ("<img src='https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_100/v1/people/"
+     + pl.col("fielder_id").cast(pl.Int64).cast(pl.Utf8) + "/headshot/67/current' height='42'/>").alias("headshot"),
+)
+gt_show(
+    GT(topo.select("headshot", "player", "position", "opportunities", "oaa").to_pandas())
+    .tab_header(title=f"Top 10 fielders by OAA — {latest}")
+    .fmt_markdown(columns="headshot")
+    .fmt_number(columns="opportunities", sep_mark=",", decimals=0)
+    .fmt_number(columns="oaa", decimals=1)
+    .cols_label(headshot="", player="Fielder", position="Pos",
+                opportunities="Opportunities", oaa="OAA")
+)
+```
+
+## Provenance & reproducibility
+
+- **Trained on:** Baseball Savant balls-in-play (batted-ball properties +
+  fielder identity; **no fielder start coordinates in the public feed**) and
+  pitch locations for framing; seasons in the table above.
+- **Committed at:** `mlb/fielding_models/parquet/`; published to
+  `mlb_fielding_models`; per-publish metadata in
+  [`../../mlb/fielding_models/mlb_fielding_models_card.json`](../../mlb/fielding_models/mlb_fielding_models_card.json).
+- **Pipeline:** `scripts/mlb_models.sh 04` → stage
+  `python/mlb_model_04_fielding.py` (`mlb_models_cron.yml`). Single home:
+  `models/manifest.yaml`.
+- **Rebuild this document:** `scripts/render_model_docs.sh` (Quarto → GFM;
+  `uv sync --group docs`). Names/headshots via one batched statsapi call;
+  offline renders fall back to MLBAM ids.
+
+## Avenues for improvement & open issues
+
+- **Start-coordinate ceiling** — the single biggest gain would be fielder
+  positioning data, which the public feed does not carry; until then the
+  gates stay at their priced-in floors (OAA ≥ 0.55, framing ≥ 0.40 vs live).
+- **Publish per-direction OAA splits** — in/back/lateral splits exist in the
+  substrate and would make the position-reliability differences diagnosable.
+- **Known issue:** the registry's deliberately-unpublished surfaces (catcher
+  throwing/blocking, baserunning, SB value) remain data-ceiling-limited
+  (live floors 0.03–0.073 vs 0.80+ design targets) — recorded so the gap is
+  never "discovered".

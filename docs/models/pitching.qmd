@@ -1,0 +1,280 @@
+---
+title: "MLB pitching models — xERA, Stuff+, Command+"
+format:
+  gfm:
+    fig-dpi: 120
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+#| output: false
+import numpy as np
+import polars as pl
+from pathlib import Path
+from plotnine import (
+    ggplot, aes, geom_point, geom_histogram, geom_abline, geom_boxplot,
+    labs, theme_minimal,
+)
+from great_tables import GT
+from IPython.display import HTML, display
+
+ROOT = Path.cwd()
+while not (ROOT / "mlb" / "pitching_models" / "parquet").is_dir():
+    ROOT = ROOT.parent
+PM = ROOT / "mlb" / "pitching_models" / "parquet"
+
+def fam(stem):
+    fs = sorted(PM.glob(f"{stem}_*.parquet"))
+    frames = []
+    for f in fs:
+        d = pl.read_parquet(f)
+        if "season" not in d.columns:
+            d = d.with_columns(pl.lit(int(f.stem.rsplit("_", 1)[-1])).alias("season"))
+        frames.append(d)
+    return pl.concat(frames, how="diagonal_relaxed")
+
+xera = fam("mlb_xera")
+stuff = fam("mlb_stuff_plus")
+cmd = fam("mlb_command_plus")
+SEASONS = sorted(xera["season"].unique().to_list())
+
+def gt_show(g):
+    display(HTML(g.as_raw_html()))
+
+def mlbam_names(ids):
+    ids = [int(i) for i in ids]
+    try:
+        import requests
+        out = {}
+        for i in range(0, len(ids), 80):
+            chunk = ids[i:i + 80]
+            r = requests.get("https://statsapi.mlb.com/api/v1/people",
+                             params={"personIds": ",".join(map(str, chunk))}, timeout=20)
+            for p in r.json().get("people", []):
+                out[int(p["id"])] = p.get("fullName", str(p["id"]))
+        return {i: out.get(i, str(i)) for i in ids}
+    except Exception:
+        return {i: str(i) for i in ids}
+```
+
+Three surfaces ship on the `mlb_pitching_models` release tag: **xERA**
+(contact-quality ERA), **Stuff+** (pitch-physics quality: velocity, movement,
+release), and **Command+** (location quality). Together they are the
+stuff/command decomposition of pitching: Stuff+ deliberately excludes
+location, Command+ deliberately excludes physics — the decomposition is the
+point, because a pitcher's physical tools and their ability to locate age and
+develop on different curves.
+
+The builders live in sdv-py (`x_era`, `mlb_stuff_plus`, `mlb_command_plus`)
+over Baseball Savant pitch-level features; this repository commits per-season
+outputs under `mlb/pitching_models/` and publishes them daily in-season. The
+publish gates are stated honestly: xERA MAE vs Savant's own xERA ≤ 0.30;
+Stuff+ Spearman vs run value ≥ 0.20; Command+ ≥ 0.04 — the Command+ gate is
+explicitly **directional only**, a weak ordinal signal stated as such rather
+than inflated. Everything below is computed at render time from the committed
+files, including the two evaluations that matter most for surfaces like
+these: **year-over-year reliability** (does the metric measure a stable
+skill?) and **forward predictiveness** (does this year's Stuff+ tell you
+anything about next year's xERA?).
+
+## Training data
+
+```{python}
+tbl = (
+    xera.group_by("season").agg(pl.len().alias("pitchers_xera"))
+    .join(stuff.group_by("season").agg(pl.len().alias("pitcher_pitchtype_rows")),
+          on="season", how="full", coalesce=True)
+    .join(cmd.group_by("season").agg(pl.len().alias("pitchers_command")),
+          on="season", how="full", coalesce=True)
+    .sort("season")
+)
+gt_show(
+    GT(tbl.to_pandas())
+    .tab_header(title="Committed pitching-model assets, by season",
+                subtitle="from mlb/pitching_models/parquet/; computed at render time")
+    .fmt_number(columns=["pitcher_pitchtype_rows"], sep_mark=",", decimals=0)
+)
+```
+
+## Exploratory data analysis
+
+```{python}
+#| fig-cap: "Stuff+ distribution by pitch type, latest season (100 = league average)."
+latest = SEASONS[-1]
+sl = stuff.filter(pl.col("season") == latest)
+common = (sl.group_by("pitch_type").agg(pl.len().alias("n"))
+          .filter(pl.col("n") >= 50)["pitch_type"].to_list())
+(
+    ggplot(sl.filter(pl.col("pitch_type").is_in(common)).to_pandas(),
+           aes("pitch_type", "stuff_plus"))
+    + geom_boxplot(fill="#2a6f97", alpha=0.6)
+    + labs(x="pitch type", y="Stuff+", title=f"Stuff+ by pitch type — {latest}")
+    + theme_minimal()
+)
+```
+
+```{python}
+#| fig-cap: "Command+ distribution, latest season."
+cl = cmd.filter(pl.col("season") == latest)
+(
+    ggplot(cl.to_pandas(), aes("command_plus"))
+    + geom_histogram(bins=40, fill="#2a6f97")
+    + labs(x="Command+", y="pitchers", title=f"Command+ — {latest} ({cl.height} pitchers)")
+    + theme_minimal()
+)
+```
+
+## Known anomaly, reproduced live
+
+The 2026-09-01 audit found the published **xERA is a perfect monotone
+transform of x_wOBA-against** — two columns carrying one signal. The
+correlation is recomputed on every render so the flag stays live until the
+builder differentiates the recipe (batted-ball mix, park) or documents xERA
+as a display transform:
+
+```{python}
+anom = (
+    xera.group_by("season")
+    .agg(pl.corr("x_era", "x_woba").alias("pearson_xera_xwoba"), pl.len().alias("n"))
+    .sort("season")
+)
+gt_show(
+    GT(anom.to_pandas())
+    .tab_header(title="FLAGGED: Pearson r between published xERA and x_wOBA-against",
+                subtitle="r = 1.0 means the asset carries ONE signal in two columns")
+    .fmt_number(columns="pearson_xera_xwoba", decimals=4)
+)
+```
+
+## Evaluation — reliability and forward predictiveness
+
+A skill metric must first be **reliable**: a pitcher's score this year should
+correlate with the same pitcher's score next year. Then it should be
+**predictive**: this year's process metric should anticipate next year's
+outcome metric. Both are computed here across every adjacent committed
+season pair.
+
+```{python}
+def yoy(df, key, col):
+    a = df.select(key, "season", pl.col(col).alias("v0"))
+    b = df.select(key, (pl.col("season") - 1).alias("season"), pl.col(col).alias("v1"))
+    j = a.join(b, on=[key, "season"], how="inner")
+    return j
+
+stuff_p = (stuff.group_by(["pitcher", "season"])
+           .agg(pl.col("stuff_plus").mean().alias("stuff_plus")))
+rows = []
+for name, df, key, col in [
+    ("Stuff+ (pitcher mean)", stuff_p, "pitcher", "stuff_plus"),
+    ("Command+", cmd, "pitcher", "command_plus"),
+    ("xERA", xera, "pitcher", "x_era"),
+]:
+    j = yoy(df, key, col)
+    rows.append({"metric": name, "pairs": j.height,
+                 "yoy_pearson": float(j.select(pl.corr("v0", "v1")).item())})
+rel = pl.DataFrame(rows)
+gt_show(
+    GT(rel.to_pandas())
+    .tab_header(title="Year-over-year reliability — same pitcher, adjacent seasons",
+                subtitle="all committed season pairs pooled; higher = more stable skill")
+    .fmt_number(columns="yoy_pearson", decimals=3)
+)
+```
+
+```{python}
+fwd = (
+    stuff_p.join(xera.select("pitcher", (pl.col("season") - 1).alias("season"),
+                             pl.col("x_era").alias("next_xera")),
+                 on=["pitcher", "season"], how="inner")
+)
+cmd_fwd = (
+    cmd.select("pitcher", "season", "command_plus")
+    .join(xera.select("pitcher", (pl.col("season") - 1).alias("season"),
+                      pl.col("x_era").alias("next_xera")),
+          on=["pitcher", "season"], how="inner")
+)
+fwd_tbl = pl.DataFrame({
+    "predictor (season S)": ["Stuff+ (pitcher mean)", "Command+"],
+    "target (season S+1)": ["xERA", "xERA"],
+    "pairs": [fwd.height, cmd_fwd.height],
+    "pearson": [float(fwd.select(pl.corr("stuff_plus", "next_xera")).item()),
+                float(cmd_fwd.select(pl.corr("command_plus", "next_xera")).item())],
+})
+gt_show(
+    GT(fwd_tbl.to_pandas())
+    .tab_header(title="Forward predictiveness — process metric vs next season's xERA",
+                subtitle="negative r is the expected sign (better stuff/command → lower xERA)")
+    .fmt_number(columns="pearson", decimals=3)
+)
+```
+
+```{python}
+#| fig-cap: "This year's Stuff+ vs next year's xERA, all adjacent season pairs."
+(
+    ggplot(fwd.to_pandas(), aes("stuff_plus", "next_xera"))
+    + geom_point(alpha=0.25, color="#2a6f97", size=0.8)
+    + labs(x="Stuff+ (season S, pitcher mean)", y="xERA (season S+1)",
+           title="Stuff+ forward validation")
+    + theme_minimal()
+)
+```
+
+The reliability ordering is the theoretically expected one — pitch physics
+(Stuff+) is the stickiest thing a pitcher owns, location value is noisier,
+and outcome-adjacent xERA sits between. The forward-validation sign check
+(better process → lower next-season xERA) is the honest floor for surfaces
+whose in-season gates are deliberately weak.
+
+## Results
+
+```{python}
+top = (
+    stuff_p.filter(pl.col("season") == latest)
+    .join(stuff.filter(pl.col("season") == latest)
+          .group_by("pitcher").agg(pl.len().alias("pitch_types")), on="pitcher")
+    .sort("stuff_plus", descending=True).head(10)
+)
+names = mlbam_names(top["pitcher"].to_list())
+top = top.with_columns(
+    pl.col("pitcher").map_elements(lambda i: names[int(i)], return_dtype=pl.Utf8).alias("player"),
+    ("<img src='https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_100/v1/people/"
+     + pl.col("pitcher").cast(pl.Int64).cast(pl.Utf8) + "/headshot/67/current' height='42'/>").alias("headshot"),
+)
+gt_show(
+    GT(top.select("headshot", "player", "stuff_plus", "pitch_types").to_pandas())
+    .tab_header(title=f"Top 10 pitchers by mean Stuff+ — {latest}")
+    .fmt_markdown(columns="headshot")
+    .fmt_number(columns="stuff_plus", decimals=1)
+    .cols_label(headshot="", player="Pitcher", stuff_plus="Stuff+", pitch_types="pitch types")
+)
+```
+
+## Provenance & reproducibility
+
+- **Trained on:** Baseball Savant pitch-level features (velocity, movement,
+  release, location), seasons in the table above.
+- **Committed at:** `mlb/pitching_models/parquet/`; published to
+  `mlb_pitching_models`; per-publish metadata in
+  [`../../mlb/pitching_models/mlb_pitching_models_card.json`](../../mlb/pitching_models/mlb_pitching_models_card.json).
+- **Pipeline:** `scripts/mlb_models.sh 03` → stage
+  `python/mlb_model_03_pitching.py` (`mlb_models_cron.yml`). Single home:
+  `models/manifest.yaml`.
+- **Rebuild this document:** `scripts/render_model_docs.sh` (Quarto → GFM;
+  `uv sync --group docs`). Names/headshots via one batched statsapi call;
+  offline renders fall back to MLBAM ids.
+
+## Avenues for improvement & open issues
+
+- **Stuff+ vs run value remains a weak-signal gate (≥ 0.20)** — pitch-level
+  target engineering (per-pitch run value with count context) is the known
+  lever.
+- **Known issue:** Command+'s 0.04 directional gate is honest but near-noise;
+  treat the column as ordinal at best — its YoY reliability above quantifies
+  exactly how noisy.
+- **FLAGGED (2026-09-01, reproduced live above):** published xERA is a
+  perfect monotone transform of x_wOBA-against (r = 1.0) — one signal in two
+  columns; either differentiate the recipe (batted-ball mix, park) or
+  document xERA as a display transform.

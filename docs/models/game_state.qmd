@@ -1,0 +1,230 @@
+---
+title: "MLB game state — RE24, Win Expectancy, WPA"
+format:
+  gfm:
+    fig-dpi: 120
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+#| output: false
+import glob, os
+import numpy as np
+import polars as pl
+from pathlib import Path
+from plotnine import (
+    ggplot, aes, geom_tile, geom_text, geom_line, geom_point, geom_histogram,
+    labs, theme_minimal, scale_fill_gradient, facet_wrap,
+)
+from great_tables import GT
+from IPython.display import HTML, display
+
+ROOT = Path.cwd()
+while not (ROOT / "mlb" / "game_state" / "parquet").is_dir():
+    ROOT = ROOT.parent
+GS = ROOT / "mlb" / "game_state" / "parquet"
+
+def fam(stem):
+    fs = sorted(GS.glob(f"{stem}_*.parquet"))
+    return pl.concat([pl.read_parquet(f) for f in fs], how="diagonal_relaxed")
+
+re24 = fam("mlb_re24_matrix")
+we = fam("mlb_we_table")
+wpa = fam("mlb_wpa")
+SEASONS = sorted(re24["season"].unique().to_list())
+
+def gt_show(g):
+    display(HTML(g.as_raw_html()))
+```
+
+The game-state family publishes the three classical baseball state-value
+surfaces on the `mlb_game_state` release tag: the **RE24 matrix** (expected
+runs to the end of the inning for each of the 24 base-out states), a **win
+expectancy table** over inning / score-differential / base-out buckets, and
+per-plate-appearance **WPA** (the change in win expectancy attributed to each
+plate appearance). They are computed by sdv-py's `mlb_run_expectancy` /
+`mlb_win_expectancy` over statsapi.mlb.com regular-season play-by-play and
+committed per season under `mlb/game_state/`.
+
+These are **empirical conditional means over observed states** — the "model"
+is the state definition and the estimator. That design choice buys two
+things: the surfaces are assumption-free (no parametric form to misfit), and
+their internal accounting is *exactly* checkable. This document runs those
+checks at render time from the committed parquet — the WPA zero-sum identity,
+the RE24 monotonicity structure, and the stability of the run environment
+across seasons.
+
+There is deliberately no feature-importance or SHAP section here: with no
+fitted coefficients or trees, attribution reduces to the state definition
+itself. The nearest analogue — how much each dimension of the state moves the
+estimate — is exactly what the heatmaps below show.
+
+## Training data
+
+```{python}
+tbl = (
+    wpa.group_by("season")
+    .agg(pl.col("game_id").n_unique().alias("games"),
+         pl.len().alias("plate_appearances"))
+    .sort("season")
+    .join(re24.group_by("season").agg(pl.len().alias("re24_states")), on="season")
+    .join(we.group_by("season").agg(pl.len().alias("we_buckets")), on="season")
+)
+gt_show(
+    GT(tbl.to_pandas())
+    .tab_header(title="Committed game-state assets, by season",
+                subtitle="statsapi.mlb.com regular-season play-by-play; computed at render time")
+    .fmt_number(columns=["plate_appearances"], sep_mark=",", decimals=0)
+)
+```
+
+Every season from the first committed year to the present is rebuilt by the
+daily in-season cron; 2020's short season is visibly thinner and its WE
+buckets are correspondingly noisier (a known limitation carried without a
+flag in the data itself).
+
+## The RE24 surface
+
+```{python}
+#| fig-cap: "RE24 matrix, latest season — expected runs to end of inning by base-out state."
+latest = SEASONS[-1]
+r = re24.filter(pl.col("season") == latest).with_columns(
+    pl.col("outs").cast(pl.Utf8).alias("outs_s"))
+(
+    ggplot(r.to_pandas(), aes("outs_s", "base_state", fill="re"))
+    + geom_tile()
+    + geom_text(aes(label="round(re, 2)"), size=8)
+    + scale_fill_gradient(low="#f7fbff", high="#2a6f97")
+    + labs(x="outs", y="base state", title=f"RE24 — {latest}")
+    + theme_minimal()
+)
+```
+
+```{python}
+#| fig-cap: "Run environment over time: RE24 for three anchor states, by season."
+anchors = ["000", "111", "010"]
+ra = re24.filter(pl.col("base_state").is_in(anchors) & (pl.col("outs") == 0)).with_columns(
+    ("bases " + pl.col("base_state")).alias("state"))
+(
+    ggplot(ra.to_pandas(), aes("season", "re", color="state"))
+    + geom_line() + geom_point()
+    + labs(x="season", y="expected runs (0 outs)",
+           title="RE24 anchor states across seasons")
+    + theme_minimal()
+)
+```
+
+The matrix reproduces the canonical structure — monotone in baserunners,
+decreasing in outs — and the anchor-state series tracks the league run
+environment (the publish gate anchors the matrix against the Tango
+run-expectancy tables at max abs diff ≤ 0.05).
+
+```{python}
+mono_ok = (
+    re24.sort(["season", "base_state", "outs"])
+    .group_by(["season", "base_state"], maintain_order=True)
+    .agg((pl.col("re").diff().drop_nulls() <= 1e-9).all().alias("mono_dec"))
+)
+share = float(mono_ok["mono_dec"].mean())
+gt_show(
+    GT(pl.DataFrame({
+        "structural check": ["RE decreasing in outs (per base state × season)"],
+        "share passing": [share],
+    }).to_pandas())
+    .tab_header(title="RE24 structural sanity, all committed seasons")
+    .fmt_percent(columns="share passing", decimals=1)
+)
+```
+
+## Win expectancy
+
+```{python}
+#| fig-cap: "Home win expectancy by inning and score differential (bases empty, 0 outs, latest season)."
+w = (
+    we.filter((pl.col("season") == latest) & (pl.col("base_state") == "000")
+              & (pl.col("outs_start") == 0) & (pl.col("half") == "top"))
+    .with_columns(pl.col("score_diff_bucket").cast(pl.Int64))
+    .filter(pl.col("score_diff_bucket").abs() <= 4)
+)
+(
+    ggplot(w.to_pandas(), aes("inning_capped", "score_diff_bucket", fill="home_win_exp"))
+    + geom_tile()
+    + scale_fill_gradient(low="#b2182b", high="#2166ac")
+    + labs(x="inning", y="home score differential",
+           title=f"Win expectancy surface — {latest} (top of inning, bases empty, 0 outs)")
+    + theme_minimal()
+)
+```
+
+The surface fans out with innings exactly as it should: a one-run lead in the
+first is worth ~60%, the same lead in the ninth ~85%+. The publish gate
+validates the derived per-PA WPA against statsapi's own win probability at
+Spearman ≥ 0.95.
+
+## Evaluation — the WPA accounting identity
+
+WPA's defining property is that it is a **zero-sum credit ledger**: summed
+over a game, home-perspective WPA must equal ±0.5 (start at 50%, end at 0 or
+100%). This is checked here over every committed season:
+
+```{python}
+per_game = (
+    wpa.group_by(["season", "game_id"]).agg(pl.col("wpa").sum().alias("wpa_sum"))
+    .with_columns((pl.col("wpa_sum").abs() - 0.5).abs().alias("identity_err"))
+)
+by_season = (
+    per_game.group_by("season")
+    .agg(pl.len().alias("games"), pl.col("identity_err").mean().alias("identity_MAE"),
+         pl.col("identity_err").max().alias("identity_max"))
+    .sort("season")
+)
+gt_show(
+    GT(by_season.to_pandas())
+    .tab_header(title="Per-game WPA sum identity — |Σ wpa| vs 0.5",
+                subtitle="exact accounting check over every committed season")
+    .fmt_number(columns=["identity_MAE", "identity_max"], decimals=6)
+)
+```
+
+```{python}
+#| fig-cap: "Distribution of per-PA WPA, latest season — heavy mass near zero, long leverage tails."
+wl = wpa.filter(pl.col("season") == latest)
+(
+    ggplot(wl.to_pandas(), aes("wpa"))
+    + geom_histogram(bins=80, fill="#2a6f97")
+    + labs(x="per-PA WPA (home perspective)", y="plate appearances",
+           title=f"WPA distribution — {latest} ({wl.height:,} PA)")
+    + theme_minimal()
+)
+```
+
+A mean identity error at (or numerically indistinguishable from) zero in
+every season is the strongest possible statement about internal consistency:
+the ledger balances game by game, not just on average. The long tails of the
+per-PA distribution are the leverage plays — walk-offs and late-inning
+homers — exactly the events WPA exists to weight.
+
+## Provenance & reproducibility
+
+- **Built from:** statsapi.mlb.com regular-season play-by-play, seasons in
+  the table above, by sdv-py's `mlb_run_expectancy` / `mlb_win_expectancy`.
+- **Committed at:** `mlb/game_state/parquet/` (this document reads only those
+  files); published to the `mlb_game_state` release tag; per-publish metadata
+  in [`../../mlb/game_state/mlb_game_state_card.json`](../../mlb/game_state/mlb_game_state_card.json).
+- **Pipeline:** `scripts/mlb_models.sh 01` → stage
+  `python/mlb_model_01_game_state.py` (`mlb_models_cron.yml`, daily
+  in-season). Single home: `models/manifest.yaml`.
+- **Rebuild this document:** `scripts/render_model_docs.sh` (Quarto → GFM;
+  this repo's `.venv` via `QUARTO_PYTHON`; `uv sync --group docs`).
+
+## Avenues for improvement & open issues
+
+- **Era/park variants** — league-average tables hide park and era structure a
+  consumer may want; a park-adjusted variant is cheap from the same substrate.
+- **Leverage index** — the WE table already contains everything needed to
+  publish LI alongside WPA; it is the most-requested missing column.
+- **Known issue:** 2020's short season produces visibly thinner WE buckets;
+  the table carries it without a flag.

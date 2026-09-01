@@ -1,0 +1,258 @@
+---
+title: "MLB hitting models — expected stats, xHR, batter projection"
+format:
+  gfm:
+    fig-dpi: 120
+execute:
+  echo: false
+  warning: false
+jupyter: python3
+---
+
+```{python}
+#| output: false
+import numpy as np
+import polars as pl
+from pathlib import Path
+from plotnine import (
+    ggplot, aes, geom_point, geom_line, geom_histogram, geom_abline,
+    labs, theme_minimal,
+)
+from great_tables import GT
+from IPython.display import HTML, display
+
+ROOT = Path.cwd()
+while not (ROOT / "mlb" / "hitting_models" / "parquet").is_dir():
+    ROOT = ROOT.parent
+HM = ROOT / "mlb" / "hitting_models" / "parquet"
+
+def fam(stem):
+    fs = sorted(HM.glob(f"{stem}_*.parquet"))
+    frames = []
+    for f in fs:
+        d = pl.read_parquet(f)
+        if "season" not in d.columns:
+            d = d.with_columns(pl.lit(int(f.stem.rsplit("_", 1)[-1])).alias("season"))
+        frames.append(d)
+    return pl.concat(frames, how="diagonal_relaxed")
+
+xs = fam("mlb_expected_stats")
+xhr = fam("mlb_expected_hr")
+proj = fam("mlb_batter_projection")
+SEASONS = sorted(xs["season"].unique().to_list())
+
+def gt_show(g):
+    display(HTML(g.as_raw_html()))
+
+def mlbam_names(ids):
+    """Batched statsapi people lookup; graceful offline fallback to ids."""
+    ids = [int(i) for i in ids]
+    try:
+        import requests
+        out = {}
+        for i in range(0, len(ids), 80):
+            chunk = ids[i:i + 80]
+            r = requests.get(
+                "https://statsapi.mlb.com/api/v1/people",
+                params={"personIds": ",".join(map(str, chunk))}, timeout=20)
+            for p in r.json().get("people", []):
+                out[int(p["id"])] = p.get("fullName", str(p["id"]))
+        return {i: out.get(i, str(i)) for i in ids}
+    except Exception:
+        return {i: str(i) for i in ids}
+```
+
+Three surfaces ship on the `mlb_hitting_models` release tag: **expected
+stats** (xwOBA / xBA / xSLG from Statcast contact quality), **expected home
+runs** (neutral and park-adjusted xHR from launch conditions), and a
+**batter projection** whose fit for season S trains only on seasons < S —
+the as-of discipline is enforced by construction, so the projection can be
+forward-validated honestly, which this document does below.
+
+The modeling idea is the standard one stated plainly: replace outcome with
+contact quality. A batter controls exit velocity, launch angle and spray
+far more than they control where fielders stand or which park they hit in,
+so expected stats strip defense, park and sequencing luck out of the
+batter's ledger. The builders live in sdv-py (`mlb_expected_stats`,
+`mlb_expected_home_runs`, `mlb_batter_projection`) over Baseball Savant
+batted-ball data; this repository commits the per-season outputs under
+`mlb/hitting_models/` and publishes them daily in-season. Everything below
+is computed at render time from those committed files.
+
+## Training data
+
+```{python}
+tbl = (
+    xs.group_by("season").agg(pl.len().alias("batters_xstats"),
+                              pl.col("pa").sum().alias("total_pa"))
+    .join(xhr.group_by("season").agg(pl.len().alias("batters_xhr")), on="season", how="full", coalesce=True)
+    .join(proj.group_by("season").agg(pl.len().alias("batters_projected")), on="season", how="full", coalesce=True)
+    .sort("season")
+)
+gt_show(
+    GT(tbl.to_pandas())
+    .tab_header(title="Committed hitting-model assets, by season",
+                subtitle="from mlb/hitting_models/parquet/; computed at render time")
+    .fmt_number(columns=["total_pa"], sep_mark=",", decimals=0)
+)
+```
+
+## Exploratory data analysis
+
+```{python}
+#| fig-cap: "xwOBA distribution among qualified batters (PA ≥ 100), latest season."
+latest = SEASONS[-1]
+q = xs.filter((pl.col("season") == latest) & (pl.col("pa") >= 100))
+(
+    ggplot(q.to_pandas(), aes("xwoba"))
+    + geom_histogram(bins=40, fill="#2a6f97")
+    + labs(x="xwOBA", y="batters",
+           title=f"xwOBA distribution — {latest}, PA ≥ 100 ({q.height} batters)")
+    + theme_minimal()
+)
+```
+
+```{python}
+#| fig-cap: "xBA vs xSLG, qualified batters — the power axis separates from the contact axis."
+(
+    ggplot(q.to_pandas(), aes("xba", "xslg"))
+    + geom_point(alpha=0.4, color="#2a6f97")
+    + labs(x="xBA", y="xSLG", title=f"Contact vs power — {latest}")
+    + theme_minimal()
+)
+```
+
+## Known anomaly, reproduced live
+
+The 2026-09-01 audit flagged that **xwOBA and xBA correlate negatively** on
+the published asset — two expected-stat columns that should agree in sign.
+This document recomputes that correlation on every render so the anomaly
+stays visible until the builder is fixed, rather than being quietly
+forgotten:
+
+```{python}
+anom = (
+    xs.filter(pl.col("pa") >= 100)
+    .group_by("season")
+    .agg(pl.corr("xwoba", "xba").alias("pearson_xwoba_xba"), pl.len().alias("n"))
+    .sort("season")
+)
+gt_show(
+    GT(anom.to_pandas())
+    .tab_header(title="FLAGGED: Pearson r between xwOBA and xBA (PA ≥ 100), by season",
+                subtitle="expected-stat columns should correlate strongly positive; investigate builder scaling/join before trusting cross-column comparisons")
+    .fmt_number(columns="pearson_xwoba_xba", decimals=3)
+)
+```
+
+## Expected home runs
+
+```{python}
+#| fig-cap: "Observed HR vs park-adjusted xHR — the diagonal is neutral luck."
+xh = xhr.filter(pl.col("season") == latest)
+(
+    ggplot(xh.to_pandas(), aes("xhr_park_adj", "hr"))
+    + geom_abline(slope=1, intercept=0, linetype="dashed", color="gray")
+    + geom_point(alpha=0.4, color="#2a6f97")
+    + labs(x="park-adjusted xHR", y="observed HR", title=f"HR vs xHR — {latest}")
+    + theme_minimal()
+)
+```
+
+```{python}
+top = xh.sort("hr_above_expected", descending=True).head(10)
+names = mlbam_names(top["batter"].to_list())
+top = top.with_columns(
+    pl.col("batter").map_elements(lambda i: names[int(i)], return_dtype=pl.Utf8).alias("player"),
+    ("<img src='https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_100/v1/people/"
+     + pl.col("batter").cast(pl.Int64).cast(pl.Utf8) + "/headshot/67/current' height='42'/>").alias("headshot"),
+)
+gt_show(
+    GT(top.select("headshot", "player", "hr", "xhr_neutral", "xhr_park_adj", "hr_above_expected").to_pandas())
+    .tab_header(title=f"Largest HR over-performers vs xHR — {latest}",
+                subtitle="hr_above_expected = observed HR − park-adjusted xHR")
+    .fmt_markdown(columns="headshot")
+    .fmt_number(columns=["xhr_neutral", "xhr_park_adj", "hr_above_expected"], decimals=1)
+    .cols_label(headshot="", player="Player", hr="HR", xhr_neutral="xHR (neutral)",
+                xhr_park_adj="xHR (park)", hr_above_expected="HR − xHR")
+)
+```
+
+## Evaluation — forward validation of the batter projection
+
+Because the projection for season S trains only on seasons < S, joining each
+projection to the *realized* xwOBA of the same batter in season S is a true
+out-of-sample test. Computed across every committed pair of adjacent
+seasons:
+
+```{python}
+real = xs.filter(pl.col("pa") >= 100).select("batter", "season", "xwoba")
+pj = proj.select("batter", "season", "proj_xwoba", "proj_pa")
+fwd = pj.join(real, on=["batter", "season"], how="inner")
+by_season = (
+    fwd.group_by("season")
+    .agg(pl.corr("proj_xwoba", "xwoba").alias("pearson"),
+         (pl.col("proj_xwoba") - pl.col("xwoba")).abs().mean().alias("MAE"),
+         pl.len().alias("batters"))
+    .sort("season")
+)
+pooled = fwd.select(
+    pl.corr("proj_xwoba", "xwoba").alias("pearson"),
+    (pl.col("proj_xwoba") - pl.col("xwoba")).abs().mean().alias("MAE"),
+    pl.len().alias("batters"),
+).with_columns(pl.lit("pooled").alias("season")).select("season", "pearson", "MAE", "batters")
+out = pl.concat([by_season.with_columns(pl.col("season").cast(pl.Utf8)), pooled])
+gt_show(
+    GT(out.to_pandas())
+    .tab_header(title="Projection forward validation — proj_xwoba vs realized xwOBA (PA ≥ 100)",
+                subtitle="the projection for season S trained only on < S; this join is out-of-sample by construction")
+    .fmt_number(columns=["pearson", "MAE"], decimals=3)
+)
+```
+
+```{python}
+#| fig-cap: "Projected vs realized xwOBA, all forward-validated seasons pooled."
+(
+    ggplot(fwd.to_pandas(), aes("proj_xwoba", "xwoba"))
+    + geom_abline(slope=1, intercept=0, linetype="dashed", color="gray")
+    + geom_point(alpha=0.2, color="#2a6f97", size=0.8)
+    + labs(x="projected xwOBA (as-of)", y="realized xwOBA",
+           title="Batter projection — out-of-sample")
+    + theme_minimal()
+)
+```
+
+A projection that correlates in the 0.5–0.7 range with next-season xwOBA is
+doing what a sane aging-curve projection can do — most of a batter's season
+is irreducible variance. The publish gates additionally anchor the expected
+stats themselves: xwOBA/xBA Spearman vs Savant's own published expected
+stats ≥ 0.95 on identical inputs, and xHR full-season Spearman vs live
+≥ 0.90.
+
+## Provenance & reproducibility
+
+- **Trained on:** Baseball Savant batted-ball data (exit velocity, launch
+  angle, spray), seasons in the table above; the projection for season S
+  uses seasons < S only.
+- **Committed at:** `mlb/hitting_models/parquet/`; published to
+  `mlb_hitting_models`; per-publish metadata in
+  [`../../mlb/hitting_models/mlb_hitting_models_card.json`](../../mlb/hitting_models/mlb_hitting_models_card.json).
+- **Pipeline:** `scripts/mlb_models.sh 02` → stage
+  `python/mlb_model_02_hitting.py` (`mlb_models_cron.yml`). Single home:
+  `models/manifest.yaml`.
+- **Rebuild this document:** `scripts/render_model_docs.sh` (Quarto → GFM;
+  `uv sync --group docs`). Player names/headshots resolve via one batched
+  statsapi call; offline renders fall back to MLBAM ids.
+
+## Avenues for improvement & open issues
+
+- **Publish observed stats alongside** — the asset carries expected stats
+  only; adding observed wOBA/BA would make luck-vs-skill deltas a one-liner
+  for consumers (today it needs a second source).
+- **Known issue:** the projection's validated window starts at 2018; earlier
+  seasons ship but sit outside the gates.
+- **FLAGGED ANOMALY (2026-09-01, reproduced live above):** xwOBA vs xBA on
+  the published assets correlates NEGATIVELY — expected-stat columns should
+  agree in sign; investigate column scaling / join keys in the builder
+  before trusting cross-column comparisons. This document recomputes the
+  correlation on every render so the flag cannot silently go stale.
