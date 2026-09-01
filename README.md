@@ -207,9 +207,12 @@ scripts/
   mlb_models_cron.yml                     # daily MLB model datasets (Apr-Oct)
 pyproject.toml / uv.lock                  # root uv project (Python producers under python/)
 python/
+  mlb_model_01_game_state.py ... 04_fielding.py   # numbered MLB model stages (scripts/mlb_models.sh)
+  ncaa_baseball_01_schedules_scrape.py ... 07_datasets_publish.py  # numbered NCAA stages
   mlb_model_publish/                      # MLB model-dataset publisher (4 release tags)
-  ncaa_pbp/                               # NCAA baseball pbp discover+capture producer
-  tests/                                  # Python tests (uv run pytest)
+  ncaa_pbp/                               # NCAA baseball pbp discover+capture internals
+  ncaa_baseball_data_build/               # NCAA dataset build internals
+tests/                                    # Python tests at repo root (uv run pytest)
 ncaa/
   schedules/{rds,csv,parquet}/            # compiled per-year schedule artifacts
   pbp/{rds,csv,parquet}/                  # compiled per-year play-by-play artifacts
