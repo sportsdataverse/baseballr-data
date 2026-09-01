@@ -1,0 +1,47 @@
+# Model stage manifest — single home for the model-family/stage list (Track C
+# step 2). tests/test_model_manifest.py keeps this file, the numbered stage
+# scripts, models/REGISTRY.md, and `_CARD_META` (builders.py — the authority
+# for grain/source/gates) in lockstep.
+#
+# These are COMPUTE-ON-DEMAND model datasets (no fitted boosters), so the
+# Track C mechanics apply with honest N/As:
+#   - fingerprints: N/A — daily recompute whose inputs change upstream without
+#     a code change; a fingerprint skip is silent staleness.
+#   - ledger: the generated `*_card.json` published on each release tag IS the
+#     per-publish ledger (full metadata per run); models/ledger.jsonl is
+#     reserved for fitted-model repos.
+#   - step 6 (commit promoted artifacts): N/A — nothing fitted to commit.
+#
+# Per-model CI granularity: the cron stays ONE job BY DESIGN — the three
+# Savant families share a single ~55-min season pull cached between steps
+# (SDV_MLB_STATCAST_CACHE) and the job commits the mlb/ tree once; a matrix
+# would re-pull Savant 3x and race the tree commit. Subset runs use the
+# `families` dispatch input on mlb_models_cron.yml instead.
+
+driver: scripts/mlb_models.sh
+
+suites:
+  mlb:
+    module: mlb_model_publish
+    gate: "gates run inside each build+publish (thresholds in _CARD_META; never lowered)"
+    models:
+      game_state:
+        stage: python/mlb_model_01_game_state.py
+        subcommand: game-state
+        release_tag: mlb_game_state
+        card: mlb_game_state_card.json
+      hitting:
+        stage: python/mlb_model_02_hitting.py
+        subcommand: hitting
+        release_tag: mlb_hitting_models
+        card: mlb_hitting_models_card.json
+      pitching:
+        stage: python/mlb_model_03_pitching.py
+        subcommand: pitching
+        release_tag: mlb_pitching_models
+        card: mlb_pitching_models_card.json
+      fielding:
+        stage: python/mlb_model_04_fielding.py
+        subcommand: fielding
+        release_tag: mlb_fielding_models
+        card: mlb_fielding_models_card.json

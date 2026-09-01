@@ -28,3 +28,9 @@ silently).
 - **Catcher throwing/blocking, baserunning, SB value** — data-ceiling-limited
   (live floors 0.03–0.073 vs 0.80+ design targets; only ~23% of SB/CS
   attempts are narrated in the public feed).
+
+## Operability (Track C steps 2–6)
+
+- `models/manifest.yaml` — single home for the family/stage list (guarded by `tests/test_model_manifest.py`, in lockstep with `_CARD_META`).
+- One family = one numbered pipeline at `python/mlb_model_NN_<family>.py` (thin entries over `mlb_model_publish`); run subsets with `scripts/mlb_models.sh` or the `families` dispatch input on `mlb_models_cron.yml`. The cron stays ONE job by design — the Savant families share a cached season pull and one tree commit; a matrix would re-pull 3× and race the commit.
+- Fingerprints / ledger.jsonl / committed artifacts: honest N/As — compute-on-demand daily recompute; the published `*_card.json` per tag is the per-publish ledger.
