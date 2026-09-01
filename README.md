@@ -227,7 +227,8 @@ statcast/                                 # static historical Statcast monthly e
 
 | Report | What it is | Last updated |
 |---|---|---|
-| _none yet_ | — | — |
+| [Model registry](models/REGISTRY.md) | model | artifact | gates | retrain, one row per published model | 2026-09-01 |
+| [Model reports & cards](docs/models/) | 4 files, one per item | 2026-09-01 |
 
 <!-- END GENERATED: reports -->
 
