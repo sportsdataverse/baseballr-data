@@ -96,9 +96,7 @@ def compute_game_state(season: int) -> dict[str, pl.DataFrame]:
     }
 
 
-_RELEASE_DL = (
-    "https://github.com/sportsdataverse/sportsdataverse-data/releases/download"
-)
+_RELEASE_DL = "https://github.com/sportsdataverse/sportsdataverse-data/releases/download"
 
 
 def bootstrap_history(season: int) -> pl.DataFrame | None:
@@ -151,6 +149,22 @@ def compute_hitting(
     xstats = mlb_expected_stats(start, end, puller=puller).with_columns(
         pl.lit(season, dtype=pl.Int64).alias("season")
     )
+    # Publish-blocking SCALE gate (2026-09-01 incident): the rank-based oracle
+    # gates are scale-blind, and mis-scaled seasons shipped with league-mean
+    # "xwOBA" of .44-.73. An absolute band on the qualified league mean makes
+    # that class un-shippable. Never widen the band to pass -- debug the build.
+    qualified = xstats.filter(pl.col("pa") >= 100)
+    if qualified.height >= 50:
+        mean_xwoba = float(qualified["xwoba"].mean())
+        mean_xba = float(qualified["xba"].mean())
+        assert 0.26 <= mean_xwoba <= 0.38, (
+            f"xwoba scale out of band for {season}: qualified league mean {mean_xwoba:.4f} "
+            "(plausible band .26-.38) -- refusing to publish a mis-scaled season"
+        )
+        assert 0.18 <= mean_xba <= 0.30, (
+            f"xba scale out of band for {season}: qualified league mean {mean_xba:.4f} "
+            "(plausible band .18-.30) -- refusing to publish a mis-scaled season"
+        )
     xhr = mlb_expected_home_runs(start, end, puller=puller).with_columns(
         pl.lit(season, dtype=pl.Int64).alias("season")
     )
@@ -239,9 +253,7 @@ def compute_fielding(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
         return {"mlb_oaa": pl.DataFrame()}
 
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
-    oaa = mlb_fielding_oaa(pitches.filter(pl.col("type") == "X")).with_columns(
-        season_col
-    )
+    oaa = mlb_fielding_oaa(pitches.filter(pl.col("type") == "X")).with_columns(season_col)
     framing = mlb_catcher_framing(pitches).with_columns(season_col)
     return {"mlb_oaa": oaa, "mlb_catcher_framing": framing}
 
@@ -270,10 +282,6 @@ def compute_pitching(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
     return {
         "mlb_xera": x_era(feats, season).with_columns(season_col),
-        "mlb_stuff_plus": mlb_stuff_plus(feats, level="arsenal").with_columns(
-            season_col
-        ),
-        "mlb_command_plus": mlb_command_plus(feats, level="pitcher").with_columns(
-            season_col
-        ),
+        "mlb_stuff_plus": mlb_stuff_plus(feats, level="arsenal").with_columns(season_col),
+        "mlb_command_plus": mlb_command_plus(feats, level="pitcher").with_columns(season_col),
     }
