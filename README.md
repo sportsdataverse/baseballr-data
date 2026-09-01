@@ -77,6 +77,43 @@ so cool down and re-run — it resumes from what is already on disk.
 Each launcher prints its own usage; `--season` (the **calendar** year — 2026 is
 the spring-2026 season) is required, and `--division` narrows stages 01 and 04.
 
+```mermaid
+flowchart TB;
+    subgraph A[baseballr-data — scrape + build];
+        direction TB;
+        A0[scripts/daily_ncaa_baseball_pbp_scraper.sh]-->A1[python/ncaa_baseball_01_schedules_scrape.py];
+        A1[python/ncaa_baseball_01_schedules_scrape.py]-->A2[python/ncaa_baseball_02_games_scrape.py];
+        A2[python/ncaa_baseball_02_games_scrape.py]-->A3[python/ncaa_baseball_03_games_parse.py];
+        A3[python/ncaa_baseball_03_games_parse.py]-->A4[python/ncaa_baseball_04_rosters_scrape.py];
+        A4[python/ncaa_baseball_04_rosters_scrape.py]-->A5[python/ncaa_baseball_05_datasets_build.py];
+        A5[python/ncaa_baseball_05_datasets_build.py]-->A6[python/ncaa_baseball_06_xwalk_build.py];
+        A6[python/ncaa_baseball_06_xwalk_build.py]-->A7[python/ncaa_baseball_07_datasets_publish.py];
+    end;
+
+    subgraph B[MLB models — mlb_models_cron.yml];
+        direction TB;
+        B0[python/mlb_model_publish];
+    end;
+
+    subgraph C[sportsdataverse-data Releases];
+        direction TB;
+        C1[ncaa_baseball_schedules];
+        C2[ncaa_baseball_pbp];
+        C3[mlb_game_state];
+        C4[mlb_hitting_models];
+        C5[mlb_pitching_models];
+        C6[mlb_fielding_models];
+    end;
+
+    A-->C;
+    B-->C;
+```
+
+`scripts/daily_ncaa_baseball_pbp_scraper.sh` is the daily driver (the `00` role);
+stage numbers are intended build order, not run order. The R chain
+(`R/ncaa_01_schedules_creation.R`, `R/ncaa_02_pbp_creation.R`) is the maintained
+methodological twin.
+
 ## Data releases
 
 Published to **`sportsdataverse/sportsdataverse-data`** releases (one tag per
@@ -183,6 +220,28 @@ mlb/
   *.rda                                   # static lookup tables (historical archive)
 statcast/                                 # static historical Statcast monthly extracts
 ```
+
+## Automation & status
+
+<!-- BEGIN GENERATED: status -->
+
+| workflow | schedule | last run |
+|---|---|---|
+| [![daily_ncaa_baseball.yml](https://github.com/sportsdataverse/baseballr-data/actions/workflows/daily_ncaa_baseball.yml/badge.svg)](https://github.com/sportsdataverse/baseballr-data/actions/workflows/daily_ncaa_baseball.yml) | on repo dispatch / dispatch | 2026-08-01 |
+| [![mlb_models_cron.yml](https://github.com/sportsdataverse/baseballr-data/actions/workflows/mlb_models_cron.yml/badge.svg)](https://github.com/sportsdataverse/baseballr-data/actions/workflows/mlb_models_cron.yml) | daily 10:30 UTC in Apr-Oct | 2026-08-31 |
+| [![orphan_scripts.yml](https://github.com/sportsdataverse/baseballr-data/actions/workflows/orphan_scripts.yml/badge.svg)](https://github.com/sportsdataverse/baseballr-data/actions/workflows/orphan_scripts.yml) | on push / PR / dispatch | 2026-08-27 |
+| [![tests.yml](https://github.com/sportsdataverse/baseballr-data/actions/workflows/tests.yml/badge.svg)](https://github.com/sportsdataverse/baseballr-data/actions/workflows/tests.yml) | on push / PR / dispatch | 2026-08-27 |
+
+| release tag | assets | size | last publish |
+|---|---:|---:|---|
+| [`ncaa_baseball_schedules`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/ncaa_baseball_schedules) | 59 | 88.0 MB | 2026-08-27 |
+| [`ncaa_baseball_pbp`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/ncaa_baseball_pbp) | 39 | 2,304.9 MB | 2026-08-27 |
+| [`mlb_game_state`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_game_state) | 109 | 85.3 MB | 2026-08-31 |
+| [`mlb_hitting_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_hitting_models) | 106 | 5.2 MB | 2026-08-31 |
+| [`mlb_pitching_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_pitching_models) | 109 | 7.2 MB | 2026-08-31 |
+| [`mlb_fielding_models`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/mlb_fielding_models) | 73 | 1.6 MB | 2026-08-31 |
+
+<!-- END GENERATED: status -->
 
 ## Maintainer setup
 
