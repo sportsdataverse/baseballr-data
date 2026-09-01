@@ -178,51 +178,90 @@ re-pull raw JSON from stats.ncaa.org rather than reuse cached files).
 
 ## Repository layout
 
+<!-- BEGIN GENERATED: layout -->
+
 ```
-R/
-  0000_create_baseballr_releases_init.R   # one-time: create the release tags
-  0001_push_existing_release_data.R       # one-time: backfill historical seasons
-  ncaa_01_schedules_creation.R            # build + publish schedules (per year)
-  ncaa_02_pbp_creation.R                  # build + publish play-by-play (per year)
-  ncaa_teams_info.R                       # rebuild ncaa_team_lookup
-  ncaa_season_ids.R                       # rebuild ncaa_season_id_lu
-  ncaa_teams_season_team_id_backfill.R    # backfill season_team_id (inst_team_list)
-  ncaa_teams_roster_gapfill.R             # roster-based season_team_id gap-fill
-scripts/
-  daily_ncaa_baseball_R_processor.sh      # per-year orchestrator (used by CI)
-  daily_ncaa_baseball_scraper.sh          # manual entry point: schedules (git wrapper)
-  daily_ncaa_baseball_pbp_scraper.sh      # manual entry point: play-by-play (git wrapper)
-  bash_functions.sh                       # shared shell helpers
-  run_backfill_all.sh                     # NCAA capture campaign, one season at a time
-  run_01_schedules_scrape.sh              # campaign stage 01 (see run order above)
-  run_02_games_scrape.sh                  # campaign stage 02
-  run_03_games_parse.sh                   # campaign stage 03
-  run_04_rosters_scrape.sh                # campaign stage 04
-  run_05_datasets_build.sh                # campaign stage 05
-  run_06_xwalk_build.sh                   # campaign stage 06
-  run_07_datasets_publish.sh              # campaign stage 07
-  _env.sh                                 # shared stage env + run_stage helper
-.github/workflows/
-  daily_ncaa_baseball.yml                 # scheduled NCAA release-update workflow
-  mlb_models_cron.yml                     # daily MLB model datasets (Apr-Oct)
-pyproject.toml / uv.lock                  # root uv project (Python producers under python/)
-python/
-  mlb_model_01_game_state.py ... 04_fielding.py   # numbered MLB model stages (scripts/mlb_models.sh)
-  ncaa_baseball_01_schedules_scrape.py ... 07_datasets_publish.py  # numbered NCAA stages
-  mlb_model_publish/                      # MLB model-dataset publisher (4 release tags)
-  ncaa_pbp/                               # NCAA baseball pbp discover+capture internals
-  ncaa_baseball_data_build/               # NCAA dataset build internals
-tests/                                    # Python tests at repo root (uv run pytest)
-ncaa/
-  schedules/{rds,csv,parquet}/            # compiled per-year schedule artifacts
-  pbp/{rds,csv,parquet}/                  # compiled per-year play-by-play artifacts
-  teams_info/                             # ncaa_team_lookup.* (load_ncaa_baseball_teams)
-  seasons_info/                           # ncaa_season_id_lu.*  (load_ncaa_baseball_season_ids)
-mlb/
-  {game_state,hitting_models,...}/parquet/  # committed MLB model-dataset tree (cron-maintained)
-  *.rda                                   # static lookup tables (historical archive)
-statcast/                                 # static historical Statcast monthly extracts
+baseballr-data/
+├── R/   # R pipeline stages and publish toolchain
+│   ├── 0000_create_baseballr_releases_init.R
+│   ├── 0001_push_existing_release_data.R
+│   ├── ncaa_01_schedules_creation.R
+│   ├── ncaa_02_pbp_creation.R
+│   ├── ncaa_season_ids.R
+│   ├── ncaa_teams_info.R
+│   ├── ncaa_teams_roster_gapfill.R
+│   ├── ncaa_teams_season_team_id_backfill.R
+│   ├── ncaa_util_01_schedules_conversion.R
+│   ├── ncaa_util_02_pbp_conversion.R
+│   └── utils.R
+├── docs/   # explainers, model reports and dataset docs
+│   └── models/
+├── mlb/
+│   ├── fielding_models/
+│   ├── game_state/
+│   ├── hitting_models/
+│   └── pitching_models/
+├── models/   # model artifacts, cards and the registry
+├── ncaa/
+│   ├── batter_box/
+│   ├── contest_pbp/
+│   ├── game_pbp/
+│   ├── games/
+│   ├── html/
+│   ├── json/
+│   ├── linescore/
+│   ├── pbp/
+│   └── … 17 more
+├── python/   # Python pipeline stages, numbered in build order
+│   ├── mlb_model_publish/
+│   ├── ncaa_baseball_data_build/
+│   ├── ncaa_pbp/
+│   ├── mlb_model_01_game_state.py
+│   ├── mlb_model_02_hitting.py
+│   ├── mlb_model_03_pitching.py
+│   ├── mlb_model_04_fielding.py
+│   ├── ncaa_baseball_01_schedules_scrape.py
+│   ├── ncaa_baseball_02_games_scrape.py
+│   ├── ncaa_baseball_03_games_parse.py
+│   ├── ncaa_baseball_04_rosters_scrape.py
+│   ├── ncaa_baseball_05_datasets_build.py
+│   ├── ncaa_baseball_06_xwalk_build.py
+│   └── ncaa_baseball_07_datasets_publish.py
+├── scripts/   # bash drivers (the daily/weekly entry points)
+│   ├── _env.sh
+│   ├── bash_functions.sh
+│   ├── daily_ncaa_baseball_R_processor.sh
+│   ├── daily_ncaa_baseball_pbp_scraper.sh
+│   ├── daily_ncaa_baseball_scraper.sh
+│   ├── mlb_models.sh
+│   ├── render_model_docs.sh
+│   ├── run_01_schedules_scrape.sh
+│   ├── run_02_games_scrape.sh
+│   ├── run_03_games_parse.sh
+│   ├── run_04_rosters_scrape.sh
+│   ├── run_05_datasets_build.sh
+│   ├── run_06_xwalk_build.sh
+│   ├── run_07_datasets_publish.sh
+│   └── run_backfill_all.sh
+├── statcast/
+├── tests/   # test suite
+│   ├── fixtures/
+│   ├── test_capture.py
+│   ├── test_data_build.py
+│   ├── test_data_io.py
+│   ├── test_data_publish.py
+│   ├── test_discover.py
+│   ├── test_mlb_model_publish.py
+│   ├── test_model_manifest.py
+│   ├── test_model_registry.py
+│   ├── test_parse_legacy.py
+│   ├── test_stage_numbering.py
+│   ├── test_stages.py
+│   └── test_xwalk.py
+└── themes/   # plot themes
 ```
+
+<!-- END GENERATED: layout -->
 
 ## Reports & explainers
 
