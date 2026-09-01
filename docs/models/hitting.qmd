@@ -124,6 +124,18 @@ q = xs.filter((pl.col("season") == latest) & (pl.col("pa") >= 100))
 
 ## Known anomalies, reproduced live
 
+**Root cause identified and fixed upstream (2026-09-01).** The published
+`pa`/`ab` columns counted **every pitch** rather than plate-appearance-ending
+events (the assets carry `max_pa` ≈ 3,400 per batter-season), deflating
+xBA/xSLG; and on cache vintages with degenerate `woba_value`/`woba_denom`
+semantics the xwOBA scale corrupted per season. The fix — PA-ender
+discipline plus an events-derived wOBA denominator — landed in sdv-py
+(`fix/mlb-expected-stats-pa-enders`), and the publisher now carries a
+publish-blocking absolute scale gate (qualified league-mean xwOBA .26–.38,
+xBA .18–.30). **The tables below keep showing the corrupted published assets
+until the full-history republish runs** — the flags stay live by design so
+this page proves the republish when it happens.
+
 **Scale drift in the published xwOBA.** League-mean xwOBA should sit near
 .320 in every season; the committed assets do not. This table recomputes the
 per-season mean on every render and flags seasons outside a generous

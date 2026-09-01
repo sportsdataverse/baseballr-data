@@ -127,13 +127,16 @@ cl = cmd.filter(pl.col("season") == latest)
 )
 ```
 
-## Known anomaly, reproduced live
+## The xERA ≡ x_wOBA identity — by design, verified live
 
-The 2026-09-01 audit found the published **xERA is a perfect monotone
-transform of x_wOBA-against** — two columns carrying one signal. The
-correlation is recomputed on every render so the flag stays live until the
-builder differentiates the recipe (batted-ball mix, park) or documents xERA
-as a display transform:
+The 2026-09-01 audit flagged that published **xERA correlates r = 1.0 with
+x_wOBA-against**. Root-caused 2026-09-01: this is **by design, not a defect**
+— sdv-py's `x_era` is a documented *parametric* wOBA-to-runs conversion,
+`x_era = league_era + ((x_woba − league_woba) / woba_scale) · pa_per_9`, an
+affine transform per season. The two columns deliberately carry one signal on
+two scales (rate vs runs). The correlation is still recomputed on every
+render — now as a **design confirmation**: any r below ~1.0 would mean the
+recipe silently changed:
 
 ```{python}
 anom = (
@@ -143,8 +146,8 @@ anom = (
 )
 gt_show(
     GT(anom.to_pandas())
-    .tab_header(title="FLAGGED: Pearson r between published xERA and x_wOBA-against",
-                subtitle="r = 1.0 means the asset carries ONE signal in two columns")
+    .tab_header(title="Design check: Pearson r between published xERA and x_wOBA-against",
+                subtitle="x_era is a documented affine transform of x_woba (sdv-py mlb_pitch_era) — r = 1.0 CONFIRMS the recipe")
     .fmt_number(columns="pearson_xera_xwoba", decimals=4)
 )
 ```
@@ -274,7 +277,8 @@ gt_show(
 - **Known issue:** Command+'s 0.04 directional gate is honest but near-noise;
   treat the column as ordinal at best — its YoY reliability above quantifies
   exactly how noisy.
-- **FLAGGED (2026-09-01, reproduced live above):** published xERA is a
-  perfect monotone transform of x_wOBA-against (r = 1.0) — one signal in two
-  columns; either differentiate the recipe (batted-ball mix, park) or
-  document xERA as a display transform.
+- **RESOLVED (2026-09-01):** the xERA ≡ x_wOBA identity is by design (a
+  documented affine wOBA-to-runs conversion in sdv-py `mlb_pitch_era`); the
+  render-time check above now guards the recipe rather than flagging a bug.
+  Differentiating xERA with batted-ball mix / park inputs remains a real
+  avenue — as a new model, not a fix.
