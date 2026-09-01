@@ -122,7 +122,31 @@ q = xs.filter((pl.col("season") == latest) & (pl.col("pa") >= 100))
 )
 ```
 
-## Known anomaly, reproduced live
+## Known anomalies, reproduced live
+
+**Scale drift in the published xwOBA.** League-mean xwOBA should sit near
+.320 in every season; the committed assets do not. This table recomputes the
+per-season mean on every render and flags seasons outside a generous
+.280–.360 band — several seasons fail, which corrupts every cross-column and
+cross-season comparison below and is the leading suspect for the other two
+flags in this document:
+
+```{python}
+scale = (
+    xs.filter(pl.col("pa") >= 100).group_by("season")
+    .agg(pl.col("xwoba").mean().alias("mean_xwoba"),
+         pl.col("xba").mean().alias("mean_xba"), pl.len().alias("n"))
+    .with_columns(((pl.col("mean_xwoba") < 0.28) | (pl.col("mean_xwoba") > 0.36))
+                  .alias("OUT_OF_BAND"))
+    .sort("season")
+)
+gt_show(
+    GT(scale.to_pandas())
+    .tab_header(title="FLAGGED: league-mean xwOBA by season vs plausible band (.280–.360)",
+                subtitle="means of .44–.73 are impossible on the wOBA scale — the builder mis-scales some seasons")
+    .fmt_number(columns=["mean_xwoba", "mean_xba"], decimals=3)
+)
+```
 
 The 2026-09-01 audit flagged that **xwOBA and xBA correlate negatively** on
 the published asset — two expected-stat columns that should agree in sign.
@@ -222,12 +246,18 @@ gt_show(
 )
 ```
 
-A projection that correlates in the 0.5–0.7 range with next-season xwOBA is
-doing what a sane aging-curve projection can do — most of a batter's season
-is irreducible variance. The publish gates additionally anchor the expected
-stats themselves: xwOBA/xBA Spearman vs Savant's own published expected
-stats ≥ 0.95 on identical inputs, and xHR full-season Spearman vs live
-≥ 0.90.
+A sane aging-curve projection lands in the 0.5–0.7 correlation range with
+next-season xwOBA; the observed values in the table above are **far below
+that**, hovering near zero. Given the scale-drift flag reproduced earlier —
+realized league-mean "xwOBA" of .44–.73 in several seasons — the honest
+reading is that the *published expected-stats columns are corrupted*, not
+that the projection carries no signal: a forward validation against a
+mis-scaled target cannot exonerate or condemn the model. The builder fix
+comes first; this table then becomes the projection's real gate. The publish
+gates additionally anchor the expected stats themselves: xwOBA/xBA Spearman
+vs Savant's own published expected stats ≥ 0.95 on identical inputs, and xHR
+full-season Spearman vs live ≥ 0.90 — gates that plainly did not catch the
+scale drift, which is itself a finding about the gates.
 
 ## Provenance & reproducibility
 
@@ -256,3 +286,10 @@ stats ≥ 0.95 on identical inputs, and xHR full-season Spearman vs live
   agree in sign; investigate column scaling / join keys in the builder
   before trusting cross-column comparisons. This document recomputes the
   correlation on every render so the flag cannot silently go stale.
+- **FLAGGED ANOMALY (2026-09-01, reproduced live above):** league-mean
+  "xwOBA" of .44–.73 in several published seasons is impossible on the wOBA
+  scale — per-season scale drift in the builder is the leading suspect for
+  BOTH the negative xwOBA↔xBA correlation and the near-zero projection
+  forward validation. The publish gates (Spearman vs Savant on identical
+  inputs) are rank-based and therefore scale-blind — add an absolute
+  league-mean band gate so this class cannot ship again.
