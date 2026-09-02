@@ -157,6 +157,18 @@ def _build(args: argparse.Namespace) -> int:
     for name in PAYLOAD_DATASETS:
         spec = REGISTRY[name]
         _finish(frames[name], spec, args.season, base, release=release)
+        if release and not frames[name].height:
+            # The guard above only proves the season has PARSED payloads, which is a
+            # statement about `games`. The box-score datasets are capture-era only
+            # (2024+), so a legacy season satisfies that guard and still yields zero
+            # rows here -- publishing it ships a schema-only asset that makes the tag
+            # advertise coverage it does not have. Build it locally, do not release it.
+            log.warning(
+                "not publishing %s %s: 0 rows (outside this dataset's capture era)",
+                name,
+                args.season,
+            )
+            continue
         if release:
             _publish(spec, args.season, base, args.dry_run)
     _write_qa(frames["qa"], args.season, base)
