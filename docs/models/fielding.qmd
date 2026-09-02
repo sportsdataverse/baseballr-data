@@ -40,6 +40,15 @@ oaa = fam("mlb_oaa")
 frm = fam("mlb_catcher_framing")
 SEASONS = sorted(oaa["season"].unique().to_list())
 
+def fam_opt(stem):
+    """Stems added 2026-09-02 — present only once the family is republished."""
+    fs = sorted(FM.glob(f"{stem}_*.parquet"))
+    if not fs:
+        return None
+    return pl.concat([pl.read_parquet(f) for f in fs], how="diagonal_relaxed")
+
+oaa_dir = fam_opt("mlb_oaa_direction")
+
 def gt_show(g):
     display(HTML(g.as_raw_html()))
 
@@ -189,6 +198,73 @@ sample sizes. This is the correct lens for a feature-capped model — even
 without start coordinates, a metric that correlates season-over-season is
 measuring the fielder, not the noise.
 
+## Per-direction OAA
+
+The undirected number says a fielder was worth +8 outs; it does not say
+whether those came going back on the ball, charging in, or ranging sideways.
+`mlb_oaa_direction` splits every fielder-position into `in` / `back` /
+`lateral`.
+
+The split is a **partition, not a re-fit**: it re-groups the same scored balls
+in play, so its rows sum exactly to the published `mlb_oaa`. That is the
+property worth checking, because a per-direction re-fit — the tempting
+implementation — would silently produce three numbers that no longer add up to
+the headline one.
+
+```{python}
+if oaa_dir is None:
+    display(HTML(
+        "<p><strong>Pending republish.</strong> The <code>mlb_oaa_direction</code> "
+        "stem lands with the next rebuild. Validated on the real 2021 Savant season "
+        "at build time: all 1,832 fielder-positions survive the split, "
+        "<strong>max |sum(direction OAA) &minus; published OAA| = 3.6e-15</strong> "
+        "and opportunities reconcile exactly. League OAA by direction ran "
+        "back +400.7, in &minus;244.7, lateral &minus;145.1.</p>"
+    ))
+else:
+    rolled = (
+        oaa_dir.group_by(["fielder_id", "position", "season"])
+        .agg(pl.col("oaa").sum().alias("split_oaa"), pl.col("opportunities").sum().alias("split_opps"))
+        .join(oaa, on=["fielder_id", "position", "season"], how="inner")
+    )
+    gt_show(
+        GT(pl.DataFrame({
+            "reconciliation check": ["fielder-positions joined vs published",
+                                     "max |sum(direction OAA) - published OAA|",
+                                     "max |sum(direction opps) - opportunities|"],
+            "value": [f"{rolled.height} / {oaa.height}",
+                      f"{float((rolled['split_oaa'] - rolled['oaa']).abs().max()):.2e}",
+                      f"{int((rolled['split_opps'] - rolled['opportunities']).abs().max())}"],
+        }).to_pandas())
+        .tab_header(title="The direction split reconciles to the published OAA",
+                    subtitle="a partition of the same scored balls in play — not a re-fit")
+    )
+    by_dir = (
+        oaa_dir.group_by("direction")
+        .agg(pl.len().alias("rows"), pl.col("opportunities").sum().alias("opportunities"),
+             pl.col("oaa").sum().alias("league_oaa"))
+        .sort("direction")
+    )
+    gt_show(
+        GT(by_dir.to_pandas())
+        .tab_header(title="League OAA by direction, all committed seasons")
+        .fmt_number(columns="opportunities", sep_mark=",", decimals=0)
+        .fmt_number(columns="league_oaa", decimals=1)
+    )
+```
+
+Two honest caveats travel with this split. First, Savant classifies direction
+against the fielder's **tracked start position**; the public feed has no start
+coordinates (the same ceiling that prices this family's gates), so the
+position's own median landing spot stands in for "where this position normally
+plays". Second, and more subtly, the depth leg of that proxy is derived from
+landing distance — which is *also* an input to the catch-probability logistic.
+So a systematic league-level tilt between `back` and `in` (2021: +400.7 vs
+−244.7) partly reflects residual structure in the catch surface by depth, not
+purely fielder skill. The split is a genuine diagnostic for comparing fielders
+**within** a direction; it should not be read as a calibrated decomposition of
+league-wide value.
+
 ## Results
 
 ```{python}
@@ -249,8 +325,12 @@ gt_show(
 - **Start-coordinate ceiling** — the single biggest gain would be fielder
   positioning data, which the public feed does not carry; until then the
   gates stay at their priced-in floors (OAA ≥ 0.55, framing ≥ 0.40 vs live).
-- **Publish per-direction OAA splits** — in/back/lateral splits exist in the
-  substrate and would make the position-reliability differences diagnosable.
+- **Resolved (2026-09-02, PR #13):** per-direction OAA ships as
+  `mlb_oaa_direction` (in / back / lateral). Validated on the real 2021
+  season: all 1,832 fielder-positions survive, max |sum(direction OAA) −
+  published OAA| = 3.6e-15, opportunities exact. The direction proxy and its
+  confound with the catch surface's depth term are documented above — read it
+  as a within-direction comparison, not a calibrated value decomposition.
 - **Known issue:** the registry's deliberately-unpublished surfaces (catcher
   throwing/blocking, baserunning, SB value) remain data-ceiling-limited
   (live floors 0.03–0.073 vs 0.80+ design targets) — recorded so the gap is
