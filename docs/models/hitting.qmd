@@ -124,24 +124,56 @@ q = xs.filter((pl.col("season") == latest) & (pl.col("pa") >= 100))
 
 ## Known anomalies, reproduced live
 
-**Root cause identified and fixed upstream (2026-09-01).** The published
-`pa`/`ab` columns counted **every pitch** rather than plate-appearance-ending
-events (the assets carry `max_pa` ≈ 3,400 per batter-season), deflating
-xBA/xSLG; and on cache vintages with degenerate `woba_value`/`woba_denom`
-semantics the xwOBA scale corrupted per season. The fix — PA-ender
-discipline plus an events-derived wOBA denominator — landed in sdv-py
-(`fix/mlb-expected-stats-pa-enders`), and the publisher now carries a
-publish-blocking absolute scale gate (qualified league-mean xwOBA .26–.38,
-xBA .18–.30). **The tables below keep showing the corrupted published assets
-until the full-history republish runs** — the flags stay live by design so
+**Both anomalies are root-caused, fixed and verified end-to-end on real
+Statcast seasons (2026-09-02); the published assets await the republish.**
+
+Two distinct defects, one layer apart:
+
+1. **PA-enders** (sdv-py #421): the published `pa`/`ab` counted **every pitch**
+   rather than plate-appearance-ending events (the assets carry `max_pa`
+   ≈ 3,400 per batter-season), deflating xBA/xSLG; on cache vintages with
+   degenerate `woba_value`/`woba_denom` semantics the xwOBA scale corrupted
+   per season.
+2. **Untracked balls in play** (found while verifying #421): 8–19% of
+   PA-ending balls in play carry no launch data and cannot be predicted from
+   the EV × LA grid. xwOBA always gave those rows their realized
+   `woba_value`; xBA/xSLG did not — they counted in the `ab` denominator
+   with a **zero numerator**, deflating xBA by roughly (untracked share ×
+   hit rate).
+
+Rebuilding the seven locally-cached real Savant seasons with both fixes:
+
+| season | untracked BIP | mean xwOBA | mean xBA (before → after) | corr(xwOBA, xBA) | `pa` vs observed PA |
+|---|---|---|---|---|---|
+| 2015 | 19.4% | .3230 | .2026 → **.2519** | +0.622 → **+0.773** | exact |
+| 2016 | 17.8% | .3298 | .2090 → **.2532** | +0.588 → **+0.762** | exact |
+| 2017 | 15.6% | .3334 | .2142 → **.2530** | +0.612 → **+0.768** | exact |
+| 2018 | 13.7% | .3253 | .2141 → **.2462** | +0.656 → **+0.785** | exact |
+| 2019 | 13.1% | .3349 | .2190 → **.2487** | +0.709 → **+0.791** | exact |
+| 2020 | 13.5% | .3323 | .2229 → **.2425** | +0.746 → **+0.793** | exact |
+| 2021 | 8.3% | .3245 | .2198 → **.2400** | +0.688 → **+0.797** | exact |
+
+Every season now lands inside the plausible bands (xwOBA .300–.340, xBA
+.230–.270), the xwOBA↔xBA correlation is **positive everywhere**, and
+`pa` equals independently-counted plate appearances **exactly** (max
+difference 0 across all seven seasons). Untracked balls were never degenerate
+— their hit rate matches tracked balls to three decimals (.325 vs .324 in
+2015) — which is why taking their realized outcome is the correct fix rather
+than a patch.
+
+The publisher now carries publish-blocking **absolute** scale gates
+(qualified league-mean xwOBA .26–.38, xBA .21–.29, and expected-vs-observed
+gap ≤ .02). **The tables below still read the corrupted published assets
+until the full-history republish runs** — the live checks stay by design so
 this page proves the republish when it happens.
 
-**Scale drift in the published xwOBA.** League-mean xwOBA should sit near
-.320 in every season; the committed assets do not. This table recomputes the
-per-season mean on every render and flags seasons outside a generous
-.280–.360 band — several seasons fail, which corrupts every cross-column and
-cross-season comparison below and is the leading suspect for the other two
-flags in this document:
+**Scale drift in the published xwOBA (still present in the committed
+assets).** League-mean xwOBA should sit near .320 in every season. This table
+recomputes the per-season mean on every render and flags seasons outside a
+generous .280–.360 band. Seasons still fail here because these are the
+pre-fix published files; the rebuild above clears the band in all seven
+verified seasons. When this table comes back all-`false`, the republish has
+landed:
 
 ```{python}
 scale = (
@@ -162,9 +194,9 @@ gt_show(
 
 The 2026-09-01 audit flagged that **xwOBA and xBA correlate negatively** on
 the published asset — two expected-stat columns that should agree in sign.
-This document recomputes that correlation on every render so the anomaly
-stays visible until the builder is fixed, rather than being quietly
-forgotten:
+Root-caused above and fixed (rebuilt: +0.762 to +0.797 across 2015-2021).
+This document recomputes the correlation on every render, so it keeps
+reporting the published state until the republish clears it:
 
 ```{python}
 anom = (
@@ -179,6 +211,42 @@ gt_show(
                 subtitle="expected-stat columns should correlate strongly positive; investigate builder scaling/join before trusting cross-column comparisons")
     .fmt_number(columns="pearson_xwoba_xba", decimals=3)
 )
+```
+
+## Observed stats beside the expected ones
+
+The asset now carries observed `woba` and `ba` on the **same denominators** as
+`xwoba` and `xba`, so a luck-vs-skill delta is `xwoba - woba` rather than a
+join against a second source. Measured on the rebuilt real seasons, the
+expected and observed league means track each other closely — which is the
+point: a large *league-level* gap means the estimator has drifted, while the
+interesting gaps are per-batter.
+
+```{python}
+if {"woba", "ba"} <= set(xs.columns):
+    obs = (
+        xs.filter(pl.col("pa") >= 100).group_by("season")
+        .agg(pl.col("xwoba").mean().alias("mean_xwoba"), pl.col("woba").mean().alias("mean_woba"),
+             pl.col("xba").mean().alias("mean_xba"), pl.col("ba").mean().alias("mean_ba"))
+        .with_columns((pl.col("mean_xwoba") - pl.col("mean_woba")).alias("xwoba_gap"),
+                      (pl.col("mean_xba") - pl.col("mean_ba")).alias("xba_gap"))
+        .sort("season")
+    )
+    gt_show(
+        GT(obs.to_pandas())
+        .tab_header(title="Expected vs observed league means (PA >= 100)",
+                    subtitle="same denominators, so the gap is the luck term")
+        .fmt_number(columns=["mean_xwoba", "mean_woba", "mean_xba", "mean_ba", "xwoba_gap", "xba_gap"], decimals=4)
+    )
+else:
+    display(HTML(
+        "<p><strong>Pending republish.</strong> The observed <code>woba</code> / "
+        "<code>ba</code> columns land with the next rebuild. Verified on the "
+        "seven locally-cached real seasons: league-mean observed wOBA "
+        ".3234&ndash;.3349 and BA .2410&ndash;.2540, against expected .3230&ndash;.3349 "
+        "and .2400&ndash;.2532 &mdash; a max expected-vs-observed gap of .0012 "
+        "(wOBA) and .0024 (BA), both inside the .02 publish gate.</p>"
+    ))
 ```
 
 ## Expected home runs
@@ -288,20 +356,33 @@ scale drift, which is itself a finding about the gates.
 
 ## Avenues for improvement & open issues
 
-- **Publish observed stats alongside** — the asset carries expected stats
-  only; adding observed wOBA/BA would make luck-vs-skill deltas a one-liner
-  for consumers (today it needs a second source).
+- **Resolved (2026-09-02, PR #14):** observed `woba` / `ba` ship beside the
+  expected columns on the same denominators, so a luck-vs-skill delta is
+  `xwoba - woba` with no second source. Verified on seven real seasons:
+  observed wOBA .3234–.3349, BA .2410–.2540; max expected-vs-observed gap
+  .0012 (wOBA) / .0024 (BA).
 - **Known issue:** the projection's validated window starts at 2018; earlier
-  seasons ship but sit outside the gates.
-- **FLAGGED ANOMALY (2026-09-01, reproduced live above):** xwOBA vs xBA on
-  the published assets correlates NEGATIVELY — expected-stat columns should
-  agree in sign; investigate column scaling / join keys in the builder
-  before trusting cross-column comparisons. This document recomputes the
-  correlation on every render so the flag cannot silently go stale.
-- **FLAGGED ANOMALY (2026-09-01, reproduced live above):** league-mean
-  "xwOBA" of .44–.73 in several published seasons is impossible on the wOBA
-  scale — per-season scale drift in the builder is the leading suspect for
-  BOTH the negative xwOBA↔xBA correlation and the near-zero projection
-  forward validation. The publish gates (Spearman vs Savant on identical
-  inputs) are rank-based and therefore scale-blind — add an absolute
-  league-mean band gate so this class cannot ship again.
+  seasons ship but sit outside the gates. Note the forward-validation table
+  below is computed against the **corrupted published target** and cannot be
+  read as the projection's true skill until the republish.
+- **Resolved pending republish (2026-09-02, PR #14)** — *negative
+  xwOBA↔xBA correlation.* Root cause: balls in play with no launch data
+  counted in the `ab` denominator with a zero numerator, so xBA moved against
+  xwOBA as the untracked share varied. Fixed in sdv-py by giving those rows
+  their realized outcome (the fallback xwOBA already used). Rebuilt on the
+  seven cached real seasons the correlation is **+0.762 to +0.797** (was
+  +0.588 to +0.746, and negative on the published assets). The live check
+  above still reads the published files until the republish.
+- **Resolved pending republish (2026-09-02, PR #14)** — *impossible
+  league-mean xwOBA.* Root cause: `pa`/`ab` counted every pitch rather than
+  PA-enders (sdv-py #421), compounded by vintage-degenerate
+  `woba_value`/`woba_denom`. Rebuilt league-mean xwOBA is **.3230–.3349**
+  and xBA **.2400–.2532** across 2015-2021, with `pa` matching
+  independently-counted plate appearances exactly. The scale-blind Spearman
+  gates are now backed by publish-blocking **absolute** bands (xwOBA .26–.38,
+  xBA .21–.29, expected-vs-observed gap ≤ .02) in
+  `python/mlb_model_publish/computes.py`, so this class cannot ship again.
+- **Open until the republish:** every table on this page that reads
+  `mlb/hitting_models/parquet/` still shows the pre-fix values. The publish
+  command is in the PR body; nothing here is safe to cite for analysis until
+  it has run.

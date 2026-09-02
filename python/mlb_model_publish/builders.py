@@ -100,9 +100,7 @@ def build_tag(
     """
     too_old = [s for s in seasons if s < MIN_SEASON]
     if too_old:
-        raise ValueError(
-            f"{tag}: seasons {too_old} predate the {MIN_SEASON} Statcast floor"
-        )
+        raise ValueError(f"{tag}: seasons {too_old} predate the {MIN_SEASON} Statcast floor")
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -128,15 +126,13 @@ def build_tag(
                 "paths": paths,
             }
         )
-        print(
-            f"{tag}: season={season} " + " ".join(f"{k}={v}" for k, v in stems.items())
-        )
+        print(f"{tag}: season={season} " + " ".join(f"{k}={v}" for k, v in stems.items()))
     return results
 
 
 _CARD_META = {
     "mlb_game_state": {
-        "grain": "re24_matrix: one row per base-out state; we_table: one row per state bucket; wpa: one row per plate appearance",
+        "grain": "re24_matrix: one row per base-out state; we_table + leverage_index: one row per state bucket; wpa: one row per plate appearance",
         "source": "sdv-py mlb_run_expectancy / mlb_win_expectancy over statsapi.mlb.com regular-season pbp",
         "gates": {
             "re24_vs_tango_max_abs_diff": 0.05,
@@ -146,7 +142,17 @@ _CARD_META = {
         "notes": [
             "Game results derive from each game's terminal result_*_score --"
             " one statsapi pull per season, no second surface.",
-            "Leverage index is not published; compute it from we_table + pbp_base_out_states via sdv-py.",
+            "Leverage index IS published (mlb_leverage_index): E|delta WE| over"
+            " the empirical next-state distribution from each state, normalized"
+            " so the PA-weighted mean is 1.0 (abs_wpa is averaged over plate"
+            " appearances, not over states).",
+            "we_table and leverage_index carry the bucket count `n` and a `thin`"
+            " flag (n < 50). The threshold is measured, not chosen: pooled"
+            " adjacent-season disagreement in the WE estimate is .0586 mean"
+            " |dWE| for buckets of 25-50 against .0312 at 100-200 and .0296 at"
+            " 200+ -- roughly a doubling as bucket size falls through 50."
+            " 2020's short season is 93.1% thin buckets (median n=5) against"
+            " ~81.5% (median n=11) in a full season.",
         ],
     },
     "mlb_hitting_models": {
@@ -156,25 +162,43 @@ _CARD_META = {
             "xwoba_spearman_same_input": 0.95,
             "xba_spearman_same_input": 0.95,
             "xhr_full_season_spearman_live": 0.90,
+            "qualified_league_mean_xwoba_band": [0.26, 0.38],
+            "qualified_league_mean_xba_band": [0.21, 0.29],
+            "qualified_league_mean_expected_vs_observed_max_gap": 0.02,
         },
         "notes": [
             "The projection for season S trains only on seasons < S (as-of"
             " enforced) and uses the accumulated expected-stats history, so"
             " the backfill pays no extra Savant pulls.",
             "The earliest built season carries no projection stem (no prior history inside the run).",
+            "Observed `woba`/`ba` ship beside the expected columns on the SAME"
+            " denominators, so a luck-vs-skill delta is `xwoba - woba` with no"
+            " second source. The scale gates are ABSOLUTE bands (the Spearman"
+            " gates above are rank-based and therefore scale-blind -- that is"
+            " how the 2026-09-01 mis-scaled seasons shipped).",
         ],
     },
     "mlb_fielding_models": {
-        "grain": "oaa: one row per (fielder_id, position, season); catcher_framing: one row per catcher-season",
+        "grain": "oaa: one row per (fielder_id, position, season); oaa_direction: one row per (fielder_id, position, direction, season); catcher_framing: one row per catcher-season",
         "source": "sdv-py mlb_fielding_oaa / mlb_catcher_framing over Baseball Savant (balls in play = type=='X')",
         "gates": {
             "oaa_full_season_pearson_live": 0.55,
             "framing_full_season_pearson_live": 0.40,
+            # REGISTRY.md lists the partition as a publish gate, so the card must
+            # declare its tolerance; test_fielding_direction_splits_sum_to_the_
+            # published_oaa enforces it (observed max drift 3.6e-15 on 2021).
+            "oaa_direction_partition_max_abs_diff": 1e-9,
         },
         "notes": [
             "Observed full-season 2024: OAA 0.605, framing 0.468. Ceilings are"
             " feature-capped -- the public per-pitch feed lacks fielder start"
             " coordinates and receiving data.",
+            "mlb_oaa_direction splits each fielder-position into in/back/lateral."
+            " Savant splits directional OAA against tracked fielder START"
+            " coordinates, which the public feed lacks, so the position's own"
+            " median landing spot stands in (documented approximation). The"
+            " split re-groups the same scored balls in play rather than"
+            " re-fitting, so its rows sum exactly to mlb_oaa.",
             "Catcher throwing/blocking, baserunning and SB value are EXCLUDED:"
             " data-ceiling-limited (live floors 0.03-0.073 vs 0.80+ design"
             " targets; only ~23% of SB/CS attempts are narrated in this feed).",
@@ -199,9 +223,7 @@ _CARD_META = {
 }
 
 
-def write_card(
-    tag: str, results: list[dict], out_dir, *, existing: dict | None = None
-) -> Path:
+def write_card(tag: str, results: list[dict], out_dir, *, existing: dict | None = None) -> Path:
     """Write the tag's model card next to the season parquet.
 
     Args:

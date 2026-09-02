@@ -36,6 +36,19 @@ we = fam("mlb_we_table")
 wpa = fam("mlb_wpa")
 SEASONS = sorted(re24["season"].unique().to_list())
 
+def fam_opt(stem):
+    """Stems added 2026-09-02 — present only once the family is republished."""
+    fs = sorted(GS.glob(f"{stem}_*.parquet"))
+    if not fs:
+        return None
+    return pl.concat([pl.read_parquet(f) for f in fs], how="diagonal_relaxed")
+
+li = fam_opt("mlb_leverage_index")
+THIN_N = 50
+
+def pending(msg):
+    display(HTML(f"<p><strong>Pending republish.</strong> {msg}</p>"))
+
 def gt_show(g):
     display(HTML(g.as_raw_html()))
 ```
@@ -82,9 +95,78 @@ gt_show(
 ```
 
 Every season from the first committed year to the present is rebuilt by the
-daily in-season cron; 2020's short season is visibly thinner and its WE
-buckets are correspondingly noisier (a known limitation carried without a
-flag in the data itself).
+daily in-season cron. 2020's short season is visibly thinner and its WE
+buckets are correspondingly noisier — and as of 2026-09-02 that is **carried
+in the data** rather than left for the reader to infer: both state-bucket
+tables ship the bucket count `n` and a `thin` flag.
+
+## How thin is thin? (the threshold is measured, not chosen)
+
+A bucket flagged `thin` is one whose win-expectancy estimate does not
+reproduce across seasons. The cut is derived by asking exactly that: for every
+state bucket, how far apart are the same bucket's WE estimates in adjacent
+full seasons?
+
+```{python}
+key = ["inning_capped", "half", "base_state", "outs_start", "score_diff_bucket"]
+frames = []
+for a in SEASONS[:-1]:
+    b = a + 1
+    if b not in SEASONS or 2020 in (a, b):  # 2020 is the anomaly, not a baseline
+        continue
+    wa, wb = we.filter(pl.col("season") == a), we.filter(pl.col("season") == b)
+    if wa.height == 0 or wb.height == 0:
+        continue
+    frames.append(
+        wa.join(wb, on=key, suffix="_b").with_columns(
+            (pl.col("home_win_exp") - pl.col("home_win_exp_b")).abs().alias("dwe"),
+            pl.min_horizontal("n", "n_b").alias("nmin"),
+        )
+    )
+stab = (
+    pl.concat(frames)
+    .with_columns(pl.col("nmin").cut([10, 25, 50, 100, 200],
+                  labels=["<10", "10-25", "25-50", "50-100", "100-200", "200+"]).alias("bucket size"))
+    .group_by("bucket size")
+    .agg(pl.len().alias("buckets"), pl.col("dwe").mean().alias("mean_abs_dwe"))
+    .sort("bucket size")
+)
+gt_show(
+    GT(stab.to_pandas())
+    .tab_header(title="Why the thin cut sits at n = 50",
+                subtitle="same bucket, adjacent full seasons — disagreement more than doubles below n=50")
+    .fmt_number(columns="mean_abs_dwe", decimals=4)
+    .cols_label(mean_abs_dwe="mean |dWE| vs next season")
+)
+```
+
+As bucket size falls through 50, a bucket's disagreement with its own
+next-season value roughly doubles off the large-bucket floor (~.03), so 50 is
+where the estimate stops being reusable. Applying it per season shows how far outside the norm 2020
+sits:
+
+```{python}
+thin_col = pl.col("thin") if "thin" in we.columns else (pl.col("n") < THIN_N)
+thin_tbl = (
+    we.group_by("season")
+    .agg(pl.len().alias("buckets"), pl.col("n").median().alias("median_n"),
+         thin_col.mean().alias("share_thin"))
+    .sort("season")
+)
+gt_show(
+    GT(thin_tbl.to_pandas())
+    .tab_header(title=f"Thin state buckets by season (n < {THIN_N})",
+                subtitle="2020's 60-game season is the outlier the flag exists to mark")
+    .fmt_number(columns="median_n", decimals=0)
+    .fmt_percent(columns="share_thin", decimals=1)
+    .cols_label(median_n="median n", share_thin="share thin")
+)
+```
+
+2020 carries a median bucket of 5 plate appearances against 11 in a full
+season, and ~93% of its buckets thin against ~82%. The flag does not repair
+2020 — nothing can, the games were not played — it makes the difference
+visible to a consumer who would otherwise average the two together.
 
 ## The RE24 surface
 
@@ -164,6 +246,54 @@ first is worth ~60%, the same lead in the ninth ~85%+. The publish gate
 validates the derived per-PA WPA against statsapi's own win probability at
 Spearman ≥ 0.95.
 
+## Leverage index
+
+Leverage index answers "how much is this state capable of swinging the game?"
+— the expected absolute win-expectancy change over the outcomes that actually
+follow this state, normalized so the league-average plate appearance is 1.0.
+It ships as `mlb_leverage_index` on the WE table's own state-bucket key (and
+with the same `n` / `thin` columns), so WPA and LI join without a second
+derivation.
+
+```{python}
+if li is None:
+    pending(
+        "the <code>mlb_leverage_index</code> stem lands with the next rebuild. "
+        "Validated on real 2024 statsapi play-by-play at build time: "
+        "<strong>PA-weighted mean LI = 1.0000</strong> (1.0 by construction), "
+        "range 0.00&ndash;13.87, and late-and-close states (inning &ge; 8, margin "
+        "&le; 1 run, non-thin) average <strong>1.52</strong> against "
+        "<strong>0.80</strong> for early lopsided ones."
+    )
+else:
+    latest_li = li.filter(pl.col("season") == latest)
+    w = float((latest_li["leverage_index"] * latest_li["n"]).sum() / latest_li["n"].sum())
+    solid = latest_li.filter(pl.col("n") >= THIN_N)
+    late_close = solid.filter((pl.col("inning_capped") >= 8) & (pl.col("score_diff_bucket").abs() <= 1))
+    early_blow = solid.filter((pl.col("inning_capped") <= 3) & (pl.col("score_diff_bucket").abs() >= 5))
+    gt_show(
+        GT(pl.DataFrame({
+            "check": ["PA-weighted mean LI (1.0 by construction)",
+                      "mean LI — late & close (inn>=8, margin<=1)",
+                      "mean LI — early & lopsided (inn<=3, margin>=5)"],
+            "value": [w,
+                      float(late_close["leverage_index"].mean() or float("nan")),
+                      float(early_blow["leverage_index"].mean() or float("nan"))],
+        }).to_pandas())
+        .tab_header(title=f"Leverage index sanity — {latest}",
+                    subtitle=f"non-thin buckets only (n >= {THIN_N}) for the two state comparisons")
+        .fmt_number(columns="value", decimals=4)
+    )
+```
+
+The normalization is **PA-weighted**: the average *plate appearance* has
+LI 1.0, not the average *bucket*. The unweighted mean across buckets is far
+higher (~1.8 in 2024) because high-leverage states are numerous but seldom
+occur — so a naive `mean(leverage_index) == 1` check looks like a bug and is
+not one. Bucket-level LI is also noisier than the WE it derives from (it is a
+second moment of the same counts), which is exactly why the `thin` flag
+travels with it.
+
 ## Evaluation — the WPA accounting identity
 
 WPA's defining property is that it is a **zero-sum credit ledger**: summed
@@ -224,7 +354,17 @@ homers — exactly the events WPA exists to weight.
 
 - **Era/park variants** — league-average tables hide park and era structure a
   consumer may want; a park-adjusted variant is cheap from the same substrate.
-- **Leverage index** — the WE table already contains everything needed to
-  publish LI alongside WPA; it is the most-requested missing column.
-- **Known issue:** 2020's short season produces visibly thinner WE buckets;
-  the table carries it without a flag.
+  Scoped but deliberately not built here: per-park state buckets are ~1/30th
+  the count of these, so the `thin` discipline introduced below would dominate
+  the result. It needs a park-factor input and a bucket-collapsing scheme
+  (park x base-out, pooling inning/score) before it is publishable.
+- **Resolved (2026-09-02, PR #14):** leverage index is published as
+  `mlb_leverage_index`, on the WE table's own state-bucket key, carrying `n`
+  and `thin`. Validated on real 2024 play-by-play: PA-weighted mean LI
+  1.0000, late-and-close states 1.52 against 0.80 for early lopsided ones.
+- **Resolved (2026-09-02, PR #14):** the WE and leverage tables carry the
+  bucket count `n` and a `thin` flag (`n < 50`), so 2020's short season is
+  marked in the data. The threshold is measured — adjacent-season WE
+  disagreement is .0586 at n=25-50 against .0296 at n>=200 — and 2020 shows
+  93.1% thin buckets (median n=5) against ~81.5% (median n=11) in a full
+  season. Both are recomputed at render time above.
