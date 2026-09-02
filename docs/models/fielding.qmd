@@ -325,7 +325,7 @@ gt_show(
 - **Start-coordinate ceiling** — the single biggest gain would be fielder
   positioning data, which the public feed does not carry; until then the
   gates stay at their priced-in floors (OAA ≥ 0.55, framing ≥ 0.40 vs live).
-- **Resolved (2026-09-02, PR #13):** per-direction OAA ships as
+- **Resolved (2026-09-02, PR #14):** per-direction OAA ships as
   `mlb_oaa_direction` (in / back / lateral). Validated on the real 2021
   season: all 1,832 fielder-positions survive, max |sum(direction OAA) −
   published OAA| = 3.6e-15, opportunities exact. The direction proxy and its

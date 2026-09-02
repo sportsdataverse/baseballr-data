@@ -356,7 +356,7 @@ scale drift, which is itself a finding about the gates.
 
 ## Avenues for improvement & open issues
 
-- **Resolved (2026-09-02, PR #13):** observed `woba` / `ba` ship beside the
+- **Resolved (2026-09-02, PR #14):** observed `woba` / `ba` ship beside the
   expected columns on the same denominators, so a luck-vs-skill delta is
   `xwoba - woba` with no second source. Verified on seven real seasons:
   observed wOBA .3234–.3349, BA .2410–.2540; max expected-vs-observed gap
@@ -365,7 +365,7 @@ scale drift, which is itself a finding about the gates.
   seasons ship but sit outside the gates. Note the forward-validation table
   below is computed against the **corrupted published target** and cannot be
   read as the projection's true skill until the republish.
-- **Resolved pending republish (2026-09-02, PR #13)** — *negative
+- **Resolved pending republish (2026-09-02, PR #14)** — *negative
   xwOBA↔xBA correlation.* Root cause: balls in play with no launch data
   counted in the `ab` denominator with a zero numerator, so xBA moved against
   xwOBA as the untracked share varied. Fixed in sdv-py by giving those rows
@@ -373,7 +373,7 @@ scale drift, which is itself a finding about the gates.
   seven cached real seasons the correlation is **+0.762 to +0.797** (was
   +0.588 to +0.746, and negative on the published assets). The live check
   above still reads the published files until the republish.
-- **Resolved pending republish (2026-09-02, PR #13)** — *impossible
+- **Resolved pending republish (2026-09-02, PR #14)** — *impossible
   league-mean xwOBA.* Root cause: `pa`/`ab` counted every pitch rather than
   PA-enders (sdv-py #421), compounded by vintage-degenerate
   `woba_value`/`woba_denom`. Rebuilt league-mean xwOBA is **.3230–.3349**

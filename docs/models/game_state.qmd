@@ -358,11 +358,11 @@ homers — exactly the events WPA exists to weight.
   the count of these, so the `thin` discipline introduced below would dominate
   the result. It needs a park-factor input and a bucket-collapsing scheme
   (park x base-out, pooling inning/score) before it is publishable.
-- **Resolved (2026-09-02, PR #13):** leverage index is published as
+- **Resolved (2026-09-02, PR #14):** leverage index is published as
   `mlb_leverage_index`, on the WE table's own state-bucket key, carrying `n`
   and `thin`. Validated on real 2024 play-by-play: PA-weighted mean LI
   1.0000, late-and-close states 1.52 against 0.80 for early lopsided ones.
-- **Resolved (2026-09-02, PR #13):** the WE and leverage tables carry the
+- **Resolved (2026-09-02, PR #14):** the WE and leverage tables carry the
   bucket count `n` and a `thin` flag (`n < 50`), so 2020's short season is
   marked in the data. The threshold is measured — adjacent-season WE
   disagreement is .0586 at n=25-50 against .0296 at n>=200 — and 2020 shows
