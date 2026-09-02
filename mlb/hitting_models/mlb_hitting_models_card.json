@@ -73,17 +73,27 @@
     },
     "2026": {
       "mlb_expected_stats": 1930,
-      "mlb_expected_hr": 1781,
+      "mlb_expected_hr": 1782,
       "mlb_batter_projection": 2731
     }
   },
   "gate_anchors": {
     "xwoba_spearman_same_input": 0.95,
     "xba_spearman_same_input": 0.95,
-    "xhr_full_season_spearman_live": 0.9
+    "xhr_full_season_spearman_live": 0.9,
+    "qualified_league_mean_xwoba_band": [
+      0.26,
+      0.38
+    ],
+    "qualified_league_mean_xba_band": [
+      0.21,
+      0.29
+    ],
+    "qualified_league_mean_expected_vs_observed_max_gap": 0.02
   },
   "notes": [
     "The projection for season S trains only on seasons < S (as-of enforced) and uses the accumulated expected-stats history, so the backfill pays no extra Savant pulls.",
-    "The earliest built season carries no projection stem (no prior history inside the run)."
+    "The earliest built season carries no projection stem (no prior history inside the run).",
+    "Observed `woba`/`ba` ship beside the expected columns on the SAME denominators, so a luck-vs-skill delta is `xwoba - woba` with no second source. The scale gates are ABSOLUTE bands (the Spearman gates above are rank-based and therefore scale-blind -- that is how the 2026-09-01 mis-scaled seasons shipped)."
   ]
 }

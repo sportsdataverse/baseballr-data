@@ -1,6 +1,6 @@
 {
   "tag": "mlb_game_state",
-  "grain": "re24_matrix: one row per base-out state; we_table: one row per state bucket; wpa: one row per plate appearance",
+  "grain": "re24_matrix: one row per base-out state; we_table + leverage_index: one row per state bucket; wpa: one row per plate appearance",
   "source": "sdv-py mlb_run_expectancy / mlb_win_expectancy over statsapi.mlb.com regular-season pbp",
   "seasons": [
     2015,
@@ -74,8 +74,9 @@
     },
     "2026": {
       "mlb_re24_matrix": 24,
-      "mlb_we_table": 4923,
-      "mlb_wpa": 159111
+      "mlb_we_table": 4928,
+      "mlb_leverage_index": 4928,
+      "mlb_wpa": 160322
     }
   },
   "gate_anchors": {
@@ -85,6 +86,7 @@
   },
   "notes": [
     "Game results derive from each game's terminal result_*_score -- one statsapi pull per season, no second surface.",
-    "Leverage index is not published; compute it from we_table + pbp_base_out_states via sdv-py."
+    "Leverage index IS published (mlb_leverage_index): E|delta WE| over the empirical next-state distribution from each state, normalized so the PA-weighted mean is 1.0 (abs_wpa is averaged over plate appearances, not over states).",
+    "we_table and leverage_index carry the bucket count `n` and a `thin` flag (n < 50). The threshold is measured, not chosen: pooled adjacent-season disagreement in the WE estimate is .0586 mean |dWE| for buckets of 25-50 against .0312 at 100-200 and .0296 at 200+ -- roughly a doubling as bucket size falls through 50. 2020's short season is 93.1% thin buckets (median n=5) against ~81.5% (median n=11) in a full season."
   ]
 }

@@ -1,6 +1,6 @@
 {
   "tag": "mlb_fielding_models",
-  "grain": "oaa: one row per (fielder_id, position, season); catcher_framing: one row per catcher-season",
+  "grain": "oaa: one row per (fielder_id, position, season); oaa_direction: one row per (fielder_id, position, direction, season); catcher_framing: one row per catcher-season",
   "source": "sdv-py mlb_fielding_oaa / mlb_catcher_framing over Baseball Savant (balls in play = type=='X')",
   "seasons": [
     2015,
@@ -62,16 +62,19 @@
       "mlb_catcher_framing": 231
     },
     "2026": {
-      "mlb_oaa": 3116,
+      "mlb_oaa": 3119,
+      "mlb_oaa_direction": 7033,
       "mlb_catcher_framing": 280
     }
   },
   "gate_anchors": {
     "oaa_full_season_pearson_live": 0.55,
-    "framing_full_season_pearson_live": 0.4
+    "framing_full_season_pearson_live": 0.4,
+    "oaa_direction_partition_max_abs_diff": 1e-09
   },
   "notes": [
     "Observed full-season 2024: OAA 0.605, framing 0.468. Ceilings are feature-capped -- the public per-pitch feed lacks fielder start coordinates and receiving data.",
+    "mlb_oaa_direction splits each fielder-position into in/back/lateral. Savant splits directional OAA against tracked fielder START coordinates, which the public feed lacks, so the position's own median landing spot stands in (documented approximation). The split re-groups the same scored balls in play rather than re-fitting, so its rows sum exactly to mlb_oaa.",
     "Catcher throwing/blocking, baserunning and SB value are EXCLUDED: data-ceiling-limited (live floors 0.03-0.073 vs 0.80+ design targets; only ~23% of SB/CS attempts are narrated in this feed)."
   ]
 }
