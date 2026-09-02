@@ -27,6 +27,7 @@ jobs:
           sparse-checkout: |
             python
             tests
+            models
             scripts
             pyproject.toml
             uv.lock
