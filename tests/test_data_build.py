@@ -267,3 +267,48 @@ def test_schedule_prefers_capture_master(tree: Path, tmp_path: Path) -> None:
 def test_missing_season_fails_loudly(tree: Path, tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         _build(tmp_path / "out", tree, 2013, dataset="pbp")
+
+
+def test_legacy_season_does_not_publish_the_empty_capture_only_families(
+    tree: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A legacy season must BUILD the capture-era families empty (above) but must
+    not RELEASE them.
+
+    The season-level guard only checks ``frames["games"]``, which is populated for
+    legacy seasons, so every payload dataset used to publish alongside it — shipping
+    schema-only assets that made each tag advertise coverage it does not have (28 of
+    them across player_stats/team_stats/situational_stats/linescore, 2017-2023).
+    """
+    from ncaa_baseball_data_build import cli
+
+    published: list[str] = []
+    monkeypatch.setattr(
+        cli, "_publish", lambda spec, season, base, dry_run: published.append(spec.name)
+    )
+
+    assert (
+        cli.main(
+            [
+                "build",
+                "--dataset",
+                "all",
+                "--season",
+                str(LEGACY_SEASON),
+                "--base",
+                str(tmp_path / "out"),
+                "--raw-root",
+                str(tree),
+                "--dry-run",
+            ]
+        )
+        == 0
+    )
+
+    for empty_family in ("linescore", "team_stats", "player_stats", "situational_stats"):
+        assert empty_family not in published, (
+            f"{empty_family} has 0 rows for {LEGACY_SEASON} and must not be released"
+        )
+    # the populated families still publish
+    assert "games" in published
+    assert "pbp" in published
