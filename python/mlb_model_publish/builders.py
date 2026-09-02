@@ -144,7 +144,8 @@ _CARD_META = {
             " one statsapi pull per season, no second surface.",
             "Leverage index IS published (mlb_leverage_index): E|delta WE| over"
             " the empirical next-state distribution from each state, normalized"
-            " so the average state is 1.0.",
+            " so the PA-weighted mean is 1.0 (abs_wpa is averaged over plate"
+            " appearances, not over states).",
             "we_table and leverage_index carry the bucket count `n` and a `thin`"
             " flag (n < 50). The threshold is measured, not chosen: pooled"
             " adjacent-season disagreement in the WE estimate is .0586 mean"
@@ -183,6 +184,10 @@ _CARD_META = {
         "gates": {
             "oaa_full_season_pearson_live": 0.55,
             "framing_full_season_pearson_live": 0.40,
+            # REGISTRY.md lists the partition as a publish gate, so the card must
+            # declare its tolerance; test_fielding_direction_splits_sum_to_the_
+            # published_oaa enforces it (observed max drift 3.6e-15 on 2021).
+            "oaa_direction_partition_max_abs_diff": 1e-9,
         },
         "notes": [
             "Observed full-season 2024: OAA 0.605, framing 0.468. Ceilings are"
