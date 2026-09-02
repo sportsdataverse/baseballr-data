@@ -143,6 +143,12 @@ def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame
     li = leverage_index(states, we_table).join(
         we_table.select(*_WE_KEY, "n"), on=_WE_KEY, how="left"
     )
+    # Both tables are built from the same `states` frame, so every leverage
+    # bucket must find its count. A null here would silently produce a null
+    # `thin` -- neither flagged nor cleared -- which is worse than either.
+    assert li["n"].null_count() == 0, (
+        f"{li['n'].null_count()} leverage buckets found no WE bucket count for {season}"
+    )
 
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
     return {
