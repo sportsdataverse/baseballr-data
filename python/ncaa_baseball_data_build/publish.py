@@ -18,8 +18,10 @@ from functools import partial
 from pathlib import Path
 from typing import Callable
 
+from sportsdataverse.release import upload_release_sidecars
+
 from ncaa_baseball_data_build._logging import get_logger, human_size
-from ncaa_baseball_data_build.config import DatasetSpec
+from ncaa_baseball_data_build.config import PKG_FUNCTION, DatasetSpec
 from ncaa_baseball_data_build.io import CSV_SUFFIX  # single source of the csv extension
 
 _LEAGUE = "ncaa"
@@ -183,6 +185,22 @@ def _dataset_files(spec: DatasetSpec, season: int, base: Path) -> list[Path]:
     return [f for f in cands if f.exists()]
 
 
+def _stamp(tag: str, run: Callable[[list[str]], None], repo: str) -> None:
+    """Re-stamp a tag's timestamp / package_function sidecars after an upload.
+
+    R's sportsdataverse_save() attaches these to every published tag; the
+    Python publisher dropped them, which left the tag carrying a timestamp.json
+    frozen at the last R run while the data kept moving. Runs LAST so the stamp
+    reflects the finished upload, and only when something actually uploaded --
+    a stamp on a no-op run would claim data moved when it did not. Goes through
+    the same injected ``run`` as the data assets so tests stay offline.
+    """
+    uploaded = upload_release_sidecars(
+        tag, runner=run, pkg_function=PKG_FUNCTION.get(tag), repo=repo
+    )
+    log.info("stamped %s with %s", tag, ", ".join(uploaded))
+
+
 def publish_dataset(
     spec: DatasetSpec,
     season: int,
@@ -281,4 +299,6 @@ def publish_dataset(
         count += 1
         log.info("uploaded %s -> %s (asset %d/%d)", f.name, spec.tag, count, len(files))
 
+    if count:
+        _stamp(spec.tag, run, repo)
     return {"tag": spec.tag, "files": [str(f) for f in files], "uploaded": count}
