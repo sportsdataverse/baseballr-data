@@ -80,3 +80,27 @@ REGISTRY: dict[str, DatasetSpec] = {
 
 def raw_root() -> Path:
     return Path(os.environ.get(RAW_ROOT_ENV) or DEFAULT_RAW_ROOT)
+
+
+# --- release sidecar metadata -------------------------------------------------
+# Every published tag carries package_function.txt/.json naming the loader a
+# consumer reaches the data through -- the half of R's sportsdataverse_save()
+# the Python publisher used to drop. Values are NOT invented: where the R
+# producer already published a package_function to the tag, that exact string
+# is reused, so re-stamping from Python does not change what a consumer sees.
+# Python-only tags that never had one name the sdv-py loader instead.
+#
+# Keyed by tag, not dataset -- several datasets can share one tag.
+# The publish tests assert every REGISTRY tag has an entry, so a new dataset
+# cannot ship an unnamed tag.
+PKG_FUNCTION: dict[str, str] = {
+    "ncaa_baseball_games": "sportsdataverse.mlb.load_ncaa_baseball_games()",
+    "ncaa_baseball_linescore": "sportsdataverse.mlb.load_ncaa_baseball_linescore()",
+    "ncaa_baseball_pbp": "sportsdataverse.mlb.load_ncaa_baseball_pbp()",
+    "ncaa_baseball_player_stats": "sportsdataverse.mlb.load_ncaa_baseball_player_stats()",
+    "ncaa_baseball_rosters": "sportsdataverse.mlb.load_ncaa_baseball_rosters()",
+    "ncaa_baseball_schedules": "sportsdataverse.mlb.load_ncaa_baseball_schedule()",
+    "ncaa_baseball_situational_stats": "sportsdataverse.mlb.load_ncaa_baseball_situational_stats()",
+    "ncaa_baseball_team_stats": "sportsdataverse.mlb.load_ncaa_baseball_team_stats()",
+    "ncaa_baseball_teams": "sportsdataverse.mlb.load_ncaa_baseball_teams()",
+}

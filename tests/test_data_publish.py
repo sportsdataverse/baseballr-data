@@ -16,6 +16,10 @@ from ncaa_baseball_data_build.publish import DEFAULT_REPO, publish_dataset
 _SPEC = REGISTRY["pbp"]
 
 
+#: release metadata sidecars -- asserted separately, not a data asset
+SIDECARS = ("timestamp.", "package_function.")
+
+
 def _stage(tmp_path: Path) -> None:
     pq_dir = tmp_path / "ncaa" / "pbp" / "parquet"
     pq_dir.mkdir(parents=True)
@@ -41,7 +45,11 @@ def test_publish_creates_release_when_absent(tmp_path: Path):
     )
 
     creates = [c for c in calls if c[:2] == ["release", "create"]]
-    uploads = [c for c in calls if c[:2] == ["release", "upload"]]
+    uploads = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
     assert len(creates) == 1
     assert creates[0][2] == "ncaa_baseball_pbp"
     assert "--repo" in creates[0] and DEFAULT_REPO in creates[0]
@@ -74,7 +82,11 @@ def test_publish_schedule_uses_plural_tag_singular_files(tmp_path: Path):
         make_rds=False,
     )
 
-    (upload,) = [c for c in calls if c[:2] == ["release", "upload"]]
+    (upload,) = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
     assert upload[2] == "ncaa_baseball_schedules"
     assert upload[3].endswith("ncaa_baseball_schedule_2015.parquet")
     assert result["tag"] == "ncaa_baseball_schedules"
@@ -94,7 +106,12 @@ def test_publish_skips_create_when_release_present(tmp_path: Path):
     )
 
     assert not any(c[:2] == ["release", "create"] for c in calls)
-    assert sum(1 for c in calls if c[:2] == ["release", "upload"]) == 3
+    data_uploads = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
+    assert len(data_uploads) == 3
 
 
 def test_publish_dry_run_makes_no_calls(tmp_path: Path):
@@ -134,7 +151,11 @@ def test_publish_only_parquet_staged_uploads_one_file(tmp_path: Path):
         make_rds=False,
     )
 
-    uploads = [c for c in calls if c[:2] == ["release", "upload"]]
+    uploads = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
     assert len(uploads) == 1
     assert result["uploaded"] == 1
 
@@ -164,7 +185,11 @@ def test_publish_make_rds_stages_and_uploads_rds(tmp_path: Path, monkeypatch):
 
     rds_path = tmp_path / "ncaa" / "_release_build" / "pbp" / "ncaa_baseball_pbp_2024.rds"
     assert rds_path.exists()
-    uploads = [c for c in calls if c[:2] == ["release", "upload"]]
+    uploads = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
     assert len(uploads) == 2
     assert result["uploaded"] == 2
 
@@ -188,7 +213,11 @@ def test_publish_make_rds_failure_still_uploads_parquet(tmp_path: Path, monkeypa
         make_rds=True,
     )
 
-    uploads = [c for c in calls if c[:2] == ["release", "upload"]]
+    uploads = [
+        c
+        for c in calls
+        if c[:2] == ["release", "upload"] and not Path(c[3]).name.startswith(SIDECARS)
+    ]
     assert len(uploads) == 1
     assert result["uploaded"] == 1
 
@@ -297,7 +326,10 @@ def test_uploads_use_the_long_timeout(tmp_path: Path, monkeypatch):
     seen: "list[int]" = []
 
     def _fake_run(argv, **kw):
-        if "upload" in argv:
+        # the long bound is about a 100MB+ data asset on a slow link; the
+        # ~50-byte release sidecars run on the short metadata bound and would
+        # otherwise read as a violation of it
+        if "upload" in argv and not any(Path(a).name.startswith(SIDECARS) for a in argv):
             seen.append(kw.get("timeout"))
 
         class _R:
