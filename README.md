@@ -45,14 +45,20 @@ its own repo: **[`sportsdataverse/baseballr-mlb-raw`](https://github.com/sportsd
 game). It moved there on 2026-09-02 so the capture tree and its ~7 GB backfill
 stay out of this repo, which is already ~11 GB.
 
-Read it per game over HTTP rather than cloning it -- paths are stable and
-derivable from the schedule:
+Read it per game over HTTP rather than cloning it. The per-season manifest is
+the source of truth for what exists -- one row per scheduled game, with the
+payload paths filled in only for games actually captured, plus a sha256 per
+file. Fetch only rows that carry a path; do not derive URLs from the schedule,
+which lists spring training and exhibition games that are deliberately not
+captured.
 
 ```
-https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/statsapi/{season}/{game_pk}.json.gz
-https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/savant/{season}/{game_pk}.csv.gz
-https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/manifest/index.csv
+.../baseballr-mlb-raw/main/mlb/raw/manifest/index.csv       one row per season (discovery)
+.../baseballr-mlb-raw/main/mlb/raw/manifest/{season}.csv    one row per game (paths + sha256)
 ```
+
+Paths are relative to `mlb/raw/`, so a full URL is
+`https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/<path>`.
 
 Capture stages and design notes live in that repo's `RUNBOOK.md` and
 `docs/mlb-raw-layer.md`.
