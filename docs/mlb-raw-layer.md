@@ -100,6 +100,12 @@ the *schema*; only the *values* are null where the tracking did not exist:
 | 2020-08-15 | 4,562 | 119 | 13 | 3,224 | 3,446 | 4,562 | 1,889 |
 | 2024-06-15 | 4,145 | 119 | 12 | 2,767 | 3,100 | 2,248 | 12 |
 
+Stronger still: the column set is identical **and so is the column order** —
+verified by fetching one day from each of 2008, 2015, 2020, 2024 and 2025 today
+and comparing the header verbatim (`same_set=True same_ORDER=True`, 119 columns,
+all five). That is what makes the reshape's vertical concat (§8.2 R2) legal
+rather than merely convenient.
+
 A capture taken today is therefore **self-describing across the whole history**:
 `bat_speed` null in 2015 is "not tracked in 2015"; `bat_speed` null in 2024 is
 "no swing on this pitch", and the two are told apart by `description`/`events` —
@@ -187,27 +193,42 @@ wrong container at per-game granularity** (column-chunk overhead dominates a
 300-row frame). csv.gz also preserves the provider's own column names and values
 verbatim, which is what a raw layer is for.
 
-### 4.3 Games per season (statsapi, final only)
+### 4.3 Games per season (statsapi, final only) — every season counted, not sampled
 
-| season | R | postseason (F+D+L+W) | spring (S) |
-|---|---:|---:|---:|
-| 2015 | 2,433 | 36 | 481 |
-| 2024 | 2,432 | 43 | 454 |
-| 2025 | 2,434 | 47 | 458 |
+| season | R | postseason (F+D+L+W) | spring (S) | duplicate gamePks in the year query |
+|---|---:|---:|---:|---:|
+| 2000 | 2,464 | 31 | 0 | 5 |
+| 2005 | 2,431 | 30 | 0 | 27 |
+| 2010 | 2,430 | 32 | 462 | 25 |
+| 2015 | 2,429 | 36 | 481 | 41 |
+| 2020 | 898 | 53 | 324 | 75 |
+| 2024 | 2,429 | 43 | 454 | 39 |
+| 2025 | 2,430 | 47 | 458 | 34 |
+| 2026 (partial) | 2,093 | 0 | 448 | 28 |
 
-Scope captured by default: `R,F,D,L,W` ≈ **2,475 games/season**. Spring (`S`),
-exhibition (`E`) and all-star (`A`) are enumerated in the manifest but not
-captured; adding them costs ~+19%.
+**Total 2000–2026, `R,F,D,L,W`, status `F`: 64,701 games.** Every full season
+except 2020 (COVID, 898+53) sits at 2,426–2,464 regular plus 28–47 postseason.
+Spring exists in statsapi only from 2006. Every season carries duplicate
+`gamePk`s in a full-year schedule query (5 in 2000 to 83 in 2021) — the dedupe
+in stage 01 is a whole-history requirement, not a 2024 quirk.
+
+Spring (`S`), exhibition (`E`) and all-star (`A`) are enumerated in the manifest
+but not captured; adding spring costs ~+19%.
 
 ### 4.4 Season and full-history totals
 
-| slice | statsapi | savant | total |
-|---|---:|---:|---:|
-| one 2024 season | 2,475 × 136 KB = **337 MB** | 2,475 × 61 KB = **151 MB** | **488 MB** |
-| one 2015 season | 2,469 × 91 KB = 225 MB | 2,469 × 41 KB = 101 MB | 326 MB |
-| **2000–2026 statsapi** (27 seasons, era-weighted ~88 KB) | **≈ 5.9 GB** | — | |
-| **2008–2026 savant** (19 seasons, era-weighted ~48 KB) | — | **≈ 2.3 GB** | |
-| **full history** | | | **≈ 8.2 GB** |
+Applying the §4.1/§4.2 per-game curve to the exact §4.3 counts:
+
+| slice | games | statsapi | savant | total |
+|---|---:|---:|---:|---:|
+| one 2024 season **(estimated)** | 2,472 | 2,472 × 136 KB = 337 MB | 2,472 × 61 KB = 151 MB | 488 MB |
+| one 2024 season **(actually captured)** | 2,472 | **310.4 MiB** (131.6 KB/game) | **141.0 MiB** (59.9 KB/game) | **451.4 MiB** |
+| one 2015 season | 2,465 | 224 MB | 101 MB | 325 MB |
+| **2000–2026 statsapi** | 64,701 | **≈ 5.2 GB** | — | |
+| **2008–2026 savant** | 44,973 | — | **≈ 2.1 GB** | |
+| **full history** | | | | **≈ 7.3 GB** |
+
+(Savant's floor is 2008 — the pitch-f/x era. 2000–2007 is statsapi-only.)
 
 ### 4.5 Fleet calibration (`git count-objects -vH`, packed)
 
@@ -224,10 +245,10 @@ captured; adding them costs ~+19%.
 **Decision: git, for both surfaces, for the whole history. No release-parquet
 fallback for the raw tier.**
 
-Reason: 8.2 GB is *below* what the fleet already operates. `cfb-raw` runs at
+Reason: 7.3 GB is *below* what the fleet already operates. `cfb-raw` runs at
 12.8 GB and `hoopR-nba-raw` at 34 GB, both with the same commit-as-you-go /
 chunked-push pattern this design uses. The per-pitch Savant history — the part
-the brief flagged as possibly too large — is only **2.3 GB of that**, because
+the brief flagged as possibly too large — is only **2.1 GB of that**, because
 per-game csv.gz compresses to ~50 KB. There is no size argument for demoting it
 to a release asset, and demoting it would forfeit the two things git buys: the
 payload is addressable per game over `raw.githubusercontent.com` without
@@ -304,7 +325,7 @@ code at any checkout, which is what makes the tree portable to a new repo.
 Rationale, in order of weight:
 
 1. `baseballr-data` is **already ~11 GB on disk** (`ncaa/` 9.8 GB + `statcast/`
-   1.1 GB). Adding 8.2 GB makes it ~19 GB. Creating a fresh worktree there
+   1.1 GB). Adding 7.3 GB makes it ~18 GB. Creating a fresh worktree there
    already exceeds a 2-minute timeout today (observed while doing this work);
    I had to fall back to a sparse checkout to work in it at all.
 2. It is the fleet's own split: `nfl-raw`→`nfl-data`, `cfb-raw`→`cfb-data`,
