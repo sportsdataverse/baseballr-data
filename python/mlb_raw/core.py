@@ -18,6 +18,7 @@ Design invariants this module owns:
 
 from __future__ import annotations
 
+import argparse
 import csv
 import gzip
 import hashlib
@@ -123,6 +124,35 @@ def already_captured(path: Path, min_bytes: int = 512) -> bool:
         return path.is_file() and path.stat().st_size >= min_bytes
     except OSError:
         return False
+
+
+def outstanding(root: Path, row: "dict", surface: str, path: Path) -> bool:
+    """True when ``row``'s ``surface`` still needs capturing.
+
+    A manifest entry alone is NOT proof of capture -- the file it names can be
+    deleted, truncated, or never have reached disk. Presence on disk is the
+    authority (matching :func:`already_captured`, which is what the per-item
+    skip uses), so a work list built from the manifest requeues any game whose
+    recorded file is gone instead of silently treating it as done.
+    """
+    return not (row.get(f"{surface}_path") and already_captured(path))
+
+
+def head(items: "list", limit: Optional[int]) -> "list":
+    """``items[:limit]`` with ``limit=0`` meaning zero, not "no limit"."""
+    if limit is None:
+        return items
+    if limit < 0:
+        raise ValueError(f"--limit must be >= 0, got {limit}")
+    return items[:limit]
+
+
+def nonneg_int(value: str) -> int:
+    """argparse type for ``--limit``: reject a negative up front, not at slice time."""
+    n = int(value)
+    if n < 0:
+        raise argparse.ArgumentTypeError(f"must be >= 0, got {n}")
+    return n
 
 
 def _write_gz(path: Path, payload: bytes) -> int:

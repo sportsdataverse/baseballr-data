@@ -168,10 +168,13 @@ def run(
     todo = sorted(
         d
         for d, pks in days.items()
-        if force or any(not manifest[p].get("savant_path") for p in pks)
+        if force
+        or any(
+            core.outstanding(root, manifest[p], "savant", core.savant_path(root, season, p))
+            for p in pks
+        )
     )
-    if limit:
-        todo = todo[:limit]
+    todo = core.head(todo, limit)
     print(f"savant {season}: {len(todo)} days to fetch ({len(wanted)} games in scope)", flush=True)
 
     written = refused = 0
@@ -205,7 +208,9 @@ def main(argv: "Optional[list[str]]" = None) -> int:
     ap.add_argument("--season", type=int, required=True)
     ap.add_argument("--root", default=None)
     ap.add_argument("--game-types", default=",".join(core.DEFAULT_GAME_TYPES))
-    ap.add_argument("--limit", type=int, default=None, help="stop after N days (chunked runs)")
+    ap.add_argument(
+        "--limit", type=core.nonneg_int, default=None, help="stop after N days (chunked runs)"
+    )
     ap.add_argument("--force", action="store_true")
     ap.add_argument(
         "--commit-every", type=int, default=0, help="git-commit every N days (0 = only at the end)"

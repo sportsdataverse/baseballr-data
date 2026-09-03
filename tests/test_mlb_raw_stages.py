@@ -192,3 +192,41 @@ def test_savant_day_window_is_the_only_uncapped_window() -> None:
     """
     assert core.SAVANT_ROW_CAP == 25_000
     assert 4_777 < core.SAVANT_ROW_CAP / 4
+
+
+# ------------------------------------------------- work-list correctness (PR #17 review)
+
+
+def test_a_manifest_entry_is_not_proof_of_capture(tmp_path) -> None:
+    """A recorded path whose file is gone must be requeued, not treated as done.
+
+    The per-item skip is presence-based (``already_captured``); the work list
+    must use the same authority or a deleted/truncated file is skipped forever.
+    """
+    row = {"game_pk": 1, "statsapi_path": "statsapi/2024/1.json.gz"}
+    p = core.statsapi_path(tmp_path, 2024, 1)
+    assert core.outstanding(tmp_path, row, "statsapi", p), "missing file must requeue"
+
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_bytes(b"x" * 5_000)
+    assert not core.outstanding(tmp_path, row, "statsapi", p)
+
+    p.write_bytes(b"x")  # truncated below the min-bytes floor
+    assert core.outstanding(tmp_path, row, "statsapi", p), "truncated file must requeue"
+
+    assert core.outstanding(tmp_path, {"game_pk": 1}, "statsapi", p), (
+        "no path recorded -> outstanding"
+    )
+
+
+def test_limit_zero_means_zero_and_negative_is_rejected() -> None:
+    """``if limit:`` silently treats 0 as 'no limit' -- a chunked run's worst footgun."""
+    items = [1, 2, 3]
+    assert core.head(items, None) == items
+    assert core.head(items, 0) == []
+    assert core.head(items, 2) == [1, 2]
+    with pytest.raises(ValueError):
+        core.head(items, -1)
+    assert core.nonneg_int("3") == 3
+    with pytest.raises(Exception):
+        core.nonneg_int("-1")

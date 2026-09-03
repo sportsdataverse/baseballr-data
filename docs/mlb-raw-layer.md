@@ -132,9 +132,15 @@ mlb/raw/
   savant/{season}/{game_pk}.csv.gz       <- per-pitch slice, as delivered
 ```
 
-Every path is reachable over `raw.githubusercontent.com` with no clone:
+Every path is reachable over `raw.githubusercontent.com` with no clone. Today
+the tree lives in `baseballr-data`; after the move recommended in §7 only the
+repository segment changes, which is why consumers should take the prefix from
+one constant:
 
 ```
+# today
+https://raw.githubusercontent.com/sportsdataverse/baseballr-data/main/mlb/raw/statsapi/2024/746694.json.gz
+# after the §7 move
 https://raw.githubusercontent.com/sportsdataverse/mlb-raw/main/mlb/raw/statsapi/2024/746694.json.gz
 ```
 
@@ -356,7 +362,8 @@ which is where MLB is owned today.
 import io, gzip, csv, urllib.request
 import polars as pl
 
-RAW = "https://raw.githubusercontent.com/sportsdataverse/mlb-raw/main/mlb/raw"
+# the ONE constant that changes when the tree moves to mlb-raw (§7)
+RAW = "https://raw.githubusercontent.com/sportsdataverse/baseballr-data/main/mlb/raw"
 
 def manifest(season: int) -> pl.DataFrame:            # 1. enumerate, no listing
     return pl.read_csv(f"{RAW}/manifest/{season}.csv")

@@ -84,11 +84,15 @@ def run(
         for r in manifest.values()
         if r["game_type"] in game_types
         and r["status_code"] == "F"
-        and (force or not r.get("statsapi_path"))
+        and (
+            force
+            or core.outstanding(
+                root, r, "statsapi", core.statsapi_path(root, season, int(r["game_pk"]))
+            )
+        )
     ]
     todo.sort(key=lambda r: (r["game_date"], int(r["game_pk"])))
-    if limit:
-        todo = todo[:limit]
+    todo = core.head(todo, limit)
     print(
         f"statsapi {season}: {len(todo)} games to capture (of {len(manifest)} in manifest)",
         flush=True,
@@ -139,7 +143,9 @@ def main(argv: "Optional[list[str]]" = None) -> int:
         default=",".join(core.DEFAULT_GAME_TYPES),
         help="comma-separated statsapi gameType codes (default R,F,D,L,W -- regular + postseason)",
     )
-    ap.add_argument("--limit", type=int, default=None, help="stop after N games (chunked runs)")
+    ap.add_argument(
+        "--limit", type=core.nonneg_int, default=None, help="stop after N games (chunked runs)"
+    )
     ap.add_argument("--force", action="store_true", help="re-fetch games already on disk")
     ap.add_argument(
         "--commit-every", type=int, default=0, help="git-commit every N games (0 = only at the end)"
