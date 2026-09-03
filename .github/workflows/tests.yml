@@ -32,7 +32,6 @@ jobs:
             pyproject.toml
             uv.lock
             RUNBOOK.md
-            RUNBOOK-MLB.md
           sparse-checkout-cone-mode: false
 
       - name: Set up uv

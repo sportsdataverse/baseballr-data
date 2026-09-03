@@ -37,21 +37,25 @@ flowchart LR
    existing assets).
 4. `baseballr`'s `load_*()` functions download the release assets on demand.
 
-### MLB raw capture (manual)
+### MLB raw capture
 
-The MLB model tags are built from a committed per-game raw layer rather than
-from live pulls: `mlb/raw/statsapi/{season}/{game_pk}.json.gz` (statsapi
-`feed/live`) and `mlb/raw/savant/{season}/{game_pk}.csv.gz` (Baseball Savant
-per-pitch), enumerated by `mlb/raw/manifest/{season}.csv`. Capture once, commit
-the payload, reshape deterministically -- see
-[`docs/mlb-raw-layer.md`](docs/mlb-raw-layer.md) for the design and the measured
-sizing, and [`RUNBOOK-MLB.md`](RUNBOOK-MLB.md) for the stages.
+The MLB model tags are built from a committed per-game raw layer, which lives in
+its own repo: **[`sportsdataverse/baseballr-mlb-raw`](https://github.com/sportsdataverse/baseballr-mlb-raw)**
+(statsapi `feed/live` + Baseball Savant per-game Statcast, one gzipped file per
+game). It moved there on 2026-09-02 so the capture tree and its ~7 GB backfill
+stay out of this repo, which is already ~11 GB.
 
-```sh
-./scripts/run_mlb_01_schedule_scrape.sh --season 2024
-./scripts/run_mlb_02_statsapi_scrape.sh --season 2024 --commit-every 500
-./scripts/run_mlb_03_savant_scrape.sh   --season 2024 --commit-every 60
+Read it per game over HTTP rather than cloning it -- paths are stable and
+derivable from the schedule:
+
 ```
+https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/statsapi/{season}/{game_pk}.json.gz
+https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/savant/{season}/{game_pk}.csv.gz
+https://raw.githubusercontent.com/sportsdataverse/baseballr-mlb-raw/main/mlb/raw/manifest/index.csv
+```
+
+Capture stages and design notes live in that repo's `RUNBOOK.md` and
+`docs/mlb-raw-layer.md`.
 
 ### NCAA capture campaign (manual)
 
@@ -340,9 +344,6 @@ The packages that read what this repo produces:
 
 Every numbered pipeline stage in `python/` (auto-listed; run subsets with the `scripts/*.sh` drivers by number or name):
 
-- `python/mlb_raw_01_schedule_scrape.py`
-- `python/mlb_raw_02_statsapi_scrape.py`
-- `python/mlb_raw_03_savant_scrape.py`
 - `python/mlb_model_01_game_state.py`
 - `python/mlb_model_02_hitting.py`
 - `python/mlb_model_03_pitching.py`
