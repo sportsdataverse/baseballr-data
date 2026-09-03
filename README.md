@@ -37,6 +37,22 @@ flowchart LR
    existing assets).
 4. `baseballr`'s `load_*()` functions download the release assets on demand.
 
+### MLB raw capture (manual)
+
+The MLB model tags are built from a committed per-game raw layer rather than
+from live pulls: `mlb/raw/statsapi/{season}/{game_pk}.json.gz` (statsapi
+`feed/live`) and `mlb/raw/savant/{season}/{game_pk}.csv.gz` (Baseball Savant
+per-pitch), enumerated by `mlb/raw/manifest/{season}.csv`. Capture once, commit
+the payload, reshape deterministically -- see
+[`docs/mlb-raw-layer.md`](docs/mlb-raw-layer.md) for the design and the measured
+sizing, and [`RUNBOOK-MLB.md`](RUNBOOK-MLB.md) for the stages.
+
+```sh
+./scripts/run_mlb_01_schedule_scrape.sh --season 2024
+./scripts/run_mlb_02_statsapi_scrape.sh --season 2024 --commit-every 500
+./scripts/run_mlb_03_savant_scrape.sh   --season 2024 --commit-every 60
+```
+
 ### NCAA capture campaign (manual)
 
 The daily workflow above maintains the *published* seasons. Capturing a season
@@ -324,6 +340,9 @@ The packages that read what this repo produces:
 
 Every numbered pipeline stage in `python/` (auto-listed; run subsets with the `scripts/*.sh` drivers by number or name):
 
+- `python/mlb_raw_01_schedule_scrape.py`
+- `python/mlb_raw_02_statsapi_scrape.py`
+- `python/mlb_raw_03_savant_scrape.py`
 - `python/mlb_model_01_game_state.py`
 - `python/mlb_model_02_hitting.py`
 - `python/mlb_model_03_pitching.py`
