@@ -20,6 +20,9 @@ do
     esac
 done
 
+source "$(dirname "$0")/_git_commit.sh"
+PROCESS_RC=0
+
 for i in $(seq "${START_YEAR}" "${END_YEAR}")
 do
     git pull > /dev/null || true
@@ -27,9 +30,17 @@ do
     git config --local user.name "GitHub Action"
     Rscript R/ncaa_01_schedules_creation.R -s "$i" -e "$i" -r "$RESCRAPE"
     Rscript R/ncaa_02_pbp_creation.R        -s "$i" -e "$i" -r "$RESCRAPE"
-    git pull > /dev/null || true
-    git add ncaa/* > /dev/null || true
-    git commit -m "NCAA Baseball Data Update (Start: $i End: $i)" > /dev/null || echo "No changes to commit for $i"
-    git pull --rebase > /dev/null || true
-    git push > /dev/null || true
+    # Every git call here used to be swallowed: `push || true` turned a rejected
+    # push into a green season, `commit || echo "No changes"` reported a FAILED
+    # commit as nothing-to-do, and `pull --rebase` used the am backend, which
+    # base64-encodes binary and stalls on this parquet/rds tree. The helper
+    # syncs with rebase --merge and returns non-zero when the work is not on
+    # origin. `ncaa/*` is kept verbatim -- narrowing it here would change which
+    # files this driver publishes.
+    sdv_commit_push "NCAA Baseball Data Update (Start: $i End: $i)" ncaa/* || PROCESS_RC=1
 done
+
+if [ "${PROCESS_RC:-0}" != "0" ]; then
+  echo "::error ::At least one season failed to reach origin; the repo mirror is stale."
+  exit 1
+fi

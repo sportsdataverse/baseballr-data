@@ -33,7 +33,13 @@ fi
 GH_TOKEN="$(grep -E '^GITHUB_PAT=' "$HOME/.Renviron" | head -n1 | cut -d= -f2- | tr -d "\"'" | tr -d '\r')"
 export GH_TOKEN
 
-commit() { git add "$@" 2>/dev/null; git commit -q -m "$COMMIT_MSG" && git push -q origin main || true; }
+source "$(dirname "$0")/_git_commit.sh"
+# Was: `git add "$@" 2>/dev/null; git commit ... && git push ... || true`, which
+# reported success for every rejected push AND staged nothing whenever one of
+# the explicit pathspecs did not exist yet. BACKFILL_RC carries the failure to
+# the exit code instead of losing it between seasons.
+BACKFILL_RC=0
+commit() { sdv_commit_push "$COMMIT_MSG" "$@" || BACKFILL_RC=1; }
 
 for season in $(seq "$START" -1 "$END"); do
   echo "=== SEASON ${season} $(date -u +%FT%TZ) ==="
