@@ -1,0 +1,20 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_120644.log  (watch: tail -f logs/mlb_01_schedules_20260909_120644.log)
+season 1988: 2117 games -> mlb/schedule/1988.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_120656.log  (watch: tail -f logs/mlb_02_games_20260909_120656.log)
+  250/2116 in 56s (4.4 games/s)
+  500/2116 in 111s (4.5 games/s)
+  750/2116 in 161s (4.7 games/s)
+  1000/2116 in 212s (4.7 games/s)
+  1250/2116 in 264s (4.7 games/s)
+  1500/2116 in 318s (4.7 games/s)
+  1750/2116 in 367s (4.8 games/s)
+  2000/2116 in 413s (4.8 games/s)
+capture season 1988: {'captured': 2116, 'skipped': 0, 'failed': 0, 'elapsed_s': 437.4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_121415.log  (watch: tail -f logs/mlb_03_parse_20260909_121415.log)
+parse season 1988: {'games': 2116, 'plays': 161089, 'pitches': 571892, 'unparsed': 0}
+EXIT=0
