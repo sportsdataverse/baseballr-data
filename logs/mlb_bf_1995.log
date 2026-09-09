@@ -1,0 +1,20 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_111908.log  (watch: tail -f logs/mlb_01_schedules_20260909_111908.log)
+season 1995: 2051 games -> mlb/schedule/1995.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_111913.log  (watch: tail -f logs/mlb_02_games_20260909_111913.log)
+  250/2048 in 43s (5.8 games/s)
+  500/2048 in 77s (6.5 games/s)
+  750/2048 in 109s (6.9 games/s)
+  1000/2048 in 143s (7.0 games/s)
+  1250/2048 in 175s (7.2 games/s)
+  1500/2048 in 208s (7.2 games/s)
+  1750/2048 in 245s (7.1 games/s)
+  2000/2048 in 281s (7.1 games/s)
+capture season 1995: {'captured': 2048, 'skipped': 0, 'failed': 0, 'elapsed_s': 287.7}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_112402.log  (watch: tail -f logs/mlb_03_parse_20260909_112402.log)
+parse season 1995: {'games': 2048, 'plays': 159694, 'pitches': 567769, 'unparsed': 0}
+EXIT=0
