@@ -53,3 +53,17 @@ EXIT=1
 WARN parse rc=1
 [2026-09-09 09:31:54Z] daily mlb stages done (rc_total=1)
 [2026-09-09 09:32:00Z] daily mlb done EXIT=1
+[2026-09-09 15:00:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_110001.log  (watch: tail -f logs/mlb_01_schedules_20260909_110001.log)
+season 2026: 3001 games -> mlb/schedule/2026.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_110007.log  (watch: tail -f logs/mlb_02_games_20260909_110007.log)
+capture season 2026: {'captured': 0, 'skipped': 2181, 'failed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_110008.log  (watch: tail -f logs/mlb_03_parse_20260909_110008.log)
+parse season 2026: {'games': 2181, 'plays': 165456, 'pitches': 641413, 'unparsed': 0}
+EXIT=0
+[2026-09-09 15:02:36Z] daily mlb stages done (rc_total=0)

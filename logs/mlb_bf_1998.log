@@ -1,0 +1,15 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_105652.log  (watch: tail -f logs/mlb_01_schedules_20260909_105652.log)
+season 1998: 2464 games -> mlb/schedule/1998.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_105656.log  (watch: tail -f logs/mlb_02_games_20260909_105656.log)
+  250/2462 in 36s (6.9 games/s)
+  500/2462 in 72s (7.0 games/s)
+  750/2462 in 104s (7.2 games/s)
+  1000/2462 in 138s (7.3 games/s)
+  1250/2462 in 170s (7.3 games/s)
+  1500/2462 in 206s (7.3 games/s)
+  1750/2462 in 238s (7.3 games/s)
+  2000/2462 in 283s (7.1 games/s)
+  2250/2462 in 333s (6.8 games/s)
