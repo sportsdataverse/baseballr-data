@@ -1,0 +1,26 @@
+usage: mlb_02_games_scrape.py [-h] --season SEASON [--root ROOT]
+                              [--max-games MAX_GAMES] [--workers WORKERS]
+                              [--game-types GAME_TYPES]
+
+Stage 02 -- capture: one feed/live payload per completed game.
+``mlb/raw/{season}/{game_pk}.json.gz``. File-exists resumable, so a re-run
+after a partial night costs nothing and re-fetches nothing -- the same
+contract the NCAA stages hold. One fetch yields pbp, pitches, all three box
+tables, officials and linescore, so those datasets are free at build time
+rather than extra requests. Measured 2026-09-09 through the ProxyBonanza pool:
+0.68 s mean sequential, 11.4 games/s at 8 workers, 26.4 at 16, with zero
+rejections across ~150 requests. Default is 8; 16 is 26 req/s at one host and
+is not the polite default.
+
+options:
+  -h, --help            show this help message and exit
+  --season SEASON
+  --root ROOT
+  --max-games MAX_GAMES
+                        cap per run (0 = all)
+  --workers WORKERS     default 8 (SDV_MLB_WORKERS)
+  --game-types GAME_TYPES
+                        comma-separated statsapi gameType codes (default:
+                        regular season + postseason; spring
+                        training/exhibition/all-star excluded)
+EXIT=0

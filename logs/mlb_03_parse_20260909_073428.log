@@ -1,0 +1,16 @@
+usage: mlb_03_games_parse.py [-h] --season SEASON [--root ROOT]
+
+Stage 03 -- parse: committed raw bundles -> tidy pbp + pitches parquet.
+OFFLINE. Reads only ``mlb/raw/{season}/``, so a parser fix reprocesses the
+whole corpus without touching the network -- which is the entire point of
+committing raw. Measured 45.5 games/s single-core (13,141 pitch-rows/s), so
+the full 1988-2026 corpus parses in ~34 min on one core. The scrape is the
+cost, not this. ID discipline (the recurring cross-language bug class): every
+id is written as Int64, never float and never a stringified float. A missing
+id stays null rather than becoming 0 or "None".
+
+options:
+  -h, --help       show this help message and exit
+  --season SEASON
+  --root ROOT
+EXIT=0

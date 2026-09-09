@@ -1,0 +1,19 @@
+usage: mlb_01_schedules_scrape.py [-h] [--season SEASON] [--start START]
+                                  [--end END] [--root ROOT] [--force]
+
+Stage 01 -- schedules: one statsapi call per season -> schedule parquet. The
+whole season comes back in a single request. Measured 2026-09-09: a full
+``startDate``/``endDate`` range returned 181 dates and 2,456 games in 3.22 MB
+in 1.01 s. So discovery for the entire 1988-2026 corpus is 39 calls, not
+~7,000 -- and a daily run needs exactly one call to learn which games are new.
+Output: ``mlb/schedule/{season}.parquet`` plus the raw json alongside it, so a
+reparse never needs the network.
+
+options:
+  -h, --help       show this help message and exit
+  --season SEASON  single season
+  --start START    range start (inclusive)
+  --end END        range end (inclusive)
+  --root ROOT      repo root
+  --force          refetch even if cached
+EXIT=0
