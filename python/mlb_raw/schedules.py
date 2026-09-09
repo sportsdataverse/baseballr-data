@@ -107,11 +107,24 @@ def completed_game_pks(
     if not p.exists():
         return []
     payload = json.loads(gzip.open(p).read())
-    return [
-        r["game_pk"]
-        for r in rows_from(payload)
-        if r["abstract_state"] == "Final" and r["game_pk"] and r["game_type"] in game_types
-    ]
+    # DEDUPE, order-preserving. statsapi lists a game under more than one date
+    # when it is suspended and resumed -- 27 of 2,208 gamePks in 2026. Handing
+    # duplicates to a thread pool puts two workers on the same output path,
+    # where the loser can truncate the winner's file between its write and its
+    # rename: a corrupt bundle, not merely a noisy error.
+    seen = set()
+    out = []
+    for r in rows_from(payload):
+        pk = r["game_pk"]
+        if (
+            r["abstract_state"] == "Final"
+            and pk
+            and r["game_type"] in game_types
+            and pk not in seen
+        ):
+            seen.add(pk)
+            out.append(pk)
+    return out
 
 
 def build_season(root: pathlib.Path, season: int, *, force: bool = False) -> int:

@@ -57,6 +57,29 @@ def test_spring_training_is_excluded_by_default():
     assert 5 not in keep  # not Final
 
 
+def test_duplicate_game_pks_are_deduped():
+    """statsapi lists a suspended-and-resumed game under more than one date --
+    27 of 2,208 gamePks in 2026. Duplicates put two thread-pool workers on one
+    output path, where the loser can truncate the winner's file between its
+    write and its rename: a corrupt bundle, not just a noisy error."""
+    payload = _schedule_payload()
+    # same game announced under a second date, as a resumed game is
+    payload["dates"].append({"date": "2024-06-16",
+                             "games": [payload["dates"][0]["games"][1]]})
+    rows = schedules.rows_from(payload)
+    assert [r["game_pk"] for r in rows].count(2) == 2, "fixture must contain a dupe"
+
+    seen, out = set(), []
+    for r in rows:
+        pk = r["game_pk"]
+        if (r["abstract_state"] == "Final" and pk
+                and r["game_type"] in schedules.DEFAULT_TYPES and pk not in seen):
+            seen.add(pk)
+            out.append(pk)
+    assert out.count(2) == 1
+    assert len(out) == len(set(out))
+
+
 def test_unfinished_games_are_never_captured():
     rows = schedules.rows_from(_schedule_payload())
     assert [r["game_pk"] for r in rows if r["abstract_state"] != "Final"] == [5]

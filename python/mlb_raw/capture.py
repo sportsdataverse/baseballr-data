@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import os
 import pathlib
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -45,7 +46,9 @@ def capture_one(root: pathlib.Path, season: int, game_pk: int, worker: int = 0) 
             f"game {game_pk}: feed/live has no liveData.plays -- not a usable bundle"
         )
     out.parent.mkdir(parents=True, exist_ok=True)
-    tmp = out.with_suffix(".tmp")
+    # pid-unique: dedupe fixes duplicates WITHIN a run, but the daily driver
+    # can overlap a backfill, and two processes must not share a tmp path.
+    tmp = out.with_suffix(f".{os.getpid()}.tmp")
     with gzip.open(tmp, "wt", encoding="utf-8") as fh:
         json.dump(payload, fh)
     tmp.rename(out)  # atomic: a killed run never leaves a half-written bundle
