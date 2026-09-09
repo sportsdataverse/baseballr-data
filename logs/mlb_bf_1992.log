@@ -1,0 +1,20 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_113540.log  (watch: tail -f logs/mlb_01_schedules_20260909_113540.log)
+season 1992: 2126 games -> mlb/schedule/1992.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_113545.log  (watch: tail -f logs/mlb_02_games_20260909_113545.log)
+  250/2125 in 34s (7.3 games/s)
+  500/2125 in 67s (7.4 games/s)
+  750/2125 in 106s (7.1 games/s)
+  1000/2125 in 148s (6.8 games/s)
+  1250/2125 in 189s (6.6 games/s)
+  1500/2125 in 231s (6.5 games/s)
+  1750/2125 in 271s (6.5 games/s)
+  2000/2125 in 308s (6.5 games/s)
+capture season 1992: {'captured': 2125, 'skipped': 0, 'failed': 0, 'elapsed_s': 323.5}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_114109.log  (watch: tail -f logs/mlb_03_parse_20260909_114109.log)
+parse season 1992: {'games': 2125, 'plays': 162582, 'pitches': 592594, 'unparsed': 0}
+EXIT=0
