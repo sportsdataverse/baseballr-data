@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_111220.log  (watch: tail -f logs/mlb_01_schedules_20260909_111220.log)
+season 1996: 2303 games -> mlb/schedule/1996.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_111228.log  (watch: tail -f logs/mlb_02_games_20260909_111228.log)
+  250/2299 in 41s (6.0 games/s)
+  500/2299 in 77s (6.5 games/s)
+  750/2299 in 109s (6.9 games/s)
+  1000/2299 in 144s (7.0 games/s)
+  1250/2299 in 181s (6.9 games/s)
+  1500/2299 in 214s (7.0 games/s)
+  1750/2299 in 265s (6.6 games/s)
+  2000/2299 in 314s (6.4 games/s)
+  2250/2299 in 347s (6.5 games/s)
+capture season 1996: {'captured': 2299, 'skipped': 0, 'failed': 0, 'elapsed_s': 354.0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_111823.log  (watch: tail -f logs/mlb_03_parse_20260909_111823.log)
+parse season 1996: {'games': 2299, 'plays': 180253, 'pitches': 629616, 'unparsed': 0}
+EXIT=0
