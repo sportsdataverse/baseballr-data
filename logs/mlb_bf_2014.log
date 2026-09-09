@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_092024.log  (watch: tail -f logs/mlb_01_schedules_20260909_092024.log)
+season 2014: 2991 games -> mlb/schedule/2014.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_092028.log  (watch: tail -f logs/mlb_02_games_20260909_092028.log)
+  250/2462 in 35s (7.1 games/s)
+  500/2462 in 66s (7.5 games/s)
+  750/2462 in 99s (7.6 games/s)
+  1000/2462 in 128s (7.8 games/s)
+  1250/2462 in 157s (8.0 games/s)
+  1500/2462 in 186s (8.0 games/s)
+  1750/2462 in 216s (8.1 games/s)
+  2000/2462 in 244s (8.2 games/s)
+  2250/2462 in 275s (8.2 games/s)
+capture season 2014: {'captured': 2462, 'skipped': 0, 'failed': 0, 'elapsed_s': 304.8}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_092534.log  (watch: tail -f logs/mlb_03_parse_20260909_092534.log)
+parse season 2014: {'games': 2462, 'plays': 186829, 'pitches': 714303, 'unparsed': 0}
+EXIT=0
