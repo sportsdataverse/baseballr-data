@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_093322.log  (watch: tail -f logs/mlb_01_schedules_20260909_093322.log)
+season 2012: 3005 games -> mlb/schedule/2012.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_093327.log  (watch: tail -f logs/mlb_02_games_20260909_093327.log)
+  250/2467 in 36s (7.0 games/s)
+  500/2467 in 70s (7.1 games/s)
+  750/2467 in 106s (7.1 games/s)
+  1000/2467 in 140s (7.1 games/s)
+  1250/2467 in 170s (7.4 games/s)
+  1500/2467 in 203s (7.4 games/s)
+  1750/2467 in 236s (7.4 games/s)
+  2000/2467 in 267s (7.5 games/s)
+  2250/2467 in 305s (7.4 games/s)
+capture season 2012: {'captured': 2467, 'skipped': 0, 'failed': 0, 'elapsed_s': 336.6}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_093904.log  (watch: tail -f logs/mlb_03_parse_20260909_093904.log)
+parse season 2012: {'games': 2467, 'plays': 187447, 'pitches': 716240, 'unparsed': 0}
+EXIT=0
