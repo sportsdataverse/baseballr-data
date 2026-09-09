@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_103030.log  (watch: tail -f logs/mlb_01_schedules_20260909_103030.log)
+season 2003: 2530 games -> mlb/schedule/2003.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_103035.log  (watch: tail -f logs/mlb_02_games_20260909_103035.log)
+  250/2469 in 29s (8.7 games/s)
+  500/2469 in 53s (9.4 games/s)
+  750/2469 in 78s (9.6 games/s)
+  1000/2469 in 100s (10.0 games/s)
+  1250/2469 in 122s (10.3 games/s)
+  1500/2469 in 144s (10.4 games/s)
+  1750/2469 in 167s (10.5 games/s)
+  2000/2469 in 189s (10.6 games/s)
+  2250/2469 in 213s (10.6 games/s)
+capture season 2003: {'captured': 2469, 'skipped': 0, 'failed': 0, 'elapsed_s': 231.1}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_103427.log  (watch: tail -f logs/mlb_03_parse_20260909_103427.log)
+parse season 2003: {'games': 2469, 'plays': 190916, 'pitches': 713003, 'unparsed': 0}
+EXIT=0
