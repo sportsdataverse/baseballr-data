@@ -1,0 +1,15 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_084156.log  (watch: tail -f logs/mlb_01_schedules_20260909_084156.log)
+season 2020: 1375 games -> mlb/schedule/2020.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_084159.log  (watch: tail -f logs/mlb_02_games_20260909_084159.log)
+  250/953 in 34s (7.4 games/s)
+  500/953 in 66s (7.6 games/s)
+  750/953 in 98s (7.7 games/s)
+capture season 2020: {'captured': 953, 'skipped': 0, 'failed': 0, 'elapsed_s': 123.0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_084403.log  (watch: tail -f logs/mlb_03_parse_20260909_084403.log)
+parse season 2020: {'games': 953, 'plays': 70667, 'pitches': 279660, 'unparsed': 0}
+EXIT=0
