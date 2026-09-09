@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_083442.log  (watch: tail -f logs/mlb_01_schedules_20260909_083442.log)
+season 2021: 2968 games -> mlb/schedule/2021.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_083448.log  (watch: tail -f logs/mlb_02_games_20260909_083448.log)
+  250/2467 in 41s (6.2 games/s)
+  500/2467 in 73s (6.9 games/s)
+  750/2467 in 106s (7.1 games/s)
+  1000/2467 in 137s (7.3 games/s)
+  1250/2467 in 169s (7.4 games/s)
+  1500/2467 in 201s (7.5 games/s)
+  1750/2467 in 232s (7.5 games/s)
+  2000/2467 in 265s (7.5 games/s)
+  2250/2467 in 297s (7.6 games/s)
+capture season 2021: {'captured': 2467, 'skipped': 0, 'failed': 0, 'elapsed_s': 326.5}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_084015.log  (watch: tail -f logs/mlb_03_parse_20260909_084015.log)
+parse season 2021: {'games': 2467, 'plays': 184939, 'pitches': 720638, 'unparsed': 0}
+EXIT=0
