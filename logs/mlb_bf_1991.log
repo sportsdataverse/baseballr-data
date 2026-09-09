@@ -1,0 +1,20 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_114156.log  (watch: tail -f logs/mlb_01_schedules_20260909_114156.log)
+season 1991: 2127 games -> mlb/schedule/1991.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_114200.log  (watch: tail -f logs/mlb_02_games_20260909_114200.log)
+  250/2123 in 45s (5.6 games/s)
+  500/2123 in 82s (6.1 games/s)
+  750/2123 in 121s (6.2 games/s)
+  1000/2123 in 159s (6.3 games/s)
+  1250/2123 in 199s (6.3 games/s)
+  1500/2123 in 234s (6.4 games/s)
+  1750/2123 in 276s (6.3 games/s)
+  2000/2123 in 313s (6.4 games/s)
+capture season 1991: {'captured': 2123, 'skipped': 0, 'failed': 0, 'elapsed_s': 329.9}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_114731.log  (watch: tail -f logs/mlb_03_parse_20260909_114731.log)
+parse season 1991: {'games': 2123, 'plays': 162764, 'pitches': 597494, 'unparsed': 0}
+EXIT=0
