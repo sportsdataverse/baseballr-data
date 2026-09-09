@@ -1,0 +1,18 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_112448.log  (watch: tail -f logs/mlb_01_schedules_20260909_112448.log)
+season 1994: 1604 games -> mlb/schedule/1994.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_112453.log  (watch: tail -f logs/mlb_02_games_20260909_112453.log)
+  250/1600 in 39s (6.4 games/s)
+  500/1600 in 73s (6.8 games/s)
+  750/1600 in 106s (7.1 games/s)
+  1000/1600 in 142s (7.1 games/s)
+  1250/1600 in 179s (7.0 games/s)
+  1500/1600 in 210s (7.1 games/s)
+capture season 1994: {'captured': 1600, 'skipped': 0, 'failed': 0, 'elapsed_s': 225.5}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_112840.log  (watch: tail -f logs/mlb_03_parse_20260909_112840.log)
+parse season 1994: {'games': 1600, 'plays': 124833, 'pitches': 449443, 'unparsed': 0}
+EXIT=0
