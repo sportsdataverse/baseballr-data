@@ -15,3 +15,12 @@ __pycache__/
 mlb/*/csv/
 mlb/*/rds/
 *.out
+
+# Stray root logs only (D8: top-level *.log/*.out never belong in git).
+# NOTE: `logs/` is deliberately NOT ignored (D22: run logs are tracked in
+# every repo) -- the NCAA raw twins track theirs, and this repo's backfill
+# shards are the only record of which season/shard did what.
+# `*.out` above is left UNANCHORED, i.e. stricter than D8's `/*.out`: nothing
+# in this tree writes a .out today, so anchoring it would only widen what can
+# be committed by accident.
+/*.log
