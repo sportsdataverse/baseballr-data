@@ -91,6 +91,32 @@ published dataset, and team pages are ~3% of a season's fetch cost. The
 published `schedule` dataset therefore keeps its full division coverage while
 pbp/box datasets are D-I.
 
+## Daily driver (droplet cron)
+
+`scripts/daily_ncaa_baseball_capture.sh` is the nightly in-season driver,
+composing the same numbered stages (01 → 02 → 03 → 04 → 05) at daily pace.
+Modelled on `ncaa-mbb-hoops-raw/scripts/daily_mbb_scraper.sh`.
+
+The crontab previously called `run_backfill_all.sh 2026 2026` for this, which
+is a **backfill**: it shards, commits per stage, and its season loop, disk guard
+and cooldowns are all sized for replaying whole seasons. A nightly incremental
+inherited backfill pacing and backfill failure semantics from it.
+
+Guards, both fatal: `NCAA_VENDOR` must be set (a cron shell does not source
+`.Renviron`, so the ProxyBonanza fallback cannot work), and `$SDV_PY` must be on
+`main` (the stages import sportsdataverse from that working tree, so a feature
+branch there runs unreviewed code against a ban-on-sight host).
+
+One dead stage does not stop its siblings; every failure surfaces in the exit
+code. Commits once at the end through `_git_commit.sh`.
+
+    NCAA_VENDOR=decodo_patchright ./scripts/daily_ncaa_baseball_capture.sh
+    tail -f logs/daily_ncaa_baseball_$(date -u +%Y%m%d).log
+
+Tunables (env only): `NCAAB_SEASON` (default: current calendar year — NCAA
+baseball is a spring sport, so season = calendar year), `NCAAB_MAX` (default
+200 contests/run; stage 02's not-yet-captured filter makes re-runs free).
+
 ## Campaign orchestrator
 
 `scripts/run_backfill_all.sh START END` runs the full per-season chain
