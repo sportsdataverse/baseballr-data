@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_112914.log  (watch: tail -f logs/mlb_01_schedules_20260909_112914.log)
+season 1993: 2288 games -> mlb/schedule/1993.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_112919.log  (watch: tail -f logs/mlb_02_games_20260909_112919.log)
+  250/2287 in 39s (6.4 games/s)
+  500/2287 in 75s (6.6 games/s)
+  750/2287 in 110s (6.8 games/s)
+  1000/2287 in 147s (6.8 games/s)
+  1250/2287 in 188s (6.7 games/s)
+  1500/2287 in 221s (6.8 games/s)
+  1750/2287 in 255s (6.9 games/s)
+  2000/2287 in 285s (7.0 games/s)
+  2250/2287 in 320s (7.0 games/s)
+capture season 1993: {'captured': 2287, 'skipped': 0, 'failed': 0, 'elapsed_s': 326.6}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_113446.log  (watch: tail -f logs/mlb_03_parse_20260909_113446.log)
+parse season 1993: {'games': 2287, 'plays': 176605, 'pitches': 632138, 'unparsed': 0}
+EXIT=0
