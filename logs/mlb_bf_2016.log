@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_090741.log  (watch: tail -f logs/mlb_01_schedules_20260909_090741.log)
+season 2016: 2995 games -> mlb/schedule/2016.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_090746.log  (watch: tail -f logs/mlb_02_games_20260909_090746.log)
+  250/2465 in 33s (7.7 games/s)
+  500/2465 in 61s (8.1 games/s)
+  750/2465 in 91s (8.2 games/s)
+  1000/2465 in 120s (8.3 games/s)
+  1250/2465 in 149s (8.4 games/s)
+  1500/2465 in 179s (8.4 games/s)
+  1750/2465 in 206s (8.5 games/s)
+  2000/2465 in 234s (8.6 games/s)
+  2250/2465 in 266s (8.5 games/s)
+capture season 2016: {'captured': 2465, 'skipped': 0, 'failed': 0, 'elapsed_s': 294.4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_091241.log  (watch: tail -f logs/mlb_03_parse_20260909_091241.log)
+parse season 2016: {'games': 2465, 'plays': 187607, 'pitches': 726021, 'unparsed': 0}
+EXIT=0
