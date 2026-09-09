@@ -1,0 +1,54 @@
+[2026-09-09 09:31:34Z] daily mlb start: season=2024 max_games=3
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_053134.log  (watch: tail -f logs/mlb_01_schedules_20260909_053134.log)
+season 2024: 2998 games -> mlb/schedule/2024.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_053145.log  (watch: tail -f logs/mlb_02_games_20260909_053145.log)
+capture season 2024: {'captured': 3, 'skipped': 2509, 'failed': 0, 'elapsed_s': 6.4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_053153.log  (watch: tail -f logs/mlb_03_parse_20260909_053153.log)
+Traceback (most recent call last):
+  File "/mnt/sdv_repos/baseballr-data/python/mlb_03_games_parse.py", line 19, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/mnt/sdv_repos/baseballr-data/python/mlb_03_games_parse.py", line 15, in main
+    return parse.main(list(sys.argv[1:] if argv is None else argv))
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/mlb_raw/parse.py", line 187, in main
+    st = parse_season(pathlib.Path(a.root), a.season)
+  File "/mnt/sdv_repos/baseballr-data/python/mlb_raw/parse.py", line 175, in parse_season
+    pl.DataFrame(pitches).select([c for c in PITCH_COLUMNS if c in pitches[0]]).write_parquet(
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/.venv/lib/python3.13/site-packages/polars/dataframe/frame.py", line 414, in __init__
+    self._df = sequence_to_pydf(
+               ~~~~~~~~~~~~~~~~^
+        data,
+        ^^^^^
+    ...<5 lines>...
+        nan_to_null=nan_to_null,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/mnt/sdv_repos/baseballr-data/.venv/lib/python3.13/site-packages/polars/_utils/construction/dataframe.py", line 463, in sequence_to_pydf
+    return _sequence_to_pydf_dispatcher(
+        get_first_non_none(data),
+    ...<6 lines>...
+        nan_to_null=nan_to_null,
+    )
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/functools.py", line 934, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/.venv/lib/python3.13/site-packages/polars/_utils/construction/dataframe.py", line 719, in _sequence_of_dict_to_pydf
+    pydf = PyDataFrame.from_dicts(
+        data,
+    ...<3 lines>...
+        infer_schema_length=infer_schema_length,
+    )
+polars.exceptions.ComputeError: could not append value: 2395 of type: i64 to the builder; make sure that all rows have the same schema or consider increasing `infer_schema_length`
+
+it might also be that a value overflows the data-type's capacity
+EXIT=1
+WARN parse rc=1
+[2026-09-09 09:31:54Z] daily mlb stages done (rc_total=1)
