@@ -14,6 +14,10 @@ dependencies = [
     "scikit-learn>=1.0",
     "numpy>=1.24",
     "scipy>=1.10",
+    # The NCAA browser transport needs it. sdv-py only declares it in its
+    # `all` extra, which we do not install -- so an undeclared patchright is
+    # removed by any venv rebuild and `uv sync --frozen` never puts it back.
+    "patchright>=1.50",
 ]
 
 [dependency-groups]
