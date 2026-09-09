@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_085251.log  (watch: tail -f logs/mlb_01_schedules_20260909_085251.log)
+season 2018: 3024 games -> mlb/schedule/2018.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_085301.log  (watch: tail -f logs/mlb_02_games_20260909_085301.log)
+  250/2465 in 40s (6.3 games/s)
+  500/2465 in 74s (6.7 games/s)
+  750/2465 in 109s (6.9 games/s)
+  1000/2465 in 141s (7.1 games/s)
+  1250/2465 in 175s (7.1 games/s)
+  1500/2465 in 207s (7.2 games/s)
+  1750/2465 in 238s (7.4 games/s)
+  2000/2465 in 270s (7.4 games/s)
+  2250/2465 in 305s (7.4 games/s)
+capture season 2018: {'captured': 2465, 'skipped': 0, 'failed': 0, 'elapsed_s': 336.3}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_085838.log  (watch: tail -f logs/mlb_03_parse_20260909_085838.log)
+parse season 2018: {'games': 2465, 'plays': 188155, 'pitches': 731207, 'unparsed': 0}
+EXIT=0
