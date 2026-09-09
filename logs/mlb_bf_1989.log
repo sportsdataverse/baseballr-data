@@ -1,0 +1,20 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_115611.log  (watch: tail -f logs/mlb_01_schedules_20260909_115611.log)
+season 1989: 2122 games -> mlb/schedule/1989.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_115628.log  (watch: tail -f logs/mlb_02_games_20260909_115628.log)
+  250/2120 in 57s (4.4 games/s)
+  500/2120 in 108s (4.6 games/s)
+  750/2120 in 158s (4.8 games/s)
+  1000/2120 in 208s (4.8 games/s)
+  1250/2120 in 259s (4.8 games/s)
+  1500/2120 in 318s (4.7 games/s)
+  1750/2120 in 370s (4.7 games/s)
+  2000/2120 in 423s (4.7 games/s)
+capture season 1989: {'captured': 2120, 'skipped': 0, 'failed': 0, 'elapsed_s': 445.4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_120356.log  (watch: tail -f logs/mlb_03_parse_20260909_120356.log)
+parse season 1989: {'games': 2120, 'plays': 161602, 'pitches': 572976, 'unparsed': 0}
+EXIT=0
