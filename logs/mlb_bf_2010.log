@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_094733.log  (watch: tail -f logs/mlb_01_schedules_20260909_094733.log)
+season 2010: 2990 games -> mlb/schedule/2010.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_094738.log  (watch: tail -f logs/mlb_02_games_20260909_094738.log)
+  250/2462 in 40s (6.2 games/s)
+  500/2462 in 75s (6.7 games/s)
+  750/2462 in 114s (6.6 games/s)
+  1000/2462 in 157s (6.4 games/s)
+  1250/2462 in 197s (6.4 games/s)
+  1500/2462 in 236s (6.4 games/s)
+  1750/2462 in 272s (6.4 games/s)
+  2000/2462 in 307s (6.5 games/s)
+  2250/2462 in 352s (6.4 games/s)
+capture season 2010: {'captured': 2462, 'skipped': 0, 'failed': 0, 'elapsed_s': 387.5}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_095406.log  (watch: tail -f logs/mlb_03_parse_20260909_095406.log)
+parse season 2010: {'games': 2462, 'plays': 188334, 'pitches': 719561, 'unparsed': 0}
+EXIT=0
