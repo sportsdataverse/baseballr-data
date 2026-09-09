@@ -14,6 +14,11 @@ __pycache__/
 # model-dataset trees commit parquet only; csv/rds are release-asset staging
 mlb/*/csv/
 mlb/*/rds/
+# NCAA release staging: the builder writes csv.gz/rds here only when
+# release=True, and python/ncaa_baseball_data_build/io.py already DOCUMENTS
+# this path as gitignored -- it just never was. 732M of derivable staging was
+# sitting untracked, one blind `git add` from being committed.
+ncaa/_release_build/
 *.out
 
 # Stray root logs only (D8: top-level *.log/*.out never belong in git).
