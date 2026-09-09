@@ -1,2 +1,22 @@
 offline stage: no proxy / transport needed
 log -> logs/mlb_01_schedules_20260909_053131.log  (watch: tail -f logs/mlb_01_schedules_20260909_053131.log)
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_114819.log  (watch: tail -f logs/mlb_01_schedules_20260909_114819.log)
+season 1990: 2121 games -> mlb/schedule/1990.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_114823.log  (watch: tail -f logs/mlb_02_games_20260909_114823.log)
+  250/2119 in 44s (5.7 games/s)
+  500/2119 in 84s (6.0 games/s)
+  750/2119 in 129s (5.8 games/s)
+  1000/2119 in 171s (5.8 games/s)
+  1250/2119 in 213s (5.9 games/s)
+  1500/2119 in 260s (5.8 games/s)
+  1750/2119 in 296s (5.9 games/s)
+  2000/2119 in 347s (5.8 games/s)
+capture season 1990: {'captured': 2119, 'skipped': 0, 'failed': 0, 'elapsed_s': 369.8}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_115436.log  (watch: tail -f logs/mlb_03_parse_20260909_115436.log)
+parse season 1990: {'games': 2119, 'plays': 161854, 'pitches': 557915, 'unparsed': 0}
+EXIT=0
