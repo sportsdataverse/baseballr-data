@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_081249.log  (watch: tail -f logs/mlb_01_schedules_20260909_081249.log)
+season 2024: 2998 games -> mlb/schedule/2024.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_081249.log  (watch: tail -f logs/mlb_02_games_20260909_081249.log)
+  250/2465 in 35s (7.1 games/s)
+  500/2465 in 65s (7.7 games/s)
+  750/2465 in 96s (7.8 games/s)
+  1000/2465 in 126s (7.9 games/s)
+  1250/2465 in 161s (7.8 games/s)
+  1500/2465 in 195s (7.7 games/s)
+  1750/2465 in 231s (7.6 games/s)
+  2000/2465 in 263s (7.6 games/s)
+  2250/2465 in 295s (7.6 games/s)
+capture season 2024: {'captured': 2465, 'skipped': 8, 'failed': 0, 'elapsed_s': 323.7}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_081813.log  (watch: tail -f logs/mlb_03_parse_20260909_081813.log)
+parse season 2024: {'games': 2473, 'plays': 186175, 'pitches': 722298, 'unparsed': 0}
+EXIT=0
