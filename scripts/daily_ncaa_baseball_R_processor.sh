@@ -25,7 +25,11 @@ PROCESS_RC=0
 
 for i in $(seq "${START_YEAR}" "${END_YEAR}")
 do
-    git pull > /dev/null || true
+    # Non-fatal by design -- a stale tree still builds, and sdv_commit_push
+    # rebases onto origin if the push is rejected. But say so: this was the
+    # last silent git call in the file. Plain pull (merge), never --rebase:
+    # the am backend stalls base64-encoding this repo's parquet/rds.
+    git pull > /dev/null || echo "::warning ::pull failed before season $i; building on the local tree"
     git config --local user.email "action@github.com"
     git config --local user.name "GitHub Action"
     Rscript R/ncaa_01_schedules_creation.R -s "$i" -e "$i" -r "$RESCRAPE"
