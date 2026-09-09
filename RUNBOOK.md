@@ -91,6 +91,47 @@ published dataset, and team pages are ~3% of a season's fetch cost. The
 published `schedule` dataset therefore keeps its full division coverage while
 pbp/box datasets are D-I.
 
+## MLB pipeline
+
+Separate producer from the NCAA chain, sharing the repo's `_env.sh` and
+`_git_commit.sh`. Floor is **1988** -- the first season with COMPLETE
+pitch-by-pitch (measured: 1986-87 carry ~115 pitches/game, 1988-89 carry
+241-300). Schedule data exists to 1901 and pbp to 1950, but 1950-87 coverage is
+uneven *within* a season and needs a completeness audit before publishing.
+
+| Stage | Script | Notes |
+|---|---|---|
+| 01 schedules | `run_mlb_01_schedules.sh --season 2026` | **ONE call per season** (181 dates, ~2,450 games, ~1 s). Also the daily delta discovery. |
+| 02 capture | `run_mlb_02_games.sh --season 2026` | `feed/live` -> `mlb/raw/{season}/{game_pk}.json.gz`, file-exists resumable, atomic writes |
+| 03 parse | `run_mlb_03_parse.sh --season 2026` | OFFLINE -> `mlb/pbp/mlb_pbp_{season}.parquet` + `mlb_pitches_{season}.parquet` |
+
+    ./scripts/daily_mlb_capture.sh                  # nightly: 01 -> 02 -> 03 -> commit
+    ./scripts/run_mlb_backfill.sh 2026 1988         # full corpus, newest-first
+    tail -f logs/daily_mlb_$(date -u +%Y%m%d).log
+
+**Transport.** `statsapi.mlb.com` returns **406 to this host directly** -- every
+header variant, it is destination-side IP filtering. The transport routes
+through **ProxyBonanza** (`PROXY_KEY` + `PROXY_PKG`; note it is *not*
+`PROXYBONANZA_API_KEY` on this box). **Decodo does not work for statsapi**
+(0/5 ports, `CONNECT tunnel failed`), so do not point this at the NCAA vendor
+config. Baseball Savant needs no proxy.
+
+**Scope.** Default capture is regular season + postseason (`R,F,D,L,W`).
+Spring training / exhibition / all-star are excluded: they add ~570 games a
+season and carry no Statcast, so including them dilutes every tracking-derived
+column with nulls. Override with `--game-types`.
+
+**Measured cost** (1988-2026 = 92,340 games, ~6.93 GB gzipped):
+
+| Phase | Cost |
+|---|---|
+| scrape | ~2.3 h at 8 workers (17.4 h sequential, ~1 h at 16) |
+| build | ~34 min single-core (45.5 games/s) |
+
+Pace is env-only: `SDV_MLB_WORKERS` (default 8 -- 16 was measured at 26 req/s
+against one host and is deliberately not the default), `SDV_MLB_SLEEP`,
+`SDV_MLB_RETRIES`, `SDV_MLB_TIMEOUT`.
+
 ## Daily driver (droplet cron)
 
 `scripts/daily_ncaa_baseball_capture.sh` is the nightly in-season driver,

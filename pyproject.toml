@@ -18,6 +18,10 @@ dependencies = [
     # `all` extra, which we do not install -- so an undeclared patchright is
     # removed by any venv rebuild and `uv sync --frozen` never puts it back.
     "patchright>=1.50",
+    # statsapi.mlb.com 406s this host directly, so the MLB transport must go
+    # through a proxy with browser TLS impersonation. sdv-py carries curl_cffi
+    # only in its `tests`/`all` extras, which this repo does not install.
+    "curl-cffi>=0.6",
 ]
 
 [dependency-groups]
