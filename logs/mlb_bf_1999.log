@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_105036.log  (watch: tail -f logs/mlb_01_schedules_20260909_105036.log)
+season 1999: 2464 games -> mlb/schedule/1999.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_105040.log  (watch: tail -f logs/mlb_02_games_20260909_105040.log)
+  250/2460 in 35s (7.2 games/s)
+  500/2460 in 66s (7.6 games/s)
+  750/2460 in 104s (7.2 games/s)
+  1000/2460 in 137s (7.3 games/s)
+  1250/2460 in 172s (7.3 games/s)
+  1500/2460 in 206s (7.3 games/s)
+  1750/2460 in 235s (7.4 games/s)
+  2000/2460 in 265s (7.5 games/s)
+  2250/2460 in 295s (7.6 games/s)
+capture season 1999: {'captured': 2460, 'skipped': 0, 'failed': 0, 'elapsed_s': 325.4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_105607.log  (watch: tail -f logs/mlb_03_parse_20260909_105607.log)
+parse season 1999: {'games': 2460, 'plays': 192715, 'pitches': 707745, 'unparsed': 0}
+EXIT=0
