@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_100238.log  (watch: tail -f logs/mlb_01_schedules_20260909_100238.log)
+season 2008: 3000 games -> mlb/schedule/2008.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_100243.log  (watch: tail -f logs/mlb_02_games_20260909_100243.log)
+  250/2463 in 40s (6.3 games/s)
+  500/2463 in 74s (6.8 games/s)
+  750/2463 in 106s (7.1 games/s)
+  1000/2463 in 141s (7.1 games/s)
+  1250/2463 in 176s (7.1 games/s)
+  1500/2463 in 210s (7.1 games/s)
+  1750/2463 in 240s (7.3 games/s)
+  2000/2463 in 272s (7.4 games/s)
+  2250/2463 in 305s (7.4 games/s)
+capture season 2008: {'captured': 2463, 'skipped': 0, 'failed': 0, 'elapsed_s': 336.1}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_100819.log  (watch: tail -f logs/mlb_03_parse_20260909_100819.log)
+parse season 2008: {'games': 2463, 'plays': 190491, 'pitches': 723744, 'unparsed': 0}
+EXIT=0
