@@ -1,0 +1,21 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20260909_080513.log  (watch: tail -f logs/mlb_01_schedules_20260909_080513.log)
+season 2025: 2995 games -> mlb/schedule/2025.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20260909_080518.log  (watch: tail -f logs/mlb_02_games_20260909_080518.log)
+  250/2477 in 36s (7.0 games/s)
+  500/2477 in 69s (7.2 games/s)
+  750/2477 in 105s (7.2 games/s)
+  1000/2477 in 140s (7.1 games/s)
+  1250/2477 in 177s (7.1 games/s)
+  1500/2477 in 212s (7.1 games/s)
+  1750/2477 in 245s (7.1 games/s)
+  2000/2477 in 277s (7.2 games/s)
+  2250/2477 in 311s (7.2 games/s)
+capture season 2025: {'captured': 2477, 'skipped': 0, 'failed': 0, 'elapsed_s': 339.8}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20260909_081059.log  (watch: tail -f logs/mlb_03_parse_20260909_081059.log)
+parse season 2025: {'games': 2477, 'plays': 187029, 'pitches': 724180, 'unparsed': 0}
+EXIT=0
