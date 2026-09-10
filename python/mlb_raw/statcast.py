@@ -35,54 +35,103 @@ MONTHS = range(3, 12)  # Mar-Nov covers spring through the World Series
 SLEEP = float(os.environ.get("SDV_MLB_STATCAST_SLEEP", "2"))
 
 
+def scheduled_game_dates(root: pathlib.Path, season: int, month: int) -> "set[str]":
+    """Game dates the stage-01 schedule says exist in this month.
+
+    This is the independent signal that makes "empty" earnable. Without it a
+    Savant 403 is indistinguishable from a month with no baseball: sdv-py's
+    ``download`` RETURNS the error response once its retry budget is spent
+    rather than raising, ``_csv_to_frame`` turns the 403 body into an empty
+    frame, and a zero-row month reads as legitimately empty. Schedule data is
+    already on disk from stage 01, so this costs one parquet scan.
+    """
+    import polars as pl
+
+    sched = root / "mlb" / "schedule" / f"{season}.parquet"
+    if not sched.exists():
+        return set()
+    pre = f"{season}-{month:02d}-"
+    return set(
+        pl.scan_parquet(sched)
+        .filter(
+            pl.col("abstract_state").eq("Final")
+            & pl.col("game_date").cast(pl.Utf8).str.starts_with(pre)
+        )
+        .select("game_date")
+        .collect()["game_date"]
+        .cast(pl.Utf8)
+        .to_list()
+    )
+
+
 def month_path(root: pathlib.Path, season: int, month: int) -> pathlib.Path:
     return root / "mlb" / "statcast_raw" / str(season) / f"{season}-{month:02d}.parquet"
 
 
-def capture_month(root: pathlib.Path, season: int, month: int, *, force: bool = False) -> str:
-    """Return 'skipped' | 'captured' | 'empty'. Raises on a transport failure."""
+def capture_month(
+    root: pathlib.Path, season: int, month: int, *, force: bool = False
+) -> "tuple[str, int]":
+    """Return (status, rows). Raises on a transport failure or a partial month."""
     out = month_path(root, season, month)
     if out.exists() and not force:
-        return "skipped"
+        return "skipped", 0
 
     from sportsdataverse.mlb.mlb_statcast_extra import mlb_statcast_search
 
     last = calendar.monthrange(season, month)[1]
     df = mlb_statcast_search(f"{season}-{month:02d}-01", f"{season}-{month:02d}-{last}")
 
+    expected = scheduled_game_dates(root, season, month)
+
     if df is None or df.height == 0:
-        # An empty month is REAL (no games in November most years) -- but it is
-        # not written. Persisting a zero-row parquet would make the resume test
-        # skip a month that a later re-run could legitimately fill.
-        return "empty"
+        # "Empty" must be EARNED, never inferred from a zero-row frame. A
+        # persistent Savant 403/5xx arrives here as zero rows, not an exception.
+        if expected:
+            raise RuntimeError(
+                f"{season}-{month:02d}: Savant returned 0 rows but the schedule "
+                f"has {len(expected)} game dates -- treating as a FAILURE, not an "
+                "empty month"
+            )
+        return "empty", 0
+
+    # A month is written whole or not at all. mlb_statcast_search splits the
+    # month into 7-day chunks and DROPS any chunk that came back empty, so one
+    # 403'd week still yields a plausible, non-empty frame -- which the
+    # file-exists resume would then freeze permanently.
+    if expected:
+        import polars as pl
+
+        got = set(df.get_column("game_date").cast(pl.Utf8).to_list())
+        missing = expected - got
+        if missing:
+            raise RuntimeError(
+                f"{season}-{month:02d}: partial month -- {len(missing)} of "
+                f"{len(expected)} scheduled game dates absent "
+                f"(e.g. {sorted(missing)[:3]}); refusing to bank it"
+            )
 
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(f".{os.getpid()}.tmp")
     df.write_parquet(tmp)
     tmp.rename(out)  # atomic: a killed run never leaves a half-written month
-    return "captured"
+    return "captured", df.height
 
 
 def capture_season(root: pathlib.Path, season: int, *, force: bool = False) -> dict:
     stats = {"captured": 0, "skipped": 0, "empty": 0, "failed": 0, "rows": 0}
     for month in MONTHS:
         try:
-            r = capture_month(root, season, month, force=force)
+            r, rows = capture_month(root, season, month, force=force)
             stats[r] += 1
             if r == "captured":
-                import polars as pl
-
-                stats["rows"] += (
-                    pl.scan_parquet(month_path(root, season, month))
-                    .select(pl.len())
-                    .collect()
-                    .item()
-                )
-                if SLEEP:
-                    time.sleep(SLEEP)
+                stats["rows"] += rows
         except Exception as exc:  # noqa: BLE001 - one month must not kill the season
             stats["failed"] += 1
-            print(f"  {season}-{month:02d}: {type(exc).__name__}: {str(exc)[:110]}")
+            print(f"  {season}-{month:02d}: {type(exc).__name__}: {str(exc)[:160]}")
+        # Pace after EVERY month, including failures: a struggling Savant must
+        # not be hammered faster than a healthy one.
+        if SLEEP:
+            time.sleep(SLEEP)
     return stats
 
 

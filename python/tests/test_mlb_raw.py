@@ -189,3 +189,45 @@ if __name__ == "__main__":  # pragma: no cover - convenience
         if name.startswith("test_") and callable(fn):
             fn()
             print(f"ok  {name}")
+
+
+def test_savant_transport_failure_is_not_reported_as_an_empty_month(tmp_path, monkeypatch):
+    """The green-but-empty trap, closed. sdv-py's download RETURNS the error
+    response once its retry budget is spent, _csv_to_frame turns a 403 body into
+    an empty frame, and a zero-row month would otherwise read as 'no baseball
+    that month' and exit 0."""
+    import polars as pl
+    from mlb_raw import statcast
+
+    monkeypatch.setattr(statcast, "SLEEP", 0)
+    monkeypatch.setattr(
+        statcast, "scheduled_game_dates", lambda root, season, month: {"2024-04-01"}
+    )
+    monkeypatch.setattr(
+        "sportsdataverse.mlb.mlb_statcast_extra.mlb_statcast_search",
+        lambda *a, **k: pl.DataFrame(),
+    )
+    st = statcast.capture_season(tmp_path, 2024)
+    assert st["failed"] == len(list(statcast.MONTHS)), st
+    assert st["empty"] == 0, "a 403 must never be counted as an empty month"
+
+
+def test_a_month_missing_scheduled_dates_is_refused_not_banked(tmp_path, monkeypatch):
+    """mlb_statcast_search drops empty 7-day chunks, so one 403'd week still
+    yields a plausible non-empty frame -- which file-exists resume would freeze."""
+    import polars as pl
+    from mlb_raw import statcast
+
+    monkeypatch.setattr(statcast, "SLEEP", 0)
+    monkeypatch.setattr(
+        statcast,
+        "scheduled_game_dates",
+        lambda root, season, month: {"2024-04-01", "2024-04-08", "2024-04-15"},
+    )
+    monkeypatch.setattr(  # only one of the three weeks came back
+        "sportsdataverse.mlb.mlb_statcast_extra.mlb_statcast_search",
+        lambda *a, **k: pl.DataFrame({"game_date": ["2024-04-01"] * 500}),
+    )
+    st = statcast.capture_season(tmp_path, 2024)
+    assert st["captured"] == 0, "a partial month must never be written"
+    assert st["failed"] > 0
