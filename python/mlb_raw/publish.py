@@ -7,13 +7,18 @@ release when absent, and takes an injectable runner so tests never shell out.
 
 COMMITTED vs PUBLISHED, deliberately asymmetric:
 
-  committed to git   parquet only -- ``mlb/pbp/*.parquet``
+  on disk, ever      parquet only -- ``mlb/pbp/*.parquet``
   published as assets parquet + csv.gz + rds
 
-csv.gz/rds are built into ``mlb/_release_build/`` (gitignored, same contract as
-``ncaa/_release_build`` and ``mlb/*/csv|rds``) and uploaded from there. They are
-derivable staging: the parquet is the only durable copy, so a re-publish
-regenerates them and nothing is lost by deleting the tree.
+csv.gz/rds are built into a TEMPORARY directory and deleted the moment the
+upload finishes -- they never exist in the repo, not even gitignored. This is a
+space constraint, not a tidiness preference: csv.gz + rds roughly double the
+on-disk cost of a 6.4 GB corpus for formats that are fully derivable from the
+parquet. A `finally` removes them even when an upload raises, so a failed
+publish cannot leave a season's worth of staging behind.
+
+The tempdir is created UNDER the repo root (``dir=root``) rather than /tmp: the
+root filesystem is the small one here, and a season's staging is hundreds of MB.
 
 ``--dry-run`` and ``--publish`` are mutually exclusive; a season is stamped
 ``.done_<season>`` only on a clean upload, never on a file merely existing.
@@ -32,11 +37,14 @@ TAGS = {
 REPO = "sportsdataverse/sportsdataverse-data"
 
 
-def staging_dir(root: pathlib.Path) -> pathlib.Path:
-    return root / "mlb" / "_release_build"
+def state_dir(root: pathlib.Path) -> pathlib.Path:
+    """Zero-byte `.done_<dataset>_<season>` sentinels only -- never data."""
+    return root / "mlb" / "_publish_state"
 
 
-def build_side_formats(root: pathlib.Path, dataset: str, season: int) -> "list[pathlib.Path]":
+def build_side_formats(
+    root: pathlib.Path, dataset: str, season: int, out: pathlib.Path
+) -> "list[pathlib.Path]":
     """Write csv.gz + rds beside the parquet, into gitignored staging.
 
     rds goes through sdv-py's ``write_rds`` so it carries baseballr's S3 class
@@ -50,7 +58,6 @@ def build_side_formats(root: pathlib.Path, dataset: str, season: int) -> "list[p
     if not src.exists():
         raise FileNotFoundError(f"{src} -- run stage 03 first")
 
-    out = staging_dir(root) / dataset
     out.mkdir(parents=True, exist_ok=True)
     df = pl.read_parquet(src)
     base = src.stem  # mlb_pbp_2024
@@ -100,6 +107,9 @@ def build_side_formats(root: pathlib.Path, dataset: str, season: int) -> "list[p
 def publish_season(
     root: pathlib.Path, dataset: str, season: int, *, dry_run: bool = True, sides: bool = True
 ) -> dict:
+    """Upload one season. csv.gz/rds exist only for the duration of the upload."""
+    import tempfile
+
     from mlb_model_publish.artifacts import upload_artifacts
 
     tag, stem = TAGS[dataset]
@@ -107,21 +117,29 @@ def publish_season(
     if not parquet.exists():
         raise FileNotFoundError(f"{parquet} -- run stage 03 first")
 
-    files = [parquet]
-    if sides:
-        files += build_side_formats(root, dataset, season)
-
-    # upload_artifacts globs a directory; give it each file explicitly by
-    # pointing at the parent with an exact-name pattern, so nothing unrelated
-    # in the directory is ever swept into a release.
     uploaded = 0
-    for f in files:
+
+    def _push(f: pathlib.Path) -> int:
+        # upload_artifacts globs a directory; an exact-name pattern makes sure
+        # nothing unrelated beside the file is ever swept into a release.
         r = upload_artifacts(f.parent, tag, REPO, pattern=f.name, dry_run=dry_run)
-        uploaded += r.get("uploaded", 0) if isinstance(r, dict) else 0
+        return r.get("uploaded", 0) if isinstance(r, dict) else 0
+
+    uploaded += _push(parquet)
+
+    if sides:
+        # TemporaryDirectory removes the tree on exit AND on exception, so a
+        # failed upload cannot strand hundreds of MB of derivable staging.
+        # dir=root keeps it off the small root filesystem.
+        with tempfile.TemporaryDirectory(dir=root, prefix=".publish_tmp_") as td:
+            for f in build_side_formats(root, dataset, season, pathlib.Path(td)):
+                uploaded += _push(f)
 
     if not dry_run and uploaded:
-        (staging_dir(root) / f".done_{dataset}_{season}").write_text("")
-    return {"dataset": dataset, "season": season, "files": len(files), "uploaded": uploaded}
+        sd = state_dir(root)
+        sd.mkdir(parents=True, exist_ok=True)
+        (sd / f".done_{dataset}_{season}").write_text("")
+    return {"dataset": dataset, "season": season, "uploaded": uploaded}
 
 
 def main(argv: "list[str] | None" = None) -> int:
