@@ -66,6 +66,13 @@ def _iid(v):
         return None
 
 
+def _bl(v):
+    """Bool or None -- ``bool(None)`` is False, which ASSERTS a fact statsapi
+    did not state. movement.isOut is JSON-null in ~50 runner rows per season,
+    and an out is load-bearing in the RE24 substrate these rows feed."""
+    return None if v is None else bool(v)
+
+
 def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict], list[dict]]":
     """plays, pitches, runners.
 
@@ -99,8 +106,8 @@ def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict], list[dict]]":
                 "rbi": _iid(res.get("rbi")),
                 "away_score": _iid(res.get("awayScore")),
                 "home_score": _iid(res.get("homeScore")),
-                "is_scoring_play": bool(about.get("isScoringPlay")),
-                "outs": _iid(p.get("count", {}).get("outs")),
+                "is_scoring_play": _bl(about.get("isScoringPlay")),
+                "outs": _iid((p.get("count") or {}).get("outs")),
                 "start_time": about.get("startTime"),
                 "end_time": about.get("endTime"),
             }
@@ -112,11 +119,11 @@ def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict], list[dict]]":
                 "runner_id": _iid((de.get("runner") or {}).get("id")),
                 "origin_base": mv.get("originBase"), "start_base": mv.get("start"),
                 "end_base": mv.get("end"), "out_base": mv.get("outBase"),
-                "is_out": bool(mv.get("isOut")), "out_number": _iid(mv.get("outNumber")),
+                "is_out": _bl(mv.get("isOut")), "out_number": _iid(mv.get("outNumber")),
                 "event": de.get("event"), "event_type": de.get("eventType"),
                 "movement_reason": de.get("movementReason"),
-                "is_scoring_event": bool(de.get("isScoringEvent")),
-                "rbi": bool(de.get("rbi")), "earned": bool(de.get("earned")),
+                "is_scoring_event": _bl(de.get("isScoringEvent")),
+                "rbi": _bl(de.get("rbi")), "earned": _bl(de.get("earned")),
                 "responsible_pitcher_id": _iid((de.get("responsiblePitcher") or {}).get("id")),
             })
         for e in p.get("playEvents") or []:

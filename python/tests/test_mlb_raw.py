@@ -231,3 +231,41 @@ def test_a_month_missing_scheduled_dates_is_refused_not_banked(tmp_path, monkeyp
     st = statcast.capture_season(tmp_path, 2024)
     assert st["captured"] == 0, "a partial month must never be written"
     assert st["failed"] > 0
+
+
+def test_schedule_dtypes_survive_a_scores_absent_season():
+    """An early-season build has every game in Preview with no scores. Inferred
+    dtypes make home_score/away_score Null, and a later concat or
+    scan_parquet('schedule/*.parquet') then raises SchemaError -- order
+    dependently. The explicit schema is what keeps 39 seasons stackable."""
+    import polars as pl
+
+    preview = {
+        "dates": [{"date": "2026-01-05", "games": [{
+            "gamePk": 1, "gameType": "R", "season": "2026", "gameDate": "x",
+            "status": {"abstractGameState": "Preview", "statusCode": "S",
+                       "detailedState": "Scheduled"},
+            "teams": {"home": {"team": {"id": 147, "name": "H"}},
+                      "away": {"team": {"id": 111, "name": "A"}}},
+            "venue": {"id": 1, "name": "V"},
+        }]}]
+    }
+    df = pl.DataFrame(schedules.rows_from(preview), schema=schedules.SCHEDULE_SCHEMA)
+    assert df.schema["home_score"] == pl.Int64
+    assert df.schema["game_pk"] == pl.Int64
+    scored = df.with_columns(pl.lit(3).cast(pl.Int64).alias("home_score"))
+    assert pl.concat([df, scored]).height == 2  # would raise SchemaError on Null
+
+
+def test_absent_boolean_stays_null_not_false():
+    """bool(None) is False, which ASSERTS a fact statsapi did not state.
+    movement.isOut is JSON-null in ~50 runner rows per season."""
+    payload = _feed_payload()
+    payload["liveData"]["plays"]["allPlays"][0]["runners"] = [{
+        "movement": {"originBase": None, "start": None, "end": "1B",
+                     "outBase": None, "isOut": None, "outNumber": None},
+        "details": {"event": "Single", "eventType": "single",
+                    "runner": {"id": 660271}, "responsiblePitcher": None},
+    }]
+    _, _, runners = parse.parse_bundle(payload)
+    assert runners[0]["is_out"] is None, "unknown must not become False"

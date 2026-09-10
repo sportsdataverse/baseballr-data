@@ -52,6 +52,8 @@ def build_side_formats(
     chain -- an R consumer reading a plain serialisation gets a bare data.frame
     and loses the class contract the loaders expect.
     """
+    import gzip
+
     import polars as pl
 
     _, stem = TAGS[dataset]
@@ -65,13 +67,13 @@ def build_side_formats(
 
     made = []
     csv_gz = out / f"{base}.csv.gz"
-    df.write_csv(csv_gz.with_suffix(""))  # polars writes plain csv
-    import gzip
-    import shutil
-
-    with open(csv_gz.with_suffix(""), "rb") as fi, gzip.open(csv_gz, "wb") as fo:
-        shutil.copyfileobj(fi, fo)
-    csv_gz.with_suffix("").unlink()
+    # Stream straight into the gzip handle. The previous form wrote the FULL
+    # uncompressed CSV, then copyfileobj'd it into a .gz, then unlinked it --
+    # which contradicts this module's own reason for existing: a season's
+    # plaintext CSV is multiples of the parquet, on the filesystem the space
+    # constraint is about. polars 1.x writes to a file handle directly.
+    with gzip.open(csv_gz, "wb") as fo:
+        df.write_csv(fo)
     made.append(csv_gz)
 
     try:

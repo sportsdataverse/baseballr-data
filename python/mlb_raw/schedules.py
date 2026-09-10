@@ -16,6 +16,8 @@ import gzip
 import json
 import pathlib
 
+import polars as pl
+
 from . import transport
 
 FLOOR = 1988  # first season with complete pitch-by-pitch; see the scoping note
@@ -38,6 +40,33 @@ GAME_TYPES = {
     "A": "all-star",
 }
 DEFAULT_TYPES = ("R", "F", "D", "L", "W")
+
+# Explicit dtypes, for the same reason parse.py carries them -- and this frame
+# is the one that most needs it: it holds game_pk, the join key against
+# mlb_pbp_*. An EARLY-SEASON build (every game still "Preview", scores absent)
+# infers home_score/away_score as Null dtype, and a later
+# pl.concat([null_season, int_season]) or scan_parquet("schedule/*.parquet")
+# then raises SchemaError -- order-dependently, which makes it harder to
+# diagnose, not easier.
+_I, _S = pl.Int64, pl.Utf8
+SCHEDULE_SCHEMA = {
+    "game_pk": _I, "game_date": _S, "game_datetime": _S, "season": _I,
+    "game_type": _S, "status_code": _S, "detailed_state": _S, "abstract_state": _S,
+    "home_team_id": _I, "home_team_name": _S, "home_score": _I,
+    "away_team_id": _I, "away_team_name": _S, "away_score": _I,
+    "venue_id": _I, "venue_name": _S,
+    "double_header": _S, "game_number": _I, "series_description": _S,
+}
+
+
+def _iid(v):
+    """Int64 or None -- never a float, never a stringified float."""
+    if v is None or v == "":
+        return None
+    try:
+        return int(v)
+    except (TypeError, ValueError):
+        return None
 
 
 def schedule_url(season: int) -> str:
@@ -67,24 +96,24 @@ def rows_from(payload: dict) -> "list[dict]":
             status = g.get("status") or {}
             rows.append(
                 {
-                    "game_pk": g.get("gamePk"),
+                    "game_pk": _iid(g.get("gamePk")),
                     "game_date": d.get("date"),
                     "game_datetime": g.get("gameDate"),
-                    "season": int(g["season"]) if g.get("season") else None,
+                    "season": _iid(g.get("season")),
                     "game_type": g.get("gameType"),
                     "status_code": status.get("statusCode"),
                     "detailed_state": status.get("detailedState"),
                     "abstract_state": status.get("abstractGameState"),
-                    "home_team_id": (home.get("team") or {}).get("id"),
+                    "home_team_id": _iid((home.get("team") or {}).get("id")),
                     "home_team_name": (home.get("team") or {}).get("name"),
-                    "home_score": home.get("score"),
-                    "away_team_id": (away.get("team") or {}).get("id"),
+                    "home_score": _iid(home.get("score")),
+                    "away_team_id": _iid((away.get("team") or {}).get("id")),
                     "away_team_name": (away.get("team") or {}).get("name"),
-                    "away_score": away.get("score"),
-                    "venue_id": (g.get("venue") or {}).get("id"),
+                    "away_score": _iid(away.get("score")),
+                    "venue_id": _iid((g.get("venue") or {}).get("id")),
                     "venue_name": (g.get("venue") or {}).get("name"),
                     "double_header": g.get("doubleHeader"),
-                    "game_number": g.get("gameNumber"),
+                    "game_number": _iid(g.get("gameNumber")),
                     "series_description": g.get("seriesDescription"),
                 }
             )
@@ -140,9 +169,7 @@ def build_season(root: pathlib.Path, season: int, *, force: bool = False) -> int
     if not rows:
         # Refuse to write an empty season rather than publishing a green zero.
         raise transport.TransportError(f"season {season} schedule returned 0 games")
-    import polars as pl
-
-    df = pl.DataFrame(rows)
+    df = pl.DataFrame(rows, schema=SCHEDULE_SCHEMA)
     out_pq.parent.mkdir(parents=True, exist_ok=True)
     df.write_parquet(out_pq)
     return len(rows)
