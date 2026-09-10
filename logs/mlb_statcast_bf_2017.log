@@ -1,0 +1,5 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20260910_025701.log  (watch: tail -f logs/mlb_04_statcast_20260910_025701.log)
+    2017-10: 1 scheduled date(s) have no Savant data at all (e.g. ['2017-10-10']) -- accepted
+statcast season 2017: {'captured': 9, 'skipped': 0, 'empty': 0, 'failed': 0, 'rows': 816568}
+EXIT=0
