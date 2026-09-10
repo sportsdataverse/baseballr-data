@@ -27,8 +27,10 @@ root filesystem is the small one here, and a season's staging is hundreds of MB.
 from __future__ import annotations
 
 import argparse
+import os
 import pathlib
 import sys
+import time
 
 TAGS = {
     "pbp": ("mlb_pbp", "mlb_pbp_{season}.parquet"),
@@ -36,6 +38,11 @@ TAGS = {
     "runners": ("mlb_runners", "mlb_runners_{season}.parquet"),
 }
 REPO = "sportsdataverse/sportsdataverse-data"
+
+# Pace/retry for GitHub's secondary (upload) rate limit -- env-only.
+RL_SLEEP = float(os.environ.get("SDV_MLB_PUBLISH_SLEEP", "2"))
+RL_BACKOFF = float(os.environ.get("SDV_MLB_PUBLISH_BACKOFF", "60"))
+RL_RETRIES = int(os.environ.get("SDV_MLB_PUBLISH_RETRIES", "5"))
 
 
 def state_dir(root: pathlib.Path) -> pathlib.Path:
@@ -125,8 +132,29 @@ def publish_season(
     def _push(f: pathlib.Path) -> int:
         # upload_artifacts globs a directory; an exact-name pattern makes sure
         # nothing unrelated beside the file is ever swept into a release.
-        r = upload_artifacts(f.parent, tag, REPO, pattern=f.name, dry_run=dry_run)
-        return r.get("uploaded", 0) if isinstance(r, dict) else 0
+        #
+        # RETRY ON RATE LIMIT. A 39-season x 3-dataset x 3-format publish is 351
+        # uploads, which trips GitHub's SECONDARY (upload) rate limit -- observed
+        # as `HTTP 403: API rate limit exceeded` after ~72 season-datasets, with
+        # 45 consecutive failures after it. gh exits non-zero and
+        # upload_artifacts propagates that, so without this the rest of the run
+        # is lost rather than merely delayed.
+        for attempt in range(RL_RETRIES):
+            try:
+                r = upload_artifacts(f.parent, tag, REPO, pattern=f.name, dry_run=dry_run)
+                if RL_SLEEP and not dry_run:
+                    time.sleep(RL_SLEEP)
+                return r.get("uploaded", 0) if isinstance(r, dict) else 0
+            except Exception as exc:  # noqa: BLE001 - only rate limits are retried
+                msg = str(exc).lower()
+                rate_limited = "rate limit" in msg or "403" in msg
+                if not rate_limited or attempt == RL_RETRIES - 1:
+                    raise
+                back = RL_BACKOFF * (2**attempt)
+                print(f"    rate limited on {f.name}; sleeping {back}s "
+                      f"(attempt {attempt + 1}/{RL_RETRIES})", flush=True)
+                time.sleep(back)
+        return 0
 
     uploaded += _push(parquet)
 
