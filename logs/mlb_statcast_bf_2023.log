@@ -1,0 +1,5 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20260909_224628.log  (watch: tail -f logs/mlb_04_statcast_20260909_224628.log)
+  2023-10: RuntimeError: 2023-10: partial month -- 1 of 24 scheduled game dates absent (e.g. ['2023-10-02']); refusing to bank it
+statcast season 2023: {'captured': 8, 'skipped': 0, 'empty': 0, 'failed': 1, 'rows': 804766}
+EXIT=1
