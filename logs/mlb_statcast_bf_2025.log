@@ -1,0 +1,4 @@
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20260909_211420.log  (watch: tail -f logs/mlb_04_statcast_20260909_211420.log)
+statcast season 2025: {'captured': 9, 'skipped': 0, 'empty': 0, 'failed': 0, 'rows': 834624}
+EXIT=0
