@@ -1,0 +1,6 @@
+/mnt/sdv_repos/sdv-py/sportsdataverse/mlb/mlb_statcast_parsers.py:44: DtypeWarning: Columns (0: if_fielding_alignment, 1: of_fielding_alignment) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(StringIO(text))
+/mnt/sdv_repos/sdv-py/sportsdataverse/mlb/mlb_statcast_parsers.py:44: DtypeWarning: Columns (0: if_fielding_alignment, 1: of_fielding_alignment) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(StringIO(text))
+statcast season 2015: {'captured': 9, 'skipped': 0, 'empty': 0, 'failed': 0, 'rows': 795019}
+EXIT=0
