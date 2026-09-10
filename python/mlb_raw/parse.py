@@ -36,6 +36,14 @@ PLAY_SCHEMA = {
     "rbi": _I, "away_score": _I, "home_score": _I,
     "is_scoring_play": _B, "outs": _I, "start_time": _S, "end_time": _S,
 }
+RUNNER_SCHEMA = {
+    "game_pk": _I, "at_bat_index": _I, "runner_id": _I,
+    "origin_base": _S, "start_base": _S, "end_base": _S, "out_base": _S,
+    "is_out": _B, "out_number": _I,
+    "event": _S, "event_type": _S, "movement_reason": _S,
+    "is_scoring_event": _B, "rbi": _B, "earned": _B,
+    "responsible_pitcher_id": _I,
+}
 PITCH_SCHEMA = {
     "game_pk": _I, "at_bat_index": _I, "pitch_number": _I,
     "batter_id": _I, "pitcher_id": _I,
@@ -58,9 +66,18 @@ def _iid(v):
         return None
 
 
-def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict]]":
+def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict], list[dict]]":
+    """plays, pitches, runners.
+
+    Runners are extracted as the RELATIONAL FACT statsapi ships -- one row per
+    runner movement -- not as reconstructed base-occupancy. RE24 needs
+    pre_1/2/3 base state, which is derivable from these rows by walking a
+    half-inning; doing that reconstruction here would bake one interpretation
+    of ambiguous movements into the raw corpus. Ship the facts, derive the
+    state downstream where it can be corrected without a re-parse.
+    """
     game_pk = _iid(payload.get("gamePk"))
-    plays_out, pitches_out = [], []
+    plays_out, pitches_out, runners_out = [], [], []
     for p in ((payload.get("liveData") or {}).get("plays") or {}).get("allPlays") or []:
         about, res, ma = p.get("about") or {}, p.get("result") or {}, p.get("matchup") or {}
         abi = _iid(about.get("atBatIndex"))
@@ -88,6 +105,20 @@ def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict]]":
                 "end_time": about.get("endTime"),
             }
         )
+        for r in p.get("runners") or []:
+            mv, de = r.get("movement") or {}, r.get("details") or {}
+            runners_out.append({
+                "game_pk": game_pk, "at_bat_index": abi,
+                "runner_id": _iid((de.get("runner") or {}).get("id")),
+                "origin_base": mv.get("originBase"), "start_base": mv.get("start"),
+                "end_base": mv.get("end"), "out_base": mv.get("outBase"),
+                "is_out": bool(mv.get("isOut")), "out_number": _iid(mv.get("outNumber")),
+                "event": de.get("event"), "event_type": de.get("eventType"),
+                "movement_reason": de.get("movementReason"),
+                "is_scoring_event": bool(de.get("isScoringEvent")),
+                "rbi": bool(de.get("rbi")), "earned": bool(de.get("earned")),
+                "responsible_pitcher_id": _iid((de.get("responsiblePitcher") or {}).get("id")),
+            })
         for e in p.get("playEvents") or []:
             if not e.get("isPitch"):
                 continue
@@ -123,7 +154,7 @@ def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict]]":
                     "hardness": hd.get("hardness"),
                 }
             )
-    return plays_out, pitches_out
+    return plays_out, pitches_out, runners_out
 
 
 def parse_season(root: pathlib.Path, season: int) -> dict:
@@ -132,12 +163,13 @@ def parse_season(root: pathlib.Path, season: int) -> dict:
     if not files:
         raise FileNotFoundError(f"no bundles in {raw_dir} -- run stage 02 first")
 
-    plays, pitches, bad = [], [], 0
+    plays, pitches, runners, bad = [], [], [], 0
     for f in files:
         try:
-            a, b = parse_bundle(json.loads(gzip.open(f).read()))
+            a, b, c = parse_bundle(json.loads(gzip.open(f).read()))
             plays.extend(a)
             pitches.extend(b)
+            runners.extend(c)
         except Exception as exc:  # noqa: BLE001 - a corrupt bundle must be named, not silent
             bad += 1
             print(f"  {f.name}: {type(exc).__name__}: {str(exc)[:80]}")
@@ -153,7 +185,13 @@ def parse_season(root: pathlib.Path, season: int) -> dict:
     pl.DataFrame(pitches, schema=PITCH_SCHEMA).write_parquet(
         out / f"mlb_pitches_{season}.parquet"
     )
-    return {"games": len(files), "plays": len(plays), "pitches": len(pitches), "unparsed": bad}
+    pl.DataFrame(runners, schema=RUNNER_SCHEMA).write_parquet(
+        out / f"mlb_runners_{season}.parquet"
+    )
+    return {
+        "games": len(files), "plays": len(plays), "pitches": len(pitches),
+        "runners": len(runners), "unparsed": bad,
+    }
 
 
 def main(argv: "list[str] | None" = None) -> int:

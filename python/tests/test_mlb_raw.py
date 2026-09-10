@@ -136,7 +136,7 @@ def _feed_payload():
 def test_pitch_extraction_reaches_the_tracking_fields():
     """Guards the null-tracking regression: these live at
     pitchData.coordinates.pX and pitchData.breaks.spinRate, not on the event."""
-    plays, pitches = parse.parse_bundle(_feed_payload())
+    plays, pitches, _ = parse.parse_bundle(_feed_payload())
     assert len(plays) == 1
     assert len(pitches) == 1, "non-pitch playEvents must not become pitch rows"
     p = pitches[0]
@@ -149,16 +149,38 @@ def test_pitch_extraction_reaches_the_tracking_fields():
 def test_ids_are_int_not_float_or_stringified_float():
     """The recurring cross-language join bug: a float-origin id becomes '123.0'
     and silently matches nothing."""
-    plays, pitches = parse.parse_bundle(_feed_payload())
+    plays, pitches, _ = parse.parse_bundle(_feed_payload())
     for row in (plays[0], pitches[0]):
         for key in ("game_pk", "batter_id", "pitcher_id", "at_bat_index"):
             assert isinstance(row[key], int), f"{key} is {type(row[key])}"
 
 
+def test_runner_movements_are_extracted_as_facts_not_reconstructed_state():
+    """RE24 needs base-out state, which sdv-py expects as pre_1/2/3 columns.
+    We ship the RELATIONAL FACT statsapi gives (one row per runner movement)
+    rather than reconstructing occupancy in the parser -- that derivation can
+    then be corrected downstream without re-parsing 91k bundles."""
+    payload = _feed_payload()
+    payload["liveData"]["plays"]["allPlays"][0]["runners"] = [{
+        "movement": {"originBase": None, "start": None, "end": "1B",
+                     "outBase": None, "isOut": False, "outNumber": None},
+        "details": {"event": "Single", "eventType": "single",
+                    "runner": {"id": 660271}, "isScoringEvent": False,
+                    "rbi": False, "earned": False, "responsiblePitcher": None},
+    }]
+    _, _, runners = parse.parse_bundle(payload)
+    assert len(runners) == 1
+    r = runners[0]
+    assert r["runner_id"] == 660271 and isinstance(r["runner_id"], int)
+    assert r["end_base"] == "1B"
+    assert r["is_out"] is False
+    assert r["game_pk"] == 745444
+
+
 def test_missing_ids_become_none_not_zero():
     payload = _feed_payload()
     payload["liveData"]["plays"]["allPlays"][0]["matchup"] = {}
-    plays, _ = parse.parse_bundle(payload)
+    plays, _, _ = parse.parse_bundle(payload)
     assert plays[0]["batter_id"] is None
 
 

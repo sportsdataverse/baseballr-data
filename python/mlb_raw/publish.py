@@ -33,6 +33,7 @@ import sys
 TAGS = {
     "pbp": ("mlb_pbp", "mlb_pbp_{season}.parquet"),
     "pitches": ("mlb_pitches", "mlb_pitches_{season}.parquet"),
+    "runners": ("mlb_runners", "mlb_runners_{season}.parquet"),
 }
 REPO = "sportsdataverse/sportsdataverse-data"
 
