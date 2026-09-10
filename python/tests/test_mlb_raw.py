@@ -269,3 +269,48 @@ def test_absent_boolean_stays_null_not_false():
     }]
     _, _, runners = parse.parse_bundle(payload)
     assert runners[0]["is_out"] is None, "unknown must not become False"
+
+
+def test_dropped_chunk_refused_but_genuine_savant_absence_accepted(tmp_path, monkeypatch):
+    """The partial-month guard must tell two things apart.
+
+    A game in "Completed Early"/suspended state finishes on a later calendar day
+    while its pitches stay filed under the ORIGINAL date -- so the completion
+    date has a Final game and zero Savant rows, legitimately. Verified live:
+    2023-10-02 returns 0 rows on a direct single-date query while 10-01 and
+    10-03 return 4,402 and 1,184. Refusing that month forever would be wrong;
+    accepting a DROPPED 7-day chunk would be the original bug.
+    """
+    import polars as pl
+    from mlb_raw import statcast
+
+    monkeypatch.setattr(statcast, "SLEEP", 0)
+    monkeypatch.setattr(
+        statcast, "scheduled_game_dates",
+        lambda root, season, month: {"2023-10-01", "2023-10-02"},
+    )
+
+    def fake_search(start, end, **kw):
+        if start == end:                       # single-date re-probe
+            return pl.DataFrame({"game_date": []}) if start == "2023-10-02" \
+                else pl.DataFrame({"game_date": [start] * 10})
+        return pl.DataFrame({"game_date": ["2023-10-01"] * 10})   # month pull
+
+    monkeypatch.setattr(
+        "sportsdataverse.mlb.mlb_statcast_extra.mlb_statcast_search", fake_search
+    )
+    status, rows = statcast.capture_month(tmp_path, 2023, 10)
+    assert status == "captured", "a date Savant genuinely lacks must not block the month"
+    assert rows == 10
+
+    # now the same shape, but the missing date DOES have Savant rows -> dropped chunk
+    def dropping_search(start, end, **kw):
+        if start == end:
+            return pl.DataFrame({"game_date": [start] * 10})      # both dates real
+        return pl.DataFrame({"game_date": ["2023-10-01"] * 10})   # month lost one
+    monkeypatch.setattr(
+        "sportsdataverse.mlb.mlb_statcast_extra.mlb_statcast_search", dropping_search
+    )
+    import pytest
+    with pytest.raises(RuntimeError, match="chunk was dropped"):
+        statcast.capture_month(tmp_path, 2023, 11)

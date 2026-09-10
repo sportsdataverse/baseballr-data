@@ -104,10 +104,33 @@ def capture_month(
         got = set(df.get_column("game_date").cast(pl.Utf8).to_list())
         missing = expected - got
         if missing:
-            raise RuntimeError(
-                f"{season}-{month:02d}: partial month -- {len(missing)} of "
-                f"{len(expected)} scheduled game dates absent "
-                f"(e.g. {sorted(missing)[:3]}); refusing to bank it"
+            # A missing date is NOT automatically a dropped chunk. Savant
+            # genuinely has no rows for some scheduled dates -- a game in
+            # "Completed Early"/suspended state is finished on a later calendar
+            # day and its pitches stay filed under the ORIGINAL date, so the
+            # completion date has a Final game and zero Statcast rows.
+            # Verified: 2023-10-02 (Marlins-Mets, "Completed Early") returns 0
+            # rows on a direct single-date query, while 10-01 and 10-03 return
+            # 4,402 and 1,184.
+            #
+            # Re-probe each missing date individually -- no chunking involved,
+            # so a zero there is Savant's answer, not our fetch losing a week.
+            # Missing dates are rare, so this costs a handful of requests.
+            truly_absent, dropped = set(), set()
+            for d in sorted(missing):
+                probe = mlb_statcast_search(d, d)
+                (truly_absent if probe is None or probe.height == 0 else dropped).add(d)
+            if dropped:
+                raise RuntimeError(
+                    f"{season}-{month:02d}: partial month -- {len(dropped)} date(s) "
+                    f"have Savant rows but are absent from the month pull "
+                    f"(e.g. {sorted(dropped)[:3]}); a chunk was dropped, refusing to bank"
+                )
+            print(
+                f"    {season}-{month:02d}: {len(truly_absent)} scheduled date(s) "
+                f"have no Savant data at all (e.g. {sorted(truly_absent)[:2]}) -- "
+                "accepted",
+                flush=True,
             )
 
     out.parent.mkdir(parents=True, exist_ok=True)
