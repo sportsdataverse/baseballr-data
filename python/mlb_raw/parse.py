@@ -36,6 +36,11 @@ PLAY_SCHEMA = {
     "event_type": _S, "event": _S, "description": _S,
     "rbi": _I, "away_score": _I, "home_score": _I,
     "is_scoring_play": _B, "outs": _I, "start_time": _S, "end_time": _S,
+    # POST-state base occupancy, shipped BY statsapi on the play
+    # (matchup.postOnFirst/Second/Third). Present from 1988, the corpus
+    # floor. This is a FACT, not a reconstruction -- deriving it from
+    # runner movements is an approximation of data already in the payload.
+    "post_on_first_id": _I, "post_on_second_id": _I, "post_on_third_id": _I,
 }
 RUNNER_SCHEMA = {
     "game_pk": _I, "at_bat_index": _I, "runner_id": _I,
@@ -111,6 +116,9 @@ def parse_bundle(payload: dict) -> "tuple[list[dict], list[dict], list[dict]]":
                 "outs": _iid((p.get("count") or {}).get("outs")),
                 "start_time": about.get("startTime"),
                 "end_time": about.get("endTime"),
+                "post_on_first_id": _iid((ma.get("postOnFirst") or {}).get("id")),
+                "post_on_second_id": _iid((ma.get("postOnSecond") or {}).get("id")),
+                "post_on_third_id": _iid((ma.get("postOnThird") or {}).get("id")),
             }
         )
         for r in p.get("runners") or []:

@@ -314,3 +314,41 @@ def test_dropped_chunk_refused_but_genuine_savant_absence_accepted(tmp_path, mon
     import pytest
     with pytest.raises(RuntimeError, match="chunk was dropped"):
         statcast.capture_month(tmp_path, 2023, 11)
+
+
+def test_post_state_is_read_from_statsapi_not_reconstructed():
+    """statsapi ships base occupancy on the play itself
+    (matchup.postOnFirst/Second/Third), present from 1988. An earlier version
+    DERIVED it by walking runner movements and could not reach the RE24 parity
+    gate: max |RE24 - published| was 0.378 against a 0.05 requirement, because
+    a movement walk cannot resolve pinch runners, appeals or obstruction.
+    Reading the field gives 0.0016."""
+    payload = _feed_payload()
+    payload["liveData"]["plays"]["allPlays"][0]["matchup"].update(
+        {"postOnFirst": {"id": 111}, "postOnSecond": None, "postOnThird": {"id": 333}}
+    )
+    plays, _, _ = parse.parse_bundle(payload)
+    p = plays[0]
+    assert p["post_on_first_id"] == 111
+    assert p["post_on_second_id"] is None, "an empty base must be null, not 0"
+    assert p["post_on_third_id"] == 333
+    for k in ("post_on_first_id", "post_on_third_id"):
+        assert isinstance(p[k], int)
+
+
+def test_adapter_renames_without_deriving():
+    import polars as pl
+    from mlb_raw.base_state import SDV_PY_COLUMNS, to_sdv_py
+
+    tidy = pl.DataFrame({
+        "game_pk": [1], "at_bat_index": [0], "inning": [1], "half_inning": ["top"],
+        "away_score": [0], "home_score": [0], "outs": [1],
+        "post_on_first_id": [111], "post_on_second_id": [None], "post_on_third_id": [333],
+    })
+    out = to_sdv_py(tidy)
+    assert out.columns == SDV_PY_COLUMNS
+    assert out["matchup_post_on_first_id"][0] == 111
+
+    import pytest
+    with pytest.raises(KeyError, match="reparse with stage 03"):
+        to_sdv_py(tidy.drop("post_on_first_id"))
