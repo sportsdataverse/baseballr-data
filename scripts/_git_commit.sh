@@ -59,11 +59,35 @@ sdv_commit_push() {
     fi
     echo "push rejected (attempt $attempt); syncing with origin"
     git fetch --quiet origin main || true
+    # Stash tracked modifications before rebasing. A caller's own driver writes
+    # its closing lines to logs/ AFTER this function commits -- `tee -a` and a
+    # final `echo` both land post-commit -- so the tree is reliably dirty by the
+    # time a rejected push needs a rebase, and git refuses with "cannot rebase:
+    # You have unstaged changes". Observed live 2026-09-12: every stage green,
+    # parse clean, and the run still exited 1 because the MLB Models GH Action
+    # had pushed in the meantime.
+    #
+    # BOUNDED, not --autostash: autostash takes the whole tree unconditionally,
+    # and an in-flight parse in a sibling process can leave tens of thousands of
+    # modified parquets, where it dies with "patch too large". Refuse loudly
+    # above the bound instead of stashing a data tree out from under another job.
+    local _dirty _stashed=0
+    _dirty=$(git diff --name-only | wc -l | tr -d ' ')
+    if [ "$_dirty" -gt "${SDV_MAX_STASH_FILES:-50}" ]; then
+      echo "::error ::${_dirty} modified files -- refusing to stash for a rebase" >&2
+      echo "       (another job may be mid-write; commit is safe locally)" >&2
+      return 1
+    fi
+    if [ "$_dirty" -gt 0 ]; then
+      git stash push --quiet --include-untracked=false 2>/dev/null && _stashed=1
+    fi
     if ! git rebase --merge origin/main >/dev/null 2>&1; then
       git rebase --abort >/dev/null 2>&1 || true
+      [ "$_stashed" = 1 ] && git stash pop --quiet 2>/dev/null
       echo "::error ::cannot rebase onto origin/main for: $msg"
       return 1
     fi
+    [ "$_stashed" = 1 ] && git stash pop --quiet 2>/dev/null
   done
   echo "::error ::push still rejected after 3 attempts: $msg"
   return 1
