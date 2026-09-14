@@ -150,5 +150,30 @@ jobs:
             echo "no tree changes"
           else
             git commit -m "MLB Models update (Start: ${SEASONS%%:*} End: ${SEASONS##*:})"
-            git push
+            # The droplet's daily_mlb_capture.sh pushes mlb/raw, mlb/pbp and
+            # mlb/schedule to this branch at 15:00 UTC, and GitHub delays this
+            # schedule by hours (2026-09-13: queued 10:30, started 14:32,
+            # pushed 15:49) -- so the two overlap and a bare `git push` lost
+            # the race: "[rejected] main -> main (fetch first)", exit 1, after
+            # every release upload had already succeeded. The trees are
+            # disjoint (this job writes mlb/<dataset>/parquet/), so a rebase
+            # replays cleanly. Deepen first: checkout is depth 1 and a rebase
+            # needs the merge base. --merge, never the am backend, which
+            # stalls base64-encoding parquet.
+            pushed=0
+            for attempt in 1 2 3 4; do
+              if git push origin HEAD:main; then pushed=1; break; fi
+              echo "push rejected (attempt $attempt); rebasing onto origin/main"
+              git fetch --depth=200 origin main
+              if ! git rebase --merge origin/main; then
+                git rebase --abort || true
+                echo "::error ::cannot rebase the mlb tree commit onto origin/main"
+                exit 1
+              fi
+              sleep $((attempt * 15))
+            done
+            if [ "$pushed" -ne 1 ]; then
+              echo "::error ::push still rejected after 4 attempts"
+              exit 1
+            fi
           fi
