@@ -78,10 +78,14 @@ sdv_commit_push() {
       echo "       (another job may be mid-write; commit is safe locally)" >&2
       return 1
     fi
+    # Plain `stash push` already leaves untracked files alone. stderr stays
+    # visible: `--include-untracked=false` (not valid syntax, rc=129) sat here
+    # behind 2>/dev/null from 2026-09-12 to 09-17, stashed nothing, and every
+    # rejected push still died on the dirty tree.
     if [ "$_dirty" -gt 0 ]; then
-      git stash push --quiet --include-untracked=false 2>/dev/null && _stashed=1
+      git stash push --quiet && _stashed=1
     fi
-    if ! git rebase --merge origin/main >/dev/null 2>&1; then
+    if ! git rebase --merge origin/main >/dev/null; then
       git rebase --abort >/dev/null 2>&1 || true
       [ "$_stashed" = 1 ] && git stash pop --quiet 2>/dev/null
       echo "::error ::cannot rebase onto origin/main for: $msg"
