@@ -12,3 +12,5 @@ log -> logs/mlb_03_parse_20260917_110019.log  (watch: tail -f logs/mlb_03_parse_
 parse season 2026: {'games': 2286, 'plays': 173461, 'pitches': 672293, 'runners': 234030, 'unparsed': 0}
 EXIT=0
 [2026-09-17 15:01:27Z] daily mlb stages done (rc_total=0)
+pushed: feat(mlb): season 2026 daily capture (attempt 1)
+[2026-09-17 15:01:45Z] daily mlb done EXIT=0
