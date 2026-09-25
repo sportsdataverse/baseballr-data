@@ -55,9 +55,15 @@ for season in $(seq "$START" -1 "$END"); do
   if [ $rc -ne 0 ] && grep -qi "zero teams\|no teams" "logs/bf_${season}_01.log"; then
     echo "season ${season}: no D1 teams -- COVERAGE FLOOR"; echo "BACKFILL FLOOR REACHED at ${season}"; exit 0
   fi
-  [ $rc -ne 0 ] && echo "season ${season} 01 rc=${rc} (continuing)"
   COMMIT_MSG="feat(ncaa): season ${season} schedules discovery (stage 01)" \
     commit ncaa/teams_html ncaa/schedules_html ncaa/schedule_master ncaa/teams/parquet
+  if [ $rc -ne 0 ]; then
+    # No schedule master without a clean stage 01, so every later stage would run
+    # on nothing (and 07 could publish it). The pages fetched so far are committed
+    # above and stage 01 is file-exists resumable: stop, and a rerun picks up here.
+    echo "season ${season} 01 rc=${rc} -- STOPPING (rerun resumes; see logs/bf_${season}_01.log)"
+    exit 1
+  fi
 
   # 4) rosters
   "$PY" python/ncaa_baseball_04_rosters_scrape.py --season "$season" > "logs/bf_${season}_04.log" 2>&1 || true
