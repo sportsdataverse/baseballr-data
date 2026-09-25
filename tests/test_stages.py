@@ -171,6 +171,21 @@ def test_rosters_scrape_resumable(tmp_path: Path) -> None:
     assert stats == {"fetched": 0, "skipped": 2}
 
 
+def test_rosters_scrape_shards_are_disjoint_and_cover_every_team(tmp_path: Path) -> None:
+    _scraped_root(tmp_path)
+    pages = {
+        "teams/614839/roster": ROSTER,
+        "teams/900001/roster": "<html>bare</html>",
+    }
+    per_shard: "list[list[str]]" = [[], []]
+    for i in range(2):
+        rosters.scrape_rosters(
+            2026, (1,), root=tmp_path, fetch_fn=_fetch(pages, per_shard[i]), shard=(i, 2)
+        )
+    assert [len(c) for c in per_shard] == [1, 1]  # each shard fetches only its own team
+    assert sorted(per_shard[0] + per_shard[1]) == sorted(pages)  # together: every team, once
+
+
 def test_rosters_scrape_requires_stage_01(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError, match="run stage 01"):
         rosters.scrape_rosters(2026, (1,), root=tmp_path, fetch_fn=lambda p: "")

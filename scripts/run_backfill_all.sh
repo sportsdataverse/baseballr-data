@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Orchestrator: full NCAA-baseball capture campaign, one season at a time.
 #   ./scripts/run_backfill_all.sh 2026 2024          # newest -> oldest
-# Per season: 01 schedules (D1-3) -> 04 rosters -> 02 games (SHARDS workers)
+# Per season: 01 schedules (D1-3) -> 04 rosters + 02 games (SHARDS browser shards each)
 # -> 03 parse -> 06 xwalk -> 03 re-parse (espn stamps) -> 05 reference
 # datasets -> 07 build+publish; git commit+push per stage (season-sized
 # batches). Every stage is file-exists resumable; re-running fast-forwards.
@@ -12,7 +12,8 @@ cd "$(dirname "$0")/.." || exit 1
 ROOT="$(pwd)"
 START="${1:?start season (e.g. 2026)}"
 END="${2:?end season (e.g. 2024)}"
-SHARDS="${SHARDS:-8}"
+SHARDS="${SHARDS:-8}"            # browser processes for stages 04 + 02 (capped by memory below)
+PARSE_WORKERS="${PARSE_WORKERS:-8}"  # stage 03 is CPU-bound: more than the core count buys nothing
 export PYTHONPATH="${ROOT}/python" PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
 # Chromium temp profiles on block storage, not the small root disk
 # (2026-08-21: leaked profiles filled / on the MFB campaign).
@@ -39,6 +40,39 @@ source "$(dirname "$0")/_git_commit.sh"
 # the explicit pathspecs did not exist yet. BACKFILL_RC carries the failure to
 # the exit code instead of losing it between seasons.
 BACKFILL_RC=0
+
+# One browser shard (python + playwright driver + chromium) is ~0.8 GB (measured
+# 2026-09-25). Cap the fan-out to what is free right now, so a big SHARDS can't
+# OOM the droplet (the 2026-08-23 chromium OOM storm took SSH down with it).
+shard_count() {
+  local cap=$(( $(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo) / 900 ))
+  [ "$cap" -lt 1 ] && cap=1
+  if [ "$SHARDS" -gt "$cap" ]; then
+    echo "SHARDS=${SHARDS} capped to ${cap} by available memory" >&2; echo "$cap"
+  else
+    echo "$SHARDS"
+  fi
+}
+# Every fetcher starts at pool index 0, so unrotated shards all open on the same
+# proxy (one exit IP taking every shard's Terms acceptances). Rotate the pool so
+# shard i starts i/n of the way through it.
+shard_pool() {
+  local IFS=, off
+  local -a p=($NCAA_PROXY_POOL)
+  off=$(( $1 * ${#p[@]} / $2 ))
+  echo "${p[*]:off}${off:+,}${p[*]:0:off}" | sed 's/,$//'
+}
+run_shards() {  # $1=stage script  $2=log prefix  $3=season
+  local n i
+  n=$(shard_count)
+  for i in $(seq 0 $((n - 1))); do
+    NCAA_PROXY_POOL="$(shard_pool "$i" "$n")" "$PY" "python/$1" --season "$3" --shard "$i/$n" \
+      > "logs/${2}_shard${i}.log" 2>&1 &
+    sleep 3
+  done
+  wait
+}
+
 commit() { sdv_commit_push "$COMMIT_MSG" "$@" || BACKFILL_RC=1; }
 
 for season in $(seq "$START" -1 "$END"); do
@@ -65,18 +99,13 @@ for season in $(seq "$START" -1 "$END"); do
     exit 1
   fi
 
-  # 4) rosters
-  "$PY" python/ncaa_baseball_04_rosters_scrape.py --season "$season" > "logs/bf_${season}_04.log" 2>&1 || true
+  # 4) rosters: sharded like stage 02 (one browser each)
+  run_shards ncaa_baseball_04_rosters_scrape.py "bf_${season}_04" "$season"
   COMMIT_MSG="feat(ncaa): season ${season} rosters (stage 04)" commit ncaa/rosters_html
 
-  # 2) games: SHARDS workers over the season's contests
-  for i in $(seq 0 $((SHARDS - 1))); do
-    "$PY" python/ncaa_baseball_02_games_scrape.py --season "$season" --shard "$i/$SHARDS" \
-      > "logs/bf_${season}_02_shard${i}.log" 2>&1 &
-    sleep 3
-  done
-  wait
-  grep -h 'captured\|capture:' logs/bf_${season}_02_shard*.log | tail -${SHARDS} || true
+  # 2) games: sharded over the season's contests
+  run_shards ncaa_baseball_02_games_scrape.py "bf_${season}_02" "$season"
+  grep -h 'captured\|capture:' logs/bf_${season}_02_shard*.log || true
   COMMIT_MSG="feat(ncaa): season ${season} game bundles (stage 02)" commit "ncaa/raw/${season}"
 
   # 6) xwalk BEFORE final parse so payloads get espn stamps
@@ -84,7 +113,7 @@ for season in $(seq "$START" -1 "$END"); do
   COMMIT_MSG="feat(ncaa): season ${season} espn xwalk (stage 06)" commit ncaa/xwalk
 
   # 3) parse (espn index now on disk)
-  "$PY" python/ncaa_baseball_03_games_parse.py --season "$season" --workers 8 > "logs/bf_${season}_03.log" 2>&1 || true
+  "$PY" python/ncaa_baseball_03_games_parse.py --season "$season" --workers "$PARSE_WORKERS" > "logs/bf_${season}_03.log" 2>&1 || true
   COMMIT_MSG="feat(ncaa): season ${season} parsed payloads (stage 03)" commit ncaa/json
 
   # 5) reference datasets (offline)

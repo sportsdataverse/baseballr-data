@@ -11,9 +11,10 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Optional, Tuple
 
 from ncaa_pbp.discover import FetchFn, browser_fetch_fn, proxy_pool_from_env
+from ncaa_pbp.games import parse_shard
 from ncaa_pbp.schedules import (
     DEFAULT_DIVISIONS,
     DIVISIONS,
@@ -33,8 +34,13 @@ def scrape_rosters(
     *,
     root: "str | Path" = REPO_ROOT,
     fetch_fn: FetchFn,
+    shard: "Optional[Tuple[int, int]]" = None,
 ) -> "Dict[str, int]":
-    """Fetch every missing roster page. Returns ``{"fetched": n, "skipped": n}``."""
+    """Fetch every missing roster page. Returns ``{"fetched": n, "skipped": n}``.
+
+    ``shard=(i, n)`` takes every n-th team from offset i, so N processes started
+    with disjoint shards split one season between them (like stage 02).
+    """
     from sportsdataverse.scrape.ncaa.reference import parse_ncaa_team_list
 
     team_ids: "list[str]" = []
@@ -43,8 +49,11 @@ def scrape_rosters(
         if not path.is_file():
             raise FileNotFoundError(f"{path} missing -- run stage 01 (schedules_scrape) for season {season} first")
         team_ids.extend(parse_ncaa_team_list(path.read_text(encoding="utf-8")).get_column("team_id").to_list())
+    ids = list(dict.fromkeys(team_ids))
+    if shard:
+        ids = ids[shard[0] :: shard[1]]
     stats = {"fetched": 0, "skipped": 0}
-    for team_id in dict.fromkeys(team_ids):
+    for team_id in ids:
         path = roster_html_path(root, season, team_id)
         if path.is_file():
             stats["skipped"] += 1
@@ -64,6 +73,9 @@ def main(argv: "list[str] | None" = None) -> int:
         default=None,
         help="one division (default: D-I only)",
     )
+    ap.add_argument(
+        "--shard", type=parse_shard, default=None, help="i/N -- this process's slice of the teams"
+    )
     ap.add_argument("--root", default=str(REPO_ROOT))
     args = ap.parse_args(argv)
 
@@ -74,7 +86,9 @@ def main(argv: "list[str] | None" = None) -> int:
     fetch = browser_fetch_fn(proxy_pool=pool)  # one held session
 
     divisions = (args.division,) if args.division else DEFAULT_DIVISIONS
-    stats = scrape_rosters(args.season, divisions, root=Path(args.root), fetch_fn=fetch)
+    stats = scrape_rosters(
+        args.season, divisions, root=Path(args.root), fetch_fn=fetch, shard=args.shard
+    )
     print(f"[rosters] {args.season}: {stats}", flush=True)
     return 0
 
