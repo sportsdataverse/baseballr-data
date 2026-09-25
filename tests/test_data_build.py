@@ -264,6 +264,19 @@ def test_schedule_prefers_capture_master(tree: Path, tmp_path: Path) -> None:
     assert "contest_id" in sched.columns  # came from schedule_master, not legacy
 
 
+def test_legacy_schedule_wins_over_backfilled_master(tree: Path, tmp_path: Path) -> None:
+    # a pre-2024 capture backfill writes a master; the released R-era asset keeps its shape
+    pl.DataFrame({"contest_id": ["1"]}).write_parquet(
+        tree / f"ncaa/schedule_master/parquet/{LEGACY_SEASON}.parquet"
+    )
+    base = tmp_path / "out"
+    assert _build(base, tree, LEGACY_SEASON, dataset="schedule") == 0
+    sched = pl.read_parquet(
+        base / f"ncaa/schedule/parquet/ncaa_baseball_schedule_{LEGACY_SEASON}.parquet"
+    )
+    assert "home_team" in sched.columns and "contest_id" not in sched.columns
+
+
 def test_missing_season_fails_loudly(tree: Path, tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         _build(tmp_path / "out", tree, 2013, dataset="pbp")

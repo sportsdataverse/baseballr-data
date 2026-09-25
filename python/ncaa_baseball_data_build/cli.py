@@ -45,11 +45,16 @@ def _reference_frame(spec: DatasetSpec, season: int, raw: Path) -> pl.DataFrame:
         return pl.read_parquet(f)
     # schedule: capture-era schedule master when present, else the committed
     # legacy R-era frame re-emitted AS-IS (loaders depend on its columns --
-    # never reshape it; the season stamp is the only addition).
+    # never reshape it; the season stamp is the only addition). Through
+    # _LEGACY_SCHEDULE_LAST the legacy frame wins even when a master exists:
+    # a pre-2024 capture backfill writes masters, and publishing one would
+    # swap an already-released asset to the team-perspective schema.
     master = raw / "ncaa" / "schedule_master" / "parquet" / f"{season}.parquet"
+    legacy = raw / "ncaa" / "schedules" / "parquet" / f"{spec.stem}_{season}.parquet"
+    if season <= _LEGACY_SCHEDULE_LAST and legacy.is_file():
+        return pl.read_parquet(legacy)
     if master.is_file():
         return pl.read_parquet(master)
-    legacy = raw / "ncaa" / "schedules" / "parquet" / f"{spec.stem}_{season}.parquet"
     if legacy.is_file():
         return pl.read_parquet(legacy)
     raise FileNotFoundError(f"schedule {season}: neither {master} nor {legacy} exists")
