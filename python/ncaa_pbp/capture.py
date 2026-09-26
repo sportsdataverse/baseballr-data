@@ -8,7 +8,8 @@ and writes one gzipped JSON bundle per contest to ``{out_dir}/{id}.json.gz``
 (stage 02 passes ``ncaa/raw/{season}``) -- the tree the ``-data`` ingest + the
 sdv-py ``college_baseball_ncaa_*`` parsers read. ``play_by_play`` is the validity
 gate; the other tabs are best-effort
-(stored ``null`` if a fetch fails). Resume is file-exists based (Ctrl-C safe). A
+(stored ``null`` if a fetch fails, and refetched on the next run). Resume skips only
+complete bundles (Ctrl-C safe: bundles are written atomically). A
 consecutive-failure breaker hard-stops a ban/challenge storm instead of grinding.
 
 Sport-agnostic: the same capture serves baseball (MBA) and softball (WSB) -- both
@@ -40,9 +41,25 @@ def bundle_path(contest_id: "str | int", out_dir: "str | Path") -> Path:
     return Path(out_dir) / f"{contest_id}.json.gz"
 
 
+def _load_bundle(path: Path) -> "Optional[dict[str, object]]":
+    """A saved bundle, or None when absent or unreadable (a write cut short by a kill)."""
+    try:
+        with gzip.open(path, "rt", encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, EOFError, ValueError):
+        return None
+
+
+def _missing_tabs(bundle: "dict[str, object]") -> "list[str]":
+    return [tab for tab in _EXTRA_TABS if bundle.get(tab) is None]
+
+
 def is_captured(contest_id: "str | int", out_dir: "str | Path") -> bool:
-    """Resume predicate -- a bundle already on disk is skipped."""
-    return bundle_path(contest_id, out_dir).exists()
+    """Resume predicate -- only a COMPLETE bundle is skipped. A tab whose fetch was
+    refused (a site-wide Terms lockout) is stored null; counting that bundle as
+    captured hid the gap from stage 02's retry passes and its publish gate."""
+    bundle = _load_bundle(bundle_path(contest_id, out_dir))
+    return bundle is not None and not _missing_tabs(bundle)
 
 
 def _looks_real(html: "Optional[str]") -> bool:
@@ -52,30 +69,35 @@ def _looks_real(html: "Optional[str]") -> bool:
 
 
 def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | Path") -> str:
-    """Fetch + persist one contest bundle.
+    """Fetch + persist one contest bundle, or repair a saved one's null tabs.
 
-    Returns ``"skipped"`` (already captured), ``"captured"``, or ``"failed"``
-    (fetch raised, or the pbp page was not real content).
+    Returns ``"skipped"`` (already complete), ``"captured"`` (written or repaired),
+    or ``"failed"`` (fetch raised, or the pbp page was not real content).
     """
-    if is_captured(contest_id, out_dir):
+    path = bundle_path(contest_id, out_dir)
+    bundle = _load_bundle(path)
+    if bundle is None:
+        try:
+            pbp = fetch_fn(f"contests/{contest_id}/play_by_play")
+        except Exception:  # noqa: BLE001 - any transport failure = a failed capture, breaker counts it
+            return "failed"
+        if not _looks_real(pbp):
+            return "failed"
+        bundle = {"contest_id": str(contest_id), "play_by_play": pbp}
+    todo = _missing_tabs(bundle)
+    if not todo:
         return "skipped"
-    try:
-        pbp = fetch_fn(f"contests/{contest_id}/play_by_play")
-    except Exception:  # noqa: BLE001 - any transport failure = a failed capture, breaker counts it
-        return "failed"
-    if not _looks_real(pbp):
-        return "failed"
-    bundle: "dict[str, object]" = {"contest_id": str(contest_id), "play_by_play": pbp}
-    for tab in _EXTRA_TABS:  # best-effort; pbp already landed, so a tab miss is null
+    for tab in todo:  # best-effort; pbp already landed, so a tab miss is null (a rerun repairs it)
         try:
             bundle[tab] = fetch_fn(f"contests/{contest_id}/{tab}")
         except Exception:  # noqa: BLE001
             bundle[tab] = None
     bundle["captured_at"] = datetime.now(timezone.utc).isoformat()
-    path = bundle_path(contest_id, out_dir)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with gzip.open(path, "wt", encoding="utf-8") as fh:
+    tmp = path.with_name(path.name + ".tmp")  # atomic: a kill never leaves a half-written bundle
+    with gzip.open(tmp, "wt", encoding="utf-8") as fh:
         json.dump(bundle, fh)
+    tmp.replace(path)
     return "captured"
 
 
