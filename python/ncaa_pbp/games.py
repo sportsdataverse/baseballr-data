@@ -14,6 +14,8 @@ and the run exits rc=1 -- cool down, re-run, it resumes.
 from __future__ import annotations
 
 import argparse
+import logging
+import os
 import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
@@ -94,9 +96,15 @@ def main(argv: "list[str] | None" = None) -> int:
         help="capture every division in the master (D-II/III backfill)",
     )
     args = ap.parse_args(argv)
+    # sdv-py's fetch layer logs why it rotated a proxy at DEBUG; NCAA_LOG_LEVEL=DEBUG shows it.
+    logging.basicConfig(format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+    level = os.environ.get("NCAA_LOG_LEVEL", "WARNING").upper()
+    logging.getLogger("sportsdataverse").setLevel(level)
     root = Path(args.root)
 
-    divisions = None if args.all_divisions else ((args.division,) if args.division else DEFAULT_DIVISIONS)
+    divisions = (
+        None if args.all_divisions else ((args.division,) if args.division else DEFAULT_DIVISIONS)
+    )
     contests = contest_ids_from_master(root, args.season, divisions)
     if args.shard:
         i, n = args.shard
