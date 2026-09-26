@@ -1,0 +1,348 @@
+[games] shard 3/8: 1054 contests
+2026-09-25 23:25:13,357 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:25:30,601 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293170/play_by_play -- backing off 300 s (1/3)
+2026-09-25 23:30:42,961 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:30:59,857 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293170/play_by_play -- backing off 300 s (2/3)
+2026-09-25 23:36:12,220 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:36:31,640 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:36:50,348 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:37:09,266 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:37:27,864 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:37:43,609 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-25 23:37:52,057 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-25 23:38:00,466 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-25 23:38:00,466 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10019: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293196/situational_stats
+2026-09-25 23:38:00,467 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-25 23:38:01,468 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10020 (relaunching context)
+2026-09-25 23:38:21,540 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:38:47,940 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:39:13,337 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:39:38,121 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:40:02,906 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:40:27,949 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-25 23:40:37,590 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-25 23:40:47,258 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-25 23:40:47,258 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10020: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293242/situational_stats
+2026-09-25 23:40:47,258 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-25 23:40:48,258 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10021 (relaunching context)
+2026-09-25 23:41:05,489 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:41:21,934 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293242/situational_stats -- backing off 300 s (1/3)
+2026-09-25 23:46:33,853 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:46:52,588 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:47:09,116 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293252/team_stats -- backing off 300 s (1/3)
+2026-09-25 23:52:21,535 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:52:38,391 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293252/team_stats -- backing off 300 s (2/3)
+2026-09-25 23:57:50,984 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-25 23:58:08,394 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293252/team_stats -- backing off 300 s (3/3)
+=== 2026-09-26T04:07:11Z shard 3/4 ===
+[games] shard 3/4: 2107 contests
+2026-09-26 00:07:43,576 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:08:04,006 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:08:24,662 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:08:44,454 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:09:03,964 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:09:22,865 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:09:31,124 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:09:39,386 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:09:39,386 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10038: RuntimeError: bm-verify not passed after 3 attempts (410-byte response): https://stats.ncaa.org/contests/293252/play_by_play
+2026-09-26 00:09:39,387 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:09:40,390 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10039 (relaunching context)
+2026-09-26 00:09:56,904 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:12:02,100 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:12:47,112 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10039: _TermsAcceptError: stats.ncaa.org terms acceptance failed: https://stats.ncaa.org/contests/293252/individual_stats: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://stats.ncaa.org/contests/293252/individual_stats", waiting until "domcontentloaded"
+
+2026-09-26 00:12:47,112 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:12:48,112 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10040 (relaunching context)
+2026-09-26 00:13:04,243 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:13:20,655 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293252/individual_stats -- backing off 300 s (1/3)
+2026-09-26 00:18:31,693 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:18:49,804 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:19:07,682 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:19:25,614 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:19:43,467 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:19:59,041 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:20:07,234 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:20:15,457 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:20:15,457 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10040: RuntimeError: bm-verify not passed after 3 attempts (406-byte response): https://stats.ncaa.org/contests/293270/team_stats
+2026-09-26 00:20:15,457 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:20:16,458 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10041 (relaunching context)
+2026-09-26 00:20:32,843 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:20:53,890 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:21:14,190 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:21:45,022 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:22:39,240 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:23:08,486 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:23:16,848 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:23:25,212 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:23:25,212 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10041: RuntimeError: bm-verify not passed after 3 attempts (406-byte response): https://stats.ncaa.org/contests/293312/team_stats
+2026-09-26 00:23:25,212 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:23:26,212 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10042 (relaunching context)
+2026-09-26 00:23:43,104 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:23:59,852 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293312/team_stats -- backing off 300 s (1/3)
+2026-09-26 00:29:12,629 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:29:29,234 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293312/team_stats -- backing off 300 s (2/3)
+2026-09-26 00:34:40,833 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:34:55,662 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293312/team_stats -- backing off 300 s (3/3)
+2026-09-26 00:40:06,870 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:40:32,244 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:40:46,898 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293312/individual_stats -- backing off 300 s (1/3)
+2026-09-26 00:45:59,150 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:46:18,613 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:46:35,599 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:46:43,986 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:46:52,380 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:46:52,380 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10042: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293317/situational_stats
+2026-09-26 00:46:52,381 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:46:53,381 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10043 (relaunching context)
+2026-09-26 00:47:40,190 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:47:56,130 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293317/situational_stats -- backing off 300 s (1/3)
+2026-09-26 00:53:07,561 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:53:25,516 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:53:43,285 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:54:01,703 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:54:20,244 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:54:35,386 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:54:43,641 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:54:51,930 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:54:51,930 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10043: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293361/individual_stats
+2026-09-26 00:54:51,931 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:54:52,931 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10044 (relaunching context)
+2026-09-26 00:55:08,270 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:55:27,782 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:55:46,275 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:56:04,073 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:56:21,839 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:56:38,766 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:56:47,118 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:56:55,435 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:56:55,436 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10044: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293379/individual_stats
+2026-09-26 00:56:55,436 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:56:56,436 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10045 (relaunching context)
+2026-09-26 00:57:23,884 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:57:42,571 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:58:00,448 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:58:18,339 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:58:36,200 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:58:53,173 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 00:59:01,355 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 00:59:09,644 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 00:59:09,645 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10045: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293399/individual_stats
+2026-09-26 00:59:09,645 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 00:59:10,645 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10046 (relaunching context)
+2026-09-26 00:59:25,796 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 00:59:42,126 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293399/individual_stats -- backing off 300 s (1/3)
+2026-09-26 01:04:42,239 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10046: Error: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://stats.ncaa.org/contests/293399/individual_stats
+Call log:
+  - navigating to "https://stats.ncaa.org/contests/293399/individual_stats", waiting until "domcontentloaded"
+
+2026-09-26 01:04:42,241 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:04:43,241 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10047 (relaunching context)
+2026-09-26 01:04:59,872 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:05:16,580 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293399/individual_stats -- backing off 300 s (2/3)
+2026-09-26 01:10:28,563 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:10:45,750 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293399/individual_stats -- backing off 300 s (3/3)
+=== 2026-09-26T05:17:38Z shard 3/4 ===
+[games] shard 3/4: 2107 contests
+2026-09-26 01:18:06,149 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:18:26,057 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:18:45,746 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:19:04,844 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:19:24,826 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:19:42,819 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:19:51,289 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:19:59,753 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:19:59,753 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10038: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293416/play_by_play
+2026-09-26 01:19:59,753 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:20:00,754 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10039 (relaunching context)
+2026-09-26 01:20:18,500 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:20:38,185 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:20:57,551 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:21:15,923 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:21:31,082 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:21:39,709 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:21:48,315 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:21:48,315 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10039: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293427/play_by_play
+2026-09-26 01:21:48,315 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:21:49,315 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10040 (relaunching context)
+2026-09-26 01:22:05,413 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:22:21,441 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293427/play_by_play -- backing off 120 s (1/3)
+2026-09-26 01:24:33,855 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:24:53,919 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:25:13,797 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:25:33,161 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:25:52,732 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:26:08,880 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:26:17,382 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:26:25,915 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:26:25,916 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10040: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293443/situational_stats
+2026-09-26 01:26:25,916 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:26:26,916 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10041 (relaunching context)
+2026-09-26 01:26:43,078 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:26:59,803 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293443/situational_stats -- backing off 120 s (1/3)
+2026-09-26 01:29:11,913 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:29:31,401 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:29:50,411 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:30:08,438 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:30:16,991 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:30:25,446 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (410-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:30:25,447 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10041: RuntimeError: bm-verify not passed after 3 attempts (410-byte response): https://stats.ncaa.org/contests/293454/individual_stats
+2026-09-26 01:30:25,447 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:30:26,447 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10042 (relaunching context)
+2026-09-26 01:30:45,630 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:31:03,699 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/individual_stats -- backing off 120 s (1/3)
+2026-09-26 01:33:16,069 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:33:32,649 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/individual_stats -- backing off 120 s (2/3)
+2026-09-26 01:35:45,123 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:36:01,992 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/individual_stats -- backing off 120 s (3/3)
+2026-09-26 01:38:15,224 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:38:45,380 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:39:03,093 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/situational_stats -- backing off 120 s (1/3)
+2026-09-26 01:41:17,282 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:41:34,482 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/situational_stats -- backing off 120 s (2/3)
+2026-09-26 01:43:46,641 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:44:03,211 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293454/situational_stats -- backing off 120 s (3/3)
+2026-09-26 01:46:15,555 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:46:35,506 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:46:54,795 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:47:14,625 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:47:34,649 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:47:51,418 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:48:00,058 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:48:08,678 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (412-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:48:08,678 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10042: RuntimeError: bm-verify not passed after 3 attempts (412-byte response): https://stats.ncaa.org/contests/293470/individual_stats
+2026-09-26 01:48:08,679 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:48:09,679 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10043 (relaunching context)
+2026-09-26 01:48:28,498 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:48:50,337 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:49:10,693 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:49:31,371 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:49:51,793 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+=== 2026-09-26T05:52:07Z shard 3/4 ===
+[games] shard 3/4: 2107 contests
+2026-09-26 01:52:30,049 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:52:49,696 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:53:09,518 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:53:28,297 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:53:45,162 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293492/situational_stats -- backing off 300 s (1/3)
+2026-09-26 01:58:57,223 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:59:16,886 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 01:59:33,779 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 1/3
+2026-09-26 01:59:42,224 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 2/3
+2026-09-26 01:59:50,643 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 3/3
+2026-09-26 01:59:50,644 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10038: RuntimeError: bm-verify not passed after 3 attempts (413-byte response): https://stats.ncaa.org/contests/293503/situational_stats
+2026-09-26 01:59:50,644 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 01:59:51,644 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10039 (relaunching context)
+2026-09-26 02:00:09,204 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:00:27,500 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293503/situational_stats -- backing off 300 s (1/3)
+2026-09-26 02:05:40,786 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:05:58,986 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293503/situational_stats -- backing off 300 s (2/3)
+2026-09-26 02:11:11,878 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:11:28,710 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293503/situational_stats -- backing off 300 s (3/3)
+2026-09-26 02:16:41,631 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:17:10,603 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:17:28,532 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293520/play_by_play -- backing off 300 s (1/3)
+2026-09-26 02:22:41,687 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:23:00,253 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:23:19,528 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:23:38,155 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:23:56,925 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:24:12,564 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 1/3
+2026-09-26 02:24:20,876 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 2/3
+2026-09-26 02:24:29,214 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 3/3
+2026-09-26 02:24:29,214 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10039: RuntimeError: bm-verify not passed after 3 attempts (413-byte response): https://stats.ncaa.org/contests/293530/situational_stats
+2026-09-26 02:24:29,214 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 02:24:30,215 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10040 (relaunching context)
+2026-09-26 02:24:46,055 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:25:01,836 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293530/situational_stats -- backing off 300 s (1/3)
+2026-09-26 02:30:13,690 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:30:32,409 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:30:50,835 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:31:09,283 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:31:27,874 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:31:41,900 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (404-byte response) -- re-solving, attempt 1/3
+2026-09-26 02:31:50,069 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (404-byte response) -- re-solving, attempt 2/3
+2026-09-26 02:31:58,247 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (404-byte response) -- re-solving, attempt 3/3
+2026-09-26 02:31:58,247 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10040: RuntimeError: bm-verify not passed after 3 attempts (404-byte response): https://stats.ncaa.org/contests/293546/team_stats
+2026-09-26 02:31:58,247 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 02:31:59,248 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10041 (relaunching context)
+2026-09-26 02:32:16,363 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:32:35,621 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:32:55,776 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:33:15,054 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:33:33,304 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:33:51,650 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 1/3
+2026-09-26 02:34:00,198 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 2/3
+2026-09-26 02:34:08,656 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (406-byte response) -- re-solving, attempt 3/3
+2026-09-26 02:34:08,657 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10041: RuntimeError: bm-verify not passed after 3 attempts (406-byte response): https://stats.ncaa.org/contests/293564/team_stats
+2026-09-26 02:34:08,657 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 02:34:09,657 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10042 (relaunching context)
+2026-09-26 02:34:27,036 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:34:46,415 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:35:05,030 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:35:23,783 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:35:42,150 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:35:58,329 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293576/situational_stats -- backing off 300 s (1/3)
+2026-09-26 02:41:08,995 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 1/3
+2026-09-26 02:41:17,595 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 2/3
+2026-09-26 02:41:26,156 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 3/3
+2026-09-26 02:41:26,157 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10042: RuntimeError: bm-verify not passed after 3 attempts (413-byte response): https://stats.ncaa.org/contests/293576/situational_stats
+2026-09-26 02:41:26,157 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 02:41:27,157 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10043 (relaunching context)
+2026-09-26 02:41:45,918 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:42:01,482 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293576/situational_stats -- backing off 300 s (2/3)
+2026-09-26 02:47:13,280 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:47:28,615 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293576/situational_stats -- backing off 300 s (3/3)
+2026-09-26 02:52:41,010 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:53:09,615 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:53:25,889 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293581/play_by_play -- backing off 300 s (1/3)
+2026-09-26 02:58:39,119 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:58:58,289 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:59:18,627 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:59:38,412 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 02:59:57,992 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:00:18,152 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 1/3
+2026-09-26 03:00:26,738 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 2/3
+2026-09-26 03:00:35,609 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (413-byte response) -- re-solving, attempt 3/3
+2026-09-26 03:00:35,609 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10043: RuntimeError: bm-verify not passed after 3 attempts (413-byte response): https://stats.ncaa.org/contests/293595/situational_stats
+2026-09-26 03:00:35,610 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 03:00:36,610 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10044 (relaunching context)
+2026-09-26 03:00:53,292 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:01:11,985 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:01:29,740 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:01:48,216 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:02:06,475 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:02:22,916 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-26 03:02:31,266 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-26 03:02:39,646 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-26 03:02:39,647 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10044: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293618/situational_stats
+2026-09-26 03:02:39,647 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 03:02:40,647 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10045 (relaunching context)
+2026-09-26 03:02:53,494 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-26 03:03:02,255 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-26 03:03:10,993 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-26 03:03:10,993 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10045: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293618/situational_stats
+2026-09-26 03:03:10,993 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 03:03:11,994 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10046 (relaunching context)
+2026-09-26 03:03:27,986 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:03:46,608 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:04:04,956 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:04:23,427 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:04:41,905 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:04:58,207 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 1/3
+2026-09-26 03:05:06,443 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 2/3
+2026-09-26 03:05:14,735 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (411-byte response) -- re-solving, attempt 3/3
+2026-09-26 03:05:14,735 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10046: RuntimeError: bm-verify not passed after 3 attempts (411-byte response): https://stats.ncaa.org/contests/293642/situational_stats
+2026-09-26 03:05:14,735 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-09-26 03:05:15,736 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10047 (relaunching context)
+2026-09-26 03:05:31,199 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:05:49,663 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:06:07,565 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:06:26,211 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:06:42,201 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293653/individual_stats -- backing off 300 s (1/3)
+2026-09-26 03:11:53,400 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:12:12,027 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:12:27,695 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293662/box_score -- backing off 300 s (1/3)
+2026-09-26 03:17:39,955 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-09-26 03:17:56,328 WARNING sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate not accepted: https://stats.ncaa.org/contests/293662/box_score -- backing off 300 s (2/3)
