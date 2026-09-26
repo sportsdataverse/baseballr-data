@@ -158,6 +158,21 @@ def test_games_capture_writes_raw_season_tree(tmp_path: Path) -> None:
 # --- stage 04 -------------------------------------------------------------
 
 
+def test_count_missing_counts_master_contests_without_a_bundle(
+    tmp_path: Path, capsys: pytest.CaptureFixture
+) -> None:
+    from ncaa_pbp.capture import capture_contest
+
+    _scraped_root(tmp_path)
+    datasets.build_schedule_master(tmp_path, 2026)
+    ids = games.contest_ids_from_master(tmp_path, 2026)
+    pbp = (FIXTURES / "mba_pbp_6357953.html").read_text(encoding="utf-8")
+    assert capture_contest(lambda p: pbp, ids[0], games.raw_dir(tmp_path, 2026)) == "captured"
+    argv = ["--season", "2026", "--root", str(tmp_path), "--count-missing"]
+    assert games.main(argv) == 0
+    assert capsys.readouterr().out == f"{len(ids) - 1}\n"  # stdout is ONLY the count
+
+
 def test_rosters_scrape_resumable(tmp_path: Path) -> None:
     _scraped_root(tmp_path)
     pages = {

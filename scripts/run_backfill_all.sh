@@ -14,6 +14,7 @@ START="${1:?start season (e.g. 2026)}"
 END="${2:?end season (e.g. 2024)}"
 SHARDS="${SHARDS:-8}"            # browser processes for stages 04 + 02 (capped by memory below)
 PARSE_WORKERS="${PARSE_WORKERS:-8}"  # stage 03 is CPU-bound: more than the core count buys nothing
+MAX_MISSING="${MAX_MISSING:-0}"  # stage-02 games allowed to stay uncaptured before 06/07 publish
 export PYTHONPATH="${ROOT}/python" PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
 # Chromium temp profiles on block storage, not the small root disk
 # (2026-08-21: leaked profiles filled / on the MFB campaign).
@@ -66,11 +67,20 @@ run_shards() {  # $1=stage script  $2=log prefix  $3=season
   local n i
   n=$(shard_count)
   for i in $(seq 0 $((n - 1))); do
+    # append: a relaunch must not erase the evidence of why the last run stalled
+    echo "=== $(date -u +%FT%TZ) shard ${i}/${n} ===" >> "logs/${2}_shard${i}.log"
     NCAA_PROXY_POOL="$(shard_pool "$i" "$n")" "$PY" "python/$1" --season "$3" --shard "$i/$n" \
-      > "logs/${2}_shard${i}.log" 2>&1 &
+      >> "logs/${2}_shard${i}.log" 2>&1 &
     sleep 3
   done
   wait
+}
+# Sets $missing: the season's contests with no bundle yet. Exits the run if it
+# can't tell -- an empty count must never read as "complete" and reach publish.
+count_missing() {
+  missing=$("$PY" python/ncaa_baseball_02_games_scrape.py --season "$1" --count-missing) \
+    && [[ "$missing" =~ ^[0-9]+$ ]] \
+    || { echo "season $1: cannot count missing games -- STOPPING"; exit 1; }
 }
 
 commit() { sdv_commit_push "$COMMIT_MSG" "$@" || BACKFILL_RC=1; }
@@ -103,10 +113,24 @@ for season in $(seq "$START" -1 "$END"); do
   run_shards ncaa_baseball_04_rosters_scrape.py "bf_${season}_04" "$season"
   COMMIT_MSG="feat(ncaa): season ${season} rosters (stage 04)" commit ncaa/rosters_html
 
-  # 2) games: sharded over the season's contests
-  run_shards ncaa_baseball_02_games_scrape.py "bf_${season}_02" "$season"
-  grep -h 'captured\|capture:' logs/bf_${season}_02_shard*.log || true
-  COMMIT_MSG="feat(ncaa): season ${season} game bundles (stage 02)" commit "ncaa/raw/${season}"
+  # 2) games: sharded over the season's contests. A game refused through a
+  # site-wide Terms lockout is only marked failed and skipped, so re-run the
+  # resumable stage while passes still capture games -- and never let a season
+  # with gaps reach 06/07 (publish). MAX_MISSING allows known uncapturable games.
+  count_missing "$season"
+  for pass in 1 2 3; do
+    [ "$missing" -le "$MAX_MISSING" ] && break
+    before=$missing
+    run_shards ncaa_baseball_02_games_scrape.py "bf_${season}_02" "$season"
+    COMMIT_MSG="feat(ncaa): season ${season} game bundles (stage 02)" commit "ncaa/raw/${season}"
+    count_missing "$season"
+    echo "season ${season} 02 pass ${pass}: ${missing} games missing (was ${before})"
+    [ "$missing" -lt "$before" ] || break  # a pass that captured nothing: another won't either
+  done
+  if [ "$missing" -gt "$MAX_MISSING" ]; then
+    echo "season ${season} 02: ${missing} games missing (MAX_MISSING=${MAX_MISSING}) -- STOPPING before publish (rerun resumes)"
+    exit 1
+  fi
 
   # 6) xwalk BEFORE final parse so payloads get espn stamps
   "$PY" python/ncaa_baseball_06_xwalk_build.py --season "$season" > "logs/bf_${season}_06.log" 2>&1 || true

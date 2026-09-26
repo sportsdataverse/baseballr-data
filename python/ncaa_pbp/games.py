@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-from ncaa_pbp.capture import capture_season
+from ncaa_pbp.capture import capture_season, is_captured
 from ncaa_pbp.datasets import master_parquet_path
 from ncaa_pbp.discover import browser_fetch_fn, proxy_pool_from_env
 from ncaa_pbp.schedules import DEFAULT_DIVISIONS, DIVISIONS, REPO_ROOT
@@ -95,6 +95,11 @@ def main(argv: "list[str] | None" = None) -> int:
         action="store_true",
         help="capture every division in the master (D-II/III backfill)",
     )
+    ap.add_argument(
+        "--count-missing",
+        action="store_true",
+        help="print how many of the season's contests have no bundle yet; capture nothing",
+    )
     args = ap.parse_args(argv)
     # sdv-py's fetch layer logs why it rotated a proxy at DEBUG; NCAA_LOG_LEVEL=DEBUG shows it.
     logging.basicConfig(format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -106,6 +111,10 @@ def main(argv: "list[str] | None" = None) -> int:
         None if args.all_divisions else ((args.division,) if args.division else DEFAULT_DIVISIONS)
     )
     contests = contest_ids_from_master(root, args.season, divisions)
+    if args.count_missing:  # the orchestrator's publish gate (run_backfill_all.sh)
+        out = raw_dir(root, args.season)
+        print(sum(not is_captured(c, out) for c in contests))
+        return 0
     if args.shard:
         i, n = args.shard
         contests = contests[i::n]
