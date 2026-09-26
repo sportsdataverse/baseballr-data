@@ -12,7 +12,11 @@ cd "$(dirname "$0")/.." || exit 1
 ROOT="$(pwd)"
 START="${1:?start season (e.g. 2026)}"
 END="${2:?end season (e.g. 2024)}"
-SHARDS="${SHARDS:-8}"            # browser processes for stages 04 + 02 (capped by memory below)
+# Browser processes for stages 04 + 02 (also capped by memory below). stats.ncaa.org
+# budgets Terms acceptances SITE-WIDE across every proxy: measured 2026-09-26, 8 shards
+# = 2.27 games/min with 11+ min lockouts, 4 = 1.37 overnight with 12-31 min lockouts
+# and failed pages, 2 = 1.38 with no chained refusals. More shards only trip it sooner.
+SHARDS="${SHARDS:-2}"
 PARSE_WORKERS="${PARSE_WORKERS:-8}"  # stage 03 is CPU-bound: more than the core count buys nothing
 MAX_MISSING="${MAX_MISSING:-0}"  # stage-02 games allowed to stay uncaptured before 06/07 publish
 export PYTHONPATH="${ROOT}/python" PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
