@@ -27,8 +27,9 @@ on:
   #    - cron: "0 11 * 2-6 *"
   #    # Off-season (Jul-Jan): refresh on the 1st of the month.
   #    - cron: "0 11 1 1,7-12 *"
-  repository_dispatch:
-    types: [daily_ncaa_baseball_data]
+  # repository_dispatch dropped 2026-09-30: nothing sends daily_ncaa_baseball_data
+  # (no raw repo carries the trigger), and an automatic run here would overwrite
+  # the Python-built assets. Manual dispatch is the only entry, on purpose.
   workflow_dispatch:
     inputs:
       start_year:
