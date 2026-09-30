@@ -36,6 +36,10 @@ sdv_commit_push() {
 
   # NOT swallowed: a failed add means the commit below sees an empty index and
   # would report "nothing to commit" for work that is sitting right there.
+  # Rotate any tracked *.log over 50 MiB before staging: GitHub's pre-receive hook rejects a
+  # push carrying a blob over 100 MiB, and every later push then carries it too (2026-09-30,
+  # cfb_player_stats_logfile_2026.log at 105 MB). A no-op where the droplet helper is absent.
+  [ -x "${SDV_ROTATE_LOGS:-/mnt/sdv_repos/bin/rotate_tracked_logs.sh}" ] && "${SDV_ROTATE_LOGS:-/mnt/sdv_repos/bin/rotate_tracked_logs.sh}" -- "$@"
   if ! git add -- "${paths[@]}"; then
     echo "::error ::git add failed for: $msg"
     return 1
