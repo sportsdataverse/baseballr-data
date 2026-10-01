@@ -1,0 +1,51 @@
+[2026-10-01 13:30:01Z] daily ncaa baseball start: season=2026 max=200 vendor=decodo_patchright
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/schedules_20261001_093001.log  (watch: tail -f logs/schedules_20261001_093001.log)
+[schedules] 2026 d1: 308 teams
+[schedules] 2026 d2: 253 teams
+[schedules] 2026 d3: 381 teams
+[schedules] master: 46794 team-game rows -> /mnt/sdv_repos/baseballr-data/ncaa/schedule_master/parquet/2026.parquet
+EXIT=0
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/games_20261001_093128.log  (watch: tail -f logs/games_20261001_093128.log)
+[games] 8519 contests
+[games] {'captured': 0, 'skipped': 8515, 'failed': 4}
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/weakref.py", line 666, in _exitfunc
+    f()
+    ~^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 940, in _cleanup
+    cls._rmtree(name, ignore_errors=ignore_errors)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 763, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 707, in _rmtree_safe_fd
+    onexc(func, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 658, in _rmtree_safe_fd
+    os.rmdir(name, dir_fd=dirfd)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 39] Directory not empty: '/tmp/ncaa_pw_1ph4fw5z/Default'
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/games_parse_20261001_093400.log  (watch: tail -f logs/games_parse_20261001_093400.log)
+capture 2026: {'skipped': 12629}
+EXIT=0
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/rosters_20261001_093401.log  (watch: tail -f logs/rosters_20261001_093401.log)
+[rosters] 2026: {'fetched': 0, 'skipped': 308}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/datasets_20261001_093407.log  (watch: tail -f logs/datasets_20261001_093407.log)
+[datasets] teams: 3 division parquet(s)
+[datasets] schedule_master: 46794 rows -> /mnt/sdv_repos/baseballr-data/ncaa/schedule_master/parquet/2026.parquet
+[datasets] rosters: 38685 rows -> /mnt/sdv_repos/baseballr-data/ncaa/rosters/parquet/2026.parquet
+EXIT=0
+[2026-10-01 13:36:29Z] daily ncaa baseball stages done (rc_total=0)

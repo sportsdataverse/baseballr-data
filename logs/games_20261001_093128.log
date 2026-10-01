@@ -1,0 +1,26 @@
+[games] 8519 contests
+[games] {'captured': 0, 'skipped': 8515, 'failed': 4}
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/weakref.py", line 666, in _exitfunc
+    f()
+    ~^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 940, in _cleanup
+    cls._rmtree(name, ignore_errors=ignore_errors)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 763, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 707, in _rmtree_safe_fd
+    onexc(func, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 658, in _rmtree_safe_fd
+    os.rmdir(name, dir_fd=dirfd)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 39] Directory not empty: '/tmp/ncaa_pw_1ph4fw5z/Default'
+EXIT=0
