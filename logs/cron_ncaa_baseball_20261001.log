@@ -50,3 +50,12 @@ log -> logs/datasets_20261001_093407.log  (watch: tail -f logs/datasets_20261001
 EXIT=0
 [2026-10-01 13:36:29Z] daily ncaa baseball stages done (rc_total=0)
   skip (absent): ncaa/xwalk
+To github.com:sportsdataverse/baseballr-data.git
+ ! [rejected]              HEAD -> main (fetch first)
+error: failed to push some refs to 'git@github.com:sportsdataverse/baseballr-data.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+push rejected (attempt 1); syncing with origin
