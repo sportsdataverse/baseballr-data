@@ -58,8 +58,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
+      # A run queued in the concurrency group would otherwise check out the SHA of
+      # its trigger, not the branch as it is when the job starts, and build on a
+      # stale tree (wehoop-wnba-stats-data run 37207505807, 2026-10-04).
       - name: Checkout baseballr-data
         uses: actions/checkout@v5
+        with:
+          ref: main
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v8.1.0
