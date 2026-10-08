@@ -12,3 +12,12 @@ log -> logs/mlb_03_parse_20261007_110030.log  (watch: tail -f logs/mlb_03_parse_
 parse season 2026: {'games': 2449, 'plays': 185576, 'pitches': 719457, 'runners': 250278, 'unparsed': 0}
 EXIT=0
 [2026-10-07 15:02:48Z] daily mlb stages done (rc_total=0)
+To github.com:sportsdataverse/baseballr-data.git
+ ! [rejected]              HEAD -> main (fetch first)
+error: failed to push some refs to 'github.com:sportsdataverse/baseballr-data.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+push rejected (attempt 1); syncing with origin
