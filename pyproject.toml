@@ -5,7 +5,7 @@ description = "Python producers for baseballr-data: NCAA pbp capture + the MLB m
 requires-python = ">=3.11"
 dependencies = [
     "sportsdataverse>=0.0.71",
-    "polars>=1.0,<2.0",
+    "polars>=1.0",
     "pyarrow>=15.0",
     "requests>=2.28",
     # stuff+/command+ score through bundled xgboost boosters; OAA/framing/xERA
