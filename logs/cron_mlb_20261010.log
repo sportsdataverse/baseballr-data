@@ -1,0 +1,14 @@
+[2026-10-10 15:00:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20261010_110001.log  (watch: tail -f logs/mlb_01_schedules_20261010_110001.log)
+season 2026: 2995 games -> mlb/schedule/2026.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20261010_110011.log  (watch: tail -f logs/mlb_02_games_20261010_110011.log)
+capture season 2026: {'captured': 0, 'skipped': 2454, 'failed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20261010_110011.log  (watch: tail -f logs/mlb_03_parse_20261010_110011.log)
+parse season 2026: {'games': 2454, 'plays': 185961, 'pitches': 720949, 'runners': 250811, 'unparsed': 0}
+EXIT=0
+[2026-10-10 15:01:31Z] daily mlb stages done (rc_total=0)
