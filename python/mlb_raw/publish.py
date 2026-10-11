@@ -1,4 +1,4 @@
-"""Stage 05 -- publish: MLB pbp/pitches parquet -> sportsdataverse-data releases.
+"""Stage 05 -- publish: MLB season parquet -> sportsdataverse-data releases.
 
 Reuses ``mlb_model_publish.artifacts.upload_artifacts`` rather than writing a
 second uploader: it already does one ``gh release upload`` per file with
@@ -7,7 +7,8 @@ release when absent, and takes an injectable runner so tests never shell out.
 
 COMMITTED vs PUBLISHED, deliberately asymmetric:
 
-  on disk, ever      parquet only -- ``mlb/pbp/*.parquet``
+  on disk, ever      parquet only -- ``mlb/pbp/*.parquet``, ``mlb/schedule/``,
+                     ``mlb/statcast/`` (stage 06 output, gitignored)
   published as assets parquet + csv.gz + rds
 
 csv.gz/rds are built into a TEMPORARY directory and deleted the moment the
@@ -36,13 +37,27 @@ TAGS = {
     "pbp": ("mlb_pbp", "mlb_pbp_{season}.parquet"),
     "pitches": ("mlb_pitches", "mlb_pitches_{season}.parquet"),
     "runners": ("mlb_runners", "mlb_runners_{season}.parquet"),
+    "statcast": ("mlb_statcast", "mlb_statcast_{season}.parquet"),
+    "schedule": ("mlb_schedules", "mlb_schedule_{season}.parquet"),
 }
+# Committed source per dataset, when it is not mlb/pbp/<asset name>. The schedule
+# keeps stage 01's {season}.parquet naming and is uploaded under the asset name.
+SOURCES = {
+    "statcast": "mlb/statcast/mlb_statcast_{season}.parquet",
+    "schedule": "mlb/schedule/{season}.parquet",
+}
+FLOORS = {"statcast": 2015}  # Statcast's first season
 REPO = "sportsdataverse/sportsdataverse-data"
 
 # Pace/retry for GitHub's secondary (upload) rate limit -- env-only.
 RL_SLEEP = float(os.environ.get("SDV_MLB_PUBLISH_SLEEP", "2"))
 RL_BACKOFF = float(os.environ.get("SDV_MLB_PUBLISH_BACKOFF", "60"))
 RL_RETRIES = int(os.environ.get("SDV_MLB_PUBLISH_RETRIES", "5"))
+
+
+def source_path(root: pathlib.Path, dataset: str, season: int) -> pathlib.Path:
+    rel = SOURCES.get(dataset, "mlb/pbp/" + TAGS[dataset][1])
+    return root / rel.format(season=season)
 
 
 def state_dir(root: pathlib.Path) -> pathlib.Path:
@@ -64,13 +79,13 @@ def build_side_formats(
     import polars as pl
 
     _, stem = TAGS[dataset]
-    src = root / "mlb" / "pbp" / stem.format(season=season)
+    src = source_path(root, dataset, season)
     if not src.exists():
-        raise FileNotFoundError(f"{src} -- run stage 03 first")
+        raise FileNotFoundError(f"{src} -- run the producing stage first")
 
     out.mkdir(parents=True, exist_ok=True)
     df = pl.read_parquet(src)
-    base = src.stem  # mlb_pbp_2024
+    base = pathlib.Path(stem.format(season=season)).stem  # mlb_pbp_2024
 
     made = []
     csv_gz = out / f"{base}.csv.gz"
@@ -118,14 +133,15 @@ def publish_season(
     root: pathlib.Path, dataset: str, season: int, *, dry_run: bool = True, sides: bool = True
 ) -> dict:
     """Upload one season. csv.gz/rds exist only for the duration of the upload."""
+    import shutil
     import tempfile
 
     from mlb_model_publish.artifacts import upload_artifacts
 
     tag, stem = TAGS[dataset]
-    parquet = root / "mlb" / "pbp" / stem.format(season=season)
+    parquet = source_path(root, dataset, season)
     if not parquet.exists():
-        raise FileNotFoundError(f"{parquet} -- run stage 03 first")
+        raise FileNotFoundError(f"{parquet} -- run the producing stage first")
 
     uploaded = 0
 
@@ -156,13 +172,19 @@ def publish_season(
                 time.sleep(back)
         return 0
 
-    uploaded += _push(parquet)
-
-    if sides:
-        # TemporaryDirectory removes the tree on exit AND on exception, so a
-        # failed upload cannot strand hundreds of MB of derivable staging.
-        # dir=root keeps it off the small root filesystem.
-        with tempfile.TemporaryDirectory(dir=root, prefix=".publish_tmp_") as td:
+    # TemporaryDirectory removes the tree on exit AND on exception, so a
+    # failed upload cannot strand hundreds of MB of derivable staging.
+    # dir=root keeps it off the small root filesystem.
+    with tempfile.TemporaryDirectory(dir=root, prefix=".publish_tmp_") as td:
+        asset = stem.format(season=season)
+        if parquet.name != asset:
+            # The asset name is the upload's file name: stage a renamed copy.
+            staged = pathlib.Path(td) / asset
+            shutil.copyfile(parquet, staged)
+            uploaded += _push(staged)
+        else:
+            uploaded += _push(parquet)
+        if sides:
             for f in build_side_formats(root, dataset, season, pathlib.Path(td)):
                 uploaded += _push(f)
 
@@ -201,6 +223,8 @@ def main(argv: "list[str] | None" = None) -> int:
     rc = 0
     for ds in datasets:
         for s in seasons:
+            if s < FLOORS.get(ds, 0):
+                continue  # nothing exists before the dataset's first season
             try:
                 st = publish_season(root, ds, s, dry_run=not a.publish, sides=not a.no_sides)
                 print(f"  {st}", flush=True)

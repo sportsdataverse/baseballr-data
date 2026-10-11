@@ -352,3 +352,39 @@ def test_adapter_renames_without_deriving():
     import pytest
     with pytest.raises(KeyError, match="reparse with stage 03"):
         to_sdv_py(tidy.drop("post_on_first_id"))
+
+
+def test_statcast_compile_pins_dtypes_and_refuses_lossy_drift():
+    """Savant re-infers dtypes per month. Pinned columns converge; a populated
+    float id is never stringified; unlisted drift fails instead of letting a
+    relaxed concat pick a per-season supertype."""
+    import polars as pl
+    import pytest
+    from mlb_raw import statcast_compile as sc
+
+    base = {"game_date": ["2024-04-01"], "game_pk": [1], "at_bat_number": [1],
+            "pitch_number": [1], "game_year": [2024]}
+    a = pl.DataFrame({**base, "sv_id": ["240401_1"], "age_bat": [25], "zone": [5]})
+    b = pl.DataFrame({**base, "sv_id": [None], "age_bat": [26.0], "zone": [3.0]},
+                     schema_overrides={"sv_id": pl.Float64})
+    df = sc.compile_frame([("a", a), ("b", b)], 2024)
+    assert df.schema["sv_id"] == pl.String and df.schema["age_bat"] == pl.Int64
+    assert df.schema["zone"] == pl.Float64 and df.schema["season"] == pl.Int64
+    assert df["season"].unique().to_list() == [2024]
+
+    with pytest.raises(TypeError, match="float->str"):
+        sc.pin_dtypes(pl.DataFrame({"sv_id": [1.0]}), "x")
+    with pytest.raises(TypeError, match="pin it in DTYPES"):
+        sc.compile_frame([("a", a.with_columns(pl.lit(1).alias("new"))),
+                          ("b", b.with_columns(pl.lit("1").alias("new")))], 2024)
+    with pytest.raises(ValueError, match="misfiled"):
+        sc.compile_frame([("a", a)], 2023)
+
+
+def test_publish_sources_schedule_and_statcast_under_asset_names(tmp_path):
+    from mlb_raw import publish
+
+    assert publish.source_path(tmp_path, "schedule", 2024) == tmp_path / "mlb/schedule/2024.parquet"
+    assert publish.source_path(tmp_path, "pbp", 2024) == tmp_path / "mlb/pbp/mlb_pbp_2024.parquet"
+    assert publish.TAGS["statcast"] == ("mlb_statcast", "mlb_statcast_{season}.parquet")
+    assert publish.TAGS["schedule"] == ("mlb_schedules", "mlb_schedule_{season}.parquet")

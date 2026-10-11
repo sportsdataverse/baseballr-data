@@ -104,9 +104,13 @@ uneven *within* a season and needs a completeness audit before publishing.
 | 01 schedules | `run_mlb_01_schedules.sh --season 2026` | **ONE call per season** (181 dates, ~2,450 games, ~1 s). Also the daily delta discovery. |
 | 02 capture | `run_mlb_02_games.sh --season 2026` | `feed/live` -> `mlb/raw/{season}/{game_pk}.json.gz`, file-exists resumable, atomic writes |
 | 03 parse | `run_mlb_03_parse.sh --season 2026` | OFFLINE -> `mlb/pbp/mlb_pbp_{season}.parquet` + `mlb_pitches_{season}.parquet` |
+| 04 statcast | `run_mlb_04_statcast.sh --season 2026` | Savant (no proxy) -> `mlb/statcast_raw/{season}/{season}-MM.parquet`, 2015+, month-resumable |
+| 05 publish | `run_mlb_05_publish.sh --dataset <pbp\|pitches\|runners\|statcast\|schedule> --season 2026 --publish` | parquet + csv.gz + rds per season to `mlb_pbp` / `mlb_pitches` / `mlb_runners` / `mlb_statcast` / `mlb_schedules`; sides built in a tempdir, never kept |
+| 06 statcast compile | `run_mlb_06_statcast_compile.sh --season 2026` | OFFLINE monthly raws -> `mlb/statcast/mlb_statcast_{season}.parquet` (+ int `season`, pinned dtypes). **Gitignored** staging: a full season is 86-107 MiB, at/over GitHub's 100 MiB blob limit |
 
     ./scripts/daily_mlb_capture.sh                  # nightly: 01 -> 02 -> 03 -> commit
     ./scripts/run_mlb_backfill.sh 2026 1988         # full corpus, newest-first
+    ./scripts/run_mlb_statcast_backfill.sh 2026 2015  # Statcast: 04 -> 06 -> commit, per season
     tail -f logs/daily_mlb_$(date -u +%Y%m%d).log
 
 **Transport.** `statsapi.mlb.com` returns **406 to this host directly** -- every

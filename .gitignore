@@ -23,6 +23,11 @@ ncaa/_release_build/
 # they are built into a tempdir and deleted the moment the upload finishes --
 # only parquet ever exists on disk.
 mlb/_publish_state/
+# Compiled Statcast seasons (stage 06) are RELEASE STAGING, not tree data: a
+# full season compiles to 86-107 MiB, at/over GitHub's 100 MiB blob limit, and one
+# rejected blob blocks every later push (the daily MLB cron included). The
+# committed parquet for every season is mlb/statcast_raw/<Y>/, its input.
+mlb/statcast/
 .publish_tmp_*/
 *.out
 

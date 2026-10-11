@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# Savant Statcast backfill: stage 04 over a season range, newest-first, with a
-# commit+push PER SEASON. Not a parallel implementation -- same stage, plus the
-# season loop and the commits.
+# Savant Statcast backfill: stage 04 (capture) then stage 06 (compile the
+# season) over a season range, newest-first, with a commit+push PER SEASON. Not
+# a parallel implementation -- same stages, plus the season loop and the commits.
+# Re-running the current season is the in-season refresh. Publishing is stage 05
+# (run_mlb_05_publish.sh --dataset statcast), kept manual like mlb_pbp's.
 #
 #   ./scripts/run_mlb_statcast_backfill.sh 2026 2015     # newest -> oldest
 #
@@ -37,6 +39,12 @@ for season in $(seq "$START" -1 "$END"); do
   bash scripts/run_mlb_04_statcast.sh --season "${season}" --root . \
     >>"logs/mlb_statcast_bf_${season}.log" 2>&1 \
     || { echo "season ${season}: capture rc=$? (committing what landed)"; rc_total=1; }
+
+  # The compiled season is gitignored release staging (over GitHub's 100 MiB
+  # blob limit), so only the monthly raws are committed below.
+  bash scripts/run_mlb_06_statcast_compile.sh --season "${season}" --root . \
+    >>"logs/mlb_statcast_bf_${season}.log" 2>&1 \
+    || { echo "season ${season}: compile rc=$?"; rc_total=1; }
 
   sdv_commit_push "feat(mlb): season ${season} statcast capture" \
     "mlb/statcast_raw/${season}" logs/ || rc_total=1
