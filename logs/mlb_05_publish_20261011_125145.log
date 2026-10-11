@@ -1,0 +1,8 @@
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_schedules exists
+[dry-run] would upload /mnt/sdv_repos/baseballr-data/.publish_tmp_qp_f0pvy/mlb_schedule_2024.parquet -> sportsdataverse/sportsdataverse-data:mlb_schedules
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_schedules exists
+[dry-run] would upload /mnt/sdv_repos/baseballr-data/.publish_tmp_qp_f0pvy/mlb_schedule_2024.csv.gz -> sportsdataverse/sportsdataverse-data:mlb_schedules
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_schedules exists
+[dry-run] would upload /mnt/sdv_repos/baseballr-data/.publish_tmp_qp_f0pvy/mlb_schedule_2024.rds -> sportsdataverse/sportsdataverse-data:mlb_schedules
+  {'dataset': 'schedule', 'season': 2024, 'uploaded': 0}
+EXIT=0

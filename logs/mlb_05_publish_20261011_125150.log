@@ -1,0 +1,8 @@
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_statcast exists
+[dry-run] would upload mlb/statcast/mlb_statcast_2020.parquet -> sportsdataverse/sportsdataverse-data:mlb_statcast
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_statcast exists
+[dry-run] would upload /mnt/sdv_repos/baseballr-data/.publish_tmp_rrlsly7w/mlb_statcast_2020.csv.gz -> sportsdataverse/sportsdataverse-data:mlb_statcast
+[dry-run] would ensure release sportsdataverse/sportsdataverse-data:mlb_statcast exists
+[dry-run] would upload /mnt/sdv_repos/baseballr-data/.publish_tmp_rrlsly7w/mlb_statcast_2020.rds -> sportsdataverse/sportsdataverse-data:mlb_statcast
+  {'dataset': 'statcast', 'season': 2020, 'uploaded': 0}
+EXIT=0
