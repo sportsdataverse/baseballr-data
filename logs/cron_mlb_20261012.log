@@ -20,3 +20,36 @@ log -> logs/mlb_06_statcast_compile_20261011_230556.log  (watch: tail -f logs/ml
 statcast compile 2026: 828859 rows -> mlb/statcast/mlb_statcast_2026.parquet
 EXIT=0
 [2026-10-12 03:06:00Z] daily mlb stages done (rc_total=0)
+pushed: feat(mlb): season 2026 daily capture (attempt 1)
+offline stage: no proxy / transport needed
+log -> logs/mlb_05_publish_20261011_230612.log  (watch: tail -f logs/mlb_05_publish_20261011_230612.log)
+  {'dataset': 'pbp', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'pitches', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'runners', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'schedule', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'statcast', 'season': 2026, 'uploaded': 3}
+EXIT=0
+[2026-10-12 03:15:00Z] daily mlb done EXIT=0
+EXIT=0
+[2026-10-12 12:30:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20261012_083001.log  (watch: tail -f logs/mlb_01_schedules_20261012_083001.log)
+season 2026: 2995 games -> mlb/schedule/2026.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20261012_083013.log  (watch: tail -f logs/mlb_02_games_20261012_083013.log)
+capture season 2026: {'captured': 1, 'skipped': 2455, 'failed': 0, 'elapsed_s': 3.8}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20261012_083018.log  (watch: tail -f logs/mlb_03_parse_20261012_083018.log)
+parse season 2026: {'games': 2456, 'plays': 186095, 'pitches': 721487, 'runners': 250980, 'unparsed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20261012_083142.log  (watch: tail -f logs/mlb_04_statcast_20261012_083142.log)
+statcast season 2026: {'captured': 1, 'skipped': 7, 'empty': 1, 'failed': 0, 'rows': 5207}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_06_statcast_compile_20261012_083226.log  (watch: tail -f logs/mlb_06_statcast_compile_20261012_083226.log)
+statcast compile 2026: 829148 rows -> mlb/statcast/mlb_statcast_2026.parquet
+EXIT=0
+[2026-10-12 12:32:30Z] daily mlb stages done (rc_total=0)
