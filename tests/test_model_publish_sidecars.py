@@ -123,3 +123,52 @@ def test_stage05_skips_a_season_whose_parquet_is_already_published(tmp_path, mon
     monkeypatch.setattr(artifacts, "upload_artifacts", boom)
     res = publish.publish_season(tmp_path, "pbp", 2026, dry_run=False)
     assert res["uploaded"] == 0 and res["unchanged"]
+
+
+def test_stem_with_unchanged_parquet_skips_its_restamped_rds(tmp_path, monkeypatch):
+    """Model families write parquet/csv/rds into format subdirs; rds bytes change every
+    build, so a stem whose parquet matches (and whose siblings exist) is skipped whole."""
+    from mlb_model_publish import artifacts
+
+    for sub, n, body in (
+        ("parquet", "mlb_wpa_2026.parquet", b"p"),
+        ("csv", "mlb_wpa_2026.csv", b"c"),
+        ("rds", "mlb_wpa_2026.rds", b"fresh-timestamp"),
+        ("parquet", "mlb_wpa_2025.parquet", b"old"),
+        ("parquet", "mlb_re24_matrix_2026.parquet", b"changed"),
+        ("rds", "mlb_re24_matrix_2026.rds", b"r"),
+    ):
+        (tmp_path / sub).mkdir(exist_ok=True)
+        (tmp_path / sub / n).write_bytes(body)
+    (tmp_path / "mlb_game_state_card.json").write_text("{}")
+    sha = artifacts.file_sha256
+    remote = {
+        "mlb_wpa_2026.parquet": sha(tmp_path / "parquet" / "mlb_wpa_2026.parquet"),
+        "mlb_wpa_2026.csv": sha(tmp_path / "csv" / "mlb_wpa_2026.csv"),
+        "mlb_wpa_2026.rds": "sha256:yesterday",
+        "mlb_wpa_2025.parquet": sha(tmp_path / "parquet" / "mlb_wpa_2025.parquet"),
+        "mlb_re24_matrix_2026.parquet": "sha256:stale",
+        "mlb_re24_matrix_2026.rds": "sha256:stale",
+        "mlb_game_state_card.json": sha(tmp_path / "mlb_game_state_card.json"),
+    }
+    monkeypatch.setattr(artifacts, "release_digests", lambda tag, repo: remote)
+    calls: list[list[str]] = []
+    res = upload_artifacts(tmp_path, "t", "r/r", pattern="**/mlb_*.*", runner=calls.append)
+
+    data = [Path(c[3]).name for c in calls if c[:2] == ["release", "upload"]][:2]
+    assert data == ["mlb_re24_matrix_2026.rds", "mlb_re24_matrix_2026.parquet"]
+    assert res["uploaded"] == 2 and res["skipped"] == 5
+
+
+def test_unchanged_stems_upload_nothing_and_stamp_nothing(tmp_path, monkeypatch):
+    from mlb_model_publish import artifacts
+
+    for sub, n in (("parquet", "mlb_x_2026.parquet"), ("rds", "mlb_x_2026.rds")):
+        (tmp_path / sub).mkdir()
+        (tmp_path / sub / n).write_bytes(n.encode())
+    pq = tmp_path / "parquet" / "mlb_x_2026.parquet"
+    remote = {pq.name: artifacts.file_sha256(pq), "mlb_x_2026.rds": "sha256:other"}
+    monkeypatch.setattr(artifacts, "release_digests", lambda tag, repo: remote)
+    calls: list[list[str]] = []
+    res = upload_artifacts(tmp_path, "t", "r/r", pattern="**/mlb_*.*", runner=calls.append)
+    assert calls == [] and res["uploaded"] == 0

@@ -115,9 +115,12 @@ def upload_artifacts(
     does not create one), so a single call is self-sufficient. Uploads are one
     ``gh release upload`` per file with ``--clobber`` -- never a multi-file
     glob, which silently drops large assets. A file whose sha256 already
-    equals the release asset's ``digest`` is skipped (one listing per call).
-    ``.parquet`` files go LAST: stage 05 treats an unchanged parquet as "this
-    season is already fully published", so it must land after its csv.gz/rds.
+    equals the release asset's ``digest`` is skipped (one listing per call),
+    and a stem (file name up to its first dot) whose parquet matches and
+    whose other formats already exist on the release is skipped whole -- its
+    rds/csv.gz are derived and re-stamped every build. ``.parquet`` files go
+    LAST per stem: an unchanged parquet then means "this stem is already fully
+    published" (stage 05 relies on that), so it must land after its csv.gz/rds.
     ``runner`` and ``exists_check`` are injectable for hermetic testing; an
     injected ``exists_check`` skips the listing and uploads everything.
     """
@@ -136,16 +139,35 @@ def upload_artifacts(
         run(["release", "create", tag, "--repo", repo, "--title", tag, "--notes", body])
         created_release = True
         remote = {}
-    uploaded = skipped = 0
+    # rds embeds a write timestamp (and csv.gz a gzip mtime), so their bytes
+    # never match themselves; both derive from the parquet. A stem whose
+    # parquet matches and whose other formats are all on the release is
+    # skipped whole. Per stem the parquet goes LAST, so a matching parquet
+    # means the stem's previous upload completed.
+    by_stem: dict[str, list[Path]] = {}
     for f in files:
-        if dry_run:
-            print(f"[dry-run] would upload {f} -> {repo}:{tag}")
+        by_stem.setdefault(f.name.split(".", 1)[0], []).append(f)
+    uploaded = skipped = 0
+    for group in by_stem.values():
+        group.sort(key=lambda f: f.suffix == ".parquet")
+        pq = group[-1] if group[-1].suffix == ".parquet" else None
+        if (
+            not dry_run
+            and pq is not None
+            and remote.get(pq.name) == file_sha256(pq)
+            and all(f.name in remote for f in group)
+        ):
+            skipped += len(group)
             continue
-        if remote.get(f.name) == file_sha256(f):
-            skipped += 1
-            continue
-        run(["release", "upload", tag, str(f), "--repo", repo, "--clobber"])
-        uploaded += 1
+        for f in group:
+            if dry_run:
+                print(f"[dry-run] would upload {f} -> {repo}:{tag}")
+                continue
+            if f is not pq and remote.get(f.name) == file_sha256(f):
+                skipped += 1
+                continue
+            run(["release", "upload", tag, str(f), "--repo", repo, "--clobber"])
+            uploaded += 1
     if skipped:
         print(f"{tag}: {skipped} unchanged asset(s) skipped, {uploaded} uploaded")
     # stamp LAST so the timestamp describes a finished upload, and only when
