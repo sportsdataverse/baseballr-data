@@ -140,6 +140,17 @@ stage numbers are intended build order, not run order. The R chain
 (`R/ncaa_01_schedules_creation.R`, `R/ncaa_02_pbp_creation.R`) is the maintained
 methodological twin.
 
+### Droplet entry points
+
+The droplet crontab (outside this repo) calls these drivers; each wraps the
+numbered stages and never re-implements one:
+
+| Script | Schedule | Does |
+|---|---|---|
+| `scripts/daily_mlb_capture.sh` | 08:30 ET, Mar–Nov | MLB daily capture + statcast (stages 04/06) + publish (stage 05) of the current season |
+| `scripts/daily_ncaa_baseball_capture.sh` | 09:30 ET daily Feb–Jun, monthly otherwise | NCAA baseball capture through the Decodo/patchright vendor |
+| `scripts/run_mlb_statcast_backfill.sh` | manual | Statcast backfill over a season range: stages 04 + 06 newest-first, one commit per season (`./scripts/run_mlb_statcast_backfill.sh 2026 2015`); publish with `run_mlb_05_publish.sh --dataset statcast` |
+
 ## Data releases
 
 Published to **`sportsdataverse/sportsdataverse-data`** releases (one tag per
