@@ -136,28 +136,31 @@ def publish_season(
     import shutil
     import tempfile
 
-    from mlb_model_publish.artifacts import upload_artifacts
+    from mlb_model_publish.artifacts import file_sha256, release_digests, upload_artifacts
 
     tag, stem = TAGS[dataset]
     parquet = source_path(root, dataset, season)
     if not parquet.exists():
         raise FileNotFoundError(f"{parquet} -- run the producing stage first")
+    asset = stem.format(season=season)
+    base = pathlib.Path(asset).stem  # mlb_pbp_2024
 
-    uploaded = 0
-
-    def _push(f: pathlib.Path) -> int:
-        # upload_artifacts globs a directory; an exact-name pattern makes sure
-        # nothing unrelated beside the file is ever swept into a release.
+    def _push(d: pathlib.Path) -> int:
+        # ONE upload_artifacts call per season: one release listing, then one
+        # `gh release upload` per CHANGED file and one sidecar stamp -- the old
+        # per-file call re-probed the release and re-stamped the 4 sidecars for
+        # every file (66 HTTP requests for a 3-file season, on the shared 5,000/h quota).
         #
         # RETRY ON RATE LIMIT. A 39-season x 3-dataset x 3-format publish is 351
         # uploads, which trips GitHub's SECONDARY (upload) rate limit -- observed
         # as `HTTP 403: API rate limit exceeded` after ~72 season-datasets, with
         # 45 consecutive failures after it. gh exits non-zero and
         # upload_artifacts propagates that, so without this the rest of the run
-        # is lost rather than merely delayed.
+        # is lost rather than merely delayed. A retry re-lists, so files that
+        # already landed are skipped.
         for attempt in range(RL_RETRIES):
             try:
-                r = upload_artifacts(f.parent, tag, REPO, pattern=f.name, dry_run=dry_run)
+                r = upload_artifacts(d, tag, REPO, pattern="*", dry_run=dry_run)
                 if RL_SLEEP and not dry_run:
                     time.sleep(RL_SLEEP)
                 return r.get("uploaded", 0) if isinstance(r, dict) else 0
@@ -167,26 +170,35 @@ def publish_season(
                 if not rate_limited or attempt == RL_RETRIES - 1:
                     raise
                 back = RL_BACKOFF * (2**attempt)
-                print(f"    rate limited on {f.name}; sleeping {back}s "
+                print(f"    rate limited on {tag}/{base}; sleeping {back}s "
                       f"(attempt {attempt + 1}/{RL_RETRIES})", flush=True)
                 time.sleep(back)
         return 0
 
+    # Unchanged parquet on the release => the season is fully published: the
+    # parquet uploads LAST (upload_artifacts orders it so), and csv.gz/rds are
+    # pure functions of it (their bytes differ run to run -- gzip mtime, rds
+    # timestamp -- so they cannot be compared themselves). Skipping here also
+    # skips building them.
+    if not dry_run:
+        remote = release_digests(tag, REPO) or {}
+        want = [asset] + ([f"{base}.csv.gz", f"{base}.rds"] if sides else [])
+        if remote.get(asset) == file_sha256(parquet) and all(n in remote for n in want):
+            return {"dataset": dataset, "season": season, "uploaded": 0, "unchanged": True}
+
     # TemporaryDirectory removes the tree on exit AND on exception, so a
     # failed upload cannot strand hundreds of MB of derivable staging.
-    # dir=root keeps it off the small root filesystem.
+    # dir=root keeps it off the small root filesystem (and lets the parquet be
+    # hard-linked in under its asset name instead of copied).
     with tempfile.TemporaryDirectory(dir=root, prefix=".publish_tmp_") as td:
-        asset = stem.format(season=season)
-        if parquet.name != asset:
-            # The asset name is the upload's file name: stage a renamed copy.
-            staged = pathlib.Path(td) / asset
+        staged = pathlib.Path(td) / asset
+        try:
+            os.link(parquet, staged)
+        except OSError:
             shutil.copyfile(parquet, staged)
-            uploaded += _push(staged)
-        else:
-            uploaded += _push(parquet)
         if sides:
-            for f in build_side_formats(root, dataset, season, pathlib.Path(td)):
-                uploaded += _push(f)
+            build_side_formats(root, dataset, season, pathlib.Path(td))
+        uploaded = _push(pathlib.Path(td))
 
     if not dry_run and uploaded:
         sd = state_dir(root)

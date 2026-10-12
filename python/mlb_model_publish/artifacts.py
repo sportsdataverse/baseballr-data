@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import subprocess
 from pathlib import Path
+from typing import Optional
 
 from sportsdataverse.release import upload_release_sidecars
 
@@ -62,14 +64,39 @@ def _gh_runner(args: list) -> None:
     subprocess.run(["gh", *args], check=True, timeout=GH_TIMEOUT_SECONDS)
 
 
-def _gh_release_exists(tag: str, repo: str) -> bool:
-    """True if a GitHub release for ``tag`` already exists on ``repo``."""
+def release_digests(tag: str, repo: str) -> Optional[dict[str, str]]:
+    """``{asset name: "sha256:<hex>"}`` for ``tag`` in ONE core API call; ``None`` = no release.
+
+    The release object embeds its whole asset list with a server-computed
+    ``digest`` per asset, so one call answers both "does the release exist" and
+    "which assets changed". The droplet shares one 5,000/h quota; the old
+    per-file ``gh release view`` + ``gh release upload`` + per-file 4-sidecar
+    stamp cost 66 HTTP requests for one 3-file season (measured 2026-10-12).
+    """
     r = subprocess.run(
-        ["gh", "release", "view", tag, "--repo", repo],
+        [
+            "gh",
+            "api",
+            f"repos/{repo}/releases/tags/{tag}",
+            "--jq",
+            r'.assets[] | "\(.name)\t\(.digest)"',
+        ],
         capture_output=True,
+        text=True,
         timeout=GH_TIMEOUT_SECONDS,
     )
-    return r.returncode == 0
+    if r.returncode:
+        if "404" in r.stderr:
+            return None  # first publish of this tag
+        # auth / rate limit must surface (the stage-05 retry keys on the text)
+        raise RuntimeError(f"gh api releases/tags/{tag}: {r.stderr.strip()}")
+    return dict(ln.split("\t", 1) for ln in r.stdout.splitlines() if "\t" in ln)
+
+
+def file_sha256(path) -> str:
+    """``"sha256:<hex>"`` -- the format of a release asset's ``digest``."""
+    with open(path, "rb") as fh:
+        return "sha256:" + hashlib.file_digest(fh, "sha256").hexdigest()
 
 
 def upload_artifacts(
@@ -87,26 +114,40 @@ def upload_artifacts(
     The release is created if it does not already exist (``gh release upload``
     does not create one), so a single call is self-sufficient. Uploads are one
     ``gh release upload`` per file with ``--clobber`` -- never a multi-file
-    glob, which silently drops large assets. ``runner`` and ``exists_check``
-    are injectable for hermetic testing.
+    glob, which silently drops large assets. A file whose sha256 already
+    equals the release asset's ``digest`` is skipped (one listing per call).
+    ``.parquet`` files go LAST: stage 05 treats an unchanged parquet as "this
+    season is already fully published", so it must land after its csv.gz/rds.
+    ``runner`` and ``exists_check`` are injectable for hermetic testing; an
+    injected ``exists_check`` skips the listing and uploads everything.
     """
     run = runner or _gh_runner
-    exists = exists_check or _gh_release_exists
-    files = sorted(Path(artifacts_dir).glob(pattern))
+    files = sorted(Path(artifacts_dir).glob(pattern), key=lambda f: (f.suffix == ".parquet", f))
     created_release = False
+    remote: Optional[dict[str, str]] = {}
     if dry_run:
         print(f"[dry-run] would ensure release {repo}:{tag} exists")
-    elif not exists(tag, repo):
+    elif exists_check is not None:
+        remote = {} if exists_check(tag, repo) else None
+    else:
+        remote = release_digests(tag, repo)
+    if remote is None:
         body = _RELEASE_BODY.get(tag, f"{tag} (auto-created by mlb_model_publish).")
         run(["release", "create", tag, "--repo", repo, "--title", tag, "--notes", body])
         created_release = True
-    uploaded = 0
+        remote = {}
+    uploaded = skipped = 0
     for f in files:
         if dry_run:
             print(f"[dry-run] would upload {f} -> {repo}:{tag}")
             continue
+        if remote.get(f.name) == file_sha256(f):
+            skipped += 1
+            continue
         run(["release", "upload", tag, str(f), "--repo", repo, "--clobber"])
         uploaded += 1
+    if skipped:
+        print(f"{tag}: {skipped} unchanged asset(s) skipped, {uploaded} uploaded")
     # stamp LAST so the timestamp describes a finished upload, and only when
     # something actually uploaded -- a stamp on a no-op run would claim data
     # moved when it did not
@@ -116,6 +157,7 @@ def upload_artifacts(
         )
     return {
         "uploaded": uploaded,
+        "skipped": skipped,
         "files": [str(f) for f in files],
         "tag": tag,
         "created_release": created_release,
