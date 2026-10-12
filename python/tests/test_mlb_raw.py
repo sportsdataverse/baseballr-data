@@ -388,3 +388,30 @@ def test_publish_sources_schedule_and_statcast_under_asset_names(tmp_path):
     assert publish.source_path(tmp_path, "pbp", 2024) == tmp_path / "mlb/pbp/mlb_pbp_2024.parquet"
     assert publish.TAGS["statcast"] == ("mlb_statcast", "mlb_statcast_{season}.parquet")
     assert publish.TAGS["schedule"] == ("mlb_schedules", "mlb_schedule_{season}.parquet")
+
+
+def test_current_season_month_missing_a_final_date_is_refetched(tmp_path, monkeypatch):
+    """The in-progress month is re-pulled until it holds every Final date; a
+    historical month keeps plain file-exists resume."""
+    import time
+
+    import polars as pl
+    from mlb_raw import statcast
+
+    year = time.localtime().tm_year
+    for season in (year, year - 1):
+        out = statcast.month_path(tmp_path, season, 10)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        pl.DataFrame({"game_date": [f"{season}-10-01"]}).write_parquet(out)
+    monkeypatch.setattr(
+        statcast, "scheduled_game_dates",
+        lambda root, season, month: {f"{season}-10-01", f"{season}-10-02"},
+    )
+    assert statcast.month_is_open(statcast.month_path(tmp_path, year, 10), tmp_path, year, 10)
+    assert not statcast.month_is_open(
+        statcast.month_path(tmp_path, year - 1, 10), tmp_path, year - 1, 10
+    )
+    monkeypatch.setattr(
+        statcast, "scheduled_game_dates", lambda root, season, month: {f"{season}-10-01"}
+    )
+    assert not statcast.month_is_open(statcast.month_path(tmp_path, year, 10), tmp_path, year, 10)

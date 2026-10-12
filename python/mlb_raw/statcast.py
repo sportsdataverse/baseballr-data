@@ -68,12 +68,34 @@ def month_path(root: pathlib.Path, season: int, month: int) -> pathlib.Path:
     return root / "mlb" / "statcast_raw" / str(season) / f"{season}-{month:02d}.parquet"
 
 
+def month_is_open(out: pathlib.Path, root: pathlib.Path, season: int, month: int) -> bool:
+    """True when a banked CURRENT-season month misses a Final date the schedule lists.
+
+    The daily driver banks the in-progress month, and plain file-exists resume
+    would freeze it at that night's games for good. Historical seasons keep plain
+    resume, so a backfill re-run still costs nothing.
+    """
+    if season != time.localtime().tm_year:
+        return False
+    expected = scheduled_game_dates(root, season, month)
+    if not expected:
+        return False
+    import polars as pl
+
+    got = set(
+        pl.read_parquet(out, columns=["game_date"])["game_date"].cast(pl.Utf8).unique().to_list()
+    )
+    # ponytail: a date Savant genuinely lacks ("Completed Early") keeps its month
+    # open, i.e. re-pulled nightly until the season ends -- bounded, one month.
+    return bool(expected - got)
+
+
 def capture_month(
     root: pathlib.Path, season: int, month: int, *, force: bool = False
 ) -> "tuple[str, int]":
     """Return (status, rows). Raises on a transport failure or a partial month."""
     out = month_path(root, season, month)
-    if out.exists() and not force:
+    if out.exists() and not force and not month_is_open(out, root, season, month):
         return "skipped", 0
 
     from sportsdataverse.mlb.mlb_statcast_extra import mlb_statcast_search

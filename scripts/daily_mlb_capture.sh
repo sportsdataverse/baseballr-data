@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Daily in-season driver for MLB, run from the DROPLET CRONTAB.
-# Composes the numbered stages (01 schedules -> 02 capture -> 03 parse) -- it
-# does NOT reimplement them, and a backfill is the same stages over a season
+# Composes the numbered stages (01 schedules -> 02 capture -> 03 parse ->
+# 04 statcast -> 06 statcast compile, then 05 publish) -- it does NOT
+# reimplement them, and a backfill is the same stages over a season
 # range via run_mlb_backfill.sh, not a parallel implementation.
 #
 # MLB season is the CALENDAR year. Corpus floor is 1988, the first season with
@@ -49,6 +50,14 @@ mkdir -p logs
   bash scripts/run_mlb_03_parse.sh --season "${SEASON}" --root . \
     || { echo "WARN parse rc=$?"; rc_total=1; }
 
+  # 04 is Savant, file-exists resumable per month; the in-progress month stays
+  # open (mlb_raw.statcast.month_is_open) so last night's games are re-pulled.
+  # 06 rebuilds mlb/statcast/mlb_statcast_<season>.parquet from the months.
+  bash scripts/run_mlb_04_statcast.sh --season "${SEASON}" --root . \
+    || { echo "WARN statcast rc=$?"; rc_total=1; }
+  bash scripts/run_mlb_06_statcast_compile.sh --season "${SEASON}" --root . \
+    || { echo "WARN statcast compile rc=$?"; rc_total=1; }
+
   echo "[$(date -u '+%F %T')Z] daily mlb stages done (rc_total=${rc_total})"
   exit "$rc_total"
 } 2>&1 | tee -a "$LOG"
@@ -58,7 +67,14 @@ source "$(dirname "$0")/_git_commit.sh"
 # Explicit subtrees, and no stage numbers in the subject: repository_dispatch
 # resolves START/END by grepping a message's first and last integers.
 sdv_commit_push "feat(mlb): season ${SEASON} daily capture" \
-  "mlb/raw/${SEASON}" mlb/schedule mlb/pbp logs/ || STAGE_RC=1
+  "mlb/raw/${SEASON}" "mlb/statcast_raw/${SEASON}" mlb/schedule mlb/pbp logs/ \
+  || STAGE_RC=1
+
+# 05 last: pbp/pitches/runners/statcast/schedule for the season -> the mlb_*
+# release tags sdv-db ingests (one season, 5 tags x parquet+csv.gz+rds).
+bash scripts/run_mlb_05_publish.sh --dataset all --season "${SEASON}" --root . --publish \
+  2>&1 | tee -a "$LOG"
+[ "${PIPESTATUS[0]}" -eq 0 ] || STAGE_RC=1
 
 echo "[$(date -u '+%F %T')Z] daily mlb done EXIT=${STAGE_RC}" | tee -a "$LOG"
 exit "$STAGE_RC"
