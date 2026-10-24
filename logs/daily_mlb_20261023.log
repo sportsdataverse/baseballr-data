@@ -21,3 +21,12 @@ log -> logs/mlb_06_statcast_compile_20261023_083216.log  (watch: tail -f logs/ml
 statcast compile 2026: 831644 rows -> mlb/statcast/mlb_statcast_2026.parquet
 EXIT=0
 [2026-10-23 12:32:19Z] daily mlb stages done (rc_total=0)
+offline stage: no proxy / transport needed
+log -> logs/mlb_05_publish_20261023_083240.log  (watch: tail -f logs/mlb_05_publish_20261023_083240.log)
+  {'dataset': 'pbp', 'season': 2026, 'uploaded': 0, 'unchanged': True}
+  {'dataset': 'pitches', 'season': 2026, 'uploaded': 0, 'unchanged': True}
+  {'dataset': 'runners', 'season': 2026, 'uploaded': 0, 'unchanged': True}
+  {'dataset': 'schedule', 'season': 2026, 'uploaded': 0, 'unchanged': True}
+  {'dataset': 'statcast', 'season': 2026, 'uploaded': 0, 'unchanged': True}
+EXIT=0
+[2026-10-23 12:32:45Z] daily mlb done EXIT=0
