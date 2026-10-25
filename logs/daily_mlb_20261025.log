@@ -1,0 +1,23 @@
+[2026-10-25 12:30:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20261025_083001.log  (watch: tail -f logs/mlb_01_schedules_20261025_083001.log)
+season 2026: 2992 games -> mlb/schedule/2026.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20261025_083011.log  (watch: tail -f logs/mlb_02_games_20261025_083011.log)
+capture season 2026: {'captured': 1, 'skipped': 2466, 'failed': 0, 'elapsed_s': 3.6}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20261025_083015.log  (watch: tail -f logs/mlb_03_parse_20261025_083015.log)
+parse season 2026: {'games': 2467, 'plays': 186826, 'pitches': 724311, 'runners': 251967, 'unparsed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20261025_083125.log  (watch: tail -f logs/mlb_04_statcast_20261025_083125.log)
+    2026-10: 1 scheduled date(s) have no Savant data at all (e.g. ['2026-10-16']) -- accepted
+statcast season 2026: {'captured': 1, 'skipped': 7, 'empty': 1, 'failed': 0, 'rows': 8308}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_06_statcast_compile_20261025_083221.log  (watch: tail -f logs/mlb_06_statcast_compile_20261025_083221.log)
+statcast compile 2026: 832249 rows -> mlb/statcast/mlb_statcast_2026.parquet
+EXIT=0
+[2026-10-25 12:32:25Z] daily mlb stages done (rc_total=0)
