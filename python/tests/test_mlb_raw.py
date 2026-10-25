@@ -372,6 +372,13 @@ def test_statcast_compile_pins_dtypes_and_refuses_lossy_drift():
     assert df.schema["zone"] == pl.Float64 and df.schema["season"] == pl.Int64
     assert df["season"].unique().to_list() == [2024]
 
+    # Old sportsdataverse hands the days columns over as Float64, #1003+ as Int64.
+    days = "pitcher_days_until_next_game"
+    df = sc.compile_frame([("a", a.with_columns(pl.lit(4.0).alias(days))),
+                           ("b", b.with_columns(pl.lit(None, pl.Int64).alias(days)))], 2024)
+    assert df.schema[days] == pl.Int64 and df[days].drop_nulls().to_list() == [4]
+    assert sc.pin_dtypes(pl.DataFrame({days: [float("nan")]}), "x")[days].to_list() == [None]
+
     with pytest.raises(TypeError, match="float->str"):
         sc.pin_dtypes(pl.DataFrame({"sv_id": [1.0]}), "x")
     with pytest.raises(TypeError, match="pin it in DTYPES"):

@@ -38,13 +38,20 @@ DTYPES = {
     "zone": pl.Float64,
     "release_spin_rate": pl.Float64,
     "spin_axis": pl.Float64,
-    "pitcher_days_since_prev_game": pl.Float64,
-    "batter_days_since_prev_game": pl.Float64,
     "age_pit": pl.Int64,
     "age_bat": pl.Int64,
     "age_pit_legacy": pl.Int64,
     "age_bat_legacy": pl.Int64,
 }
+# Whole days; sportsdataverse returns Int64 from #1003 on, Float64 before. Pinned
+# Int64 here AND at the stage 04 month write, so the committed raw tree stays Int64.
+DAYS_COLS = (
+    "pitcher_days_since_prev_game",
+    "batter_days_since_prev_game",
+    "pitcher_days_until_next_game",
+    "batter_days_until_next_game",
+)
+DTYPES.update(dict.fromkeys(DAYS_COLS, pl.Int64))
 SORT = ["game_date", "game_pk", "at_bat_number", "pitch_number"]
 
 
@@ -56,10 +63,12 @@ def out_path(root: pathlib.Path, season: int) -> pathlib.Path:
     return root / "mlb" / "statcast" / f"mlb_statcast_{season}.parquet"
 
 
-def pin_dtypes(df: pl.DataFrame, name: str) -> pl.DataFrame:
-    """Cast the known-drifting columns to their pinned dtype, refusing lossy casts."""
+def pin_dtypes(df: pl.DataFrame, name: str, cols: "tuple[str, ...] | None" = None) -> pl.DataFrame:
+    """Cast the known-drifting columns (or just ``cols``) to their pinned dtype, refusing lossy casts."""
     casts = []
     for c, want in DTYPES.items():
+        if cols is not None and c not in cols:
+            continue
         have = df.schema.get(c)
         if have is None or have == want:
             continue
@@ -67,11 +76,13 @@ def pin_dtypes(df: pl.DataFrame, name: str) -> pl.DataFrame:
         if want == pl.String and s.drop_nulls().len():
             # Never stringify a populated float id ("123.0").
             raise TypeError(f"{name}: {c} is {have} with values -- refusing float->str")
+        expr = pl.col(c)
         if want == pl.Int64 and have.is_float():
-            nn = s.drop_nulls()
+            nn = s.fill_nan(None).drop_nulls()
             if (nn != nn.round(0)).any():
                 raise TypeError(f"{name}: {c} has non-integral values -- refusing Int64 cast")
-        casts.append(pl.col(c).cast(want, strict=True))
+            expr = expr.fill_nan(None)  # NaN is missing, never a number
+        casts.append(expr.cast(want, strict=True))
     return df.with_columns(casts) if casts else df
 
 

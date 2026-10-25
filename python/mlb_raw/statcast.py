@@ -155,6 +155,9 @@ def capture_month(
                 flush=True,
             )
 
+    from mlb_raw.statcast_compile import DAYS_COLS, pin_dtypes
+
+    df = pin_dtypes(df, out.name, DAYS_COLS)  # Int64 whatever sportsdataverse returns
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(f".{os.getpid()}.tmp")
     df.write_parquet(tmp)
