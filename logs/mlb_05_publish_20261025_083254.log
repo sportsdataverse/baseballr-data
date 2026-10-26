@@ -1,0 +1,6 @@
+  {'dataset': 'pbp', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'pitches', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'runners', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'schedule', 'season': 2026, 'uploaded': 3}
+  statcast 2026: FAILED TimeoutExpired: Command '['gh', 'release', 'upload', 'mlb_statcast', '/mnt/sdv_repos/baseballr-data/.publish_tmp_ur_w1mz4/mlb_statcast_2026.csv.gz', '--repo', 'sportsdataverse/sportsdataverse-data', '--clobber']' timed out after 300 seconds
+EXIT=1

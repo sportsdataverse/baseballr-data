@@ -21,3 +21,12 @@ log -> logs/mlb_06_statcast_compile_20261025_083221.log  (watch: tail -f logs/ml
 statcast compile 2026: 832249 rows -> mlb/statcast/mlb_statcast_2026.parquet
 EXIT=0
 [2026-10-25 12:32:25Z] daily mlb stages done (rc_total=0)
+offline stage: no proxy / transport needed
+log -> logs/mlb_05_publish_20261025_083254.log  (watch: tail -f logs/mlb_05_publish_20261025_083254.log)
+  {'dataset': 'pbp', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'pitches', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'runners', 'season': 2026, 'uploaded': 3}
+  {'dataset': 'schedule', 'season': 2026, 'uploaded': 3}
+  statcast 2026: FAILED TimeoutExpired: Command '['gh', 'release', 'upload', 'mlb_statcast', '/mnt/sdv_repos/baseballr-data/.publish_tmp_ur_w1mz4/mlb_statcast_2026.csv.gz', '--repo', 'sportsdataverse/sportsdataverse-data', '--clobber']' timed out after 300 seconds
+EXIT=1
+[2026-10-25 12:44:53Z] daily mlb done EXIT=1

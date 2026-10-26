@@ -1,0 +1,2 @@
+statcast compile 2026: FAILED TypeError: pitcher_days_until_next_game: Float64 in 2026-03.parquet vs Int64 in 2026-10.parquet -- pin it in DTYPES
+EXIT=1

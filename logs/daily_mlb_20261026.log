@@ -1,0 +1,24 @@
+[2026-10-26 12:30:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20261026_083001.log  (watch: tail -f logs/mlb_01_schedules_20261026_083001.log)
+season 2026: 2992 games -> mlb/schedule/2026.parquet
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20261026_083011.log  (watch: tail -f logs/mlb_02_games_20261026_083011.log)
+capture season 2026: {'captured': 0, 'skipped': 2467, 'failed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20261026_083011.log  (watch: tail -f logs/mlb_03_parse_20261026_083011.log)
+parse season 2026: {'games': 2467, 'plays': 186826, 'pitches': 724311, 'runners': 251967, 'unparsed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20261026_083129.log  (watch: tail -f logs/mlb_04_statcast_20261026_083129.log)
+    2026-10: 1 scheduled date(s) have no Savant data at all (e.g. ['2026-10-16']) -- accepted
+statcast season 2026: {'captured': 1, 'skipped': 7, 'empty': 1, 'failed': 0, 'rows': 8308}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_06_statcast_compile_20261026_083218.log  (watch: tail -f logs/mlb_06_statcast_compile_20261026_083218.log)
+statcast compile 2026: FAILED TypeError: pitcher_days_until_next_game: Float64 in 2026-03.parquet vs Int64 in 2026-10.parquet -- pin it in DTYPES
+EXIT=1
+WARN statcast compile rc=1
+[2026-10-26 12:32:20Z] daily mlb stages done (rc_total=1)
