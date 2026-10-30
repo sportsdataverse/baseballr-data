@@ -17,6 +17,7 @@ import argparse
 import logging
 import os
 import sys
+from datetime import date
 from pathlib import Path
 from typing import List, Optional, Tuple
 
@@ -129,7 +130,11 @@ def main(argv: "list[str] | None" = None) -> int:
     fetch = browser_fetch_fn(proxy_pool=pool)  # one held session
 
     try:
-        stats = capture_season(contests, fetch, raw_dir(root, args.season), max_contests=args.max)
+        # a past season's pbp is final; the current season's can still post (capture_contest)
+        settled = args.season < date.today().year
+        stats = capture_season(
+            contests, fetch, raw_dir(root, args.season), max_contests=args.max, pbp_settled=settled
+        )
     except RuntimeError as exc:  # breaker tripped -- ban hard-stop
         print(f"[games] HARD STOP: {exc}", file=sys.stderr)
         return 1

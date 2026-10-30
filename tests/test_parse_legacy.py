@@ -95,3 +95,21 @@ def test_legacy_game_key_is_namespaced() -> None:
     bridge = [dict(rows[0], contest_id="6357953")]
     p = build_legacy_payload(bridge)
     assert p["game_key"] == "6357953" and p["game_pbp_id"] == 4491801
+
+
+def test_bundle_with_no_pbp_or_box_writes_no_payload(tmp_path: Path) -> None:
+    # 2016 Longwood-VMI: stats.ncaa.org renders the page shell with no pbp or box
+    # table, so the payload would be a blank games row -- stage 03 skips it.
+    import gzip
+    import json
+
+    from ncaa_pbp.parse import _capture_job, parsed_path
+
+    page = (FIX / "mba_pbp_no_plays_294867.html").read_text(encoding="utf-8")
+    raw = tmp_path / "ncaa" / "raw" / "2016" / "294867.json.gz"
+    raw.parent.mkdir(parents=True)
+    tabs = ("play_by_play", "box_score", "team_stats", "individual_stats", "situational_stats")
+    with gzip.open(raw, "wt", encoding="utf-8") as fh:
+        json.dump({"contest_id": "294867", **{t: page for t in tabs}}, fh)
+    assert _capture_job((str(tmp_path), "294867", 2016, None, False)) == ("294867", "empty")
+    assert not parsed_path(tmp_path, "294867").exists()

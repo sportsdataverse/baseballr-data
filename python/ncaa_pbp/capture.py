@@ -68,11 +68,29 @@ def _looks_real(html: "Optional[str]") -> bool:
     return bool(html) and len(html) >= _MIN_PBP_BYTES and 'class="table"' in html.lower()
 
 
-def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | Path") -> str:
+def _is_game_page(html: "Optional[str]", contest_id: "str | int") -> bool:
+    # this contest's full page shell (it links its own box score) -- a real game with no
+    # pbp on stats.ncaa.org renders it with no inning tables. Retrying never adds them.
+    return (
+        bool(html) and len(html) >= _MIN_PBP_BYTES and f"/contests/{contest_id}/box_score" in html
+    )
+
+
+def capture_contest(
+    fetch_fn: FetchFn,
+    contest_id: "str | int",
+    out_dir: "str | Path",
+    *,
+    pbp_settled: bool = False,
+) -> str:
     """Fetch + persist one contest bundle, or repair a saved one's null tabs.
 
     Returns ``"skipped"`` (already complete), ``"captured"`` (written or repaired),
     or ``"failed"`` (fetch raised, or the pbp page was not real content).
+
+    ``pbp_settled`` (a past season): this contest's page shell without inning tables
+    is final -- stats.ncaa.org never got pbp for the game -- so it is kept, not
+    retried forever. Off for the current season, where pbp can post days late.
     """
     path = bundle_path(contest_id, out_dir)
     bundle = _load_bundle(path)
@@ -81,7 +99,7 @@ def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | 
             pbp = fetch_fn(f"contests/{contest_id}/play_by_play")
         except Exception:  # noqa: BLE001 - any transport failure = a failed capture, breaker counts it
             return "failed"
-        if not _looks_real(pbp):
+        if not (_looks_real(pbp) or (pbp_settled and _is_game_page(pbp, contest_id))):
             return "failed"
         bundle = {"contest_id": str(contest_id), "play_by_play": pbp}
     todo = _missing_tabs(bundle)
@@ -108,6 +126,7 @@ def capture_season(
     *,
     max_contests: "Optional[int]" = None,
     max_consecutive_failures: int = 25,
+    pbp_settled: bool = False,
 ) -> "dict[str, int]":
     """Capture every not-yet-captured contest. Idempotent; hard-stops on a storm.
 
@@ -117,6 +136,7 @@ def capture_season(
         out_dir: directory the ``{contest_id}.json.gz`` bundles land in.
         max_contests: stop after this many NEW captures (chunking; None = all).
         max_consecutive_failures: trip the breaker after this many failures in a row.
+        pbp_settled: keep games with no pbp on the site (past seasons; see capture_contest).
 
     Returns:
         ``{"captured": n, "skipped": n, "failed": n}``.
@@ -130,7 +150,7 @@ def capture_season(
     for contest_id in contest_ids:
         if max_contests is not None and stats["captured"] >= max_contests:
             break
-        result = capture_contest(fetch_fn, contest_id, out_dir)
+        result = capture_contest(fetch_fn, contest_id, out_dir, pbp_settled=pbp_settled)
         stats[result] += 1
         consecutive = consecutive + 1 if result == "failed" else 0
         if consecutive >= max_consecutive_failures:

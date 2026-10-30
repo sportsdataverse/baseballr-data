@@ -155,7 +155,12 @@ def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[st
     try:
         with gzip.open(raw, "rt", encoding="utf-8") as fh:
             bundle = json.load(fh)
-        write_payload(root, build_capture_payload(bundle, season, espn_game_id=espn))
+        payload = build_capture_payload(bundle, season, espn_game_id=espn)
+        if not payload["pbp"] and not payload["teams"]:
+            # a game stats.ncaa.org has no pbp or box table for: a payload would be a blank
+            # games row, and without one the build keeps any legacy copy of the game
+            return cid, "empty"
+        write_payload(root, payload)
         return cid, "parsed"
     except Exception as exc:  # noqa: BLE001 -- one bad bundle must not kill the sweep
         return cid, f"error: {type(exc).__name__}: {exc}"
