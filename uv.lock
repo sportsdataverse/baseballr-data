@@ -89,7 +89,7 @@ docs = [
 requires-dist = [
     { name = "curl-cffi", specifier = ">=0.6" },
     { name = "numpy", specifier = ">=1.24" },
-    { name = "patchright", specifier = ">=1.50" },
+    { name = "patchright", specifier = ">=1.64.3" },
     { name = "polars", specifier = ">=1.0" },
     { name = "pyarrow", specifier = ">=15.0" },
     { name = "requests", specifier = ">=2.28" },
@@ -1491,21 +1491,21 @@ wheels = [
 
 [[package]]
 name = "patchright"
-version = "1.62.3"
+version = "1.64.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "greenlet" },
     { name = "pyee" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9f/ac/990b4d42a1b8a2827b80a19be29ed4976ef52dfde56fa2eaac638b57957f/patchright-1.62.3-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:5d9e45c300b72ebc90cc9434da4e06222fdcad18ba473bd6859169421bf37fe3", size = 43724986, upload-time = "2026-09-02T22:11:54.543Z" },
-    { url = "https://files.pythonhosted.org/packages/13/60/58a84797867c3404e715d4beb0e393c8643c34b4b54a52870d1fc5a1a32d/patchright-1.62.3-py3-none-macosx_11_0_arm64.whl", hash = "sha256:4bdbe4e0ff224d02b27f154040049d30f4bbabe39f511910c3aa846d04d997ae", size = 42503735, upload-time = "2026-09-02T22:11:57.71Z" },
-    { url = "https://files.pythonhosted.org/packages/40/34/77e52d126ef36defbd9bce5b1ec8096fcfc4bc5cfe5afb3c46b4a1033a82/patchright-1.62.3-py3-none-macosx_11_0_universal2.whl", hash = "sha256:88edcf3d04eb4ab7f041cf92a28e0e2f00ad8ef24fc3d2b4ea134000b9474185", size = 43724986, upload-time = "2026-09-02T22:12:00.977Z" },
-    { url = "https://files.pythonhosted.org/packages/c7/c6/2e78216dd206aa7c4031432162962881c3abd7b1f246cf5ec0ad445da426/patchright-1.62.3-py3-none-manylinux1_x86_64.whl", hash = "sha256:d652b4e5f3a7cc8e8d9e896d1c95853feeb99bcd63ac9439538cf9a752a6c82c", size = 47741822, upload-time = "2026-09-02T22:12:04.412Z" },
-    { url = "https://files.pythonhosted.org/packages/86/d6/78af3bfff6c778a94f9d76ba70eb5b85d9ea67e280bf2008c9d9c6559224/patchright-1.62.3-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f6453c3a5067d44608ff08727c2ad5c5c3305d577162934bcbfa609a78ec5fe7", size = 47434317, upload-time = "2026-09-02T22:12:07.255Z" },
-    { url = "https://files.pythonhosted.org/packages/64/51/4a117b30fb1ed480a173580b4ea82267d2d10b38bc0e43c1a8d0cec2dcf3/patchright-1.62.3-py3-none-win32.whl", hash = "sha256:f70d0672a551e5a8b9f36a823ccc47361667cdbdb85c77205555a0450fa4149d", size = 38157354, upload-time = "2026-09-02T22:12:09.92Z" },
-    { url = "https://files.pythonhosted.org/packages/c7/b7/6aefc1767deed5f0dbac23fc35bb23b370f0db77968923af07708caa3947/patchright-1.62.3-py3-none-win_amd64.whl", hash = "sha256:ccca9f1fa9fc4e9cdc2cdd784d4bb0e992e83defaec60e5a5d2d31cad9bd785a", size = 38157362, upload-time = "2026-09-02T22:12:13.123Z" },
-    { url = "https://files.pythonhosted.org/packages/a8/6d/52b9365d6dc8582af1e94af88dbc4c8d1ebd03feecd5d0acafb6fcfc0f60/patchright-1.62.3-py3-none-win_arm64.whl", hash = "sha256:22c50ef98b192000a8501bbf1a1e188660b5b63b626c4efce5fafe71dc8d27bf", size = 34201773, upload-time = "2026-09-02T22:12:16.348Z" },
+    { url = "https://files.pythonhosted.org/packages/f1/e6/1ea1f89f2d7f18598d4bdbc9099d7bd36f78d1d7e837ad98c32b5467de3f/patchright-1.64.3-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:4d373f3b30b18e0881b81700c486f55c3ea471922927d75319b71a39db6d39be", size = 44498873, upload-time = "2026-10-25T13:17:36.442Z" },
+    { url = "https://files.pythonhosted.org/packages/78/58/e5921afc4f07071103b7019a36c4b8afd4b56d9192aedb15270cc07ec31c/patchright-1.64.3-py3-none-macosx_11_0_arm64.whl", hash = "sha256:f464755586c2ce5d750f9b58700e35f1acc80cb070a9006565ce166711a59fa8", size = 43145139, upload-time = "2026-10-25T13:17:40.093Z" },
+    { url = "https://files.pythonhosted.org/packages/d6/b0/3944468c1ca7ff2f89630c6127266175f477bffe11e1058f111ce5c1c50e/patchright-1.64.3-py3-none-macosx_11_0_universal2.whl", hash = "sha256:bc963b9ec1dac8494503210cece5258e8885e88698d33cd11c135ffcf45732ba", size = 44498874, upload-time = "2026-10-25T13:17:42.862Z" },
+    { url = "https://files.pythonhosted.org/packages/ec/bd/a4eaf3b54dee93981a0860909de5ddb51d9d2ff3fe20cee875515a772af0/patchright-1.64.3-py3-none-manylinux1_x86_64.whl", hash = "sha256:c2d8134e7ca4dc62586239ce5cc96a5db59671690eb52d2dadde9c19c42467da", size = 48461838, upload-time = "2026-10-25T13:17:45.861Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/4f/7ae387bdc49851b13f8684088578376b7deac409cf8bda90fad82e05e0ed/patchright-1.64.3-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ddc9a2fbf56e7d1db70395cd0c39bcbc1168b3b2f38f4980177a1cd2cc19f3c0", size = 48140902, upload-time = "2026-10-25T13:17:48.97Z" },
+    { url = "https://files.pythonhosted.org/packages/44/d6/35e577beeb7cb33be9bfb26da6cb08a7d69ed61e19f1c4450fdec66d873c/patchright-1.64.3-py3-none-win32.whl", hash = "sha256:15168ac4a7852670e5db0bf9cc0f7811729cf5ff39a19f3c32ba41803c3c1dd8", size = 38791738, upload-time = "2026-10-25T13:17:52.349Z" },
+    { url = "https://files.pythonhosted.org/packages/7d/af/29bf5888009a526add459ff8cf996362d7d9b5e21909517b98b2dbd7359d/patchright-1.64.3-py3-none-win_amd64.whl", hash = "sha256:3838d2e6814ba9a34dc6eee2e2d8bc7c576d81427182020d24d897acd77803a4", size = 38791741, upload-time = "2026-10-25T13:17:55.051Z" },
+    { url = "https://files.pythonhosted.org/packages/02/db/f7f470bf092cdd32d6fe410b970bb8db7ddac443528124218015742c0016/patchright-1.64.3-py3-none-win_arm64.whl", hash = "sha256:fa2e42f5c75a4f47cb04a0a721fd97f96f2c2c45e2f48f771dcabbbf7c1e202c", size = 34683780, upload-time = "2026-10-25T13:17:58.211Z" },
 ]
 
 [[package]]
