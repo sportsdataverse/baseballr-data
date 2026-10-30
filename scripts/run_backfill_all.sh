@@ -100,7 +100,8 @@ for season in $(seq "$START" -1 "$END"); do
   # 1) schedules: team lists + team pages, all divisions. The ~950 team pages are
   # sharded like 02/04; the unsharded run then fetches any page a shard missed,
   # builds the master, and is the one the coverage-floor check below reads.
-  run_shards ncaa_baseball_01_schedules_scrape.py "bf_${season}_01" "$season"
+  # SHARDS_01 tunes this stage alone (default SHARDS; the memory cap still applies)
+  SHARDS="${SHARDS_01:-$SHARDS}" run_shards ncaa_baseball_01_schedules_scrape.py "bf_${season}_01" "$season"
   "$PY" python/ncaa_baseball_01_schedules_scrape.py --season "$season" > "logs/bf_${season}_01.log" 2>&1
   rc=$?
   if [ $rc -ne 0 ] && grep -qi "zero teams\|no teams" "logs/bf_${season}_01.log"; then
