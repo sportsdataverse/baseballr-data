@@ -90,6 +90,39 @@ def division_contest_ids(
     )
 
 
+def recaptured_contests(root: Path, season: int) -> "set[str]":
+    """Contest ids with a capture-era raw bundle (``ncaa/raw/{season}/{contest_id}.json.gz``).
+
+    Non-empty for 2024+ and for every pre-2024 season re-scraped by the Python
+    pipeline (2016, then 2017-2023 per the 2026-10-30 owner call); empty for a
+    season that only has legacy R-era payloads.
+    """
+    raw = root / "ncaa" / "raw" / str(season)
+    return (
+        {p.name.removesuffix(".json.gz") for p in raw.glob("*.json.gz")} if raw.is_dir() else set()
+    )
+
+
+def _legacy_contest_map(root: Path, season: int) -> "dict[int, str]":
+    """Legacy ``game_pbp_id`` -> ``contest_id`` from the committed R-era schedule.
+
+    Legacy payloads carry ``game_pbp_id`` but no ``contest_id`` (2017-2022); this is
+    how a re-captured game is recognised as the same game. Empty when the frame or
+    either column is missing (2023's legacy keys already are contest ids).
+    """
+    f = root / "ncaa" / "schedules" / "parquet" / f"ncaa_baseball_schedule_{season}.parquet"
+    if not f.is_file():
+        return {}
+    frame = pl.read_parquet(f)
+    if not {"game_pbp_id", "contest_id"} <= set(frame.columns):
+        return {}
+    frame = frame.select(
+        pl.col("game_pbp_id").cast(pl.Int64, strict=False),
+        pl.col("contest_id").cast(pl.Int64, strict=False),
+    ).drop_nulls()
+    return {gid: str(cid) for gid, cid in frame.iter_rows()}
+
+
 def iter_payloads(
     root: Path,
     season: int,
@@ -101,26 +134,64 @@ def iter_payloads(
     and filters on the stamped ``season`` -- the one pass ``build_season``
     amortises across all datasets.
 
-    ``keep_contests`` (when given) additionally restricts to those contest ids:
-    the raw/parsed trees archive every division we ever captured, while the
-    RELEASE datasets are D-I (2026-08-27 scope call). Payloads with no
-    ``contest_id`` (legacy R era) are kept -- the filter only applies where a
-    contest id exists to judge.
+    ``keep_contests`` (when given) additionally restricts CAPTURE payloads to those
+    contest ids: the raw/parsed trees archive every division we ever captured, while
+    the RELEASE datasets are D-I (2026-08-27 scope call).
+
+    Legacy R-era payloads are not scoped by division. In a season the Python pipeline
+    re-captured, a legacy payload is dropped only when a capture payload for the same
+    game was actually released in this sweep (the same game twice otherwise); every
+    other legacy game (D-II/III, a bundle whose parse failed, anything the re-scrape
+    missed) is kept as already released. Candidates are decided after the sweep, so
+    only their paths are held, never the payloads.
     """
+    recaptured = recaptured_contests(root, season)
+    if keep_contests is not None:
+        recaptured &= keep_contests
+    legacy_ids = _legacy_contest_map(root, season) if recaptured else {}
+    if recaptured and not legacy_ids and season < 2023:
+        log.warning(
+            "season %s re-captured but no legacy game_pbp_id -> contest_id map: legacy twins will duplicate",
+            season,
+        )
+    released: "set[str]" = set()
+    deferred: "list[tuple[Path, str]]" = []
     json_dir = root / "ncaa" / "json"
     for p in sorted(json_dir.glob("*.json.gz")):
-        try:
-            with gzip.open(p, "rt", encoding="utf-8") as fh:
-                payload = json.load(fh)
-        except Exception as exc:  # noqa: BLE001 -- one bad payload must not sink the season
-            log.warning("unreadable payload %s: %s", p.name, exc)
-            continue
-        if payload.get("season") != season:
+        payload = _load(p)
+        if payload is None or payload.get("season") != season:
             continue
         cid = payload.get("contest_id")
+        if str(payload.get("source", "")).startswith("legacy"):
+            if cid is None:
+                gid = _int(payload.get("game_pbp_id"))
+                cid = legacy_ids.get(gid) if gid is not None else None
+            if cid is not None and str(cid) in recaptured:
+                deferred.append((p, str(cid)))  # dropped only if its capture twin is released
+                continue
+            yield payload
+            continue
         if keep_contests is not None and cid is not None and str(cid) not in keep_contests:
             continue
+        if cid is not None:
+            released.add(str(cid))
         yield payload
+    for p, cid in deferred:
+        if cid in released:
+            continue  # the re-scrape owns this game
+        payload = _load(p)
+        if payload is not None:
+            log.warning("legacy %s kept: bundle %s has no capture payload", p.name, cid)
+            yield payload
+
+
+def _load(p: Path) -> "dict[str, Any] | None":
+    try:
+        with gzip.open(p, "rt", encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception as exc:  # noqa: BLE001 -- one bad payload must not sink the season
+        log.warning("unreadable payload %s: %s", p.name, exc)
+        return None
 
 
 def _frame(rows: "list[dict]", schema: "dict[str, pl.DataType]") -> pl.DataFrame:
