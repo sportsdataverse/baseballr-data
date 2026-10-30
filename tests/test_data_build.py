@@ -380,3 +380,30 @@ def test_recaptured_season_publishes_the_capture_schedule_master(
         base / f"ncaa/schedule/parquet/ncaa_baseball_schedule_{LEGACY_SEASON}.parquet"
     )
     assert "division" in sched.columns  # the master, not the legacy R frame
+
+
+def test_recaptured_bundle_without_a_capture_payload_keeps_the_legacy_game(
+    tree: Path, tmp_path: Path
+) -> None:
+    """A bundle whose parse failed must not take the legacy game down with it."""
+    _recaptured_tree(tree)
+    (tree / "ncaa" / "json" / "7100001.json.gz").unlink()  # bundle present, payload missing
+    base = tmp_path / "out"
+    assert _build(base, tree, LEGACY_SEASON, dataset="games") == 0
+    games = pl.read_parquet(
+        base / f"ncaa/games/parquet/ncaa_baseball_games_{LEGACY_SEASON}.parquet"
+    )
+    assert sorted(games["game_key"].to_list()) == ["4400001", "4400002"]  # legacy twin kept
+
+
+def test_string_game_pbp_id_still_matches_its_recaptured_game(tree: Path, tmp_path: Path) -> None:
+    _recaptured_tree(tree)
+    legacy = _legacy_payload(4400001)
+    legacy["game_pbp_id"] = "4400001"  # stringified id in an older payload
+    _write_payload(tree, legacy)
+    base = tmp_path / "out"
+    assert _build(base, tree, LEGACY_SEASON, dataset="games") == 0
+    games = pl.read_parquet(
+        base / f"ncaa/games/parquet/ncaa_baseball_games_{LEGACY_SEASON}.parquet"
+    )
+    assert games.height == 2  # no duplicate of 7100001

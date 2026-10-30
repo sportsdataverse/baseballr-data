@@ -139,35 +139,59 @@ def iter_payloads(
     the RELEASE datasets are D-I (2026-08-27 scope call).
 
     Legacy R-era payloads are not scoped by division. In a season the Python pipeline
-    re-captured, a legacy payload is dropped only when its game is one the capture
-    side will release (the same game twice otherwise); every other legacy game
-    (D-II/III, or anything the re-scrape missed) is kept as already released.
+    re-captured, a legacy payload is dropped only when a capture payload for the same
+    game was actually released in this sweep (the same game twice otherwise); every
+    other legacy game (D-II/III, a bundle whose parse failed, anything the re-scrape
+    missed) is kept as already released. Candidates are decided after the sweep, so
+    only their paths are held, never the payloads.
     """
     recaptured = recaptured_contests(root, season)
     if keep_contests is not None:
         recaptured &= keep_contests
     legacy_ids = _legacy_contest_map(root, season) if recaptured else {}
+    if recaptured and not legacy_ids and season < 2023:
+        log.warning(
+            "season %s re-captured but no legacy game_pbp_id -> contest_id map: legacy twins will duplicate",
+            season,
+        )
+    released: "set[str]" = set()
+    deferred: "list[tuple[Path, str]]" = []
     json_dir = root / "ncaa" / "json"
     for p in sorted(json_dir.glob("*.json.gz")):
-        try:
-            with gzip.open(p, "rt", encoding="utf-8") as fh:
-                payload = json.load(fh)
-        except Exception as exc:  # noqa: BLE001 -- one bad payload must not sink the season
-            log.warning("unreadable payload %s: %s", p.name, exc)
-            continue
-        if payload.get("season") != season:
+        payload = _load(p)
+        if payload is None or payload.get("season") != season:
             continue
         cid = payload.get("contest_id")
         if str(payload.get("source", "")).startswith("legacy"):
             if cid is None:
-                cid = legacy_ids.get(payload.get("game_pbp_id"))
+                gid = _int(payload.get("game_pbp_id"))
+                cid = legacy_ids.get(gid) if gid is not None else None
             if cid is not None and str(cid) in recaptured:
-                continue  # the re-scrape owns this game
+                deferred.append((p, str(cid)))  # dropped only if its capture twin is released
+                continue
             yield payload
             continue
         if keep_contests is not None and cid is not None and str(cid) not in keep_contests:
             continue
+        if cid is not None:
+            released.add(str(cid))
         yield payload
+    for p, cid in deferred:
+        if cid in released:
+            continue  # the re-scrape owns this game
+        payload = _load(p)
+        if payload is not None:
+            log.warning("legacy %s kept: bundle %s has no capture payload", p.name, cid)
+            yield payload
+
+
+def _load(p: Path) -> "dict[str, Any] | None":
+    try:
+        with gzip.open(p, "rt", encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception as exc:  # noqa: BLE001 -- one bad payload must not sink the season
+        log.warning("unreadable payload %s: %s", p.name, exc)
+        return None
 
 
 def _frame(rows: "list[dict]", schema: "dict[str, pl.DataType]") -> pl.DataFrame:
