@@ -111,13 +111,20 @@ def test_game_page_without_plays_is_captured(tmp_path: Path) -> None:
     # the linescore + tabs but no inning tables. Retrying never changes it, so the
     # bundle is kept (box score etc. still parse) instead of blocking the publish gate.
     html = NO_PLAYS.read_text(encoding="utf-8")
-    assert capture_contest(_fetch(html), "294867", tmp_path) == "captured"
+    assert capture_contest(_fetch(html), "294867", tmp_path, pbp_settled=True) == "captured"
     assert is_captured("294867", tmp_path)
+
+
+def test_current_season_game_without_plays_is_retried(tmp_path: Path) -> None:
+    # pbp can post days after the final -- an unsettled season keeps retrying it
+    html = NO_PLAYS.read_text(encoding="utf-8")
+    assert capture_contest(_fetch(html), "294867", tmp_path) == "failed"
+    assert not is_captured("294867", tmp_path)
 
 
 def test_page_for_another_contest_is_not_a_game_without_plays(tmp_path: Path) -> None:
     html = NO_PLAYS.read_text(encoding="utf-8")
-    assert capture_contest(_fetch(html), "9", tmp_path) == "failed"
+    assert capture_contest(_fetch(html), "9", tmp_path, pbp_settled=True) == "failed"
 
 
 def test_capture_counts_fetch_failure_as_failed(tmp_path: Path) -> None:
