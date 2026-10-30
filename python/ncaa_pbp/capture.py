@@ -68,6 +68,14 @@ def _looks_real(html: "Optional[str]") -> bool:
     return bool(html) and len(html) >= _MIN_PBP_BYTES and 'class="table"' in html.lower()
 
 
+def _is_game_page(html: "Optional[str]", contest_id: "str | int") -> bool:
+    # this contest's full page shell (it links its own box score) -- a real game with no
+    # pbp on stats.ncaa.org renders it with no inning tables. Retrying never adds them.
+    return (
+        bool(html) and len(html) >= _MIN_PBP_BYTES and f"/contests/{contest_id}/box_score" in html
+    )
+
+
 def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | Path") -> str:
     """Fetch + persist one contest bundle, or repair a saved one's null tabs.
 
@@ -81,7 +89,7 @@ def capture_contest(fetch_fn: FetchFn, contest_id: "str | int", out_dir: "str | 
             pbp = fetch_fn(f"contests/{contest_id}/play_by_play")
         except Exception:  # noqa: BLE001 - any transport failure = a failed capture, breaker counts it
             return "failed"
-        if not _looks_real(pbp):
+        if not (_looks_real(pbp) or _is_game_page(pbp, contest_id)):
             return "failed"
         bundle = {"contest_id": str(contest_id), "play_by_play": pbp}
     todo = _missing_tabs(bundle)
