@@ -17,9 +17,10 @@ cron; this producer is the capture half of the Python replacement.
 
 from __future__ import annotations
 
+import argparse
 import os
 import re
-from typing import Callable, List, Optional
+from typing import Callable, List, Optional, Tuple
 
 FetchFn = Callable[[str], str]  # (path) -> html
 
@@ -49,6 +50,18 @@ def proxy_pool_from_env() -> "list[str]":
     ``http://user:pass@host:port``). Empty list when unset."""
     raw = os.environ.get("NCAA_PROXY_POOL", "")
     return [p.strip() for p in raw.replace(",", "\n").splitlines() if p.strip()]
+
+
+def parse_shard(spec: str) -> "Tuple[int, int]":
+    """``"i/N"`` -> ``(i, N)`` with ``0 <= i < N`` (disjoint modulo shards)."""
+    try:
+        i_s, n_s = spec.split("/", 1)
+        i, n = int(i_s), int(n_s)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"--shard wants i/N, got {spec!r}") from None
+    if not 0 <= i < n:
+        raise argparse.ArgumentTypeError(f"--shard wants 0 <= i < N, got {spec!r}")
+    return i, n
 
 
 def browser_fetch_fn(proxy_pool: "Optional[List[str]]" = None) -> FetchFn:
@@ -89,7 +102,8 @@ def discover_season(
     if not teams:
         raise ValueError(
             f"no teams for academic_year={academic_year} division={division} "
-            f"sport_code={sport_code}" + (" (WSB team-list flow is a known TODO)" if sport_code == "WSB" else "")
+            f"sport_code={sport_code}"
+            + (" (WSB team-list flow is a known TODO)" if sport_code == "WSB" else "")
         )
     contests: "set[str]" = set()
     for team_id in teams:

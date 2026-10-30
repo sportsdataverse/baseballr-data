@@ -18,7 +18,7 @@ ad-hoc one-session runner.
 
 | NN | stage | entrypoint | launcher | online? | resumability | typical invocation |
 | --- | --- | --- | --- | --- | --- | --- |
-| 01 | schedules: team lists + team pages → `ncaa/teams_html/{season}_d{div}.html`, `ncaa/schedules_html/{season}/`, `ncaa/schedule_master/parquet/{season}.parquet` | `python/ncaa_baseball_01_schedules_scrape.py` | `scripts/run_01_schedules_scrape.sh` | online (≈1 page/team) | persisted html re-read, not re-fetched | `./scripts/run_01_schedules_scrape.sh --season 2026` |
+| 01 | schedules: team lists + team pages → `ncaa/teams_html/{season}_d{div}.html`, `ncaa/schedules_html/{season}/`, `ncaa/schedule_master/parquet/{season}.parquet` | `python/ncaa_baseball_01_schedules_scrape.py` | `scripts/run_01_schedules_scrape.sh` | online (≈1 page/team) | persisted html re-read, not re-fetched; fan out `--shard i/N` (team pages only -- an unsharded run builds the master) | `./scripts/run_01_schedules_scrape.sh --season 2026` |
 | 02 | games: 5-tab bundle per contest → `ncaa/raw/{season}/{contest_id}.json.gz` (contest ids from the schedule master, not rediscovery) | `python/ncaa_baseball_02_games_scrape.py` | `scripts/run_02_games_scrape.sh` | online (5 pages/game) | captured contests skipped; ban ⇒ breaker, rc=1 hard-stop, re-run resumes; chunk `--max`, fan out `--shard i/N` (one process each) | `./scripts/run_02_games_scrape.sh --season 2026 --max 200` |
 | 03 | parse: raw bundles + legacy R-era trees → `ncaa/json/{game_key}.json.gz` parsed+enriched payloads (both eras through the sdv-py decomposition engine) | `python/ncaa_baseball_03_games_parse.py` | `scripts/run_03_games_parse.sh` | **offline** | resumable (`--force` overwrites); `--season N` and/or `--legacy [--year Y]`; spawn pool `--workers` | `./scripts/run_03_games_parse.sh --legacy --year 2017` |
 | 04 | rosters: `teams/{id}/roster` → `ncaa/rosters_html/{season}/` | `python/ncaa_baseball_04_rosters_scrape.py` | `scripts/run_04_rosters_scrape.sh` | online (≈1 page/team) | teams with roster html skipped | `./scripts/run_04_rosters_scrape.sh --season 2026` |
@@ -165,7 +165,7 @@ baseball is a spring sport, so season = calendar year), `NCAAB_MAX` (default
 ## Campaign orchestrator
 
 `scripts/run_backfill_all.sh START END` runs the full per-season chain
-(01 schedules → 04 rosters → 02 games ×`SHARDS` → 06 xwalk → 03 parse →
+(01 schedules ×`SHARDS` → 04 rosters ×`SHARDS` → 02 games ×`SHARDS` → 06 xwalk → 03 parse →
 05 reference datasets → 07 build+publish), committing and pushing after every
 stage — season-sized batches. Resumable end to end; stops at the coverage
 floor (empty D1 team list). Proxy pool auto-built from `~/.Renviron` Decodo

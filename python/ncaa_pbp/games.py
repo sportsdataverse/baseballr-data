@@ -23,7 +23,7 @@ from typing import List, Optional, Tuple
 
 from ncaa_pbp.capture import capture_season, is_captured
 from ncaa_pbp.datasets import master_parquet_path
-from ncaa_pbp.discover import browser_fetch_fn, proxy_pool_from_env
+from ncaa_pbp.discover import browser_fetch_fn, parse_shard, proxy_pool_from_env
 from ncaa_pbp.schedules import DEFAULT_DIVISIONS, DIVISIONS, REPO_ROOT
 
 
@@ -59,18 +59,6 @@ def contest_ids_from_master(
         # everything rather than silently returning nothing
         print(f"[games] {path.name} has no division column; capturing all contests", flush=True)
     return sorted(frame.get_column("contest_id").unique().to_list())
-
-
-def parse_shard(spec: str) -> "Tuple[int, int]":
-    """``"i/N"`` -> ``(i, N)`` with ``0 <= i < N`` (disjoint modulo shards)."""
-    try:
-        i_s, n_s = spec.split("/", 1)
-        i, n = int(i_s), int(n_s)
-    except ValueError:
-        raise argparse.ArgumentTypeError(f"--shard wants i/N, got {spec!r}") from None
-    if not 0 <= i < n:
-        raise argparse.ArgumentTypeError(f"--shard wants 0 <= i < N, got {spec!r}")
-    return i, n
 
 
 def main(argv: "list[str] | None" = None) -> int:

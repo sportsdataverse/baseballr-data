@@ -14,13 +14,15 @@ Season key = calendar year (2026 = spring 2026); stats.ncaa.org's
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from ncaa_pbp.discover import (
     FetchFn,
     browser_fetch_fn,
+    parse_shard,
     proxy_pool_from_env,
     team_list_path,
 )
@@ -50,7 +52,11 @@ def fetch_persisted(path: Path, fetch_fn: FetchFn, url_path: str) -> str:
         return path.read_text(encoding="utf-8")
     html = fetch_fn(url_path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(html, encoding="utf-8")
+    # atomic: concurrent shards re-read the team lists, so a reader must never see
+    # a half-written page (it would parse to too few teams)
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    tmp.write_text(html, encoding="utf-8")
+    tmp.replace(path)
     return html
 
 
@@ -60,8 +66,12 @@ def scrape_season(
     *,
     root: "str | Path" = REPO_ROOT,
     fetch_fn: FetchFn,
+    shard: "Optional[Tuple[int, int]]" = None,
 ) -> "Dict[int, List[str]]":
     """Persist team-list + team-page html for each division.
+
+    ``shard=(i, n)`` fetches only every n-th team page (all divisions pooled), so n
+    processes split a season's ~950 pages; every shard still reads the team lists.
 
     Returns ``{division: [team_id, ...]}``. Raises ``ValueError`` on a division
     resolving zero teams (a hollow list would silently skip the whole division).
@@ -78,9 +88,12 @@ def scrape_season(
         teams = parse_ncaa_team_list(html).get_column("team_id").to_list()
         if not teams:
             raise ValueError(f"no teams for season={season} division={division}")
-        for team_id in teams:
-            fetch_persisted(schedule_html_path(root, season, team_id), fetch_fn, f"teams/{team_id}")
         out[division] = teams
+    pages = [t for teams in out.values() for t in teams]
+    if shard:
+        pages = pages[shard[0] :: shard[1]]
+    for team_id in pages:
+        fetch_persisted(schedule_html_path(root, season, team_id), fetch_fn, f"teams/{team_id}")
     return out
 
 
@@ -95,6 +108,12 @@ def main(argv: "list[str] | None" = None) -> int:
         help="one division (default: all three -- schedules stay D-I..D-III)",
     )
     ap.add_argument("--root", default=str(REPO_ROOT))
+    ap.add_argument(
+        "--shard",
+        type=parse_shard,
+        default=None,
+        help="i/N -- fetch only every N-th team page (fan-out); the master is built unsharded",
+    )
     args = ap.parse_args(argv)
 
     pool = proxy_pool_from_env()
@@ -104,7 +123,12 @@ def main(argv: "list[str] | None" = None) -> int:
     fetch = browser_fetch_fn(proxy_pool=pool)  # one held session
 
     divisions = (args.division,) if args.division else DIVISIONS
-    got = scrape_season(args.season, divisions, root=Path(args.root), fetch_fn=fetch)
+    got = scrape_season(
+        args.season, divisions, root=Path(args.root), fetch_fn=fetch, shard=args.shard
+    )
+    if args.shard:  # the unsharded run after the shards builds the master
+        print(f"[schedules] {args.season} shard {args.shard[0]}/{args.shard[1]} done", flush=True)
+        return 0
     for division, teams in got.items():
         print(f"[schedules] {args.season} d{division}: {len(teams)} teams", flush=True)
 
