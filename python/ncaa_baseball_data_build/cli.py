@@ -19,7 +19,12 @@ from pathlib import Path
 import polars as pl
 
 from ncaa_baseball_data_build._logging import get_logger
-from ncaa_baseball_data_build.builders import PAYLOAD_DATASETS, RELEASE_DIVISIONS, build_season
+from ncaa_baseball_data_build.builders import (
+    PAYLOAD_DATASETS,
+    RELEASE_DIVISIONS,
+    build_season,
+    recaptured_contests,
+)
 from ncaa_baseball_data_build.config import REGISTRY, DatasetSpec, raw_root
 from ncaa_baseball_data_build.io import write_dataset
 
@@ -46,12 +51,17 @@ def _reference_frame(spec: DatasetSpec, season: int, raw: Path) -> pl.DataFrame:
     # schedule: capture-era schedule master when present, else the committed
     # legacy R-era frame re-emitted AS-IS (loaders depend on its columns --
     # never reshape it; the season stamp is the only addition). Through
-    # _LEGACY_SCHEDULE_LAST the legacy frame wins even when a master exists:
-    # a pre-2024 capture backfill writes masters, and publishing one would
-    # swap an already-released asset to the team-perspective schema.
+    # _LEGACY_SCHEDULE_LAST the legacy frame wins over a master UNLESS the season
+    # was re-captured by the Python pipeline (raw bundles exist): a re-scraped
+    # season publishes its capture-era master like 2024+ (owner call 2026-10-30),
+    # while a season with only legacy payloads keeps its released R-era shape.
     master = raw / "ncaa" / "schedule_master" / "parquet" / f"{season}.parquet"
     legacy = raw / "ncaa" / "schedules" / "parquet" / f"{spec.stem}_{season}.parquet"
-    if season <= _LEGACY_SCHEDULE_LAST and legacy.is_file():
+    if (
+        season <= _LEGACY_SCHEDULE_LAST
+        and legacy.is_file()
+        and not recaptured_contests(raw, season)
+    ):
         return pl.read_parquet(legacy)
     if master.is_file():
         return pl.read_parquet(master)

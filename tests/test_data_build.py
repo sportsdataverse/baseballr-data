@@ -325,3 +325,58 @@ def test_legacy_season_does_not_publish_the_empty_capture_only_families(
     # the populated families still publish
     assert "games" in published
     assert "pbp" in published
+
+
+# --- re-captured legacy seasons (2017-2023 re-scrape, owner call 2026-10-30) -----------
+# The re-scrape is D-I only; legacy R payloads stay for every game it did not re-capture
+# (D-II/III), and the re-captured season publishes its capture-era schedule master.
+
+
+def _recaptured_tree(root: Path) -> None:
+    """LEGACY_SEASON re-scraped: game 4400001 (legacy key g-less here) == contest 7100001,
+    now captured; legacy 4400002 == contest 7100002 is D-II and was not re-captured."""
+    _write_payload(root, _legacy_payload(4400002))
+    cap = _capture_payload("7100001", 4, 6, 6)
+    cap["season"] = LEGACY_SEASON
+    _write_payload(root, cap)
+    raw = root / "ncaa" / "raw" / str(LEGACY_SEASON)
+    raw.mkdir(parents=True)
+    (raw / "7100001.json.gz").write_bytes(b"")  # the capture bundle (contents unread)
+    pl.DataFrame({"contest_id": ["7100001", "7100002"], "division": [1, 2]}).write_parquet(
+        root / f"ncaa/schedule_master/parquet/{LEGACY_SEASON}.parquet"
+    )
+    pl.DataFrame(
+        {
+            "year": [LEGACY_SEASON] * 2,
+            "home_team": ["Old Home"] * 2,
+            "away_team": ["Old Away"] * 2,
+            "contest_id": [7100001, 7100002],
+            "game_pbp_id": [4400001, 4400002],
+        }
+    ).write_parquet(root / f"ncaa/schedules/parquet/ncaa_baseball_schedule_{LEGACY_SEASON}.parquet")
+
+
+def test_recaptured_season_drops_only_the_legacy_games_it_recaptured(
+    tree: Path, tmp_path: Path
+) -> None:
+    _recaptured_tree(tree)
+    base = tmp_path / "out"
+    assert _build(base, tree, LEGACY_SEASON, dataset="games") == 0
+    games = pl.read_parquet(
+        base / f"ncaa/games/parquet/ncaa_baseball_games_{LEGACY_SEASON}.parquet"
+    )
+    by_source = dict(zip(games["source"].to_list(), games["game_key"].to_list()))
+    assert games.height == 2  # not 3: legacy 4400001 is the same game as capture 7100001
+    assert by_source == {"capture": "7100001", "legacy_r": "4400002"}  # D-II legacy kept
+
+
+def test_recaptured_season_publishes_the_capture_schedule_master(
+    tree: Path, tmp_path: Path
+) -> None:
+    _recaptured_tree(tree)
+    base = tmp_path / "out"
+    assert _build(base, tree, LEGACY_SEASON, dataset="schedule") == 0
+    sched = pl.read_parquet(
+        base / f"ncaa/schedule/parquet/ncaa_baseball_schedule_{LEGACY_SEASON}.parquet"
+    )
+    assert "division" in sched.columns  # the master, not the legacy R frame
