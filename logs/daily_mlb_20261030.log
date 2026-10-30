@@ -1,0 +1,24 @@
+[2026-10-30 12:30:01Z] daily mlb start: season=2026 max_games=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_01_schedules_20261030_083001.log  (watch: tail -f logs/mlb_01_schedules_20261030_083001.log)
+season 2026: FAILED AssetFetchError: ProxyBonanza pool fetch failed: status=500
+EXIT=1
+WARN schedules rc=1
+offline stage: no proxy / transport needed
+log -> logs/mlb_02_games_20261030_083009.log  (watch: tail -f logs/mlb_02_games_20261030_083009.log)
+capture season 2026: {'captured': 0, 'skipped': 2470, 'failed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_03_parse_20261030_083009.log  (watch: tail -f logs/mlb_03_parse_20261030_083009.log)
+parse season 2026: {'games': 2470, 'plays': 187064, 'pitches': 725227, 'runners': 252285, 'unparsed': 0}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_04_statcast_20261030_083128.log  (watch: tail -f logs/mlb_04_statcast_20261030_083128.log)
+    2026-10: 1 scheduled date(s) have no Savant data at all (e.g. ['2026-10-16']) -- accepted
+statcast season 2026: {'captured': 1, 'skipped': 7, 'empty': 1, 'failed': 0, 'rows': 9224}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/mlb_06_statcast_compile_20261030_083214.log  (watch: tail -f logs/mlb_06_statcast_compile_20261030_083214.log)
+statcast compile 2026: 833165 rows -> mlb/statcast/mlb_statcast_2026.parquet
+EXIT=0
+[2026-10-30 12:32:24Z] daily mlb stages done (rc_total=1)
