@@ -63,6 +63,32 @@ def test_schedules_scrape_persists_html_and_resumes(tmp_path: Path) -> None:
     assert calls == []
 
 
+def test_schedules_shards_split_team_pages_across_divisions(tmp_path: Path) -> None:
+    # every shard reads the team lists; each fetches a disjoint slice of the team
+    # pages, and together they cover every team in every division
+    d2 = '<a href="/teams/900002">C</a><a href="/teams/900003">D</a>'
+    pages = {
+        team_list_path(2026, 1): TINY_LIST,
+        team_list_path(2026, 2): d2,
+        **{f"teams/{t}": "<html></html>" for t in ("614839", "900001", "900002", "900003")},
+    }
+    fetched = []
+    for i in range(3):
+        calls: "list[str]" = []
+        schedules.scrape_season(
+            # own root per shard: a shared one would hide an unsliced shard behind resume
+            2026,
+            (1, 2),
+            root=tmp_path / str(i),
+            fetch_fn=_fetch(pages, calls),
+            shard=(i, 3),
+        )
+        fetched.append([c for c in calls if c.startswith("teams/")])
+    flat = [p for f in fetched for p in f]
+    assert sorted(flat) == sorted(p for p in pages if p.startswith("teams/"))
+    assert len(flat) == len(set(flat))
+
+
 def test_schedules_scrape_zero_teams_raises(tmp_path: Path) -> None:
     pages = {team_list_path(2026, 2): "<html>empty</html>"}
     with pytest.raises(ValueError, match="no teams"):
