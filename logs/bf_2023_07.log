@@ -1,0 +1,158 @@
+2026-10-30 22:45:51 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/teams/parquet/ncaa_baseball_teams_2023.parquet (9.8KB), 946 rows x 4 cols + ncaa_baseball_teams_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:45:57 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2023.parquet (9.8KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-10-30 22:45:58 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2023.parquet -> ncaa_baseball_teams (asset 1/3)
+2026-10-30 22:45:58 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2023.csv.gz (8.0KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-10-30 22:46:00 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2023.csv.gz -> ncaa_baseball_teams (asset 2/3)
+2026-10-30 22:46:00 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2023.rds (9.0KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-10-30 22:46:01 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2023.rds -> ncaa_baseball_teams (asset 3/3)
+2026-10-30 22:46:08 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_teams with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:46:08 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/schedule/parquet/ncaa_baseball_schedule_2023.parquet (569.0KB), 45918 rows x 14 cols + ncaa_baseball_schedule_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:46:10 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2023.parquet (569.0KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-10-30 22:46:12 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2023.parquet -> ncaa_baseball_schedules (asset 1/3)
+2026-10-30 22:46:12 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2023.csv.gz (831.7KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-10-30 22:46:14 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2023.csv.gz -> ncaa_baseball_schedules (asset 2/3)
+2026-10-30 22:46:14 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2023.rds (656.9KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-10-30 22:46:16 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2023.rds -> ncaa_baseball_schedules (asset 3/3)
+2026-10-30 22:46:25 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_schedules with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:46:25 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/rosters/parquet/ncaa_baseball_rosters_2023.parquet (252.2KB), 11408 rows x 15 cols + ncaa_baseball_rosters_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:46:27 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2023.parquet (252.2KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-10-30 22:46:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2023.parquet -> ncaa_baseball_rosters (asset 1/3)
+2026-10-30 22:46:28 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2023.csv.gz (303.8KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-10-30 22:46:30 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2023.csv.gz -> ncaa_baseball_rosters (asset 2/3)
+2026-10-30 22:46:30 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2023.rds (294.4KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-10-30 22:46:31 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2023.rds -> ncaa_baseball_rosters (asset 3/3)
+2026-10-30 22:46:39 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_rosters with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390246.json.gz kept: bundle 2390246 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390247.json.gz kept: bundle 2390247 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390248.json.gz kept: bundle 2390248 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390250.json.gz kept: bundle 2390250 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390256.json.gz kept: bundle 2390256 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390261.json.gz kept: bundle 2390261 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390271.json.gz kept: bundle 2390271 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390273.json.gz kept: bundle 2390273 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390276.json.gz kept: bundle 2390276 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390278.json.gz kept: bundle 2390278 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390285.json.gz kept: bundle 2390285 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390293.json.gz kept: bundle 2390293 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390303.json.gz kept: bundle 2390303 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390309.json.gz kept: bundle 2390309 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390312.json.gz kept: bundle 2390312 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390314.json.gz kept: bundle 2390314 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390316.json.gz kept: bundle 2390316 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390318.json.gz kept: bundle 2390318 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390319.json.gz kept: bundle 2390319 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390330.json.gz kept: bundle 2390330 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390332.json.gz kept: bundle 2390332 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390340.json.gz kept: bundle 2390340 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390348.json.gz kept: bundle 2390348 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390358.json.gz kept: bundle 2390358 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390366.json.gz kept: bundle 2390366 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390368.json.gz kept: bundle 2390368 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390373.json.gz kept: bundle 2390373 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390374.json.gz kept: bundle 2390374 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390376.json.gz kept: bundle 2390376 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390377.json.gz kept: bundle 2390377 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390379.json.gz kept: bundle 2390379 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390394.json.gz kept: bundle 2390394 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390396.json.gz kept: bundle 2390396 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390402.json.gz kept: bundle 2390402 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390404.json.gz kept: bundle 2390404 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390405.json.gz kept: bundle 2390405 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390407.json.gz kept: bundle 2390407 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390415.json.gz kept: bundle 2390415 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390417.json.gz kept: bundle 2390417 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390418.json.gz kept: bundle 2390418 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390421.json.gz kept: bundle 2390421 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390426.json.gz kept: bundle 2390426 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390433.json.gz kept: bundle 2390433 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390439.json.gz kept: bundle 2390439 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390440.json.gz kept: bundle 2390440 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390442.json.gz kept: bundle 2390442 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390444.json.gz kept: bundle 2390444 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390447.json.gz kept: bundle 2390447 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390452.json.gz kept: bundle 2390452 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390465.json.gz kept: bundle 2390465 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390467.json.gz kept: bundle 2390467 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390476.json.gz kept: bundle 2390476 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390477.json.gz kept: bundle 2390477 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390481.json.gz kept: bundle 2390481 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390484.json.gz kept: bundle 2390484 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390488.json.gz kept: bundle 2390488 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390506.json.gz kept: bundle 2390506 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390508.json.gz kept: bundle 2390508 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390519.json.gz kept: bundle 2390519 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390525.json.gz kept: bundle 2390525 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390531.json.gz kept: bundle 2390531 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390532.json.gz kept: bundle 2390532 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390536.json.gz kept: bundle 2390536 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390570.json.gz kept: bundle 2390570 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390592.json.gz kept: bundle 2390592 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390594.json.gz kept: bundle 2390594 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390597.json.gz kept: bundle 2390597 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390653.json.gz kept: bundle 2390653 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390680.json.gz kept: bundle 2390680 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390716.json.gz kept: bundle 2390716 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390733.json.gz kept: bundle 2390733 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390738.json.gz kept: bundle 2390738 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390740.json.gz kept: bundle 2390740 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390812.json.gz kept: bundle 2390812 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390897.json.gz kept: bundle 2390897 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2390960.json.gz kept: bundle 2390960 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2391309.json.gz kept: bundle 2391309 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2391509.json.gz kept: bundle 2391509 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2391922.json.gz kept: bundle 2391922 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2391971.json.gz kept: bundle 2391971 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2392241.json.gz kept: bundle 2392241 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2407902.json.gz kept: bundle 2407902 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2408036.json.gz kept: bundle 2408036 has no capture payload
+2026-10-30 22:55:12 [WARNING] ncaa_baseball_data_build: legacy 2408889.json.gz kept: bundle 2408889 has no capture payload
+2026-10-30 22:55:18 [INFO] ncaa_baseball_data_build: season 2023: 11617 payloads -> {'pbp': 1167464, 'linescore': 149914, 'team_stats': 5584049, 'player_stats': 484466, 'situational_stats': 603974, 'games': 11617, 'qa': 11617}
+2026-10-30 22:55:26 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/pbp/parquet/ncaa_baseball_pbp_2023.parquet (22.4MB), 1167464 rows x 37 cols + ncaa_baseball_pbp_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:56:05 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2023.parquet (22.4MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-10-30 22:56:08 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2023.parquet -> ncaa_baseball_pbp (asset 1/3)
+2026-10-30 22:56:08 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2023.csv.gz (28.3MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-10-30 22:56:11 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2023.csv.gz -> ncaa_baseball_pbp (asset 2/3)
+2026-10-30 22:56:11 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2023.rds (25.0MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-10-30 22:56:14 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2023.rds -> ncaa_baseball_pbp (asset 3/3)
+2026-10-30 22:56:21 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_pbp with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:56:21 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/linescore/parquet/ncaa_baseball_linescore_2023.parquet (266.0KB), 149914 rows x 16 cols + ncaa_baseball_linescore_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:56:24 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2023.parquet (266.0KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-10-30 22:56:25 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2023.parquet -> ncaa_baseball_linescore (asset 1/3)
+2026-10-30 22:56:25 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2023.csv.gz (980.9KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-10-30 22:56:27 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2023.csv.gz -> ncaa_baseball_linescore (asset 2/3)
+2026-10-30 22:56:27 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2023.rds (765.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-10-30 22:56:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2023.rds -> ncaa_baseball_linescore (asset 3/3)
+2026-10-30 22:56:35 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_linescore with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:56:41 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/team_stats/parquet/ncaa_baseball_team_stats_2023.parquet (2.0MB), 5584049 rows x 15 cols + ncaa_baseball_team_stats_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:57:26 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2023.parquet (2.0MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-10-30 22:57:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2023.parquet -> ncaa_baseball_team_stats (asset 1/3)
+2026-10-30 22:57:28 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2023.csv.gz (22.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-10-30 22:57:30 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2023.csv.gz -> ncaa_baseball_team_stats (asset 2/3)
+2026-10-30 22:57:30 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2023.rds (5.6MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-10-30 22:57:32 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2023.rds -> ncaa_baseball_team_stats (asset 3/3)
+2026-10-30 22:57:38 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_team_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:57:39 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/player_stats/parquet/ncaa_baseball_player_stats_2023.parquet (1.9MB), 484466 rows x 13 cols + ncaa_baseball_player_stats_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:57:45 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2023.parquet (1.9MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-10-30 22:57:46 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2023.parquet -> ncaa_baseball_player_stats (asset 1/3)
+2026-10-30 22:57:46 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2023.csv.gz (3.9MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-10-30 22:57:48 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2023.csv.gz -> ncaa_baseball_player_stats (asset 2/3)
+2026-10-30 22:57:48 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2023.rds (3.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-10-30 22:57:49 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2023.rds -> ncaa_baseball_player_stats (asset 3/3)
+2026-10-30 22:57:56 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_player_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:57:59 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/situational_stats/parquet/ncaa_baseball_situational_stats_2023.parquet (4.1MB), 603974 rows x 33 cols + ncaa_baseball_situational_stats_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:58:10 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2023.parquet (4.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-10-30 22:58:12 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2023.parquet -> ncaa_baseball_situational_stats (asset 1/3)
+2026-10-30 22:58:12 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2023.csv.gz (8.7MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-10-30 22:58:14 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2023.csv.gz -> ncaa_baseball_situational_stats (asset 2/3)
+2026-10-30 22:58:14 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2023.rds (7.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-10-30 22:58:15 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2023.rds -> ncaa_baseball_situational_stats (asset 3/3)
+2026-10-30 22:58:23 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_situational_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:58:23 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/games/parquet/ncaa_baseball_games_2023.parquet (121.5KB), 11617 rows x 10 cols + ncaa_baseball_games_2023.csv.gz (release); manifest manifest.csv upserted
+2026-10-30 22:58:24 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2023.parquet (121.5KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-10-30 22:58:26 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2023.parquet -> ncaa_baseball_games (asset 1/3)
+2026-10-30 22:58:26 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2023.csv.gz (151.4KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-10-30 22:58:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2023.csv.gz -> ncaa_baseball_games (asset 2/3)
+2026-10-30 22:58:28 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2023.rds (145.8KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-10-30 22:58:30 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2023.rds -> ncaa_baseball_games (asset 3/3)
+2026-10-30 22:58:37 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_games with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-10-30 22:58:37 [INFO] ncaa_baseball_data_build: qa 2023: 11581/11617 exact, 0 unverifiable, 36 flagged -> /mnt/sdv_repos/baseballr-data/ncaa/qa/qa_pbp_finals_2023.parquet

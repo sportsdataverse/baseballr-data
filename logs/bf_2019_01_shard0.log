@@ -1,0 +1,15 @@
+=== 2026-10-31T02:58:52Z shard 0/16 ===
+Traceback (most recent call last):
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_01_schedules_scrape.py", line 26, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_01_schedules_scrape.py", line 22, in main
+    return schedules.main(argv)
+           ~~~~~~~~~~~~~~^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/schedules.py", line 126, in main
+    got = scrape_season(
+        args.season, divisions, root=Path(args.root), fetch_fn=fetch, shard=args.shard
+    )
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/schedules.py", line 90, in scrape_season
+    raise ValueError(f"no teams for season={season} division={division}")
+ValueError: no teams for season=2019 division=1
