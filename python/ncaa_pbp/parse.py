@@ -144,12 +144,22 @@ def build_capture_payload(
 # --- stage-03 drivers ------------------------------------------------------
 
 
+def _is_legacy(path: Path) -> bool:
+    try:
+        with gzip.open(path, "rt", encoding="utf-8") as fh:
+            return str(json.load(fh).get("source", "")).startswith("legacy")
+    except (OSError, ValueError):
+        return False  # unreadable: keep today's skip, --force rebuilds it
+
+
 def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[str, str]":
     """Worker: one raw bundle -> one payload. (spawn pool; imports stay local)."""
     root_s, cid, season, espn, force = args
     root = Path(root_s)
     out = parsed_path(root, cid)
-    if out.exists() and not force:
+    # a legacy payload can sit at the capture's own path (2023 legacy is keyed by
+    # contest id); the capture supersedes it, so only a capture payload is kept
+    if out.exists() and not force and not _is_legacy(out):
         return cid, "skipped"
     raw = root / "ncaa" / "raw" / str(season) / f"{cid}.json.gz"
     try:

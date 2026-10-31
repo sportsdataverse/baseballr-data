@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -67,11 +68,17 @@ def scrape_season(
     root: "str | Path" = REPO_ROOT,
     fetch_fn: FetchFn,
     shard: "Optional[Tuple[int, int]]" = None,
+    empty_retries: int = 2,
+    retry_wait: float = 30.0,
 ) -> "Dict[int, List[str]]":
     """Persist team-list + team-page html for each division.
 
     ``shard=(i, n)`` fetches only every n-th team page (all divisions pooled), so n
     processes split a season's ~950 pages; every shard still reads the team lists.
+
+    A team list with no teams is refetched ``empty_retries`` times (``retry_wait`` s
+    apart) and never kept on disk: under load the page can render its season picker
+    without the team table, and a persisted empty list read as the coverage floor.
 
     Returns ``{division: [team_id, ...]}``. Raises ``ValueError`` on a division
     resolving zero teams (a hollow list would silently skip the whole division).
@@ -80,12 +87,15 @@ def scrape_season(
 
     out: "Dict[int, List[str]]" = {}
     for division in divisions:
-        html = fetch_persisted(
-            teams_html_path(root, season, division),
-            fetch_fn,
-            team_list_path(season, division),
-        )
-        teams = parse_ncaa_team_list(html).get_column("team_id").to_list()
+        path = teams_html_path(root, season, division)
+        for attempt in range(empty_retries + 1):
+            html = fetch_persisted(path, fetch_fn, team_list_path(season, division))
+            teams = parse_ncaa_team_list(html).get_column("team_id").to_list()
+            if teams:
+                break
+            path.unlink(missing_ok=True)  # an empty list on disk would be re-read forever
+            if attempt < empty_retries:
+                time.sleep(retry_wait)
         if not teams:
             raise ValueError(f"no teams for season={season} division={division}")
         out[division] = teams
