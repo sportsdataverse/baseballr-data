@@ -113,3 +113,54 @@ def test_bundle_with_no_pbp_or_box_writes_no_payload(tmp_path: Path) -> None:
         json.dump({"contest_id": "294867", **{t: page for t in tabs}}, fh)
     assert _capture_job((str(tmp_path), "294867", 2016, None, False)) == ("294867", "empty")
     assert not parsed_path(tmp_path, "294867").exists()
+
+
+def test_capture_replaces_a_legacy_payload_at_its_path_but_not_a_capture(tmp_path: Path) -> None:
+    # 2023's legacy payloads are keyed by contest id -- the capture's own path. Skipping
+    # on "file exists" left 84 re-captured games on legacy data; capture supersedes.
+    import gzip
+    import json
+
+    from ncaa_pbp.parse import _capture_job, parsed_path, write_payload
+
+    raw = tmp_path / "ncaa" / "raw" / "2023" / "6357953.json.gz"
+    raw.parent.mkdir(parents=True)
+    pbp = (FIX / "mba_pbp_6357953.html").read_text(encoding="utf-8")
+    with gzip.open(raw, "wt", encoding="utf-8") as fh:
+        json.dump({"contest_id": "6357953", "play_by_play": pbp}, fh)
+    legacy = {"game_key": "6357953", "source": "legacy_r", "season": 2023, "game_pbp_id": 4491801}
+    write_payload(tmp_path, legacy)
+    assert _capture_job((str(tmp_path), "6357953", 2023, None, False)) == ("6357953", "parsed")
+    with gzip.open(parsed_path(tmp_path, "6357953"), "rt", encoding="utf-8") as fh:
+        got = json.load(fh)
+    assert got["source"] == "capture"
+    assert got["game_pbp_id"] == 4491801  # the R-era join key survives the swap
+    assert _capture_job((str(tmp_path), "6357953", 2023, None, False)) == ("6357953", "skipped")
+
+
+def test_capture_without_plays_keeps_the_legacy_plays(tmp_path: Path) -> None:
+    import gzip
+    import json
+
+    from ncaa_pbp.parse import _capture_job, parsed_path, write_payload
+
+    raw = tmp_path / "ncaa" / "raw" / "2023" / "294867.json.gz"
+    raw.parent.mkdir(parents=True)
+    page = (FIX / "mba_pbp_no_plays_294867.html").read_text(encoding="utf-8")
+    with gzip.open(raw, "wt", encoding="utf-8") as fh:
+        json.dump({"contest_id": "294867", "play_by_play": page}, fh)
+    write_payload(tmp_path, {"game_key": "294867", "source": "legacy_r", "pbp": [{"inning": 1}]})
+    assert _capture_job((str(tmp_path), "294867", 2023, None, False)) == ("294867", "kept-legacy")
+    with gzip.open(parsed_path(tmp_path, "294867"), "rt", encoding="utf-8") as fh:
+        assert json.load(fh)["source"] == "legacy_r"
+
+
+def test_truncated_payload_does_not_stop_the_sweep(tmp_path: Path) -> None:
+    import gzip
+
+    from ncaa_pbp.parse import _capture_job, parsed_path
+
+    out = parsed_path(tmp_path, "9")
+    out.parent.mkdir(parents=True)
+    out.write_bytes(gzip.compress(b'{"source": "legacy_r"}')[:-6])  # cut off -> EOFError
+    assert _capture_job((str(tmp_path), "9", 2023, None, False)) == ("9", "skipped")

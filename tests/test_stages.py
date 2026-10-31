@@ -89,10 +89,39 @@ def test_schedules_shards_split_team_pages_across_divisions(tmp_path: Path) -> N
     assert len(flat) == len(set(flat))
 
 
+NO_TABLE = (FIXTURES / "mba_team_list_2019_d1_no_table.html").read_text(encoding="utf-8")
+
+
+def test_team_list_without_its_table_is_refetched(tmp_path: Path) -> None:
+    # 2019-10-31: the d1 list rendered its season picker but no team table, was
+    # persisted, and the empty list read as the coverage floor. A refetch recovers it.
+    path = schedules.teams_html_path(tmp_path, 2026, 1)
+    path.parent.mkdir(parents=True)
+    path.write_text(NO_TABLE, encoding="utf-8")  # the bad page already on disk
+    pages = {team_list_path(2026, 1): TINY_LIST, "teams/614839": TEAM_PAGE, "teams/900001": "x"}
+    got = schedules.scrape_season(2026, (1,), root=tmp_path, fetch_fn=_fetch(pages), retry_wait=0)
+    assert got == {1: ["614839", "900001"]}
+    assert path.read_text(encoding="utf-8") == TINY_LIST
+
+
+def test_team_list_still_empty_after_retries_raises_and_is_not_kept(tmp_path: Path) -> None:
+    calls: "list[str]" = []
+    with pytest.raises(ValueError, match="no teams"):
+        schedules.scrape_season(
+            2026,
+            (1,),
+            root=tmp_path,
+            fetch_fn=_fetch({team_list_path(2026, 1): NO_TABLE}, calls),
+            retry_wait=0,
+        )
+    assert len(calls) == 3  # first fetch + 2 retries
+    assert not schedules.teams_html_path(tmp_path, 2026, 1).exists()
+
+
 def test_schedules_scrape_zero_teams_raises(tmp_path: Path) -> None:
     pages = {team_list_path(2026, 2): "<html>empty</html>"}
     with pytest.raises(ValueError, match="no teams"):
-        schedules.scrape_season(2026, (2,), root=tmp_path, fetch_fn=_fetch(pages))
+        schedules.scrape_season(2026, (2,), root=tmp_path, fetch_fn=_fetch(pages), retry_wait=0)
 
 
 # --- stage 05 -------------------------------------------------------------
