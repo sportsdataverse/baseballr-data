@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import gzip
 import json
+import zlib
 from pathlib import Path
 from typing import Any, Optional
 
@@ -144,12 +145,20 @@ def build_capture_payload(
 # --- stage-03 drivers ------------------------------------------------------
 
 
-def _is_legacy(path: Path) -> bool:
+# game meta a capture without a box score lacks; carried over from a superseded legacy payload
+_LEGACY_META = ("game_pbp_id", "game_date", "location", "attendance")
+
+
+def _legacy_at(path: Path) -> "Optional[dict[str, Any]]":
+    """The legacy payload at a capture's path, else None (absent, a capture, or unreadable)."""
+    if not path.exists():
+        return None
     try:
         with gzip.open(path, "rt", encoding="utf-8") as fh:
-            return str(json.load(fh).get("source", "")).startswith("legacy")
-    except (OSError, ValueError):
-        return False  # unreadable: keep today's skip, --force rebuilds it
+            payload = json.load(fh)
+    except (OSError, EOFError, ValueError, zlib.error):
+        return None  # unreadable: keep today's skip, --force rebuilds it
+    return payload if str(payload.get("source", "")).startswith("legacy") else None
 
 
 def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[str, str]":
@@ -159,17 +168,23 @@ def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[st
     out = parsed_path(root, cid)
     # a legacy payload can sit at the capture's own path (2023 legacy is keyed by
     # contest id); the capture supersedes it, so only a capture payload is kept
-    if out.exists() and not force and not _is_legacy(out):
+    legacy = _legacy_at(out)
+    if out.exists() and not force and legacy is None:
         return cid, "skipped"
     raw = root / "ncaa" / "raw" / str(season) / f"{cid}.json.gz"
     try:
         with gzip.open(raw, "rt", encoding="utf-8") as fh:
             bundle = json.load(fh)
         payload = build_capture_payload(bundle, season, espn_game_id=espn)
+        if legacy is not None and not payload["pbp"] and legacy.get("pbp"):
+            return cid, "kept-legacy"  # the site has no plays for it now; the legacy ones stay
         if not payload["pbp"] and not payload["teams"]:
             # a game stats.ncaa.org has no pbp or box table for: a payload would be a blank
             # games row, and without one the build keeps any legacy copy of the game
             return cid, "empty"
+        for key in _LEGACY_META if legacy is not None else ():
+            if payload.get(key) is None:
+                payload[key] = legacy.get(key)
         write_payload(root, payload)
         return cid, "parsed"
     except Exception as exc:  # noqa: BLE001 -- one bad bundle must not kill the sweep
