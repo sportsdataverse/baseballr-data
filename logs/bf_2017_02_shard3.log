@@ -5233,3 +5233,1287 @@ Call log:
 2026-10-31 08:32:49,318 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
 2026-10-31 08:32:51,472 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10003: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
 2026-10-31 08:32:51,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:33:07,543 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:33:09,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10004: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:33:09,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:33:20,090 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:33:22,432 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10005: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:33:22,432 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:33:34,479 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:33:36,722 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10006: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:33:36,722 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:33:47,862 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:33:50,000 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10007: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:33:50,000 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:34:01,777 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:34:03,920 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10008: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:34:03,920 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:34:17,980 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:34:20,150 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10009: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:34:20,150 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:34:30,905 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:34:33,343 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10010: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:34:33,343 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:34:46,009 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:34:48,160 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10011: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:34:48,167 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:34:58,422 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:35:00,555 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10012: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:35:00,556 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:35:12,852 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:35:15,010 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10013: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:35:15,010 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:35:27,837 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:35:30,102 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10014: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:35:30,102 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:35:41,117 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:35:43,263 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10015: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:35:43,263 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:35:55,116 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:35:57,299 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10016: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:35:57,299 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:36:08,017 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 08:36:10,170 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10017: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:36:10,170 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:36:22,007 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:36:24,153 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10018: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:36:24,153 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:36:36,595 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:36:38,768 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10019: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:36:38,768 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:36:50,480 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:36:52,626 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10020: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:36:52,626 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:37:03,311 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:37:05,460 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10021: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:37:05,460 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:37:17,251 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:37:19,396 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10022: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:37:19,396 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:37:32,904 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:37:43,569 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10023: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:37:43,569 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:38:07,184 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:38:11,569 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10024: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219945/play_by_play
+2026-10-31 08:38:14,380 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:38:44,373 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:38:46,752 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10025: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220109/play_by_play
+2026-10-31 08:38:47,840 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:39:20,753 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:39:23,252 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10026: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220109/play_by_play
+2026-10-31 08:39:23,252 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:39:50,567 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:40:58,307 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+node:events:505
+    throw er; // Unhandled 'error' event
+    ^
+
+Error: write EPIPE
+    at afterWriteDispatched (node:internal/stream_base_commons:138:10)
+    at writeGeneric (node:internal/stream_base_commons:126:10)
+    at Socket._writeGeneric (node:net:1324:11)
+    at Socket._write (node:net:1336:8)
+    at writeOrBuffer (node:internal/streams/writable:574:12)
+    at _write (node:internal/streams/writable:503:10)
+    at Writable.write (node:internal/streams/writable:512:10)
+    at PipeTransport.send (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:38087:25)
+    at dispatcherConnection.onmessage (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:74674:59)
+    at DispatcherConnection.dispatch (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:27826:14)
+Emitted 'error' event on Socket instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -32,
+  code: 'EPIPE',
+  syscall: 'write'
+}
+
+Node.js v24.22.1
+=== 2026-10-31T12:44:34Z shard 3/8 ===
+[games] shard 3/8: 1041 contests
+2026-10-31 08:44:48,869 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:44:51,236 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10019: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:44:51,237 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:45:02,423 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:45:04,640 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10020: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:45:04,641 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:45:17,234 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:45:19,372 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10021: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:45:19,372 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:45:29,708 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:45:31,908 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10022: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:45:31,909 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:45:43,036 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:45:45,178 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10023: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:45:45,178 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:45:55,388 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:45:57,532 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10024: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:45:57,532 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:46:08,162 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:46:10,306 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10025: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:46:10,306 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:46:20,647 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:46:22,784 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10026: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:46:22,784 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:46:33,982 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:46:36,096 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10027: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213179/play_by_play
+2026-10-31 08:46:36,096 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:46:52,728 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:47:29,514 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 08:47:41,267 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:47:58,685 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 08:48:00,812 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10028: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213300/play_by_play
+2026-10-31 08:48:00,812 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:48:22,111 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:49:04,899 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 08:49:17,868 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:49:36,935 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 08:49:39,061 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10029: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/213798/play_by_play
+2026-10-31 08:49:39,061 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:49:53,503 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:50:32,508 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 08:50:44,325 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:51:02,665 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 08:51:04,811 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10030: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/214938/situational_stats
+2026-10-31 08:51:04,811 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:51:19,881 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:52:03,979 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 403-byte response) -- dropping it
+2026-10-31 08:52:06,106 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10031: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/215932/box_score
+2026-10-31 08:52:06,106 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:52:20,028 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:53:00,252 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 403-byte response) -- dropping it
+2026-10-31 08:53:02,401 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10032: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/218402/box_score
+2026-10-31 08:53:02,401 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:53:18,682 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:54:04,525 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 08:54:06,647 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10033: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219858/team_stats
+2026-10-31 08:54:06,647 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:54:22,054 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:55:04,862 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 08:55:07,003 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10034: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/219924/team_stats
+2026-10-31 08:55:07,003 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:55:22,368 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:56:04,234 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 08:56:06,372 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10035: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220404/team_stats
+2026-10-31 08:56:06,373 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:56:21,237 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:57:02,886 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 08:57:05,160 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10036: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220573/team_stats
+2026-10-31 08:57:05,160 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:57:27,125 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:58:24,535 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 08:58:26,850 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10037: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220650/team_stats
+2026-10-31 08:58:26,851 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:58:43,852 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:59:00,096 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 08:59:02,223 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10038: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220650/individual_stats
+2026-10-31 08:59:02,223 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 08:59:16,122 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 08:59:45,727 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 08:59:47,885 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10039: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220728/individual_stats
+2026-10-31 08:59:47,885 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:00:01,348 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:00:38,733 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:00:40,870 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10040: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220896/individual_stats
+2026-10-31 09:00:40,871 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:01:00,316 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:01:15,745 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 09:01:17,894 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10041: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220896/situational_stats
+2026-10-31 09:01:17,894 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:01:31,923 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:01:47,936 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:01:50,082 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10042: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/220931/play_by_play
+2026-10-31 09:01:50,083 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:02:05,849 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:02:45,457 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:02:57,316 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:03:15,617 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:03:17,763 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10043: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221165/play_by_play
+2026-10-31 09:03:17,763 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:03:34,775 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:03:50,326 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 09:03:52,492 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10044: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221165/box_score
+2026-10-31 09:03:52,492 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:04:06,584 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:04:21,378 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 09:04:23,523 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10045: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221165/team_stats
+2026-10-31 09:04:23,523 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:04:41,488 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:05:27,007 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 09:05:29,145 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10046: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221241/team_stats
+2026-10-31 09:05:29,145 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:05:45,138 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:06:00,081 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 09:06:02,252 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10047: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221241/individual_stats
+2026-10-31 09:06:02,252 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:06:17,920 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:06:34,038 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 09:06:36,201 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10048: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221241/situational_stats
+2026-10-31 09:06:36,201 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:06:50,546 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:07:20,936 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 09:07:23,093 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10049: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221305/situational_stats
+2026-10-31 09:07:23,093 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:07:40,052 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:07:56,685 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:07:58,869 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10050: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/play_by_play
+2026-10-31 09:07:58,869 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:08:00,358 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10001: Error: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://stats.ncaa.org/contests/221388/play_by_play
+Call log:
+  - navigating to "https://stats.ncaa.org/contests/221388/play_by_play", waiting until "domcontentloaded"
+
+2026-10-31 09:08:00,359 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:08:01,359 INFO sportsdataverse.mbb.mbb_ncaa_fetch: browser proxy rotated -> http://<redacted>:<redacted>@us.decodo.com:10002 (relaunching context)
+2026-10-31 09:08:18,390 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:08:33,316 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 403-byte response) -- dropping it
+2026-10-31 09:08:35,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10002: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/box_score
+2026-10-31 09:08:35,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:08:49,969 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:09:04,880 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 09:09:07,049 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10003: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/team_stats
+2026-10-31 09:09:07,050 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:09:21,104 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:09:35,268 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:09:37,426 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10004: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/individual_stats
+2026-10-31 09:09:37,427 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:09:49,414 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:09:51,622 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10005: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/individual_stats
+2026-10-31 09:09:51,623 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:10:07,242 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:10:22,794 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 09:10:24,930 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10006: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221388/situational_stats
+2026-10-31 09:10:24,930 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:10:40,649 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:10:57,509 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:10:59,635 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10007: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221433/play_by_play
+2026-10-31 09:10:59,635 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:11:14,977 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+node:events:505
+    throw er; // Unhandled 'error' event
+    ^
+
+Error: write EPIPE
+    at afterWriteDispatched (node:internal/stream_base_commons:138:10)
+    at writeGeneric (node:internal/stream_base_commons:126:10)
+    at Socket._writeGeneric (node:net:1324:11)
+    at Socket._write (node:net:1336:8)
+    at writeOrBuffer (node:internal/streams/writable:574:12)
+    at _write (node:internal/streams/writable:503:10)
+    at Writable.write (node:internal/streams/writable:512:10)
+    at PipeTransport.send (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:38087:25)
+    at dispatcherConnection.onmessage (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:74674:59)
+    at DispatcherConnection.sendEvent (/mnt/sdv_repos/sdv-py/.venv/lib/python3.13/site-packages/patchright/driver/package/lib/coreBundle.js:27660:14)
+Emitted 'error' event on Socket instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -32,
+  code: 'EPIPE',
+  syscall: 'write'
+}
+
+Node.js v24.22.1
+=== 2026-10-31T13:36:37Z shard 3/8 ===
+[games] shard 3/8: 1041 contests
+2026-10-31 09:36:58,556 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:37:34,868 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:37:46,955 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:38:04,385 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:38:06,523 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10076: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221491/play_by_play
+2026-10-31 09:38:06,523 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:38:22,191 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:39:00,944 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:39:12,732 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:39:31,555 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:39:33,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10077: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221524/play_by_play
+2026-10-31 09:39:33,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:39:47,917 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:40:25,958 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:40:37,288 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:40:54,023 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:40:56,168 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10078: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221595/play_by_play
+2026-10-31 09:40:56,168 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:41:11,473 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:41:47,847 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:41:59,353 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:42:16,565 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:42:18,703 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10079: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221867/play_by_play
+2026-10-31 09:42:18,703 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:42:32,900 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:43:08,984 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:43:20,431 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:43:37,298 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:43:39,439 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10080: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/221968/play_by_play
+2026-10-31 09:43:39,439 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:43:57,246 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:44:35,854 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:44:47,728 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:45:07,181 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 09:45:09,316 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10081: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222030/play_by_play
+2026-10-31 09:45:09,316 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:45:23,543 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:46:00,512 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:46:12,080 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:46:29,525 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 09:46:31,648 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10082: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222079/play_by_play
+2026-10-31 09:46:31,648 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:46:48,627 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:47:30,170 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:47:44,409 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:48:03,387 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:48:05,552 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10083: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222113/play_by_play
+2026-10-31 09:48:05,552 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:48:20,213 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:48:58,031 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:49:09,877 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:49:27,289 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:49:29,420 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10084: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222155/play_by_play
+2026-10-31 09:49:29,420 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:49:43,591 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:50:18,392 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:50:29,588 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:50:47,100 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 09:50:49,237 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10085: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222190/play_by_play
+2026-10-31 09:50:49,237 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:51:05,678 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:51:39,657 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:51:41,831 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10086: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222327/play_by_play
+2026-10-31 09:51:41,832 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:51:55,815 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:52:31,119 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:52:42,407 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:52:59,262 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:53:01,385 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10087: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222477/play_by_play
+2026-10-31 09:53:01,386 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:53:16,710 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:53:54,182 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:54:06,276 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:54:24,047 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:54:26,184 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10088: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222619/play_by_play
+2026-10-31 09:54:26,184 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:54:45,093 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:55:31,261 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 09:55:45,657 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:56:05,644 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:56:07,772 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10089: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222650/play_by_play
+2026-10-31 09:56:07,772 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:56:22,289 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:56:53,419 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:56:55,540 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10090: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222680/play_by_play
+2026-10-31 09:56:55,540 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:57:10,306 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:57:25,391 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 09:57:27,519 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10091: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222680/box_score
+2026-10-31 09:57:27,519 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:57:41,947 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:57:57,672 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 09:57:59,800 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10092: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222680/team_stats
+2026-10-31 09:57:59,801 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:58:14,365 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:58:54,997 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 09:58:57,118 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10093: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222756/team_stats
+2026-10-31 09:58:57,118 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:59:10,286 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:59:24,096 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 09:59:26,230 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10094: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222756/individual_stats
+2026-10-31 09:59:26,230 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 09:59:40,009 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 09:59:54,475 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 09:59:56,602 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10095: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222756/situational_stats
+2026-10-31 09:59:56,602 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:00:12,576 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:00:30,621 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:00:32,742 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10096: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222786/play_by_play
+2026-10-31 10:00:32,742 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:00:48,315 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:01:03,748 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:01:05,888 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10097: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222786/box_score
+2026-10-31 10:01:05,888 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:01:31,164 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:01:49,745 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:01:51,870 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10098: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222786/team_stats
+2026-10-31 10:01:51,871 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:02:06,249 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:02:20,774 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:02:22,910 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10099: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222786/individual_stats
+2026-10-31 10:02:22,911 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:02:39,663 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:02:56,231 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 10:02:58,350 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10100: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222786/situational_stats
+2026-10-31 10:02:58,351 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:03:13,568 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:03:30,047 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:03:32,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10101: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222806/play_by_play
+2026-10-31 10:03:32,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:03:47,379 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:04:02,831 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:04:04,978 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10102: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222806/box_score
+2026-10-31 10:04:04,979 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:04:18,926 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:04:33,681 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:04:35,800 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10103: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222806/team_stats
+2026-10-31 10:04:35,800 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:04:50,622 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:05:05,528 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:05:07,759 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10104: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222806/individual_stats
+2026-10-31 10:05:07,759 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:05:22,508 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:05:40,966 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:05:43,095 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10105: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222819/play_by_play
+2026-10-31 10:05:43,095 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:05:59,720 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:06:15,776 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:06:18,655 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10106: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222819/box_score
+2026-10-31 10:06:18,655 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:06:33,166 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:06:48,469 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:06:50,597 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10107: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222819/team_stats
+2026-10-31 10:06:50,598 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:07:05,272 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:07:20,487 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:07:22,608 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10108: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222819/individual_stats
+2026-10-31 10:07:22,608 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:07:38,354 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:08:21,289 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:08:23,420 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10109: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222891/individual_stats
+2026-10-31 10:08:23,420 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:08:38,731 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:08:55,283 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:08:57,438 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10110: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/222891/situational_stats
+2026-10-31 10:08:57,438 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:09:13,585 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:09:57,886 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:10:09,768 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:10:24,827 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:10:26,978 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10111: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223060/situational_stats
+2026-10-31 10:10:26,978 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:10:42,228 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:11:23,554 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:11:35,701 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:11:50,424 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 10:11:52,569 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10112: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223097/situational_stats
+2026-10-31 10:11:52,569 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:12:06,804 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:12:23,560 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:12:25,700 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10113: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223109/play_by_play
+2026-10-31 10:12:25,700 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:12:45,311 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:13:25,519 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:13:37,184 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:13:56,060 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:13:58,190 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10114: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223157/play_by_play
+2026-10-31 10:13:58,190 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:14:08,447 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:14:10,570 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10115: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223157/play_by_play
+2026-10-31 10:14:10,570 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:14:24,401 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:14:58,822 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:15:10,207 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:15:26,861 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:15:28,990 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10116: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223197/play_by_play
+2026-10-31 10:15:28,991 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:15:44,485 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:15:59,384 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:16:01,514 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10117: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223197/box_score
+2026-10-31 10:16:01,515 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:16:37,703 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:17:12,938 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:17:15,074 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10118: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223369/box_score
+2026-10-31 10:17:15,074 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:17:31,465 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:18:05,135 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:18:07,279 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10119: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223406/box_score
+2026-10-31 10:18:07,279 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:18:21,658 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:18:36,549 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 10:18:38,683 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10120: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223406/team_stats
+2026-10-31 10:18:38,683 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:18:54,441 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:19:37,881 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 10:19:39,999 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10121: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223477/team_stats
+2026-10-31 10:19:39,999 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:20:04,561 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:20:19,339 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:20:21,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10122: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223477/individual_stats
+2026-10-31 10:20:21,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:20:39,092 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:20:54,477 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:20:56,602 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10123: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223477/situational_stats
+2026-10-31 10:20:56,602 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:21:11,758 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:21:54,992 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:22:06,807 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:22:21,784 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 10:22:23,910 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10124: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223502/situational_stats
+2026-10-31 10:22:23,911 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:22:40,169 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:23:17,670 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:23:29,010 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:23:43,607 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:23:45,739 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10125: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223529/situational_stats
+2026-10-31 10:23:45,739 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:24:00,627 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:24:40,010 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:24:52,245 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:25:07,090 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 10:25:09,234 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10126: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223559/situational_stats
+2026-10-31 10:25:09,234 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:25:23,924 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:25:40,243 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:25:42,380 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10127: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223567/play_by_play
+2026-10-31 10:25:42,380 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:25:56,381 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:26:32,134 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:26:43,673 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:27:00,172 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:27:02,318 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10128: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223733/play_by_play
+2026-10-31 10:27:02,318 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:27:16,672 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:27:48,813 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:27:50,928 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10129: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/223900/play_by_play
+2026-10-31 10:27:50,928 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:28:05,852 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:28:38,148 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:28:49,368 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:29:05,575 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:29:07,687 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10130: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224009/play_by_play
+2026-10-31 10:29:07,687 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:29:21,863 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:29:36,066 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:29:38,192 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10131: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224009/box_score
+2026-10-31 10:29:38,192 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:29:52,602 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:30:07,909 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:30:10,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10132: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224009/team_stats
+2026-10-31 10:30:10,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:30:30,438 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:31:21,078 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:31:23,244 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10133: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224059/team_stats
+2026-10-31 10:31:23,245 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:31:38,697 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:31:54,191 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:31:56,325 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10134: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224059/individual_stats
+2026-10-31 10:31:56,325 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:32:15,121 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:32:50,809 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:32:52,941 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10135: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224081/individual_stats
+2026-10-31 10:32:52,942 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:33:07,380 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:33:23,002 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:33:25,193 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10136: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224081/situational_stats
+2026-10-31 10:33:25,193 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:33:41,660 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:33:58,392 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:34:00,528 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10137: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224092/play_by_play
+2026-10-31 10:34:00,528 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:34:17,816 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:34:34,245 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:34:36,388 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10138: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224092/box_score
+2026-10-31 10:34:36,388 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:34:49,793 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:35:04,272 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:35:06,443 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10139: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224092/team_stats
+2026-10-31 10:35:06,443 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:35:22,792 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:35:39,304 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:35:41,411 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10140: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224092/individual_stats
+2026-10-31 10:35:41,411 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:35:56,608 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:36:12,585 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:36:14,706 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10141: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224092/situational_stats
+2026-10-31 10:36:14,706 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:36:28,775 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:36:45,438 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:36:47,592 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10142: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224101/play_by_play
+2026-10-31 10:36:47,593 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:37:02,048 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:37:38,483 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:37:49,937 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:38:06,914 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:38:09,046 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10143: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224139/play_by_play
+2026-10-31 10:38:09,047 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:38:26,709 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:38:41,976 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:38:44,126 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10144: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224139/box_score
+2026-10-31 10:38:44,126 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:38:58,668 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:39:13,358 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:39:15,501 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10145: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224139/team_stats
+2026-10-31 10:39:15,501 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:39:30,454 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:39:49,381 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:39:51,665 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10146: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224139/individual_stats
+2026-10-31 10:39:51,665 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:40:08,053 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:40:55,591 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:40:57,704 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10147: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224181/individual_stats
+2026-10-31 10:40:57,704 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:41:19,511 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:41:37,120 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 10:41:39,247 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10148: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224181/situational_stats
+2026-10-31 10:41:39,247 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:41:56,473 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:42:41,123 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:42:53,097 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:43:10,109 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:43:12,243 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10149: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224321/situational_stats
+2026-10-31 10:43:12,243 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:43:28,521 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:43:44,998 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:43:47,119 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10150: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224382/play_by_play
+2026-10-31 10:43:47,119 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:44:02,057 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:44:17,671 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:44:19,777 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10151: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224382/box_score
+2026-10-31 10:44:19,777 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:44:34,918 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:44:50,053 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:44:52,197 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10152: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224382/team_stats
+2026-10-31 10:44:52,197 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:45:08,654 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:46:09,660 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:46:11,793 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10153: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224417/team_stats
+2026-10-31 10:46:11,793 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:46:26,944 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:46:42,558 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:46:44,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10154: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224417/individual_stats
+2026-10-31 10:46:44,692 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:46:59,522 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:47:15,251 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:47:17,411 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10155: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224417/situational_stats
+2026-10-31 10:47:17,411 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:47:32,598 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:47:49,155 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:47:51,287 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10156: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224426/play_by_play
+2026-10-31 10:47:51,287 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:48:17,375 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:48:32,371 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 10:48:34,507 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10157: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224426/box_score
+2026-10-31 10:48:34,507 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:48:50,213 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:49:05,538 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 10:49:07,663 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10158: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224426/team_stats
+2026-10-31 10:49:07,663 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:49:23,647 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:49:39,503 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 10:49:41,625 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10159: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224426/individual_stats
+2026-10-31 10:49:41,626 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:50:03,766 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:50:23,653 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:50:25,788 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10160: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224426/situational_stats
+2026-10-31 10:50:25,789 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:50:39,284 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:51:16,943 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:51:28,320 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:51:42,532 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:51:44,662 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10161: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224467/situational_stats
+2026-10-31 10:51:44,662 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:52:00,175 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:52:41,433 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:52:53,167 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:53:08,062 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:53:10,174 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10162: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224552/situational_stats
+2026-10-31 10:53:10,175 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:53:38,885 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:54:25,597 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:54:38,128 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:54:52,808 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:54:54,945 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10163: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224667/situational_stats
+2026-10-31 10:54:54,945 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:55:10,243 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:55:52,807 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:56:04,673 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:56:19,399 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:56:21,517 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10164: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224759/situational_stats
+2026-10-31 10:56:21,517 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:56:35,858 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:56:51,056 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 10:56:53,181 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10165: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224773/play_by_play
+2026-10-31 10:56:53,181 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:57:08,396 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:57:47,616 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:57:59,518 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:58:14,499 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 10:58:16,626 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10166: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224792/situational_stats
+2026-10-31 10:58:16,626 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 10:58:44,933 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 10:59:36,699 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 10:59:49,782 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:00:05,917 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:00:08,185 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10167: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224827/situational_stats
+2026-10-31 11:00:08,185 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:00:19,165 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:00:21,304 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10168: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224827/situational_stats
+2026-10-31 11:00:21,304 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:00:37,303 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:01:16,279 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:01:27,768 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:01:42,802 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 11:01:44,959 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10169: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224912/situational_stats
+2026-10-31 11:01:44,959 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:02:00,657 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:02:43,690 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:02:55,941 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:03:11,513 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:03:13,645 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10170: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224975/situational_stats
+2026-10-31 11:03:13,645 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:03:28,320 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:03:45,007 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:03:47,137 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10171: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224984/play_by_play
+2026-10-31 11:03:47,137 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:04:05,561 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:04:20,036 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:04:22,161 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10172: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/224984/box_score
+2026-10-31 11:04:22,162 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:04:36,438 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:05:17,379 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:05:19,518 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10173: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225016/box_score
+2026-10-31 11:05:19,518 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:05:33,034 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:05:47,600 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:05:49,728 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10174: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225016/team_stats
+2026-10-31 11:05:49,728 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:06:05,724 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:06:20,962 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:06:23,153 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10175: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225016/individual_stats
+2026-10-31 11:06:23,154 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:06:39,191 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:07:21,020 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:07:23,233 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10176: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225049/individual_stats
+2026-10-31 11:07:23,233 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:07:37,754 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:07:53,174 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:07:55,319 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10177: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225049/situational_stats
+2026-10-31 11:07:55,319 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:08:08,675 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:08:38,075 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:08:48,682 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:09:02,462 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 11:09:05,365 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10178: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225113/situational_stats
+2026-10-31 11:09:05,365 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:09:32,654 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:09:51,445 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:09:53,607 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10179: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225150/play_by_play
+2026-10-31 11:09:53,607 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:10:11,966 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:10:28,563 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:10:30,830 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10180: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225150/box_score
+2026-10-31 11:10:30,830 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:10:47,322 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:11:02,666 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:11:04,866 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10181: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225150/team_stats
+2026-10-31 11:11:04,866 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:11:21,705 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:11:36,052 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:11:38,358 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10182: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225150/individual_stats
+2026-10-31 11:11:38,358 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:11:55,478 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:12:39,042 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:12:41,674 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10183: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225239/individual_stats
+2026-10-31 11:12:41,674 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:12:58,662 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:13:32,745 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:13:34,963 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10184: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225327/individual_stats
+2026-10-31 11:13:34,963 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:13:49,572 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:14:04,377 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:14:06,509 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10185: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225327/situational_stats
+2026-10-31 11:14:06,509 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:14:21,137 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:14:37,378 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:14:39,516 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10186: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225342/play_by_play
+2026-10-31 11:14:39,516 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:14:53,344 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:15:21,741 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:15:23,897 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10187: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225385/play_by_play
+2026-10-31 11:15:23,898 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:15:38,646 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:15:53,675 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:15:55,845 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10188: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225385/box_score
+2026-10-31 11:15:55,846 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:16:10,736 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:16:47,632 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:16:49,742 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10189: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225415/box_score
+2026-10-31 11:16:49,742 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:17:05,582 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:17:21,351 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:17:23,472 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10190: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225415/team_stats
+2026-10-31 11:17:23,473 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:17:37,964 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:18:18,089 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:18:20,211 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10191: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225441/team_stats
+2026-10-31 11:18:20,212 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:18:37,879 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:19:24,103 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:19:26,558 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10192: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225472/team_stats
+2026-10-31 11:19:26,558 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:19:42,127 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:20:27,855 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:20:29,983 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10193: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225502/team_stats
+2026-10-31 11:20:29,983 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:20:44,253 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:20:59,716 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:21:01,861 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10194: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225502/individual_stats
+2026-10-31 11:21:01,861 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:21:17,491 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:21:56,190 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:21:58,347 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10195: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225646/individual_stats
+2026-10-31 11:21:58,347 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:22:11,929 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:22:26,366 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:22:28,522 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10196: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225646/situational_stats
+2026-10-31 11:22:28,522 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:22:44,035 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:23:01,095 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:23:03,225 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10197: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225670/play_by_play
+2026-10-31 11:23:03,226 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:23:21,829 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:24:03,678 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:24:15,983 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:24:35,321 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:24:37,437 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10198: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225771/play_by_play
+2026-10-31 11:24:37,437 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:24:53,844 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:25:09,927 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:25:12,082 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10199: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225771/box_score
+2026-10-31 11:25:12,083 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:25:30,490 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:25:45,748 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:25:47,887 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10200: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225771/team_stats
+2026-10-31 11:25:47,887 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:26:01,166 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:26:37,432 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 404-byte response) -- dropping it
+2026-10-31 11:26:39,578 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10001: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225796/team_stats
+2026-10-31 11:26:39,579 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:26:54,411 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:27:09,396 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:27:11,538 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10002: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225796/individual_stats
+2026-10-31 11:27:11,538 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:27:29,983 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:28:14,940 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:28:17,054 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10003: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225835/individual_stats
+2026-10-31 11:28:17,055 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:28:33,064 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:29:12,740 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:29:14,884 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10004: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225864/individual_stats
+2026-10-31 11:29:14,884 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:29:30,279 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:30:11,207 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:30:13,392 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10005: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/225923/individual_stats
+2026-10-31 11:30:13,393 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:30:29,677 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:31:12,627 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:31:14,766 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10006: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226032/individual_stats
+2026-10-31 11:31:14,766 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:31:29,821 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:32:09,023 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:32:11,167 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10007: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226056/individual_stats
+2026-10-31 11:32:11,168 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:32:27,667 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:33:02,147 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:33:04,326 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10008: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226073/individual_stats
+2026-10-31 11:33:04,326 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:33:23,258 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:33:44,582 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 11:33:46,694 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10009: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226073/situational_stats
+2026-10-31 11:33:46,694 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:34:05,772 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:34:48,388 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:35:00,226 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:35:15,751 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:35:17,909 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10010: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226098/situational_stats
+2026-10-31 11:35:17,910 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:35:34,221 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:35:50,813 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:35:52,945 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10011: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226106/play_by_play
+2026-10-31 11:35:52,946 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:36:08,237 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:36:23,713 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:36:25,871 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10012: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226106/box_score
+2026-10-31 11:36:25,872 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:36:39,557 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:36:54,454 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:36:56,598 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10013: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226106/team_stats
+2026-10-31 11:36:56,598 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:37:10,868 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:37:25,382 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:37:27,521 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10014: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226106/individual_stats
+2026-10-31 11:37:27,521 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:37:41,772 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:37:56,796 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 411-byte response) -- dropping it
+2026-10-31 11:37:58,958 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10015: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226106/situational_stats
+2026-10-31 11:37:58,958 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:38:14,353 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:38:44,951 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:38:47,129 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10016: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226226/situational_stats
+2026-10-31 11:38:47,129 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:39:01,091 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:39:37,054 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:39:48,176 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:40:02,325 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:40:04,506 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10017: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226270/situational_stats
+2026-10-31 11:40:04,506 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:40:19,638 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:40:56,825 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:41:08,136 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:41:23,049 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:41:25,228 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10018: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226294/situational_stats
+2026-10-31 11:41:25,229 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:41:39,556 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:42:11,474 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:42:13,620 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10019: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226310/situational_stats
+2026-10-31 11:42:13,621 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:42:47,519 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:43:39,150 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:44:06,865 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:44:26,671 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:44:28,804 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10020: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226334/situational_stats
+2026-10-31 11:44:28,805 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:44:42,715 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:44:58,451 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:45:00,579 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10021: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226342/play_by_play
+2026-10-31 11:45:00,579 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:45:16,151 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:45:53,433 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:46:05,104 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:46:22,616 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:46:24,762 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10022: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226383/play_by_play
+2026-10-31 11:46:24,762 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:46:46,772 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:47:31,892 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:47:44,881 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:48:04,273 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:48:06,424 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10023: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226444/play_by_play
+2026-10-31 11:48:06,424 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:48:21,924 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:49:00,026 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:49:11,819 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:49:29,883 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:49:31,997 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10024: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226483/play_by_play
+2026-10-31 11:49:31,997 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:49:45,342 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:50:21,039 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:50:32,257 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:50:48,786 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:50:50,917 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10025: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226507/play_by_play
+2026-10-31 11:50:50,917 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:51:04,532 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:51:42,145 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:51:53,314 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:52:11,197 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:52:13,340 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10026: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226532/play_by_play
+2026-10-31 11:52:13,340 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:52:28,013 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:53:02,911 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:53:14,226 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:53:31,080 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:53:33,217 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10027: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226556/play_by_play
+2026-10-31 11:53:33,217 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:53:46,628 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:54:21,515 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 11:54:32,736 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:54:49,035 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:54:51,166 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10028: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226594/play_by_play
+2026-10-31 11:54:51,166 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:55:04,537 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:55:18,978 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 11:55:21,097 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10029: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226594/box_score
+2026-10-31 11:55:21,097 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:55:36,425 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:55:51,704 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 11:55:53,836 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10030: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226594/team_stats
+2026-10-31 11:55:53,837 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:56:08,791 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:56:23,500 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 11:56:25,637 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10031: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226594/individual_stats
+2026-10-31 11:56:25,637 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:56:42,993 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:57:24,691 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:57:26,806 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10032: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226629/individual_stats
+2026-10-31 11:57:26,806 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:57:42,695 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:58:24,575 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 11:58:26,697 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10033: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226653/individual_stats
+2026-10-31 11:58:26,697 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:58:41,271 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 11:59:05,919 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 11:59:08,039 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10034: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226661/situational_stats
+2026-10-31 11:59:08,039 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 11:59:21,933 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:00:02,139 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:00:13,893 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:00:28,523 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:00:30,652 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10035: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226685/situational_stats
+2026-10-31 12:00:30,652 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:00:45,258 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:01:02,316 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:01:04,465 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10036: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226693/play_by_play
+2026-10-31 12:01:04,465 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:01:19,863 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:01:34,837 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:01:36,976 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10037: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226693/box_score
+2026-10-31 12:01:36,976 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:01:50,694 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:02:30,494 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:02:32,631 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10038: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226717/box_score
+2026-10-31 12:02:32,631 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:02:46,690 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:03:01,443 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:03:03,567 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10039: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226717/team_stats
+2026-10-31 12:03:03,567 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:03:19,299 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:03:34,852 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:03:36,987 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10040: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226717/individual_stats
+2026-10-31 12:03:36,988 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:03:52,630 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:04:08,496 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:04:10,623 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10041: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226717/situational_stats
+2026-10-31 12:04:10,624 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:04:28,554 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:05:04,871 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:05:17,712 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:05:38,321 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:05:40,452 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10042: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226741/situational_stats
+2026-10-31 12:05:40,452 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:05:55,498 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:06:12,769 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:06:14,903 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10043: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226749/play_by_play
+2026-10-31 12:06:14,903 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:06:36,231 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:07:15,878 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:07:28,076 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:07:46,070 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:07:48,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10044: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226773/play_by_play
+2026-10-31 12:07:48,198 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:08:04,414 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:08:20,198 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:08:22,400 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10045: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226773/box_score
+2026-10-31 12:08:22,400 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:08:41,750 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:08:57,573 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:08:59,712 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10046: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226773/team_stats
+2026-10-31 12:08:59,713 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:09:15,324 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:09:30,647 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:09:32,762 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10047: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226773/individual_stats
+2026-10-31 12:09:32,763 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:09:50,233 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:10:35,712 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:10:37,862 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10048: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226797/individual_stats
+2026-10-31 12:10:37,862 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:10:54,508 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:11:30,037 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:11:32,186 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10049: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226813/individual_stats
+2026-10-31 12:11:32,186 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:11:46,493 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:12:25,900 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:12:28,043 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10050: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226887/individual_stats
+2026-10-31 12:12:28,043 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:12:45,201 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:13:03,081 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:13:05,240 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10051: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226887/situational_stats
+2026-10-31 12:13:05,240 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:13:21,607 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:14:02,678 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:14:14,698 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:14:29,902 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:14:32,062 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10052: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226914/situational_stats
+2026-10-31 12:14:32,062 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:14:48,319 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:15:05,826 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:15:07,995 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10053: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226922/play_by_play
+2026-10-31 12:15:07,995 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:15:23,599 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:16:01,447 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:16:13,434 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:16:31,960 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:16:34,087 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10054: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226946/play_by_play
+2026-10-31 12:16:34,087 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:16:48,389 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:17:03,494 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:17:05,633 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10055: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226946/box_score
+2026-10-31 12:17:05,633 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:17:23,875 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:18:10,195 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 403-byte response) -- dropping it
+2026-10-31 12:18:12,344 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10056: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226970/box_score
+2026-10-31 12:18:12,344 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:18:27,156 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:19:08,033 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:19:10,169 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10057: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/226994/box_score
+2026-10-31 12:19:10,169 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:19:24,446 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:20:04,279 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:20:06,425 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10058: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227022/box_score
+2026-10-31 12:20:06,425 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:20:21,964 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:20:53,157 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:20:55,282 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10059: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227068/box_score
+2026-10-31 12:20:55,283 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:21:16,025 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:21:31,558 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:21:33,679 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10060: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227068/team_stats
+2026-10-31 12:21:33,679 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:21:48,866 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:22:30,933 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:22:33,066 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10061: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227108/team_stats
+2026-10-31 12:22:33,066 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:22:46,672 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:23:22,945 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:23:25,091 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10062: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227132/team_stats
+2026-10-31 12:23:25,091 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:23:40,853 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:24:14,612 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:24:16,736 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10063: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227148/team_stats
+2026-10-31 12:24:16,736 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:24:32,572 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:24:48,398 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:24:50,520 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10064: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227148/individual_stats
+2026-10-31 12:24:50,520 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:25:05,624 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:25:45,908 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:25:48,043 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10065: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227172/individual_stats
+2026-10-31 12:25:48,043 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:26:04,343 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:26:47,362 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:26:49,487 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10066: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227196/individual_stats
+2026-10-31 12:26:49,487 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:27:05,847 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:27:22,590 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:27:24,718 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10067: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227196/situational_stats
+2026-10-31 12:27:24,718 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:27:41,150 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:28:13,945 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:28:16,070 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10068: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227262/situational_stats
+2026-10-31 12:28:16,071 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:28:34,187 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:28:50,144 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:28:52,294 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10069: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227270/play_by_play
+2026-10-31 12:28:52,294 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:29:09,138 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:29:26,211 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 405-byte response) -- dropping it
+2026-10-31 12:29:28,325 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10070: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227270/box_score
+2026-10-31 12:29:28,325 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:29:43,263 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:30:23,173 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 403-byte response) -- dropping it
+2026-10-31 12:30:25,716 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10071: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227338/box_score
+2026-10-31 12:30:25,717 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:30:40,460 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:30:56,241 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:30:58,583 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10072: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227338/team_stats
+2026-10-31 12:30:58,583 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:31:13,291 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:31:51,157 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:31:53,280 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10073: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227362/team_stats
+2026-10-31 12:31:53,281 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:32:09,168 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:32:48,588 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 406-byte response) -- dropping it
+2026-10-31 12:32:50,691 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10074: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227386/team_stats
+2026-10-31 12:32:50,691 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:33:06,491 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:33:21,959 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:33:24,084 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10075: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227386/individual_stats
+2026-10-31 12:33:24,085 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:33:37,462 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:34:14,847 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:34:16,966 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10076: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227410/individual_stats
+2026-10-31 12:34:16,966 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:34:36,720 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:34:54,111 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:34:56,235 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10077: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227410/situational_stats
+2026-10-31 12:34:56,235 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:35:11,010 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:35:49,558 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:36:01,077 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:36:15,728 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:36:18,468 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10078: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227434/situational_stats
+2026-10-31 12:36:18,468 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:36:35,247 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:37:12,570 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:37:23,882 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:37:38,167 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:37:40,304 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10079: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227458/situational_stats
+2026-10-31 12:37:40,304 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:37:53,711 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:38:27,698 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:38:38,765 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:38:52,770 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:38:54,904 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10080: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227482/situational_stats
+2026-10-31 12:38:54,904 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:39:08,679 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:39:47,437 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:39:58,936 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:40:13,582 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:40:15,712 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10081: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227510/situational_stats
+2026-10-31 12:40:15,712 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:40:35,183 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:41:23,175 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:41:35,597 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:41:52,150 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 413-byte response) -- dropping it
+2026-10-31 12:41:54,259 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10082: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227534/situational_stats
+2026-10-31 12:41:54,259 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:42:09,512 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:42:26,520 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:42:28,681 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10083: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227542/play_by_play
+2026-10-31 12:42:28,681 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:42:43,296 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:43:17,249 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:43:28,614 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:43:46,365 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:43:48,503 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10084: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227566/play_by_play
+2026-10-31 12:43:48,503 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:44:05,958 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:44:50,253 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:45:03,106 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:45:23,606 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:45:25,743 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10085: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227596/play_by_play
+2026-10-31 12:45:25,743 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:45:41,582 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:46:21,094 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:46:33,138 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:46:51,572 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:46:53,704 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10086: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227620/play_by_play
+2026-10-31 12:46:53,704 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:47:10,060 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:47:48,775 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:48:00,896 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:48:19,652 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:48:21,799 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10087: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227648/play_by_play
+2026-10-31 12:48:21,799 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:48:37,508 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:49:29,985 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:49:42,206 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:50:02,531 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:50:04,691 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10088: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227685/play_by_play
+2026-10-31 12:50:04,691 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:50:21,197 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:51:00,765 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:51:13,017 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:51:36,073 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:51:38,216 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10089: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227709/play_by_play
+2026-10-31 12:51:38,216 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:51:52,522 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:52:29,960 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:52:41,786 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:52:59,623 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:53:01,760 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10090: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227734/play_by_play
+2026-10-31 12:53:01,760 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:53:16,344 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:53:51,197 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:54:02,643 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:54:19,861 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:54:21,993 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10091: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227759/play_by_play
+2026-10-31 12:54:21,993 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:54:45,200 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:55:21,624 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:55:33,277 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:55:50,174 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 412-byte response) -- dropping it
+2026-10-31 12:55:52,316 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10092: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227783/play_by_play
+2026-10-31 12:55:52,316 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:56:05,696 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:56:40,073 INFO sportsdataverse.mbb.mbb_ncaa_fetch: bm-verify not passed (74-byte response) -- re-solving, attempt 1/3
+2026-10-31 12:56:51,245 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+2026-10-31 12:57:07,546 INFO sportsdataverse.mbb.mbb_ncaa_fetch: Akamai denied this session (HTTP 403, 410-byte response) -- dropping it
+2026-10-31 12:57:09,653 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: transport error on http://<redacted>:<redacted>@us.decodo.com:10093: _SessionDeniedError: Akamai denied this browser session (HTTP 403 Access Denied): https://stats.ncaa.org/contests/227807/play_by_play
+2026-10-31 12:57:09,653 DEBUG sportsdataverse.mbb.mbb_ncaa_fetch: rotating proxy: transport error
+2026-10-31 12:57:24,855 INFO sportsdataverse.mbb.mbb_ncaa_fetch: stats.ncaa.org terms gate -- accepting (one 10000 ms dwell)
+[games] {'captured': 356, 'skipped': 685, 'failed': 0}
