@@ -1,0 +1,29 @@
+[2026-11-01 14:30:01Z] daily ncaa baseball start: season=2026 max=200 vendor=decodo_patchright
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/schedules_20261101_093001.log  (watch: tail -f logs/schedules_20261101_093001.log)
+[schedules] 2026 d1: 308 teams
+[schedules] 2026 d2: 253 teams
+[schedules] 2026 d3: 381 teams
+[schedules] master: 46794 team-game rows -> /mnt/sdv_repos/baseballr-data/ncaa/schedule_master/parquet/2026.parquet
+EXIT=0
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/games_20261101_093115.log  (watch: tail -f logs/games_20261101_093115.log)
+[games] 8519 contests
+[games] {'captured': 0, 'skipped': 8515, 'failed': 4}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/games_parse_20261101_093804.log  (watch: tail -f logs/games_parse_20261101_093804.log)
+capture 2026: {'skipped': 12629}
+EXIT=0
+proxy pool: 10 US residential sticky sessions (creds hidden)
+log -> logs/rosters_20261101_093818.log  (watch: tail -f logs/rosters_20261101_093818.log)
+[rosters] 2026: {'fetched': 0, 'skipped': 308}
+EXIT=0
+offline stage: no proxy / transport needed
+log -> logs/datasets_20261101_093823.log  (watch: tail -f logs/datasets_20261101_093823.log)
+[datasets] teams: 3 division parquet(s)
+[datasets] schedule_master: 46794 rows -> /mnt/sdv_repos/baseballr-data/ncaa/schedule_master/parquet/2026.parquet
+[datasets] rosters: 38685 rows -> /mnt/sdv_repos/baseballr-data/ncaa/rosters/parquet/2026.parquet
+EXIT=0
+[2026-11-01 14:40:22Z] daily ncaa baseball stages done (rc_total=0)
+  skip (absent): ncaa/xwalk
