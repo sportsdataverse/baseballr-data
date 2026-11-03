@@ -39,3 +39,6 @@ mlb/statcast/
 # in this tree writes a .out today, so anchoring it would only widen what can
 # be committed by accident.
 /*.log
+
+# stats.ncaa.org page cache (scripts/_env.sh SDV_PY_NCAA_CACHE_DIR)
+.ncaa_fetch_cache/

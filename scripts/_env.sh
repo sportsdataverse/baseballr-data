@@ -13,6 +13,9 @@
 #   run_stage <log-prefix> python/<shim>.py "$@"
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1   # -> baseballr-data repo root
 ROOT="$(pwd)"
+# stats.ncaa.org page cache: inside this repo on the data volume, as the hoops raw repos do. Unset, sdv-py
+# defaults to ~/.sportsdataverse/ncaa_cache on the ROOT disk, where it grew to 45 GB (2026-11-03).
+export SDV_PY_NCAA_CACHE_DIR="${SDV_PY_NCAA_CACHE_DIR:-${ROOT}/.ncaa_fetch_cache}"
 
 # sdv-py sibling checkout: droplet layout first, then the Windows dev box.
 SDV_PY="${SDV_PY:-}"
