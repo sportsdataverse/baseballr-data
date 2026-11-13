@@ -1,14 +1,4 @@
-Traceback (most recent call last):
-  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_01_schedules_scrape.py", line 26, in <module>
-    raise SystemExit(main())
-                     ~~~~^^
-  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_01_schedules_scrape.py", line 22, in main
-    return schedules.main(argv)
-           ~~~~~~~~~~~~~~^^^^^^
-  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/schedules.py", line 136, in main
-    got = scrape_season(
-        args.season, divisions, root=Path(args.root), fetch_fn=fetch, shard=args.shard
-    )
-  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/schedules.py", line 100, in scrape_season
-    raise ValueError(f"no teams for season={season} division={division}")
-ValueError: no teams for season=2019 division=1
+[schedules] 2019 d1: 299 teams
+[schedules] 2019 d2: 262 teams
+[schedules] 2019 d3: 392 teams
+[schedules] master: 44684 team-game rows -> /mnt/sdv_repos/baseballr-data/ncaa/schedule_master/parquet/2019.parquet

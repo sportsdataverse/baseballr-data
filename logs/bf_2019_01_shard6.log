@@ -28,3 +28,5 @@ Traceback (most recent call last):
   File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/schedules.py", line 100, in scrape_season
     raise ValueError(f"no teams for season={season} division={division}")
 ValueError: no teams for season=2019 division=1
+=== 2026-11-13T12:07:55Z shard 6/8 ===
+[schedules] 2019 shard 6/8 done
