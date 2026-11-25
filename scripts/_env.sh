@@ -42,11 +42,13 @@ else
   DECODO_USER="$(getcred DECODO_USER_NAME)"; DECODO_PASS="$(getcred DECODO_PASSWORD)"
   if [ -n "${DECODO_USER}" ] && [ -n "${DECODO_PASS}" ]; then
     pool=""
-    for p in $(seq 10001 10010); do
+    # 200 ports, as run_backfill_all.sh: a port keeps one exit IP for minutes, so a small ring re-hits
+    # an IP Akamai just denied.
+    for p in $(seq 10001 10200); do
       pool="${pool}${pool:+,}http://${DECODO_USER}:${DECODO_PASS}@us.decodo.com:${p}"
     done
     export NCAA_PROXY_POOL="${pool}"
-    echo "proxy pool: 10 US residential sticky sessions (creds hidden)"
+    echo "proxy pool: 200 US residential sticky sessions (creds hidden)"
   else
     echo "WARNING: NCAA_PROXY_POOL unset and no Decodo creds in ${RENV}" >&2
   fi

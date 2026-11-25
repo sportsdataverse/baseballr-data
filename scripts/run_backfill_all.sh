@@ -33,7 +33,10 @@ export PYTHONPATH="/mnt/sdv_repos/sdv-py:${PYTHONPATH}"
 if [ -z "${NCAA_PROXY_POOL:-}" ]; then
   getcred() { grep -E "^$1=" "$HOME/.Renviron" | head -1 | cut -d= -f2- | tr -d "\"'" | tr -d '\r'; }
   DU="$(getcred DECODO_USER_NAME)"; DP="$(getcred DECODO_PASSWORD)"
-  pool=""; for p in $(seq 10001 10050); do pool="${pool}${pool:+,}http://${DU}:${DP}@us.decodo.com:${p}"; done
+  # 200 sticky ports, not 50: a port keeps one exit IP for minutes, and shards that bunch on a small
+  # ring keep landing on the IP another shard was just denied on (2013 on 11-24: 0.7 -> 14 denials per
+  # saved contest). The healthy 11-01..11-18 runs used 200.
+  pool=""; for p in $(seq 10001 10200); do pool="${pool}${pool:+,}http://${DU}:${DP}@us.decodo.com:${p}"; done
   export NCAA_PROXY_POOL="$pool"
 fi
 GH_TOKEN="$(grep -E '^GITHUB_PAT=' "$HOME/.Renviron" | head -n1 | cut -d= -f2- | tr -d "\"'" | tr -d '\r')"
