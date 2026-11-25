@@ -154,6 +154,15 @@ def test_espn_side_reads_cache_offline(root: Path) -> None:
     assert (e1["home_espn_id"], e1["home_score"]) == ("1", 5)
 
 
+def test_espn_side_keeps_an_odd_timestamp_on_its_date_part(tmp_path: Path) -> None:
+    (xwalk.scoreboard_cache_dir(tmp_path, SEASON)).mkdir(parents=True)
+    ev = _event("E9", "2026-03-07", "1", 1, "2", 0)
+    ev["date"] = "2026-03-07T19:05:00Z"  # seconds: not ESPN's usual shape
+    _put(tmp_path, "20260307", ev)
+    espn = xwalk.espn_side(tmp_path, SEASON, ["20260307"], fetch_day=_boom)
+    assert str(espn.get_column("game_date").to_list()[0]) == "2026-03-07"
+
+
 def test_fetch_scoreboard_day_caches(tmp_path: Path) -> None:
     calls: "list[str]" = []
 

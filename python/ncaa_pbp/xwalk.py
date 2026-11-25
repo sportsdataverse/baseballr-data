@@ -256,11 +256,14 @@ def espn_side(
             # ESPN stamps UTC; NCAA dates are local. A 7pm ET first pitch is the next
             # UTC day, and in a Fri-Sun series the +/-1 window is then ambiguous, so
             # take the US/Eastern calendar date (a 7pm PT start is still same-day ET).
-            pl.col("game_date")
-            .cast(pl.Utf8)
-            .str.to_datetime("%Y-%m-%dT%H:%MZ", time_zone="UTC", strict=False)
-            .dt.convert_time_zone("America/New_York")
-            .dt.date(),
+            # Any other stamp shape falls back to its date part rather than dropping the game.
+            pl.coalesce(
+                pl.col("game_date")
+                .str.to_datetime("%Y-%m-%dT%H:%MZ", time_zone="UTC", strict=False)
+                .dt.convert_time_zone("America/New_York")
+                .dt.date(),
+                pl.col("game_date").str.slice(0, 10).str.to_date("%Y-%m-%d", strict=False),
+            ).alias("game_date"),
             pl.col("home_espn_id").cast(pl.Utf8),
             pl.col("away_espn_id").cast(pl.Utf8),
             pl.col("home_score").cast(pl.Int64),
