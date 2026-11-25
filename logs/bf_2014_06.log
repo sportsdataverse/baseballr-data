@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_06_xwalk_build.py", line 22, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_06_xwalk_build.py", line 18, in main
+    return xwalk.main(argv)
+           ~~~~~~~~~~^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/xwalk.py", line 339, in main
+    frame = build_season_xwalk(root, args.season)
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/xwalk.py", line 248, in build_season_xwalk
+    espn = espn if espn is not None else espn_side(root, season, ncaa=ncaa)
+                                         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/xwalk.py", line 193, in espn_side
+    rows.extend(_event_rows(fetch_scoreboard_day(root, season, yyyymmdd, fetch_day)))
+                            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/xwalk.py", line 121, in fetch_scoreboard_day
+    payload = (fetch_day or _live_fetch_day)(yyyymmdd)
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_pbp/xwalk.py", line 109, in _live_fetch_day
+    from sportsdataverse.baseball import espn_college_baseball_scoreboard
+ImportError: cannot import name 'espn_college_baseball_scoreboard' from 'sportsdataverse.baseball' (/mnt/sdv_repos/sdv-py/sportsdataverse/baseball/__init__.py)
