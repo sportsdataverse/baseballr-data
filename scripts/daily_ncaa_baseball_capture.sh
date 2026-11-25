@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Daily in-season driver for NCAA BASEBALL, run from the DROPLET CRONTAB.
 # Composes the existing numbered stages (01 schedules -> 02 games capture ->
-# 03 parse -> 04 rosters -> 05 datasets) -- it does NOT reimplement them, and a
+# 06 xwalk -> 03 parse -> 04 rosters -> 05 datasets) -- it does NOT reimplement them, and a
 # backfill is the same stages via run_backfill_all.sh, not a parallel impl.
 #
 # WHY THIS EXISTS: the crontab was calling run_backfill_all.sh with the same
@@ -60,6 +60,9 @@ mkdir -p logs
   # cost the night's pbp. Each failure is recorded and surfaces in the exit code.
   bash scripts/run_01_schedules_scrape.sh --season "${SEASON}" || { echo "WARN schedules rc=$?"; rc_total=1; }
   bash scripts/run_02_games_scrape.sh    --season "${SEASON}" --max "${MAX}" || { echo "WARN capture rc=$?"; rc_total=1; }
+  # 06 before 03, as in run_backfill_all.sh: the parse stamps espn_game_id from it.
+  # ESPN scoreboard only (cached per day under ncaa/xwalk/espn_scoreboard/).
+  bash scripts/run_06_xwalk_build.sh     --season "${SEASON}" || { echo "WARN xwalk rc=$?"; rc_total=1; }
   bash scripts/run_03_games_parse.sh     --season "${SEASON}" || { echo "WARN parse rc=$?"; rc_total=1; }
   bash scripts/run_04_rosters_scrape.sh  --season "${SEASON}" || { echo "WARN rosters rc=$?"; rc_total=1; }
   bash scripts/run_05_datasets_build.sh  --season "${SEASON}" || { echo "WARN datasets rc=$?"; rc_total=1; }
