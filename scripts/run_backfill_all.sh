@@ -144,7 +144,10 @@ for season in $(seq "$START" -1 "$END"); do
   fi
 
   # 6) xwalk BEFORE final parse so payloads get espn stamps
-  "$PY" python/ncaa_baseball_06_xwalk_build.py --season "$season" > "logs/bf_${season}_06.log" 2>&1 || true
+  # Was `|| true`: an ImportError here went unnoticed for every season 2014-2026.
+  # The parse still runs without it (no stamps), but the failure reaches the exit code.
+  "$PY" python/ncaa_baseball_06_xwalk_build.py --season "$season" > "logs/bf_${season}_06.log" 2>&1 \
+    || { echo "season ${season} 06 xwalk rc=$? (see logs/bf_${season}_06.log)"; BACKFILL_RC=1; }
   COMMIT_MSG="feat(ncaa): season ${season} espn xwalk (stage 06)" commit ncaa/xwalk
 
   # 3) parse (espn index now on disk)
@@ -164,4 +167,5 @@ for season in $(seq "$START" -1 "$END"); do
     commit ncaa/*/parquet ncaa/*/manifest.csv ncaa/qa
   echo "=== season ${season} complete $(date -u +%FT%TZ) ==="
 done
-echo "BACKFILL COMPLETE ${START}->${END}"
+echo "BACKFILL COMPLETE ${START}->${END} (rc=${BACKFILL_RC})"
+exit "$BACKFILL_RC"

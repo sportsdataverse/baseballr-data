@@ -1,9 +1,11 @@
 """Stage 06 -- xwalk: NCAA <-> ESPN game crosswalk -> ``ncaa/xwalk/espn_game_id/{season}.json``.
 
-Thin shim over :func:`ncaa_pbp.xwalk.main`: score-tier matching (exact /
-date-window / unordered pair / +team-name disambiguation) between the stage-01
-schedule master and a cached ``espn_college_baseball_scoreboard`` date sweep
-(``ncaa/xwalk/espn_scoreboard/{season}/{date}.json`` -- re-runs are offline).
+Thin shim over :func:`ncaa_pbp.xwalk.main`: ESPN-team-id tier matching (exact /
+date window / unordered pair / pair + score / single team, as the basketball
+crosswalk) between the stage-01 schedule master, mapped through the published
+``ncaa_baseball_espn_team_crosswalk``, and a cached ``espn_college_baseball_scoreboard``
+date sweep (``ncaa/xwalk/espn_scoreboard/{season}/{date}.json`` -- re-runs never
+re-hit ESPN).
 """
 
 from __future__ import annotations
