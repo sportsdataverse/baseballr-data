@@ -1,0 +1,39 @@
+2026-11-26 07:12:54 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/teams/parquet/ncaa_baseball_teams_2011.parquet (9.6KB), 935 rows x 4 cols + ncaa_baseball_teams_2011.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 07:13:00 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2011.parquet (9.6KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 07:13:02 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2011.parquet -> ncaa_baseball_teams (asset 1/3)
+2026-11-26 07:13:02 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2011.csv.gz (7.8KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 07:13:03 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2011.csv.gz -> ncaa_baseball_teams (asset 2/3)
+2026-11-26 07:13:03 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2011.rds (8.9KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 07:13:05 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2011.rds -> ncaa_baseball_teams (asset 3/3)
+2026-11-26 07:13:12 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_teams with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 07:13:12 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/schedule/parquet/ncaa_baseball_schedule_2011.parquet (202.2KB), 41887 rows x 14 cols + ncaa_baseball_schedule_2011.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 07:13:14 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2011.parquet (202.2KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 07:13:15 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2011.parquet -> ncaa_baseball_schedules (asset 1/3)
+2026-11-26 07:13:15 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2011.csv.gz (379.5KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 07:13:17 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2011.csv.gz -> ncaa_baseball_schedules (asset 2/3)
+2026-11-26 07:13:17 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2011.rds (281.3KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 07:13:18 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2011.rds -> ncaa_baseball_schedules (asset 3/3)
+2026-11-26 07:13:26 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_schedules with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 07:13:26 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/rosters/parquet/ncaa_baseball_rosters_2011.parquet (121.2KB), 9894 rows x 15 cols + ncaa_baseball_rosters_2011.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 07:13:27 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2011.parquet (121.2KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 07:13:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2011.parquet -> ncaa_baseball_rosters (asset 1/3)
+2026-11-26 07:13:28 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2011.csv.gz (149.6KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 07:13:30 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2011.csv.gz -> ncaa_baseball_rosters (asset 2/3)
+2026-11-26 07:13:30 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2011.rds (141.6KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 07:13:31 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2011.rds -> ncaa_baseball_rosters (asset 3/3)
+2026-11-26 07:13:39 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_rosters with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 07:24:27 [INFO] ncaa_baseball_data_build: season 2011: 0 payloads -> {'pbp': 0, 'linescore': 0, 'team_stats': 0, 'player_stats': 0, 'situational_stats': 0, 'games': 0, 'qa': 0}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_data_build/__main__.py", line 6, in <module>
+    raise SystemExit(main(sys.argv[1:]))
+                     ~~~~^^^^^^^^^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_data_build/cli.py", line 276, in main
+    return args.func(args)
+           ~~~~~~~~~^^^^^^
+  File "/mnt/sdv_repos/baseballr-data/python/ncaa_baseball_data_build/cli.py", line 169, in _build
+    raise FileNotFoundError(
+        f"season {args.season}: no parsed payloads under {raw / 'ncaa' / 'json'}"
+    )
+FileNotFoundError: season 2011: no parsed payloads under /mnt/sdv_repos/baseballr-data/ncaa/json
