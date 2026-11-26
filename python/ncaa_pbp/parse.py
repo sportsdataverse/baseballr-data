@@ -47,34 +47,70 @@ def write_payload(root: "str | Path", payload: "dict[str, Any]") -> Path:
     return out
 
 
-def _teams_block(linescore_rows: "list[dict]", espn_game_id: "Optional[str]") -> "list[dict]":
+def _teams_block(
+    linescore_rows: "list[dict]",
+    espn_game_id: "Optional[str]",
+    *,
+    pbp_final: "Optional[dict[str, int]]" = None,
+    schedule_pairs: "frozenset[tuple[int, int]]" = frozenset(),
+) -> "list[dict]":
     """One entry per team from the linescore rows (which repeat per inning).
 
     The baseball linescore names the final ``runs_total`` -- ``final`` is the
     FOOTBALL column name, and reading it here silently nulled every
     capture-era final (caught 2026-08-27 by an all-unverifiable QA frame).
     Accept either so the block is right whichever schema built the payload.
+
+    stats.ncaa.org's R total can disagree with its own inning cells: in a same-day doubleheader it
+    often carries the other game's score (2012: 305 games; the schedule backed the inning sum in 290
+    and R in 6). The inning sum wins only when corroborated -- the side's last pbp score
+    (*pbp_final*, by ``home_away``) or the schedule master's result (*schedule_pairs*, sorted score
+    pairs) -- since a linescore missing an extra-inning column would sum short. ``final_source``
+    says which: ``linescore`` (R), ``inning_sum``, or ``linescore_unconfirmed`` (R kept, they disagree).
     """
-    out = []
+    teams: "dict[str, dict]" = {}  # linescore repeats one row per period; keep one entry per team
+    sums: "dict[str, int]" = {}
     for r in linescore_rows:
         if not r.get("team"):
             continue
-        out.append(
+        teams.setdefault(
+            r["team"],
             {
                 "team": r["team"],
                 "home_away": r.get("home_away"),
                 "final": r.get("runs_total", r.get("final")),
-                "espn_game_id": espn_game_id,
-            }
+            },
         )
-    # linescore repeats one row per period; keep one entry per team
-    seen: "set[str]" = set()
-    uniq = []
-    for t in out:
-        if t["team"] not in seen:
-            seen.add(t["team"])
-            uniq.append(t)
-    return uniq
+        if str(r.get("inning", "")).isdigit():
+            sums[r["team"]] = sums.get(r["team"], 0) + (r.get("runs") or 0)
+    sum_pair = tuple(sorted(sums.values())) if len(sums) == 2 else None
+    for name, t in teams.items():
+        total, inning_sum = t["final"], sums.get(name)
+        if inning_sum is None or total == inning_sum:
+            t["final_source"] = "linescore"
+        elif (pbp_final or {}).get(t["home_away"]) == inning_sum or sum_pair in schedule_pairs:
+            t["final"], t["final_source"] = inning_sum, "inning_sum"
+        else:
+            t["final_source"] = "linescore_unconfirmed"
+        t["espn_game_id"] = espn_game_id
+    return list(teams.values())
+
+
+def _orient_pbp(pbp: "list[dict]", linescore_rows: "list[dict]") -> bool:
+    """Swap the pbp score columns in place when the listed HOME team bats first; return whether it did.
+
+    The pbp table reads its score left-right in batting order, so ``score_away`` is the team batting
+    the top half. When the host bats first (2012 contest 759907: "San Jose St. | Score | Lehigh" while
+    the linescore lists Lehigh away), that is the home team's score. Swapping keeps ``score_away`` the
+    listed away team's, matching ``teams[].home_away``; ``inning_top_bot``/``batting`` stay as played.
+    """
+    home = next((r.get("team") for r in linescore_rows if r.get("home_away") == "home"), None)
+    first = next((r.get("batting") for r in pbp if r.get("inning_top_bot") == "top"), None)
+    if not home or first != home:
+        return False
+    for r in pbp:
+        r["score_away"], r["score_home"] = r.get("score_home"), r.get("score_away")
+    return True
 
 
 def build_capture_payload(
@@ -82,8 +118,13 @@ def build_capture_payload(
     season: int,
     *,
     espn_game_id: "Optional[str]" = None,
+    schedule_pairs: "frozenset[tuple[int, int]]" = frozenset(),
 ) -> "dict[str, Any]":
-    """Parse one captured 5-tab bundle into the payload dict (pure, offline)."""
+    """Parse one captured 5-tab bundle into the payload dict (pure, offline).
+
+    *schedule_pairs*: the schedule master's sorted score pairs for this contest, which corroborate a
+    linescore inning sum over a disagreeing R total (see :func:`_teams_block`).
+    """
     from sportsdataverse.baseball.college_baseball import (
         parse_college_baseball_ncaa_linescore,
         parse_college_baseball_ncaa_pbp,
@@ -98,7 +139,16 @@ def build_capture_payload(
     pbp = parse_college_baseball_ncaa_pbp(
         bundle.get("play_by_play") or "", contest_id=cid
     ).to_dicts()
-    teams = _teams_block(linescore, espn_game_id)
+    home_bats_first = _orient_pbp(pbp, linescore)
+    pbp_final = {
+        side: next(
+            (r[f"score_{side}"] for r in reversed(pbp) if r.get(f"score_{side}") is not None), None
+        )
+        for side in ("away", "home")
+    }
+    teams = _teams_block(
+        linescore, espn_game_id, pbp_final=pbp_final, schedule_pairs=schedule_pairs
+    )
     if not teams and pbp:
         # pbp-only bundle: away bats the top of an inning; finals from the last score
         away = next((r["batting"] for r in pbp if r.get("inning_top_bot") == "top"), None)
@@ -121,6 +171,7 @@ def build_capture_payload(
         "game_date": ls0.get("game_date"),
         "location": ls0.get("venue"),
         "attendance": ls0.get("attendance"),
+        "home_bats_first": home_bats_first,
         "teams": teams,
         "pbp": pbp,
         "linescore": linescore,
@@ -161,9 +212,30 @@ def _legacy_at(path: Path) -> "Optional[dict[str, Any]]":
     return payload if str(payload.get("source", "")).startswith("legacy") else None
 
 
-def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[str, str]":
+def _schedule_pairs(root: Path, season: int) -> "dict[str, frozenset[tuple[int, int]]]":
+    """contest_id -> the schedule master's sorted (score, score) pairs ({} without a master)."""
+    from ncaa_pbp.datasets import master_parquet_path
+
+    path = master_parquet_path(root, season)
+    if not path.is_file():
+        return {}
+    import polars as pl
+
+    pairs: "dict[str, set[tuple[int, int]]]" = {}
+    frame = pl.read_parquet(
+        path, columns=["contest_id", "team_score", "opponent_score"]
+    ).drop_nulls("contest_id")
+    for cid, a, b in frame.iter_rows():
+        if str(a).isdigit() and str(b).isdigit():
+            pairs.setdefault(str(cid), set()).add(tuple(sorted((int(a), int(b)))))
+    return {cid: frozenset(v) for cid, v in pairs.items()}
+
+
+def _capture_job(
+    args: "tuple[str, str, int, Optional[str], bool, frozenset[tuple[int, int]]]",
+) -> "tuple[str, str]":
     """Worker: one raw bundle -> one payload. (spawn pool; imports stay local)."""
-    root_s, cid, season, espn, force = args
+    root_s, cid, season, espn, force, sched = args
     root = Path(root_s)
     out = parsed_path(root, cid)
     # a legacy payload can sit at the capture's own path (2023 legacy is keyed by
@@ -175,7 +247,7 @@ def _capture_job(args: "tuple[str, str, int, Optional[str], bool]") -> "tuple[st
     try:
         with gzip.open(raw, "rt", encoding="utf-8") as fh:
             bundle = json.load(fh)
-        payload = build_capture_payload(bundle, season, espn_game_id=espn)
+        payload = build_capture_payload(bundle, season, espn_game_id=espn, schedule_pairs=sched)
         if legacy is not None and not payload["pbp"] and legacy.get("pbp"):
             return cid, "kept-legacy"  # the site has no plays for it now; the legacy ones stay
         if not payload["pbp"] and not payload["teams"]:
@@ -241,6 +313,11 @@ def main(argv: "list[str] | None" = None) -> int:
     ap.add_argument("--year", type=int, default=None, help="restrict --legacy to one year")
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument(
+        "--contests",
+        default=None,
+        help="with --season: only these contest ids (comma-separated, or @file with one per line)",
+    )
     args = ap.parse_args(argv)
     if args.season is None and not args.legacy:
         ap.error("pass --season N and/or --legacy")
@@ -252,7 +329,19 @@ def main(argv: "list[str] | None" = None) -> int:
         idx = load_espn_game_index(root, args.season)
         raw_dir = root / "ncaa" / "raw" / str(args.season)
         cids = sorted(p.name.removesuffix(".json.gz") for p in raw_dir.glob("*.json.gz"))
-        jobs = [(str(root), c, args.season, idx.get(c), args.force) for c in cids]
+        if args.contests:
+            text = (
+                Path(args.contests[1:]).read_text()
+                if args.contests.startswith("@")
+                else args.contests
+            )
+            want = set(text.replace(",", " ").split())
+            cids = [c for c in cids if c in want]
+        sched = _schedule_pairs(root, args.season)
+        jobs = [
+            (str(root), c, args.season, idx.get(c), args.force, sched.get(c, frozenset()))
+            for c in cids
+        ]
         print(f"capture {args.season}: {_run_pool(jobs, _capture_job, args.workers)}", flush=True)
 
     if args.legacy:

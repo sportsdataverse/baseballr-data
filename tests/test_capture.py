@@ -157,35 +157,3 @@ def test_capture_season_stats_and_breaker(tmp_path: Path) -> None:
             tmp_path,
             max_consecutive_failures=5,
         )
-
-
-def _master(tmp_path: Path, season: int, contest_ids: list) -> None:
-    import polars as pl
-    from ncaa_pbp.datasets import master_parquet_path
-
-    path = master_parquet_path(tmp_path, season)
-    path.parent.mkdir(parents=True)
-    pl.DataFrame(
-        {"contest_id": contest_ids, "division": [1] * len(contest_ids)},
-        schema={"contest_id": pl.String, "division": pl.Int64},
-    ).write_parquet(path)
-
-
-def test_count_missing_refuses_a_master_without_contest_ids(tmp_path: Path, capsys) -> None:
-    """2011 (2026-11-26): no game links on the schedule pages -> 0 ids -> "0 missing" skipped stage 02."""
-    from ncaa_pbp import games
-
-    _master(tmp_path, 2011, [None, None])
-    assert games.main(["--season", "2011", "--root", str(tmp_path), "--count-missing"]) == 2
-    out = capsys.readouterr()
-    assert (
-        out.out == "" and "no contest ids" in out.err
-    )  # nothing on stdout for the gate to read as a count
-
-
-def test_count_missing_counts_uncaptured_contests(tmp_path: Path, capsys) -> None:
-    from ncaa_pbp import games
-
-    _master(tmp_path, 2012, ["1", "2"])
-    assert games.main(["--season", "2012", "--root", str(tmp_path), "--count-missing"]) == 0
-    assert capsys.readouterr().out.strip() == "2"

@@ -111,7 +111,7 @@ def test_bundle_with_no_pbp_or_box_writes_no_payload(tmp_path: Path) -> None:
     tabs = ("play_by_play", "box_score", "team_stats", "individual_stats", "situational_stats")
     with gzip.open(raw, "wt", encoding="utf-8") as fh:
         json.dump({"contest_id": "294867", **{t: page for t in tabs}}, fh)
-    assert _capture_job((str(tmp_path), "294867", 2016, None, False)) == ("294867", "empty")
+    assert _capture_job((str(tmp_path), "294867", 2016, None, False, frozenset())) == ("294867", "empty")
     assert not parsed_path(tmp_path, "294867").exists()
 
 
@@ -130,12 +130,12 @@ def test_capture_replaces_a_legacy_payload_at_its_path_but_not_a_capture(tmp_pat
         json.dump({"contest_id": "6357953", "play_by_play": pbp}, fh)
     legacy = {"game_key": "6357953", "source": "legacy_r", "season": 2023, "game_pbp_id": 4491801}
     write_payload(tmp_path, legacy)
-    assert _capture_job((str(tmp_path), "6357953", 2023, None, False)) == ("6357953", "parsed")
+    assert _capture_job((str(tmp_path), "6357953", 2023, None, False, frozenset())) == ("6357953", "parsed")
     with gzip.open(parsed_path(tmp_path, "6357953"), "rt", encoding="utf-8") as fh:
         got = json.load(fh)
     assert got["source"] == "capture"
     assert got["game_pbp_id"] == 4491801  # the R-era join key survives the swap
-    assert _capture_job((str(tmp_path), "6357953", 2023, None, False)) == ("6357953", "skipped")
+    assert _capture_job((str(tmp_path), "6357953", 2023, None, False, frozenset())) == ("6357953", "skipped")
 
 
 def test_capture_without_plays_keeps_the_legacy_plays(tmp_path: Path) -> None:
@@ -150,7 +150,7 @@ def test_capture_without_plays_keeps_the_legacy_plays(tmp_path: Path) -> None:
     with gzip.open(raw, "wt", encoding="utf-8") as fh:
         json.dump({"contest_id": "294867", "play_by_play": page}, fh)
     write_payload(tmp_path, {"game_key": "294867", "source": "legacy_r", "pbp": [{"inning": 1}]})
-    assert _capture_job((str(tmp_path), "294867", 2023, None, False)) == ("294867", "kept-legacy")
+    assert _capture_job((str(tmp_path), "294867", 2023, None, False, frozenset())) == ("294867", "kept-legacy")
     with gzip.open(parsed_path(tmp_path, "294867"), "rt", encoding="utf-8") as fh:
         assert json.load(fh)["source"] == "legacy_r"
 
@@ -163,4 +163,58 @@ def test_truncated_payload_does_not_stop_the_sweep(tmp_path: Path) -> None:
     out = parsed_path(tmp_path, "9")
     out.parent.mkdir(parents=True)
     out.write_bytes(gzip.compress(b'{"source": "legacy_r"}')[:-6])  # cut off -> EOFError
-    assert _capture_job((str(tmp_path), "9", 2023, None, False)) == ("9", "skipped")
+    assert _capture_job((str(tmp_path), "9", 2023, None, False, frozenset())) == ("9", "skipped")
+
+
+def _bundle(cid: str, *, pbp: bool = True) -> dict:
+    """Real 2012 stats.ncaa.org pages (captured 2026-11-25/26, csrf tokens redacted)."""
+    b = {"contest_id": cid, "box_score": (FIX / f"mba_box_{cid}.html").read_text(encoding="utf-8")}
+    if pbp:
+        b["play_by_play"] = (FIX / f"mba_pbp_{cid}.html").read_text(encoding="utf-8")
+    return b
+
+
+def _finals(payload: dict) -> dict:
+    return {t["home_away"]: (t["team"], t["final"], t["final_source"]) for t in payload["teams"]}
+
+
+def test_doubleheader_r_total_loses_to_the_pbp_backed_inning_sum() -> None:
+    """755683 Morehead St. at Mercer, game 1 of a 02/17/2012 doubleheader: Morehead's innings
+    0 0 0 1 5 0 0 0 0 = 6 and the pbp ends 6-22 (schedule: L 6-22), but the page's R column says 9,
+    game 2's score."""
+    p = build_capture_payload(_bundle("755683"), 2012)
+    assert _finals(p) == {
+        "away": ("Morehead St.", 6, "inning_sum"),
+        "home": ("Mercer", 22, "linescore"),
+    }
+
+
+def test_inning_sum_needs_corroboration() -> None:
+    """Without pbp the sum wins only on the schedule's word: a linescore missing an extra-inning
+    column would sum short, so with no evidence the R total stays (flagged unconfirmed)."""
+    bare = build_capture_payload(_bundle("755683", pbp=False), 2012)
+    assert _finals(bare)["away"] == ("Morehead St.", 9, "linescore_unconfirmed")
+    backed = build_capture_payload(
+        _bundle("755683", pbp=False), 2012, schedule_pairs=frozenset({(6, 22)})
+    )
+    assert _finals(backed)["away"] == ("Morehead St.", 6, "inning_sum")
+
+
+def test_home_team_batting_first_keeps_score_away_the_away_teams() -> None:
+    """759907 Lehigh at San Jose St. (03/08/2012, final 4-8): the host batted first, so the pbp
+    table reads "San Jose St. | Score | Lehigh" and its left score is the HOME team's."""
+    p = build_capture_payload(_bundle("759907"), 2012)
+    assert p["home_bats_first"] is True
+    assert _finals(p) == {
+        "away": ("Lehigh", 4, "linescore"),
+        "home": ("San Jose St.", 8, "linescore"),
+    }
+    last = p["pbp"][-1]
+    assert (last["score_away"], last["score_home"]) == (4, 8)
+    assert p["pbp"][0]["inning_top_bot"] == "top" and p["pbp"][0]["batting"] == "San Jose St."
+
+
+def test_away_team_batting_first_is_left_alone() -> None:
+    p = build_capture_payload(_bundle("755683"), 2012)
+    assert p["home_bats_first"] is False
+    assert (p["pbp"][-1]["score_away"], p["pbp"][-1]["score_home"]) == (6, 22)
