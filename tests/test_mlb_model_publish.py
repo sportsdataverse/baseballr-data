@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import sys
+from pathlib import Path
 
 import polars as pl
 import pytest
@@ -223,6 +224,8 @@ def test_game_state_publishes_leverage_index_with_bucket_counts(monkeypatch):
             "at_bat_index": [0, 1],
             "result_home_score": [0, 3],
             "result_away_score": [0, 1],
+            "matchup_batter_id": ["1", "2"],
+            "runners": ["[]", "[]"],
         }
     )
     monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: fake_pbp)
@@ -235,7 +238,18 @@ def test_game_state_publishes_leverage_index_with_bucket_counts(monkeypatch):
     re_mod = sys.modules["sportsdataverse.mlb.mlb_run_expectancy"]
     we_mod = sys.modules["sportsdataverse.mlb.mlb_win_expectancy"]
 
-    monkeypatch.setattr(re_mod, "pbp_base_out_states", lambda pbp: pl.DataFrame({"s": [1]}))
+    # one regulation PA and one extra half opening on 2nd, so the automatic-runner gate passes
+    states = pl.DataFrame(
+        {
+            "game_id": ["g1", "g1"],
+            "inning": [1, 10],
+            "half": ["top", "top"],
+            "at_bat_index": [0, 1],
+            "base_state": ["___", "_2_"],
+            "outs_start": [0, 0],
+        }
+    )
+    monkeypatch.setattr(re_mod, "pbp_base_out_states", lambda pbp: states)
     monkeypatch.setattr(
         re_mod, "mlb_run_expectancy_matrix", lambda pbp=None: pl.DataFrame({"re": [0.5]})
     )
@@ -340,3 +354,120 @@ def test_hitting_requires_the_observed_columns_rather_than_skipping_the_gate(mon
 
     with pytest.raises(ValueError, match="observed columns"):
         computes.compute_hitting(2024)
+
+
+# Real statsapi pbp (games 718735 and 718511, 2023): 6 extra half-innings, each opening
+# with the automatic runner on 2nd. See tests/fixtures/mlb_game_state/README.md.
+EXTRA_INNINGS_FIXTURE = (
+    Path(__file__).parent / "fixtures" / "mlb_game_state" / "pbp_extra_innings_2023.parquet"
+)
+
+
+def _extra_innings_pbp() -> pl.DataFrame:
+    # the live parse carries at_bat_index beside about_at_bat_index; the fixture kept one
+    return pl.read_parquet(EXTRA_INNINGS_FIXTURE).with_columns(
+        pl.col("about_at_bat_index").alias("at_bat_index")
+    )
+
+
+def test_automatic_runner_gate_passes_on_real_extra_innings():
+    """The locked sdv-py seats the runner on the real fixture, so the gate passes."""
+    from mlb_model_publish import computes
+    from sportsdataverse.mlb.mlb_run_expectancy import pbp_base_out_states
+
+    pbp = _extra_innings_pbp()
+    states = pbp_base_out_states(pbp)
+    firsts = states.filter(
+        (pl.col("inning") >= 10)
+        & (pl.col("at_bat_index") == pl.col("at_bat_index").min().over("game_id", "inning", "half"))
+    )
+    assert firsts.height == 6
+    assert firsts["base_state"].unique().to_list() == ["_2_"]
+    computes.check_automatic_runner(pbp, states, 2023)
+
+
+def test_automatic_runner_gate_refuses_pbp_without_the_runner_columns():
+    from mlb_model_publish import computes
+    from sportsdataverse.mlb.mlb_run_expectancy import pbp_base_out_states
+
+    pbp = _extra_innings_pbp().drop("matchup_batter_id", "runners")
+    with pytest.raises(ValueError, match="lacks"):
+        computes.check_automatic_runner(pbp, pbp_base_out_states(pbp), 2023)
+
+
+def test_automatic_runner_gate_refuses_extra_halves_opened_empty():
+    """The pre-seat behaviour (every half opens bases-empty) is what the 2026-10 build shipped."""
+    from mlb_model_publish import computes
+    from sportsdataverse.mlb.mlb_run_expectancy import pbp_base_out_states
+
+    pbp = _extra_innings_pbp()
+    states = pbp_base_out_states(pbp)
+    first = pl.col("at_bat_index") == pl.col("at_bat_index").min().over("game_id", "inning", "half")
+    unseated = states.with_columns(
+        pl.when(first).then(pl.lit("___")).otherwise("base_state").alias("base_state")
+    )
+    with pytest.raises(ValueError, match="6 of 6 extra half-innings"):
+        computes.check_automatic_runner(pbp, unseated, computes.AUTOMATIC_RUNNER_FIRST_SEASON)
+    # before the rule there is no runner to seat, so the same frame is accepted
+    computes.check_automatic_runner(pbp, unseated, computes.AUTOMATIC_RUNNER_FIRST_SEASON - 1)
+
+
+def test_game_state_build_seats_the_automatic_runner_end_to_end(monkeypatch):
+    """compute_game_state on real pbp with the real sdv-py models. The 3 RE24-eligible extra
+    half-openings (the tops of the 10th and 11th; bottoms of the 9th on are excluded) move from
+    ___/0 to _2_/0, and the WE table changes only in its capped-9 (9th-and-later) buckets.
+    With a lock older than the seat the gate raises instead."""
+    from mlb_model_publish import computes
+    from sportsdataverse.mlb.mlb_run_expectancy import (
+        mlb_run_expectancy_matrix,
+        pbp_base_out_states,
+    )
+    from sportsdataverse.mlb.mlb_win_expectancy import build_we_table
+
+    pbp = _extra_innings_pbp()
+    monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: pbp)
+    out = computes.compute_game_state(2023)
+
+    def n_at(m, base):
+        hit = m.filter((pl.col("base_state") == base) & (pl.col("outs") == 0))["n"]
+        return hit.item() if hit.len() else 0
+
+    unseated = pbp.drop("matchup_batter_id", "runners")
+    old_m = mlb_run_expectancy_matrix(pbp=unseated)
+    new_m = out["mlb_re24_matrix"]
+    assert n_at(new_m, "_2_") - n_at(old_m, "_2_") == 3
+    assert n_at(old_m, "___") - n_at(new_m, "___") == 3
+
+    res = (
+        pbp.sort("game_id", "at_bat_index")
+        .group_by("game_id", maintain_order=True)
+        .agg(
+            pl.col("result_home_score").last().alias("home_score"),
+            pl.col("result_away_score").last().alias("away_score"),
+        )
+    )
+    key = ["inning_capped", "half", "base_state", "outs_start", "score_diff_bucket"]
+    old_we = build_we_table(pbp_base_out_states(unseated), res).select(*key, "home_win_exp", "n")
+    new_we = out["mlb_we_table"].select(*key, "home_win_exp", "n")
+    both = new_we.join(old_we, on=key, how="full", coalesce=True, suffix="_old")
+    changed = both.filter(
+        (pl.col("n") != pl.col("n_old")).fill_null(True)
+        | (pl.col("home_win_exp") != pl.col("home_win_exp_old")).fill_null(True)
+    )
+    assert changed.height > 0
+    assert changed["inning_capped"].unique().to_list() == [9]
+
+    # the build itself refuses the unseated input
+    monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: unseated)
+    with pytest.raises(ValueError, match="lacks"):
+        computes.compute_game_state(2023)
+
+
+def test_automatic_runner_gate_refuses_a_completed_season_with_no_extra_innings():
+    from mlb_model_publish import computes
+    from sportsdataverse.mlb.mlb_run_expectancy import pbp_base_out_states
+
+    pbp = _extra_innings_pbp()
+    regulation = pbp_base_out_states(pbp).filter(pl.col("inning") <= 9)
+    with pytest.raises(ValueError, match="no extra half-innings"):
+        computes.check_automatic_runner(pbp, regulation, 2023)

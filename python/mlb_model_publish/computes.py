@@ -14,6 +14,7 @@ The builders inject these; hermetic tests stub them.
 from __future__ import annotations
 
 import os
+from datetime import date
 from pathlib import Path
 
 import polars as pl
@@ -95,6 +96,56 @@ _WE_KEY = ["inning_capped", "half", "base_state", "outs_start", "score_diff_buck
 #: writeup recomputes both tables on every render.
 THIN_BUCKET_N = 50
 
+#: First MLB regular season that opened every extra half-inning with a runner placed on 2nd:
+#: 2020-2021 under that season's operating rules, 2022 under the March 2022 labor agreement,
+#: permanent from 2023 (MLB glossary, "Automatic Runner",
+#: https://www.mlb.com/glossary/rules/automatic-runner). Never used in the postseason; this
+#: publisher builds regular-season games only (``game_type="R"``).
+AUTOMATIC_RUNNER_FIRST_SEASON = 2020
+#: sdv-py ``pbp_base_out_states`` reads the automatic runner off these pbp columns. A frame
+#: without them, or an sdv-py lock older than the seat, opens every extra half-inning
+#: bases-empty without an error. The 2026-10 build was the second case (lock d192fe2d).
+AUTOMATIC_RUNNER_COLUMNS = ("matchup_batter_id", "runners")
+
+
+def check_automatic_runner(pbp: pl.DataFrame, states: pl.DataFrame, season: int) -> None:
+    """Refuse a rule-era build in which an extra half-inning opens without its runner on 2nd.
+
+    Checks the inputs first (the columns the seat is read from), then the output: in a rule
+    season every half-inning from the 10th on must start in ``_2_``/0, and a completed season
+    must have some. Zero tolerance, on purpose: in the 2026-11-26 rebuild every one opened
+    on 2nd (2020-2026: 194, 600, 602, 554, 604, 602 and 570 extra half-innings), so a miss
+    means the input or the seat broke, not noise. If a real statsapi defect ever
+    trips it, allowlist that game_id here with the reason; do not loosen it to a share.
+    The 8th and 9th of a 2020-2021 seven-inning doubleheader also carry the runner but are
+    not checked (the pbp has no scheduled length).
+    """
+    if season < AUTOMATIC_RUNNER_FIRST_SEASON:
+        return
+    missing = [c for c in AUTOMATIC_RUNNER_COLUMNS if c not in pbp.columns]
+    if missing:
+        raise ValueError(
+            f"{season}: pbp lacks {missing}; the extra-inning automatic runner cannot be seated"
+        )
+    half = ["game_id", "inning", "half"]
+    opens = states.filter(
+        (pl.col("inning") >= 10)
+        & (pl.col("at_bat_index") == pl.col("at_bat_index").min().over(half))
+    )
+    # A full season has hundreds of extra half-innings; none means a broken or partial pull.
+    # The current season can have none yet (early April), so only completed seasons count.
+    if opens.height == 0 and season < date.today().year:
+        raise ValueError(f"{season}: no extra half-innings found in a completed season")
+    # outs_start is 0 on a half's first PA by construction in sdv-py; checked in case that moves
+    empty = opens.filter(
+        pl.col("base_state").ne_missing("_2_") | pl.col("outs_start").ne_missing(0)
+    )
+    if empty.height:
+        raise ValueError(
+            f"{season}: {empty.height} of {opens.height} extra half-innings open without the "
+            f"automatic runner on 2nd, e.g. {empty.select(half).head(3).rows()}"
+        )
+
 
 def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
     """RE24 matrix + WE state table + leverage index + per-play WE/WPA.
@@ -132,6 +183,7 @@ def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame
         )
     )
     states = pbp_base_out_states(pbp)
+    check_automatic_runner(pbp, states, season)
     we_table = build_we_table(states, results)
     wpa = mlb_win_probability_added(mlb_win_expectancy(pbp, results))
     matrix = mlb_run_expectancy_matrix(pbp=pbp)
