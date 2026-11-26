@@ -101,6 +101,11 @@ def main(argv: "list[str] | None" = None) -> int:
     )
     contests = contest_ids_from_master(root, args.season, divisions)
     if args.count_missing:  # the orchestrator's publish gate (run_backfill_all.sh)
+        if not contests:
+            # No contest ids is not "nothing missing": 2011's schedule pages carry no game links, and a 0
+            # here skipped stage 02 and marked the season done with no pbp (2026-11-26).
+            print(f"season {args.season}: schedule master has no contest ids", file=sys.stderr)
+            return 2
         out = raw_dir(root, args.season)
         print(sum(not is_captured(c, out) for c in contests))
         return 0

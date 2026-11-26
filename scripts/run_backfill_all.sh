@@ -161,7 +161,7 @@ for season in $(seq "$START" -1 "$END"); do
 
   # 7) season datasets build + publish
   /root/.local/bin/uv run python -m ncaa_baseball_data_build build --dataset all --season "$season" --publish \
-    > "logs/bf_${season}_07.log" 2>&1 || echo "season ${season} 07 rc=$?"
+    > "logs/bf_${season}_07.log" 2>&1 || { echo "season ${season} 07 rc=$?"; BACKFILL_RC=1; }
   grep -h 'qa ' "logs/bf_${season}_07.log" | tail -1 || true
   COMMIT_MSG="feat(ncaa): season ${season} datasets built + published (stage 07)" \
     commit ncaa/*/parquet ncaa/*/manifest.csv ncaa/qa
