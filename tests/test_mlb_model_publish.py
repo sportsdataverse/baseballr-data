@@ -229,6 +229,9 @@ def test_game_state_publishes_leverage_index_with_bucket_counts(monkeypatch):
         }
     )
     monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: fake_pbp)
+    # the stub LI has two buckets; the leverage gate and the WE pool have their own tests below
+    monkeypatch.setattr(computes, "check_leverage_index", lambda li, season: None)
+    monkeypatch.setattr(computes, "pooled_we_table", lambda season, we: we)
     # `import sportsdataverse.mlb.mlb_x as m` binds the FUNCTION, not the
     # module -- the package __init__ re-exports each function under its
     # module's own name and shadows it. sys.modules is the unambiguous handle.
@@ -426,6 +429,11 @@ def test_game_state_build_seats_the_automatic_runner_end_to_end(monkeypatch):
 
     pbp = _extra_innings_pbp()
     monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: pbp)
+    # two games are too few for the season-level leverage bands, and the WE pool needs the
+    # published tables; both have their own tests below
+    seen = []
+    monkeypatch.setattr(computes, "check_leverage_index", lambda li, season: seen.append(season))
+    monkeypatch.setattr(computes, "pooled_we_table", lambda season, we: we)
     out = computes.compute_game_state(2023)
 
     def n_at(m, base):
@@ -456,6 +464,7 @@ def test_game_state_build_seats_the_automatic_runner_end_to_end(monkeypatch):
     )
     assert changed.height > 0
     assert changed["inning_capped"].unique().to_list() == [9]
+    assert seen == [2023]  # the build ran the leverage gate on its own table
 
     # the build itself refuses the unseated input
     monkeypatch.setattr(computes, "load_season_pbp", lambda season, cache_dir=None: unseated)
@@ -471,3 +480,96 @@ def test_automatic_runner_gate_refuses_a_completed_season_with_no_extra_innings(
     regulation = pbp_base_out_states(pbp).filter(pl.col("inning") <= 9)
     with pytest.raises(ValueError, match="no extra half-innings"):
         computes.check_automatic_runner(pbp, regulation, 2023)
+
+
+FIX = Path(__file__).parent / "fixtures" / "mlb_game_state"
+
+
+def _li_2024_published() -> pl.DataFrame:
+    # mlb_leverage_index_2024 as published 2026-11-26: every PA credited with the swing before it
+    return pl.read_parquet(FIX / "leverage_index_2024_published_2026_11_26.parquet")
+
+
+def test_leverage_gate_refuses_the_backward_swing_table():
+    from mlb_model_publish import computes
+
+    with pytest.raises(ValueError, match=r"first-PA leverage 0\.414 outside"):
+        computes.check_leverage_index(_li_2024_published(), 2024)
+
+
+def test_leverage_gate_passes_the_rebuilt_table():
+    # forward swing, WE pooled over 2015-2026: first PA 0.931, bottom 9th tied 2.238 x first
+    from mlb_model_publish import computes
+
+    li = pl.read_parquet(FIX / "leverage_index_2024_rebuilt_2026_11_27.parquet")
+    computes.check_leverage_index(li, 2024)
+
+
+def test_leverage_gate_refuses_a_mean_off_one_and_a_missing_bucket():
+    from mlb_model_publish import computes
+
+    li = _li_2024_published()
+    with pytest.raises(ValueError, match="PA-weighted mean"):
+        computes.check_leverage_index(li.with_columns(pl.col("leverage_index") * 1.01), 2024)
+    first = (
+        (pl.col("inning_capped") == 1)
+        & (pl.col("half") == "top")
+        & (pl.col("base_state") == "___")
+        & (pl.col("outs_start") == 0)
+        & (pl.col("score_diff_bucket") == 0)
+    )
+    rest = li.filter(~first)
+    # renormalized, so the missing bucket is the only thing wrong
+    rest = rest.with_columns(
+        pl.col("leverage_index") / ((rest["leverage_index"] * rest["n"]).sum() / rest["n"].sum())
+    )
+    with pytest.raises(ValueError, match="0 top 1 tied"):
+        computes.check_leverage_index(rest, 2024)
+
+
+def test_leverage_gate_skips_a_season_in_progress():
+    from mlb_model_publish import computes
+
+    # the same failing table is let through while its season is still being played
+    computes.check_leverage_index(_li_2024_published(), computes.date.today().year + 1)
+
+
+def _we(season: int) -> pl.DataFrame:
+    return pl.read_parquet(FIX / f"we_table_{season}.parquet")
+
+
+def test_pooled_we_table_sums_the_seasons_win_counts(monkeypatch):
+    from mlb_model_publish import computes
+
+    monkeypatch.setattr(computes, "LI_POOL_FIRST_SEASON", 2023)
+    monkeypatch.setattr(computes, "LI_POOL_LAST_SEASON", 2024)
+    calls = []
+
+    def fetch(s):
+        calls.append(s)
+        return _we(s)
+
+    pooled = computes.pooled_we_table(2024, _we(2024), fetch=fetch)
+    assert calls == [2023]  # the building season uses its own table, never its published copy
+    key = ["inning_capped", "half", "base_state", "outs_start", "score_diff_bucket"]
+    a, b = _we(2023), _we(2024)
+    both = a.join(b, on=key, how="inner", suffix="_b").join(pooled, on=key, suffix="_p")
+    assert both.height > 4000
+    assert (both["n_p"] == both["n"] + both["n_b"]).all()
+    wins = (both["home_win_exp"] * (both["n"] + 1) - 0.5) + (both["home_win_exp_b"] * (both["n_b"] + 1) - 0.5)
+    assert ((wins + 0.5) / (both["n_p"] + 1) - both["home_win_exp_p"]).abs().max() < 1e-9
+    # a bucket only one season reached keeps that season's count
+    assert pooled.height == a.join(b, on=key, how="full", coalesce=True).height
+
+
+def test_pooled_we_table_refuses_a_missing_season(monkeypatch):
+    from mlb_model_publish import computes
+
+    monkeypatch.setattr(computes, "LI_POOL_FIRST_SEASON", 2023)
+    monkeypatch.setattr(computes, "LI_POOL_LAST_SEASON", 2024)
+
+    def fetch(s):
+        raise OSError(f"HTTP 404 for {s}")
+
+    with pytest.raises(OSError, match="2023"):
+        computes.pooled_we_table(2024, _we(2024), fetch=fetch)

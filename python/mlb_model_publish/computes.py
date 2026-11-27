@@ -147,6 +147,104 @@ def check_automatic_runner(pbp: pl.DataFrame, states: pl.DataFrame, season: int)
         )
 
 
+#: Leverage-index sanity bands, written down on 2026-11-26 before the corrected estimator was
+#: scored. The game's first PA (top 1st, bases empty, 0 out, tied) has a commonly published
+#: leverage of about 0.86-0.9; the 2026-10 build put it at 0.41 because each PA was credited
+#: with the swing of the PA before it.
+LI_FIRST_PA_BAND = (0.75, 1.00)
+#: Bottom of the 9th-and-later, tied, bases empty, 0 out must be at least this multiple of the first PA.
+LI_LATE_OVER_FIRST_MIN = 1.5
+#: The plate-appearance-weighted mean leverage is 1.0 by construction.
+LI_MEAN_TOL = 1e-9
+#: A regular season is over by this month/day; a later build of that season is a completed one.
+REGULAR_SEASON_DONE = (10, 15)
+
+
+def check_leverage_index(li: pl.DataFrame, season: int) -> None:
+    """Refuse a completed season's leverage table that fails the pre-registered sanity bands.
+
+    ``li`` carries the WE-table key, ``leverage_index`` and the bucket count ``n``. A season still
+    in progress is skipped: in early April its late, tied buckets hold a handful of PAs. The bands
+    were set before the 2026-11-26 fix was scored and are never lowered to let a build through:
+    a failure means the estimator or its input broke.
+    """
+    month, day = REGULAR_SEASON_DONE
+    if date.today() < date(season, month, day):
+        return
+    mean = (li["leverage_index"] * li["n"]).sum() / li["n"].sum()
+    if abs(mean - 1.0) > LI_MEAN_TOL:
+        raise ValueError(f"{season}: PA-weighted mean leverage {mean:.12f} is not 1.0")
+
+    def at(inning: int, half: str) -> float:
+        row = li.filter(
+            (pl.col("inning_capped") == inning)
+            & (pl.col("half") == half)
+            & (pl.col("base_state") == "___")
+            & (pl.col("outs_start") == 0)
+            & (pl.col("score_diff_bucket") == 0)
+        )
+        if row.height != 1:
+            raise ValueError(
+                f"{season}: {row.height} {half} {inning} tied, bases-empty, 0-out leverage buckets"
+            )
+        return row["leverage_index"].item()
+
+    first, late = at(1, "top"), at(9, "bottom")
+    lo, hi = LI_FIRST_PA_BAND
+    if not lo <= first <= hi:
+        raise ValueError(f"{season}: first-PA leverage {first:.3f} outside [{lo}, {hi}]")
+    if late < LI_LATE_OVER_FIRST_MIN * first:
+        raise ValueError(
+            f"{season}: bottom-9th tied leverage {late:.3f} < {LI_LATE_OVER_FIRST_MIN} x first PA {first:.3f}"
+        )
+
+
+#: Leverage reads WE from one table pooled over these regular seasons (and the building season,
+#: if later). A single season's empirical WE is too noisy to difference: the game's first PA
+#: moves WE by about 0.02, and a 1,650-PA bucket's WE carries about 0.012 of sampling error.
+LI_POOL_FIRST_SEASON = 2015
+LI_POOL_LAST_SEASON = 2026
+
+
+def _published_we_table(season: int) -> pl.DataFrame:
+    import io
+    import urllib.request
+
+    url = f"{_RELEASE_DL}/mlb_game_state/mlb_we_table_{season}.parquet"
+    with urllib.request.urlopen(url, timeout=120) as r:
+        return pl.read_parquet(io.BytesIO(r.read()))
+
+
+def pooled_we_table(season: int, we_table: pl.DataFrame, *, fetch=None) -> pl.DataFrame:
+    """The WE table pooled over every regular season in the pool, for the leverage index only.
+
+    Win counts come back exactly from each table, ``wins = home_win_exp * (n + 1) - 0.5`` (the
+    Laplace-1 smoothing of ``build_we_table``), are summed per bucket and re-smoothed the same way.
+    The building season contributes ``we_table``, its fresh build, in place of its published copy;
+    every other season is the published ``mlb_we_table_<s>``. A season that cannot be read raises,
+    so the pool is never silently smaller than its definition.
+    """
+    fetch = fetch or _published_we_table
+    last = max(LI_POOL_LAST_SEASON, season)
+    tables = [we_table if s == season else fetch(s) for s in range(LI_POOL_FIRST_SEASON, last + 1)]
+    cols = [*_WE_KEY, "home_win_exp", "n"]
+    for t in tables:
+        for k in _WE_KEY:
+            assert t.schema[k] == we_table.schema[k], (k, t.schema[k], we_table.schema[k])
+    stacked = pl.concat(
+        [t.select(cols).with_columns(pl.col("n").cast(pl.Int64)) for t in tables], how="vertical"
+    )
+    return (
+        stacked.with_columns(
+            (pl.col("home_win_exp") * (pl.col("n") + 1) - 0.5).round(0).alias("wins")
+        )
+        .group_by(_WE_KEY)
+        .agg(pl.col("wins").sum(), pl.col("n").sum())
+        .with_columns(((pl.col("wins") + 0.5) / (pl.col("n") + 1)).alias("home_win_exp"))
+        .select(*_WE_KEY, "home_win_exp", "n")
+    )
+
+
 def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame]:
     """RE24 matrix + WE state table + leverage index + per-play WE/WPA.
 
@@ -192,7 +290,8 @@ def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame
     # Leverage index is per state bucket on the same key as the WE table, so
     # the bucket count + thin flag carry straight over -- a high-LI state
     # backed by 6 plate appearances must be readable as such.
-    li = leverage_index(states, we_table).join(
+    # pooled WE for the swing; n stays this season's own PA count per bucket
+    li = leverage_index(states, pooled_we_table(season, we_table)).join(
         we_table.select(*_WE_KEY, "n"), on=_WE_KEY, how="left"
     )
     # Both tables are built from the same `states` frame, so every leverage
@@ -201,6 +300,7 @@ def compute_game_state(season: int, *, cache_dir=None) -> dict[str, pl.DataFrame
     assert li["n"].null_count() == 0, (
         f"{li['n'].null_count()} leverage buckets found no WE bucket count for {season}"
     )
+    check_leverage_index(li, season)
 
     season_col = pl.lit(season, dtype=pl.Int64).alias("season")
     return {
