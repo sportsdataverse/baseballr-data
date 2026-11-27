@@ -1,0 +1,76 @@
+2026-11-26 15:10:08 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/teams/parquet/ncaa_baseball_teams_2019.parquet (9.6KB), 953 rows x 4 cols + ncaa_baseball_teams_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:10:13 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2019.parquet (9.6KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 15:10:14 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2019.parquet -> ncaa_baseball_teams (asset 1/3)
+2026-11-26 15:10:14 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2019.csv.gz (8.0KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 15:10:16 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2019.csv.gz -> ncaa_baseball_teams (asset 2/3)
+2026-11-26 15:10:16 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_teams_2019.rds (9.2KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_teams
+2026-11-26 15:10:17 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_teams_2019.rds -> ncaa_baseball_teams (asset 3/3)
+2026-11-26 15:10:22 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_teams with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:10:22 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/schedule/parquet/ncaa_baseball_schedule_2019.parquet (559.8KB), 44684 rows x 14 cols + ncaa_baseball_schedule_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:10:24 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2019.parquet (559.8KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 15:10:26 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2019.parquet -> ncaa_baseball_schedules (asset 1/3)
+2026-11-26 15:10:26 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2019.csv.gz (824.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 15:10:27 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2019.csv.gz -> ncaa_baseball_schedules (asset 2/3)
+2026-11-26 15:10:27 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_schedule_2019.rds (646.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_schedules
+2026-11-26 15:10:28 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_schedule_2019.rds -> ncaa_baseball_schedules (asset 3/3)
+2026-11-26 15:10:34 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_schedules with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:10:34 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/rosters/parquet/ncaa_baseball_rosters_2019.parquet (141.2KB), 10376 rows x 15 cols + ncaa_baseball_rosters_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:10:35 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2019.parquet (141.2KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 15:10:37 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2019.parquet -> ncaa_baseball_rosters (asset 1/3)
+2026-11-26 15:10:37 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2019.csv.gz (172.7KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 15:10:38 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2019.csv.gz -> ncaa_baseball_rosters (asset 2/3)
+2026-11-26 15:10:38 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_rosters_2019.rds (166.4KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_rosters
+2026-11-26 15:10:39 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_rosters_2019.rds -> ncaa_baseball_rosters (asset 3/3)
+2026-11-26 15:10:44 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_rosters with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:23:49 [WARNING] ncaa_baseball_data_build: legacy g4794942.json.gz kept: bundle 1733270 has no capture payload
+2026-11-26 15:23:49 [WARNING] ncaa_baseball_data_build: legacy g4798033.json.gz kept: bundle 1733678 has no capture payload
+2026-11-26 15:23:54 [INFO] ncaa_baseball_data_build: season 2019: 15391 payloads -> {'pbp': 1314886, 'linescore': 150976, 'team_stats': 989186, 'player_stats': 481526, 'situational_stats': 591813, 'games': 15391, 'qa': 15391}
+2026-11-26 15:24:02 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/pbp/parquet/ncaa_baseball_pbp_2019.parquet (25.4MB), 1314886 rows x 37 cols + ncaa_baseball_pbp_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:24:46 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2019.parquet (25.4MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-11-26 15:24:49 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2019.parquet -> ncaa_baseball_pbp (asset 1/3)
+2026-11-26 15:24:49 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2019.csv.gz (31.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-11-26 15:24:51 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2019.csv.gz -> ncaa_baseball_pbp (asset 2/3)
+2026-11-26 15:24:51 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_pbp_2019.rds (28.1MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_pbp
+2026-11-26 15:24:54 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_pbp_2019.rds -> ncaa_baseball_pbp (asset 3/3)
+2026-11-26 15:24:59 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_pbp with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:24:59 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/linescore/parquet/ncaa_baseball_linescore_2019.parquet (235.1KB), 150976 rows x 16 cols + ncaa_baseball_linescore_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:25:02 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2019.parquet (235.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-11-26 15:25:04 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2019.parquet -> ncaa_baseball_linescore (asset 1/3)
+2026-11-26 15:25:04 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2019.csv.gz (738.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-11-26 15:25:05 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2019.csv.gz -> ncaa_baseball_linescore (asset 2/3)
+2026-11-26 15:25:05 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_linescore_2019.rds (408.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_linescore
+2026-11-26 15:25:06 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_linescore_2019.rds -> ncaa_baseball_linescore (asset 3/3)
+2026-11-26 15:25:13 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_linescore with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:25:14 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/team_stats/parquet/ncaa_baseball_team_stats_2019.parquet (954.3KB), 989186 rows x 15 cols + ncaa_baseball_team_stats_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:25:22 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2019.parquet (954.3KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-11-26 15:25:24 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2019.parquet -> ncaa_baseball_team_stats (asset 1/3)
+2026-11-26 15:25:24 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2019.csv.gz (4.7MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-11-26 15:25:26 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2019.csv.gz -> ncaa_baseball_team_stats (asset 2/3)
+2026-11-26 15:25:26 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_team_stats_2019.rds (1.6MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_team_stats
+2026-11-26 15:25:27 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_team_stats_2019.rds -> ncaa_baseball_team_stats (asset 3/3)
+2026-11-26 15:25:33 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_team_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:25:33 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/player_stats/parquet/ncaa_baseball_player_stats_2019.parquet (1.9MB), 481526 rows x 13 cols + ncaa_baseball_player_stats_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:25:38 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2019.parquet (1.9MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-11-26 15:25:40 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2019.parquet -> ncaa_baseball_player_stats (asset 1/3)
+2026-11-26 15:25:40 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2019.csv.gz (3.5MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-11-26 15:25:45 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2019.csv.gz -> ncaa_baseball_player_stats (asset 2/3)
+2026-11-26 15:25:45 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_player_stats_2019.rds (2.8MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_player_stats
+2026-11-26 15:25:46 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_player_stats_2019.rds -> ncaa_baseball_player_stats (asset 3/3)
+2026-11-26 15:25:52 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_player_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:25:54 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/situational_stats/parquet/ncaa_baseball_situational_stats_2019.parquet (4.0MB), 591813 rows x 33 cols + ncaa_baseball_situational_stats_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:26:05 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2019.parquet (4.0MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-11-26 15:26:06 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2019.parquet -> ncaa_baseball_situational_stats (asset 1/3)
+2026-11-26 15:26:06 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2019.csv.gz (8.2MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-11-26 15:26:09 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2019.csv.gz -> ncaa_baseball_situational_stats (asset 2/3)
+2026-11-26 15:26:09 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_situational_stats_2019.rds (6.8MB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_situational_stats
+2026-11-26 15:26:10 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_situational_stats_2019.rds -> ncaa_baseball_situational_stats (asset 3/3)
+2026-11-26 15:26:15 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_situational_stats with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:26:15 [INFO] ncaa_baseball_data_build: wrote /mnt/sdv_repos/baseballr-data/ncaa/games/parquet/ncaa_baseball_games_2019.parquet (162.7KB), 15391 rows x 10 cols + ncaa_baseball_games_2019.csv.gz (release); manifest manifest.csv upserted
+2026-11-26 15:26:17 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2019.parquet (162.7KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-11-26 15:26:18 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2019.parquet -> ncaa_baseball_games (asset 1/3)
+2026-11-26 15:26:18 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2019.csv.gz (196.1KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-11-26 15:26:20 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2019.csv.gz -> ncaa_baseball_games (asset 2/3)
+2026-11-26 15:26:20 [INFO] ncaa_baseball_data_build: uploading ncaa_baseball_games_2019.rds (193.6KB) -> sportsdataverse/sportsdataverse-data:ncaa_baseball_games
+2026-11-26 15:26:21 [INFO] ncaa_baseball_data_build: uploaded ncaa_baseball_games_2019.rds -> ncaa_baseball_games (asset 3/3)
+2026-11-26 15:26:26 [INFO] ncaa_baseball_data_build: stamped ncaa_baseball_games with timestamp.txt, timestamp.json, package_function.txt, package_function.json
+2026-11-26 15:26:26 [INFO] ncaa_baseball_data_build: qa 2019: 13591/15391 exact, 1780 unverifiable, 20 flagged -> /mnt/sdv_repos/baseballr-data/ncaa/qa/qa_pbp_finals_2019.parquet
