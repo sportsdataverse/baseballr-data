@@ -265,12 +265,14 @@ def _capture_job(
 
 def _legacy_job(args: "tuple[str, str, bool]") -> "tuple[str, str]":
     root_s, path_s, force = args
-    from ncaa_pbp.legacy import build_legacy_payload, read_legacy_game
+    from ncaa_pbp.legacy import build_legacy_payload, legacy_schedule, read_legacy_game
 
     root = Path(root_s)
     try:
         rows = read_legacy_game(path_s)
-        payload = build_legacy_payload(rows, fallback_id=Path(path_s).stem)
+        year = rows[0].get("year") if rows else None
+        sched = legacy_schedule(root_s, int(year)) if year else None
+        payload = build_legacy_payload(rows, fallback_id=Path(path_s).stem, schedule=sched)
         out = parsed_path(root, payload["game_key"])
         if out.exists() and not force:
             return payload["game_key"], "skipped"
