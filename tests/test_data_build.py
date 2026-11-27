@@ -407,3 +407,27 @@ def test_string_game_pbp_id_still_matches_its_recaptured_game(tree: Path, tmp_pa
         base / f"ncaa/games/parquet/ncaa_baseball_games_{LEGACY_SEASON}.parquet"
     )
     assert games.height == 2  # no duplicate of 7100001
+
+
+def test_qa_row_text_runs_split_stale_score_column_from_missing_plays() -> None:
+    from ncaa_baseball_data_build.builders import _qa_row
+
+    def payload(rows: list, hbf: bool | None = None) -> dict:
+        teams = [{"home_away": "away", "final": 3}, {"home_away": "home", "final": 2}]
+        return {"game_key": "g", "teams": teams, "pbp": rows, "home_bats_first": hbf}
+
+    def row(tb: str, rs: int, sa: int, sh: int) -> dict:
+        return {"inning_top_bot": tb, "runs_scored": rs, "score_away": sa, "score_home": sh}
+
+    # page score column stale (last row 3-1) but the plays sum to the 3-2 final
+    stale = _qa_row(payload([row("top", 3, 3, 0), row("bot", 1, 3, 1), row("bot", 1, 3, 1)]))
+    assert (stale["finals_match"], stale["text_match"]) == (False, True)
+    assert (stale["text_away"], stale["text_home"]) == (3, 2)
+    # a missing bottom-half run: both checks fail
+    gap = _qa_row(payload([row("top", 3, 3, 0), row("bot", 1, 3, 1)]))
+    assert (gap["finals_match"], gap["text_match"]) == (False, False)
+    # home batted first: top halves are the home side's runs
+    flipped = _qa_row(payload([row("top", 2, 0, 2), row("bot", 3, 3, 2)], hbf=True))
+    assert (flipped["text_away"], flipped["text_home"], flipped["text_match"]) == (3, 2, True)
+    # no runs_scored at all -> unverifiable, not a mismatch
+    assert _qa_row(payload([{"inning_top_bot": "top"}]))["text_match"] is None

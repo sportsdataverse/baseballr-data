@@ -115,13 +115,17 @@ def _write_qa(qa: pl.DataFrame, season: int, base: Path) -> None:
     qa.write_parquet(out)
     ok = (qa.get_column("finals_match") == True).sum()  # noqa: E712
     unv = qa.get_column("finals_match").null_count()
+    txt = (qa.get_column("text_match") == True).sum()  # noqa: E712
+    stale = qa.filter((pl.col("finals_match") == False) & (pl.col("text_match") == True)).height  # noqa: E712
     log.info(
-        "qa %s: %d/%d exact, %d unverifiable, %d flagged -> %s",
+        "qa %s: %d/%d exact, %d unverifiable, %d flagged (%d stale score column); text runs match %d -> %s",
         season,
         ok,
         qa.height,
         unv,
         qa.height - ok - unv,
+        stale,
+        txt,
         out,
     )
 

@@ -65,6 +65,9 @@ QA_SCHEMA: "dict[str, pl.DataType]" = {
     "pbp_away": pl.Int64,
     "pbp_home": pl.Int64,
     "finals_match": pl.Boolean,
+    "text_away": pl.Int64,
+    "text_home": pl.Int64,
+    "text_match": pl.Boolean,
 }
 
 
@@ -250,14 +253,37 @@ def _game_row(payload: "dict[str, Any]") -> "dict[str, Any]":
     }
 
 
+def _text_runs(payload: "dict[str, Any]") -> "tuple[int | None, int | None]":
+    """Per-side ``runs_scored`` sum from the play text (None, None) without any.
+
+    A top half is the away side unless ``home_bats_first`` (stage 03 swaps the
+    score columns for those games but keeps ``inning_top_bot`` as played).
+    """
+    top, bot = ("home", "away") if payload.get("home_bats_first") else ("away", "home")
+    tot = {"away": 0, "home": 0}
+    seen = False
+    for r in payload.get("pbp") or []:
+        rs, tb = _int(r.get("runs_scored")), r.get("inning_top_bot")
+        if rs is None or tb is None:
+            continue
+        seen = True
+        tot[top if tb == "top" else bot] += rs
+    return (tot["away"], tot["home"]) if seen else (None, None)
+
+
 def _qa_row(payload: "dict[str, Any]") -> "dict[str, Any]":
-    """Payload teams[].final vs the last pbp row's running score."""
+    """Payload teams[].final vs the last pbp row's running score and the play-text runs.
+
+    ``finals_match`` False with ``text_match`` True = a stale page score column;
+    both False = plays missing from the page or unparsed.
+    """
     fa = _int(_team(payload, "away").get("final"))
     fh = _int(_team(payload, "home").get("final"))
     pbp = payload.get("pbp") or []
     pa = next((r["score_away"] for r in reversed(pbp) if r.get("score_away") is not None), None)
     ph = next((r["score_home"] for r in reversed(pbp) if r.get("score_home") is not None), None)
     comparable = None not in (fa, fh, pa, ph)
+    ta, th = _text_runs(payload)
     return {
         "game_key": str(payload.get("game_key")),
         "source": payload.get("source"),
@@ -266,6 +292,9 @@ def _qa_row(payload: "dict[str, Any]") -> "dict[str, Any]":
         "pbp_away": _int(pa),
         "pbp_home": _int(ph),
         "finals_match": (fa == pa and fh == ph) if comparable else None,
+        "text_away": ta,
+        "text_home": th,
+        "text_match": (fa == ta and fh == th) if None not in (fa, fh, ta, th) else None,
     }
 
 
