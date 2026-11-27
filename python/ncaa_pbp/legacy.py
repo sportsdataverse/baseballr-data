@@ -29,10 +29,11 @@ from __future__ import annotations
 
 import json
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Optional
 
-__all__ = ["build_legacy_payload", "iter_legacy_games", "read_legacy_game"]
+__all__ = ["build_legacy_payload", "iter_legacy_games", "legacy_schedule", "read_legacy_game"]
 
 
 def iter_legacy_games(root: "str | Path", year: "Optional[int]" = None):
@@ -80,8 +81,52 @@ def _final_score(rows: "list[dict]") -> "tuple[Optional[int], Optional[int]]":
     return None, None
 
 
+@lru_cache(maxsize=None)
+def legacy_schedule(root: str, year: int) -> "dict[str, tuple]":
+    """``{game_key: (away_team, away_score, home_team, home_score)}`` from the R-era season schedule.
+
+    Keyed like the payloads: ``g<game_pbp_id>`` and the bare ``contest_id``. Empty when the file is absent.
+    """
+    import polars as pl
+
+    f = Path(root) / "ncaa" / "schedules" / "parquet" / f"ncaa_baseball_schedule_{year}.parquet"
+    if not f.exists():
+        return {}
+    out: "dict[str, tuple]" = {}
+    for r in pl.read_parquet(f).iter_rows(named=True):
+        v = (
+            r.get("away_team"),
+            r.get("away_team_score"),
+            r.get("home_team"),
+            r.get("home_team_score"),
+        )
+        if r.get("game_pbp_id") is not None:
+            out[f"g{r['game_pbp_id']}"] = v
+        if r.get("contest_id") is not None:
+            out.setdefault(str(r["contest_id"]), v)
+    return out
+
+
+def _schedule_final(row: "Optional[tuple]", away: Any, home: Any) -> "Optional[tuple[int, int]]":
+    """(away, home) finals from a schedule row whose team names line up with the batting order.
+
+    Straight or swapped (the listed home team batting first); any other name pairing returns None, so a
+    renamed or misread team never takes the wrong side's score.
+    """
+    if row is None or row[1] is None or row[3] is None:
+        return None
+    s_away, a_score, s_home, h_score = row
+    if (away, home) == (s_away, s_home):
+        return int(a_score), int(h_score)
+    if (away, home) == (s_home, s_away):
+        return int(h_score), int(a_score)
+    return None
+
+
 def build_legacy_payload(
-    rows: "list[dict]", fallback_id: "Optional[str]" = None
+    rows: "list[dict]",
+    fallback_id: "Optional[str]" = None,
+    schedule: "Optional[dict[str, tuple]]" = None,
 ) -> "dict[str, Any]":
     """One legacy per-game row list -> the stage-03 payload dict (pure, offline).
 
@@ -90,6 +135,10 @@ def build_legacy_payload(
     filename stem, which IS that id. Without it they all collapse onto one
     ``gNone`` key and clobber each other. They also carry no ``year``, so they
     are excluded from every season dataset until someone dates them.
+
+    ``schedule`` (:func:`legacy_schedule`) supplies the posted final. The page's running score column misses
+    every run the page prints as the runner's name instead of "scored" (3-4% of 2017-2022 games end wrong), so
+    the posted score wins when the team names line up; ``teams[].final_source`` says which one was used.
     """
     from sportsdataverse.baseball.college_baseball import decompose_college_baseball_plays
 
@@ -106,6 +155,10 @@ def build_legacy_payload(
     away = next((r["batting"] for r in rows if r.get("inning_top_bot") == "top"), None)
     home = next((r["batting"] for r in rows if r.get("inning_top_bot") == "bot"), None)
     fa, fh = _final_score(rows)
+    posted = _schedule_final((schedule or {}).get(game_key), away, home)
+    final_source = "schedule" if posted else "score_column"
+    if posted:
+        fa, fh = posted
 
     # the R-era scrape kept the inning run-summary rows ("R: 1 H: 2 LOB: 1")
     # the modern HTML parser filters out -- they are not plays
@@ -135,8 +188,20 @@ def build_legacy_payload(
         "location": meta.get("location"),
         "attendance": meta.get("attendance"),
         "teams": [
-            {"team": away, "home_away": "away", "final": fa, "espn_game_id": None},
-            {"team": home, "home_away": "home", "final": fh, "espn_game_id": None},
+            {
+                "team": away,
+                "home_away": "away",
+                "final": fa,
+                "final_source": final_source,
+                "espn_game_id": None,
+            },
+            {
+                "team": home,
+                "home_away": "home",
+                "final": fh,
+                "final_source": final_source,
+                "espn_game_id": None,
+            },
         ],
         "pbp": pbp,
         "linescore": [],

@@ -218,3 +218,32 @@ def test_away_team_batting_first_is_left_alone() -> None:
     p = build_capture_payload(_bundle("755683"), 2012)
     assert p["home_bats_first"] is False
     assert (p["pbp"][-1]["score_away"], p["pbp"][-1]["score_home"]) == (6, 22)
+
+
+def test_legacy_final_comes_from_the_posted_schedule_when_names_line_up() -> None:
+    """2022 g5197212 (Miles at Shorter): the page score column ends 3-14 because it misses two runs printed as
+    doubled runner names; the posted score is 3-16."""
+    f = ROOT / "ncaa" / "game_pbp" / "json" / "5197212.json"
+    if not f.exists():
+        pytest.skip("legacy tree not present (sparse checkout)")
+    from ncaa_pbp.legacy import legacy_schedule
+
+    rows = read_legacy_game(f)
+    plain = build_legacy_payload(rows)
+    assert [(t["final"], t["final_source"]) for t in plain["teams"]] == [(3, "score_column"), (14, "score_column")]
+    posted = build_legacy_payload(rows, schedule=legacy_schedule(str(ROOT), 2022))
+    assert [(t["team"], t["final"], t["final_source"]) for t in posted["teams"]] == [
+        ("Miles", 3, "schedule"),
+        ("Shorter", 16, "schedule"),
+    ]
+
+
+def test_schedule_final_orientation() -> None:
+    """Swapped names (the listed home team batted first) take the swapped scores; other names take none."""
+    from ncaa_pbp.legacy import _schedule_final
+
+    row = ("Miles", 3, "Shorter", 16)
+    assert _schedule_final(row, "Miles", "Shorter") == (3, 16)
+    assert _schedule_final(row, "Shorter", "Miles") == (16, 3)
+    assert _schedule_final(row, "Hitting", None) is None
+    assert _schedule_final(("Miles", None, "Shorter", 16), "Miles", "Shorter") is None
