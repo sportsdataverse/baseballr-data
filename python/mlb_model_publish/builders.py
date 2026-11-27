@@ -142,10 +142,11 @@ _CARD_META = {
         "notes": [
             "Game results derive from each game's terminal result_*_score --"
             " one statsapi pull per season, no second surface.",
-            "Leverage index IS published (mlb_leverage_index): E|delta WE| over"
-            " the empirical next-state distribution from each state, normalized"
-            " so the PA-weighted mean is 1.0 (abs_wpa is averaged over plate"
-            " appearances, not over states).",
+            "Leverage index IS published (mlb_leverage_index): the mean |delta WE|"
+            " that a plate appearance starting in each state causes (the game's"
+            " result after its last PA), with WE read from one table pooled over"
+            " the 2015-2026 regular seasons and averaged over the season's own"
+            " plate appearances, normalized so the PA-weighted mean is 1.0.",
             "we_table and leverage_index carry the bucket count `n` and a `thin`"
             " flag (n < 50). The threshold is measured, not chosen: pooled"
             " adjacent-season disagreement in the WE estimate is .0586 mean"
